@@ -1,5 +1,14 @@
 # CentOS 快速安装常用开发工具
 
+## Docker
+
+```bash
+# https://docs.docker.com/engine/install/centos/
+yum install -y yum-utils
+yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+yum install docker-ce docker-ce-cli containerd.io
+```
+
 ## MySQL 8.x
 
 ```bash
@@ -31,7 +40,28 @@ curl -sL https://rpm.nodesource.com/setup_11.x | bash -
 curl --silent --location https://dl.yarnpkg.com/rpm/yarn.repo | sudo tee /etc/yum.repos.d/yarn.repo
 ```
 
-## nginx
+## Git
+
+```bash
+# https://stackoverflow.com/questions/21820715/how-to-install-latest-version-of-git-on-centos-7-x-6-x
+yum install http://opensource.wandisco.com/centos/7/git/x86_64/wandisco-git-release-7-2.noarch.rpm
+yum install git
+```
+
+## NGiNX
+
+```bash
+# https://www.nginx.com/resources/wiki/start/topics/tutorials/install/
+vim /etc/yum.repos.d/nginx.repo
+```
+
+```ini
+[nginx]
+name=nginx repo
+baseurl=https://nginx.org/packages/centos/$releasever/$basearch/
+gpgcheck=0
+enabled=1
+```
 
 ## Python
 
