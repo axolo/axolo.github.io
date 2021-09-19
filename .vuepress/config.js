@@ -1,6 +1,6 @@
 module.exports = {
-  title: "西阁码农",
-  description: '方跃明的博客',
+  title: "方跃明的博客",
+  description: '全栈开发技术博客',
   dest: 'docs',
   head: [
     ['link', { rel: 'icon', href: '/favicon.ico' }],
