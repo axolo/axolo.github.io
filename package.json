@@ -1,6 +1,6 @@
 {
   "name": "axolo.github.io",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Yueming Fang's blog.",
   "main": "index.js",
   "scripts": {
@@ -8,43 +8,33 @@
     "dev": "vuepress dev .",
     "build": "vuepress build ."
   },
-  "repository": "https://github.com/axolo/blog",
+  "repository": "https://github.com/axolo/axolo.github.io.git",
   "author": "Yueming Fang",
   "license": "MIT",
   "keywords": [
-    "Yueming",
-    "Fang",
-    "fangyueming",
-    "axolo",
-    "woodso",
-    "blog",
-    "js",
     "JavaScript",
-    "∑null",
-    "开发",
     "后端",
     "前端",
-    "全栈",
     "运维",
-    "架构",
+    "全栈",
+    "应用开发",
+    "技术博客",
     "方跃明",
     "西阁码农",
-    "木秀"
+    "∑null"
   ],
   "dependencies": {},
   "devDependencies": {
-    "@commitlint/cli": "^8.3.5",
-    "@commitlint/config-conventional": "^8.3.4",
-    "@vuepress/plugin-google-analytics": "^1.2.0",
-    "@vuepress/plugin-medium-zoom": "^1.2.0",
-    "@vuepress/plugin-pwa": "^1.2.0",
-    "eslint": "^6.8.0",
-    "husky": "^4.0.10",
-    "markdown-it-task-lists": "^2.1.1",
-    "vuepress": "^1.2.0",
-    "vuepress-plugin-flowchart": "^1.4.3",
-    "vuepress-plugin-mermaidjs": "^1.2.0",
-    "vuepress-theme-reco": "^1.2.1"
+    "@commitlint/cli": "^12.1.4",
+    "@commitlint/config-conventional": "^12.1.4",
+    "@vuepress/plugin-google-analytics": "^1.8.2",
+    "@vuepress/plugin-medium-zoom": "^1.8.2",
+    "@vuepress/plugin-pwa": "^1.8.2",
+    "eslint": "^7.31.0",
+    "husky": "^7.0.1",
+    "vuepress": "^1.8.2",
+    "vuepress-plugin-mermaidjs": "^1.8.1",
+    "vuepress-theme-reco": "^1.6.6"
   },
   "husky": {
     "hooks": {
