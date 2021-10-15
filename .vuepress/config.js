@@ -1,6 +1,6 @@
 module.exports = {
-  title: "方跃明的博客",
-  description: '全栈开发技术博客',
+  title: "个人技术",
+  description: '方跃明的技术博客',
   dest: 'docs',
   head: [
     ['link', { rel: 'icon', href: '/favicon.ico' }],
@@ -37,7 +37,7 @@ module.exports = {
     // 作者
     author: '方跃明',
     // 备案
-    record: '浙ICP备20010733号',
+    record: '浙ICP备20010733号-1',
     recordLink: 'http://beian.miit.gov.cn/',
     startYear: '2019',
     friendLink: []
