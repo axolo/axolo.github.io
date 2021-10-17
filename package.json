@@ -1,6 +1,7 @@
 {
-  "name": "fangyueming",
-  "version": "0.0.0",
+  "name": "@fangyueming/www",
+  "version": "0.0.1",
+  "license": "MIT",
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",
