@@ -1,6 +1,6 @@
 module.exports = {
-  title: "个人技术",
-  description: '方跃明的技术博客',
+  title: "方跃明的技术博客",
+  description: '分享前端、后端、运维，即所谓的全栈开发技术',
   dest: 'docs',
   head: [
     ['link', { rel: 'icon', href: '/favicon.ico' }],
