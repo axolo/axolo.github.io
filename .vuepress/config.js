@@ -11,10 +11,10 @@ module.exports = config({
     // ['script', { src: '//cdn.jsdelivr.net/npm/@babel/standalone/babel.min.js' }],
   ],
   themeConfig: {
+    author: '方跃明',
     logo: '/logo.svg',
-    hostname: 'https://vuepress-theme-hope-demo.mrhope.site',
-    author: 'Mr.Hope',
-    repo: 'https://github.com/vuepress-theme-hope/vuepress-theme-hope',
+    hostname: 'https://blog.fangyueming.cn',
+    repo: 'https://github.com/axolo/axolo.github.io',
     nav: [
       { text: '首页', link: '/', icon: 'home' },
     ],
@@ -37,9 +37,8 @@ module.exports = config({
       intro: '/intro/',
       sidebarDisplay: 'mobile',
       links: {
-        Zhihu: 'https://zhihu.com',
-        Baidu: 'https://baidu.com',
-        Github: 'https://github.com',
+        Zhihu: 'https://www.zhihu.com/people/axolo',
+        Github: 'https://github.com/axolo',
       },
     },
 
