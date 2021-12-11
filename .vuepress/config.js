@@ -1,53 +1,131 @@
-module.exports = {
-  title: "方跃明的技术博客",
-  description: '分享前端、后端、运维，即所谓的全栈开发技术',
-  dest: 'docs',
+const { config } = require('vuepress-theme-hope');
+
+module.exports = config({
+  title: '方跃明的博客',
+  description: '分享软件应用开发技术',
+  dest: './docs',
   head: [
-    ['link', { rel: 'icon', href: '/favicon.ico' }],
-    ['meta', { name: 'viewport', content: 'width=device-width,initial-scale=1,user-scalable=no' }]
+    // ['script', { src: '//cdn.jsdelivr.net/npm/react/umd/react.production.min.js' }],
+    // ['script', { src: '//cdn.jsdelivr.net/npm/react-dom/umd/react-dom.production.min.js' }],
+    // ['script', { src: '//cdn.jsdelivr.net/npm/vue/dist/vue.min.js' }],
+    // ['script', { src: '//cdn.jsdelivr.net/npm/@babel/standalone/babel.min.js' }],
   ],
-  theme: 'reco',
   themeConfig: {
+    logo: '/logo.svg',
+    hostname: 'https://vuepress-theme-hope-demo.mrhope.site',
+    author: 'Mr.Hope',
+    repo: 'https://github.com/vuepress-theme-hope/vuepress-theme-hope',
     nav: [
-      { text: '首页', link: '/', icon: 'reco-home' },
-      { text: '时间轴', link: '/timeline/', icon: 'reco-date' },
-      { text: 'GitHub', link: 'https://github.com/axolo', icon: 'reco-github' }
+      { text: '首页', link: '/', icon: 'home' },
     ],
-    type: 'blog',
-    // 博客设置
-    blogConfig: {
-      tag: {
-        location: 2, // 在导航栏菜单中所占的位置，默认3
-        text: '标签' // 默认 “标签”
+    // sidebar: {
+    //   '/': [
+    //     '',
+    //     'home',
+    //     'slides',
+    //     'layout',
+    //     {
+    //       title: 'Guide',
+    //       icon: 'creative',
+    //       prefix: 'guide/',
+    //       children: ['', 'page', 'markdown', 'disable', 'encrypt'],
+    //     },
+    //   ],
+    // },
+
+    blog: {
+      intro: '/intro/',
+      sidebarDisplay: 'mobile',
+      links: {
+        Zhihu: 'https://zhihu.com',
+        Baidu: 'https://baidu.com',
+        Github: 'https://github.com',
       },
-      category: {
-        location: 3, // 在导航栏菜单中所占的位置，默认2
-        text: '分类' // 默认 “分类”
-      }
     },
-    logo: '/head.png',
-    authorAvatar: '/head.png',
-    // 搜索设置
-    search: true,
-    searchMaxSuggestions: 10,
-    // 自动形成侧边导航
-    sidebar: 'auto',
-    // 最后更新时间
-    lastUpdated: 'Last Updated',
-    // 作者
-    author: '方跃明',
-    // 备案
-    record: '浙ICP备20010733号-1',
-    recordLink: 'http://beian.miit.gov.cn/',
-    startYear: '2019',
-    friendLink: []
+
+    footer: {
+      display: true,
+      content: '默认页脚',
+    },
+
+    comment: {
+      type: 'waline',
+      serverURL: 'https://vuepress-theme-hope-comment.vercel.app',
+    },
+
+    copyright: {
+      status: 'global',
+    },
+
+    git: {
+      timezone: 'Asia/Shanghai',
+    },
+
+    mdEnhance: {
+      enableAll: true,
+      presentation: {
+        plugins: ['highlight', 'math', 'search', 'notes', 'zoom', 'anything', 'audio', 'chalkboard'],
+      },
+    },
+
+    pwa: {
+      favicon: '/favicon.ico',
+      cachePic: true,
+      apple: {
+        icon: '/assets/icon/apple-icon-152.png',
+        statusBarColor: 'black',
+      },
+      msTile: {
+        image: '/assets/icon/ms-icon-144.png',
+        color: '#ffffff',
+      },
+      manifest: {
+        icons: [
+          {
+            src: '/assets/icon/chrome-mask-512.png',
+            sizes: '512x512',
+            purpose: 'maskable',
+            type: 'image/png',
+          },
+          {
+            src: '/assets/icon/chrome-mask-192.png',
+            sizes: '192x192',
+            purpose: 'maskable',
+            type: 'image/png',
+          },
+          {
+            src: '/assets/icon/chrome-512.png',
+            sizes: '512x512',
+            type: 'image/png',
+          },
+          {
+            src: '/assets/icon/chrome-192.png',
+            sizes: '192x192',
+            type: 'image/png',
+          },
+        ],
+        shortcuts: [
+          {
+            name: 'Guide',
+            short_name: 'Guide',
+            url: '/guide/',
+            icons: [
+              {
+                src: '/assets/icon/guide-maskable.png',
+                sizes: '192x192',
+                purpose: 'maskable',
+                type: 'image/png',
+              },
+              {
+                src: '/assets/icon/guide-monochrome.png',
+                sizes: '192x192',
+                purpose: 'monochrome',
+                type: 'image/png',
+              },
+            ],
+          },
+        ],
+      },
+    },
   },
-  markdown: {
-    lineNumbers: true
-  },
-  plugins: [
-    '@vuepress/medium-zoom',
-    [ '@vuepress/google-analytics', { 'ga': 'UA-2935054-6' }],
-    'vuepress-plugin-mermaidjs'
-  ],
-}
+});
