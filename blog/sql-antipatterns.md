@@ -1,3 +1,15 @@
+---
+sticky: 100
+categories:
+  - SQL
+  - 数据库
+  - 建模
+tags:
+  - SQL
+  - 数据库
+  - 建模
+---
+
 # 读《SQL反模式》
 
 ## 缘起

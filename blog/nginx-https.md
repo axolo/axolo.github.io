@@ -1,3 +1,16 @@
+---
+time: 2018-11-11
+categories:
+  - nginx
+  - DevOps
+  - proxy
+  - 运维
+tags:
+  - nginx
+  - DevOps
+  - proxy
+  - 运维
+---
 # NGiNX反向代理实现https
 
 越来越多的应用需要https支持，因此支持https是大势所趋，也是必须的。

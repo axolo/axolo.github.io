@@ -1,3 +1,21 @@
+---
+time: 2018-04-29
+categories:
+  - k8s
+  - docker
+  - kubernetes
+  - 容器
+  - container
+  - 虚拟化
+tags:
+  - k8s
+  - docker
+  - kubernetes
+  - 容器
+  - container
+  - 虚拟化
+---
+
 # kubernetes安装指南
 
 ![容器生态圈](./kubernetes/container.jpg)
