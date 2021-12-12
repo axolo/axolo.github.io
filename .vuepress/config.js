@@ -30,7 +30,7 @@ module.exports = config({
       { text: '码云', link: 'https://gitee.com/axolo', icon: 'gitee' },
     ],
     blog: {
-      intro: '/intro/',
+      // intro: '/intro/',
       sidebarDisplay: 'mobile',
       links: {
         Github: 'https://github.com/axolo',
