@@ -41,6 +41,7 @@ module.exports = config({
         Github: 'https://github.com/axolo',
         Gitee: 'https://gitee.com/axolo',
         Zhihu: 'https://www.zhihu.com/people/axolo',
+        Weibo: 'https://weibo.com/u/2129355705',
       },
     },
 

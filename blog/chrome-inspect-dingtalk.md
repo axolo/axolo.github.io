@@ -1,3 +1,23 @@
+---
+time: 2019-04-07
+tags:
+  - Chrome
+  - 浏览器
+  - debug
+  - 调试
+  - 钉钉开发
+  - 前端
+  - Frontend
+categories:
+  - Chrome
+  - 浏览器
+  - debug
+  - 调试
+  - 钉钉开发
+  - 前端
+  - Frontend
+---
+
 # Chrome inspect开发钉钉应用
 
 `Chrome inspect`是`Chrome`浏览器基于`webkit remote debug`的实现，支持`Andorid`模拟器和`Andorid`真实设备。
