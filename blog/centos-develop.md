@@ -1,3 +1,14 @@
+---
+tags:
+  - CentOS
+  - Linux
+categories:
+  - Server
+  - 服务器
+  - OS
+  - 操作系统
+---
+
 # CentOS 快速安装常用开发工具
 
 ## Docker
