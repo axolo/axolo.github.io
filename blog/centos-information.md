@@ -1,3 +1,13 @@
+---
+time: 2012-04-03
+tags:
+  - CentOS
+  - Linux
+categories:
+  - CentOS
+  - Linux
+---
+
 # CentOS 查看各种信息
 
 ```bash

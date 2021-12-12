@@ -1,3 +1,13 @@
+---
+time: 2014-04-03
+tags:
+  - CentOS
+  - Linux
+categories:
+  - CentOS
+  - Linux
+---
+
 # Linux个人目录规划
 
 ```text

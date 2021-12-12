@@ -1,3 +1,13 @@
+---
+time: 2020-05-11
+tags:
+  - CentOS
+  - Linux
+categories:
+  - CentOS
+  - Linux
+---
+
 # CentOS 快速安装常用开发工具
 
 ## Docker

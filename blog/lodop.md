@@ -1,3 +1,14 @@
+---
+time: 2018-07-09
+tags:
+  - Lodop
+  - WEB打印
+  - 前端
+categories:
+  - Lodop
+  - WEB打印
+  - 前端
+---
 # Lodop打印解决方案
 
 ## 改进版

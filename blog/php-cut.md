@@ -1,3 +1,13 @@
+---
+time: 2009-08-01
+categories:
+  - PHP
+  - 后端
+tags:
+  - PHP
+  - 后端
+---
+
 # MVC及PHP++、PHP--胡思乱想杂记
 
 > <http://user.qzone.qq.com/61077523/blog/1249101307>

@@ -1,3 +1,17 @@
+---
+time: 2013-12-30
+categories:
+  - CentOS
+  - Linux
+  - 虚拟化
+  - KVM
+tags:
+  - CentOS
+  - Linux
+  - 虚拟化
+  - KVM
+---
+
 # WebVirtCloud部署笔记
 
 ## 系统配置

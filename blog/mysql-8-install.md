@@ -1,3 +1,17 @@
+---
+time: 2019-05-11
+tags:
+  - CentOS
+  - MySQL
+  - SQL
+  - Linux
+categories:
+  - CentOS
+  - MySQL
+  - SQL
+  - Linux
+---
+
 # CentOS 安装 MySQL 8
 
 ## 一、安装并登录

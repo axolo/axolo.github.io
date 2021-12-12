@@ -1,3 +1,14 @@
+---
+time: 2018-05-31
+sticky: 99
+categories:
+  - SQL
+  - 数据库
+tags:
+  - SQL
+  - 数据库
+---
+
 # 读《SQL反模式》
 
 ## 缘起

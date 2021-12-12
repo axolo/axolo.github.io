@@ -1,3 +1,15 @@
+---
+time: 2019-05-11
+tags:
+  - MySQL
+  - Linux
+  - Shell
+categories:
+  - MySQL
+  - Linux
+  - Shell
+---
+
 # MySQL自动备份
 
 ## 相关软件

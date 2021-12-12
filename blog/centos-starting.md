@@ -1,3 +1,12 @@
+---
+time: 2019-05-09
+tags:
+  - CentOS
+  - Linux
+categories:
+  - CentOS
+  - Linux
+---
 # CentOS入坑指南
 
 1. 基本命令

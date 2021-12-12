@@ -1,3 +1,13 @@
+---
+time: 2019-05-09
+tags:
+  - CentOS
+  - Linux
+categories:
+  - CentOS
+  - Linux
+---
+
 # CentOS 8 安装
 
 ## 准备启动介质

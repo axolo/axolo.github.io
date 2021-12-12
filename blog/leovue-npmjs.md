@@ -1,3 +1,17 @@
+---
+time: 2018-08-19
+tags:
+  - Vue.js
+  - NPM
+  - Node.js
+  - 前端
+categories:
+  - Vue.js
+  - NPM
+  - Node.js
+  - 前端
+---
+
 # LeoVue打包发布npmjs折腾记
 
 ## 发布步骤

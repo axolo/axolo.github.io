@@ -1,46 +1,16 @@
 {
-  "name": "axolo.github.io",
-  "version": "0.1.1",
-  "description": "Yueming Fang's blog.",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "vuepress dev .",
-    "build": "vuepress build ."
-  },
-  "repository": "https://github.com/axolo/axolo.github.io.git",
-  "author": "Yueming Fang",
+  "name": "fangyueming-blog",
+  "version": "0.2.0",
+  "description": "方跃明的博客",
   "license": "MIT",
-  "keywords": [
-    "JavaScript",
-    "后端",
-    "前端",
-    "运维",
-    "全栈",
-    "应用开发",
-    "技术博客",
-    "方跃明",
-    "小程序",
-    "移动WEB",
-    "Node",
-    "Node.js"
-  ],
-  "dependencies": {},
-  "devDependencies": {
-    "@commitlint/cli": "^13.1.0",
-    "@commitlint/config-conventional": "^13.1.0",
-    "@vuepress/plugin-google-analytics": "^1.8.2",
-    "@vuepress/plugin-medium-zoom": "^1.8.2",
-    "@vuepress/plugin-pwa": "^1.8.2",
-    "eslint": "^7.32.0",
-    "husky": "^7.0.2",
-    "vuepress": "^1.8.2",
-    "vuepress-plugin-mermaidjs": "^1.8.1",
-    "vuepress-theme-reco": "^1.6.6"
+  "scripts": {
+    "dev": "vuepress dev .",
+    "build": "vuepress build .",
+    "clean": "vuepress dev . --no-cache",
+    "eject": "vuepress eject-hope ."
   },
-  "husky": {
-    "hooks": {
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
-    }
+  "devDependencies": {
+    "vuepress": "^1.8.2",
+    "vuepress-theme-hope": "^1.21.0"
   }
 }

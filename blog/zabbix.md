@@ -1,3 +1,13 @@
+---
+time: 2011-11-11
+categories:
+  - Linux
+  - 运维
+tags:
+  - Linux
+  - 运维
+---
+
 # Zabbix安装笔记
 
 详细安装步骤参见：[官方安装手册](https://www.zabbix.com/documentation/3.0/manual/installation/install_from_packages)

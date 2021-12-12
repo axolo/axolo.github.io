@@ -1,3 +1,13 @@
+---
+time: 2015-05-09
+tags:
+  - JavaScript
+  - 前端
+categories:
+  - JavaScript
+  - 前端
+---
+
 # JavaScript思维导图
 
 ## 数据类型

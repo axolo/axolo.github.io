@@ -1,3 +1,13 @@
+---
+time: 2018-09-30
+categories:
+  - Vue.js
+  - 前端
+tags:
+  - Vue.js
+  - 前端
+---
+
 # Vue父子组件通信
 
 ## 理解
