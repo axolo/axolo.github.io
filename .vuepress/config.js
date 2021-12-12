@@ -12,8 +12,8 @@ module.exports = config({
   ],
   themeConfig: {
     author: '方跃明',
-    logo: '/logo.svg',
     hostname: 'https://blog.fangyueming.cn',
+    logo: '/logo.svg',
     repo: 'https://github.com/axolo/axolo.github.io',
     nav: [
       { text: '首页', link: '/', icon: 'home' },
