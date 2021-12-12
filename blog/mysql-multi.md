@@ -1,3 +1,17 @@
+---
+time: 2019-05-12
+tags:
+  - MySQL
+  - Linux
+  - Shell
+  - CentOS
+categories:
+  - MySQL
+  - Linux
+  - Shell
+  - CentOS
+---
+
 # MySQL多版本单服务器共存
 
 ## MySQL 8.x

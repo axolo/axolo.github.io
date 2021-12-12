@@ -1,3 +1,20 @@
+---
+time: 2019-05-09
+tags:
+  - CentOS
+  - Linux
+  - Server
+  - 服务器
+  - OS
+  - 操作系统
+categories:
+  - CentOS
+  - Linux
+  - Server
+  - 服务器
+  - OS
+  - 操作系统
+---
 # CentOS入坑指南
 
 1. 基本命令

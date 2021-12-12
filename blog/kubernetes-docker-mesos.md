@@ -1,3 +1,21 @@
+---
+time: 2018-04-29
+categories:
+  - k8s
+  - docker
+  - kubernetes
+  - 容器
+  - container
+  - 虚拟化
+tags:
+  - k8s
+  - docker
+  - kubernetes
+  - 容器
+  - container
+  - 虚拟化
+---
+
 # Docker、kubernetes和Apache Mesos之间的正确关系
 
 <http://www.techug.com/post/docker-vs-kubernetes-vs-apache-mesos.html>

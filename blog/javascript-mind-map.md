@@ -1,3 +1,17 @@
+---
+time: 2015-05-09
+tags:
+  - JavaScript
+  - JS
+  - 前端
+  - Frontend
+categories:
+  - JavaScript
+  - JS
+  - 前端
+  - Frontend
+---
+
 # JavaScript思维导图
 
 ## 数据类型

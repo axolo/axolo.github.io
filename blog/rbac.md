@@ -1,3 +1,17 @@
+---
+time: 2009-09-09
+categories:
+  - PHP
+  - Backend
+  - 后端
+  - RBAC
+tags:
+  - PHP
+  - Backend
+  - 后端
+  - RBAC
+---
+
 # RBAC之我见
 
 > 原帖见：<http://user.qzone.qq.com/61077523/blog/1374910701>

@@ -1,3 +1,25 @@
+---
+time: 2014-04-04
+tags:
+  - CentOS
+  - Linux
+  - Server
+  - 服务器
+  - OS
+  - 操作系统
+  - 虚拟化
+  - KVM
+categories:
+  - CentOS
+  - Linux
+  - Server
+  - 服务器
+  - OS
+  - 操作系统
+  - 虚拟化
+  - KVM
+---
+
 # CentOS安装KVM
 
 很多人都使用Openstack，通过nova来管理KVM，对于KVM本身其实很陌生，本文理论联系实践，加深对KVM的认识。先弄清楚几个概念和关系：

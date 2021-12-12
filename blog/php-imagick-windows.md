@@ -1,3 +1,17 @@
+---
+time: 2010-08-02
+categories:
+  - PHP
+  - Backend
+  - 后端
+  - Windows
+tags:
+  - PHP
+  - Backend
+  - 后端
+  - Windows
+---
+
 # php_imagick安装配置
 
 php_imagick是强大的图片处理PHP插件。

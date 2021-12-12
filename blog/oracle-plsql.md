@@ -1,3 +1,13 @@
+---
+time: 2018-05-12
+tags:
+  - Oracle
+  - SQL
+categories:
+  - Oracle
+  - SQL
+---
+
 # 配置Oracle PL/SQL Developer
 
 参见：<http://blog.csdn.net/helifengwell/article/details/5820434>
@@ -48,7 +58,7 @@
   <http://www.oracle.com/technetwork/database/features/instant-client/index-097480.html>
 
   包括如下内容:
-  
+
   - Instant client Package - Basic 运行OCI, OCCI, 和JDBC-OCI应用程序需要的所有文件
   - Instant client Package - Basic Lite: 只包含英语错误信息, 只支持unicode, ascii, 西欧字符集
   - Instant client Package - JDBC Supplement  为jdbc增加了xa, 国际化和RowSet操作。
