@@ -10,6 +10,12 @@ module.exports = config({
     // ['script', { src: '//cdn.jsdelivr.net/npm/vue/dist/vue.min.js' }],
     // ['script', { src: '//cdn.jsdelivr.net/npm/@babel/standalone/babel.min.js' }],
   ],
+  locales: {
+    "/": {
+      // 设置需要的语言
+      lang: "zh-CN",
+    },
+  },
   themeConfig: {
     author: '方跃明',
     hostname: 'https://blog.fangyueming.cn',

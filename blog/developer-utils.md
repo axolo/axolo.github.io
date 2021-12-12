@@ -1,11 +1,29 @@
-# 移动开发工具一览
+---
+time: 2018-03-02
+categories:
+  - 前端
+  - Frontend
+  - 工具
+  - utils
+tags:
+  - 前端
+  - Frontend
+  - 工具
+  - utils
+---
+
+# 程序员常用工具
+
+## 模拟API
+
+- [jsonplaceholder](https://jsonplaceholder.typicode.com)
+- [placeholder](https://placeholder.com/)
 
 ## UI
 
 - [ZanUI-WeApp](https://github.com/youzan/zanui-weapp)
 - [Mint UI](https://github.com/ElemeFE/mint-ui)
 - [Framework 7](http://framework7.io)
-- [VUX](https://doc.vux.li/zh-CN/)
 - [MUI](http://www.dcloud.io/mui.html)
 - [AmazeUI](http://amazeui.org/widgets)
 
