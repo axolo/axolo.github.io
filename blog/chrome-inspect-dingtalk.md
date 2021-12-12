@@ -2,20 +2,14 @@
 time: 2019-04-07
 tags:
   - Chrome
-  - 浏览器
   - debug
-  - 调试
-  - 钉钉开发
+  - 钉钉
   - 前端
-  - Frontend
 categories:
   - Chrome
-  - 浏览器
   - debug
-  - 调试
-  - 钉钉开发
+  - 钉钉
   - 前端
-  - Frontend
 ---
 
 # Chrome inspect开发钉钉应用

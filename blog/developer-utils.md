@@ -2,14 +2,10 @@
 time: 2018-03-02
 categories:
   - 前端
-  - Frontend
-  - 工具
-  - utils
+  - Node.js
 tags:
   - 前端
-  - Frontend
-  - 工具
-  - utils
+  - Node.js
 ---
 
 # 程序员常用工具

@@ -3,19 +3,11 @@ time: 2014-04-04
 tags:
   - CentOS
   - Linux
-  - Server
-  - 服务器
-  - OS
-  - 操作系统
   - 虚拟化
   - KVM
 categories:
   - CentOS
   - Linux
-  - Server
-  - 服务器
-  - OS
-  - 操作系统
   - 虚拟化
   - KVM
 ---

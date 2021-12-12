@@ -2,13 +2,9 @@
 time: 2011-11-11
 categories:
   - Linux
-  - DevOps
-  - monitor
   - 运维
 tags:
   - Linux
-  - DevOps
-  - monitor
   - 运维
 ---
 

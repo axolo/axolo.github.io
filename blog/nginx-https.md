@@ -2,13 +2,9 @@
 time: 2018-11-11
 categories:
   - nginx
-  - DevOps
-  - proxy
   - 运维
 tags:
   - nginx
-  - DevOps
-  - proxy
   - 运维
 ---
 # NGiNX反向代理实现https

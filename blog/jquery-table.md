@@ -2,16 +2,12 @@
 time: 2016-10-30
 tags:
   - JavaScript
-  - JS
-  - 前端
-  - Frontend
   - jQuery
+  - 前端
 categories:
   - JavaScript
-  - JS
-  - 前端
-  - Frontend
   - jQuery
+  - 前端
 ---
 
 # jQuery常用表格操作

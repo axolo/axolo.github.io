@@ -1,21 +1,15 @@
 ---
 time: 2018-08-19
 tags:
-  - Vue
   - Vue.js
-  - 前端
-  - Frontend
   - NPM
   - Node.js
-  - Node
+  - 前端
 categories:
-  - Vue
   - Vue.js
-  - 前端
-  - Frontend
   - NPM
   - Node.js
-  - Node
+  - 前端
 ---
 
 # LeoVue打包发布npmjs折腾记

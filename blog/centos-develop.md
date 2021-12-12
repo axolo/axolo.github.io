@@ -3,17 +3,9 @@ time: 2020-05-11
 tags:
   - CentOS
   - Linux
-  - Server
-  - 服务器
-  - OS
-  - 操作系统
 categories:
   - CentOS
   - Linux
-  - Server
-  - 服务器
-  - OS
-  - 操作系统
 ---
 
 # CentOS 快速安装常用开发工具

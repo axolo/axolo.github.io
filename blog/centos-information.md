@@ -3,17 +3,9 @@ time: 2012-04-03
 tags:
   - CentOS
   - Linux
-  - Server
-  - 服务器
-  - OS
-  - 操作系统
 categories:
   - CentOS
   - Linux
-  - Server
-  - 服务器
-  - OS
-  - 操作系统
 ---
 
 # CentOS 查看各种信息

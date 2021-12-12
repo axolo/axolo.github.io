@@ -3,17 +3,9 @@ time: 2014-04-03
 tags:
   - CentOS
   - Linux
-  - Server
-  - 服务器
-  - OS
-  - 操作系统
 categories:
   - CentOS
   - Linux
-  - Server
-  - 服务器
-  - OS
-  - 操作系统
 ---
 
 # Linux个人目录规划

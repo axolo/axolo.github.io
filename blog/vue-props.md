@@ -1,15 +1,11 @@
 ---
 time: 2018-09-30
 categories:
-  - Vue
   - Vue.js
   - 前端
-  - Frontend
 tags:
-  - Vue
   - Vue.js
   - 前端
-  - Frontend
 ---
 
 # Vue父子组件通信

@@ -3,11 +3,9 @@ time: 2016-12-20
 categories:
   - WEB
   - 前端
-  - Frontend
 tags:
   - WEB
   - 前端
-  - Frontend
 ---
 
 # Internet技术概览

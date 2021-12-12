@@ -1,15 +1,11 @@
 ---
 time: 2018-08-19
 tags:
-  - Vue
   - Vue.js
   - 前端
-  - Frontend
 categories:
-  - Vue
   - Vue.js
   - 前端
-  - Frontend
 ---
 
 # LeoVue的由来

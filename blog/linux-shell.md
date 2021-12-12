@@ -3,18 +3,10 @@ time: 2017-08-09
 tags:
   - CentOS
   - Linux
-  - Server
-  - 服务器
-  - OS
-  - 操作系统
   - Shell
 categories:
   - CentOS
   - Linux
-  - Server
-  - 服务器
-  - OS
-  - 操作系统
   - Shell
 ---
 

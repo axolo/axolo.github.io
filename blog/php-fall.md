@@ -3,11 +3,9 @@ sticky: 100
 time: 2009-11-23
 categories:
   - PHP
-  - Backend
   - 后端
 tags:
   - PHP
-  - Backend
   - 后端
 ---
 
