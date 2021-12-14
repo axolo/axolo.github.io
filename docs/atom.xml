@@ -6,7 +6,7 @@
   <author>
     <name>方跃明</name>
   </author>
-  <updated>2021-12-14T12:02:42.377Z</updated>
+  <updated>2021-12-14T13:07:34.450Z</updated>
   <generator>@mr-hope/vuepress-plugin-feed</generator>
   <link rel="self" href="https://blog.fangyueming.cn/atom.xml"/>
   <link rel="alternate" href="https://blog.fangyueming.cn/"/>
@@ -26,69 +26,6 @@
       <name>方跃明</name>
     </contributor>
     <published>2021-07-01T08:45:43.000Z</published>
-    <rights>Copyright by 方跃明</rights>
-  </entry>
-  <entry>
-    <title type="html">CentOS 查看各种信息</title>
-    <id>https://blog.fangyueming.cn/blog/centos-information/</id>
-    <link href="https://blog.fangyueming.cn/blog/centos-information/"/>
-    <updated>2021-12-12T12:29:55.000Z</updated>
-    <content type="html"><![CDATA[<h1 id="centos-查看各种信息"> CentOS 查看各种信息</h1>
-<div><pre><code><span>rpm</span> -ql nginx                 <span># 查看nginx软件包的安装位置</span>
-<span>rpm</span> -qa                       <span># 查看所有安装的软件包</span>
-<span>uname</span> -a                      <span># 查看内核/操作系统/CPU信息的linux系统信息命令</span>
-<span>head</span> -n <span>1</span> /etc/issue          <span># 查看操作系统版本，是数字1不是字母L</span>
-<span>cat</span> /proc/cpuinfo             <span># 查看CPU信息的linux系统信息命令</span>
-<span>hostname</span>                      <span># 查看计算机名的linux系统信息命令</span>
-lspci -tv                     <span># 列出所有PCI设备</span>
-lsusb -tv                     <span># 列出所有USB设备的linux系统信息命令</span>
-lsmod                         <span># 列出加载的内核模块</span>
-<span>env</span>                           <span># 查看环境变量资源</span>
-<span>free</span> -m                       <span># 查看内存使用量和交换区使用量</span>
-<span>df</span> -h                         <span># 查看各分区使用情况</span>
-<span>du</span> -sh                        <span># 查看指定目录的大小</span>
-<span>grep</span> MemTotal /proc/meminfo   <span># 查看内存总量</span>
-<span>grep</span> MemFree /proc/meminfo    <span># 查看空闲内存量</span>
-<span>uptime</span>                        <span># 查看系统运行时间、用户数、负载</span>
-<span>cat</span> /proc/loadavg             <span># 查看系统负载磁盘和分区</span>
-<span>mount</span> <span>|</span> <span>column</span> -t             <span># 查看挂接的分区状态</span>
-<span>fdisk</span> -l                      <span># 查看所有分区</span>
-<span>swapon</span> -s                     <span># 查看所有交换分区</span>
-hdparm -i /dev/hda            <span># 查看磁盘参数(仅适用于IDE设备)</span>
-<span>dmesg</span> <span>|</span> <span>grep</span> IDE              <span># 查看启动时IDE设备检测状况网络</span>
-<span>ifconfig</span>                      <span># 查看所有网络接口的属性</span>
-iptables -L                   <span># 查看防火墙设置</span>
-route -n                      <span># 查看路由表</span>
-<span>netstat</span> -lntp                 <span># 查看所有监听端口</span>
-<span>netstat</span> -antp                 <span># 查看所有已经建立的连接</span>
-<span>netstat</span> -s                    <span># 查看网络统计信息进程</span>
-<span>ps</span> -ef                        <span># 查看所有进程</span>
-<span>top</span>                           <span># 实时显示进程状态用户</span>
-w                             <span># 查看活动用户</span>
-<span>id</span>                            <span># 查看指定用户信息</span>
-last                          <span># 查看用户登录日志</span>
-<span>cut</span> -d: -f1 /etc/passwd       <span># 查看系统所有用户</span>
-<span>cut</span> -d: -f1 /etc/group        <span># 查看系统所有组</span>
-<span>crontab</span> -l                    <span># 查看当前用户的计划任务服务</span>
-<span>chkconfig</span> –list               <span># 列出所有系统服务</span>
-<span>chkconfig</span> –list <span>|</span> <span>grep</span> on     <span># 列出所有启动的系统服务程序</span>
-<span>cat</span> /proc/cpuinfo             <span># 查看CPU相关参数的linux系统命令</span>
-<span>cat</span> /proc/partitions          <span># 查看linux硬盘和分区信息的系统信息命令</span>
-<span>cat</span> /proc/meminfo             <span># 查看linux系统内存信息的linux系统命令</span>
-<span>cat</span> /proc/version             <span># 查看版本，类似uname -r</span>
-<span>cat</span> /proc/ioports             <span># 查看设备io端口</span>
-<span>cat</span> /proc/interrupts          <span># 查看中断</span>
-<span>cat</span> /proc/pci                 <span># 查看pci设备的信息</span>
-<span>cat</span> /proc/swaps               <span># 查看所有swap分区的信息</span>
-</code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br><span>9</span><br><span>10</span><br><span>11</span><br><span>12</span><br><span>13</span><br><span>14</span><br><span>15</span><br><span>16</span><br><span>17</span><br><span>18</span><br><span>19</span><br><span>20</span><br><span>21</span><br><span>22</span><br><span>23</span><br><span>24</span><br><span>25</span><br><span>26</span><br><span>27</span><br><span>28</span><br><span>29</span><br><span>30</span><br><span>31</span><br><span>32</span><br><span>33</span><br><span>34</span><br><span>35</span><br><span>36</span><br><span>37</span><br><span>38</span><br><span>39</span><br><span>40</span><br><span>41</span><br><span>42</span><br><span>43</span><br><span>44</span><br><span>45</span><br><span>46</span><br></div></div>]]></content>
-    <author>
-      <name>方跃明</name>
-    </author>
-    <contributor>
-      <name>方跃明</name>
-    </contributor>
-    <published>2012-04-03T00:00:00.000Z</published>
     <rights>Copyright by 方跃明</rights>
   </entry>
   <entry>
@@ -153,6 +90,69 @@ yum <span>install</span> <span>git</span>
       <name>方跃明</name>
     </contributor>
     <published>2020-05-11T00:00:00.000Z</published>
+    <rights>Copyright by 方跃明</rights>
+  </entry>
+  <entry>
+    <title type="html">CentOS 查看各种信息</title>
+    <id>https://blog.fangyueming.cn/blog/centos-information/</id>
+    <link href="https://blog.fangyueming.cn/blog/centos-information/"/>
+    <updated>2021-12-12T12:29:55.000Z</updated>
+    <content type="html"><![CDATA[<h1 id="centos-查看各种信息"> CentOS 查看各种信息</h1>
+<div><pre><code><span>rpm</span> -ql nginx                 <span># 查看nginx软件包的安装位置</span>
+<span>rpm</span> -qa                       <span># 查看所有安装的软件包</span>
+<span>uname</span> -a                      <span># 查看内核/操作系统/CPU信息的linux系统信息命令</span>
+<span>head</span> -n <span>1</span> /etc/issue          <span># 查看操作系统版本，是数字1不是字母L</span>
+<span>cat</span> /proc/cpuinfo             <span># 查看CPU信息的linux系统信息命令</span>
+<span>hostname</span>                      <span># 查看计算机名的linux系统信息命令</span>
+lspci -tv                     <span># 列出所有PCI设备</span>
+lsusb -tv                     <span># 列出所有USB设备的linux系统信息命令</span>
+lsmod                         <span># 列出加载的内核模块</span>
+<span>env</span>                           <span># 查看环境变量资源</span>
+<span>free</span> -m                       <span># 查看内存使用量和交换区使用量</span>
+<span>df</span> -h                         <span># 查看各分区使用情况</span>
+<span>du</span> -sh                        <span># 查看指定目录的大小</span>
+<span>grep</span> MemTotal /proc/meminfo   <span># 查看内存总量</span>
+<span>grep</span> MemFree /proc/meminfo    <span># 查看空闲内存量</span>
+<span>uptime</span>                        <span># 查看系统运行时间、用户数、负载</span>
+<span>cat</span> /proc/loadavg             <span># 查看系统负载磁盘和分区</span>
+<span>mount</span> <span>|</span> <span>column</span> -t             <span># 查看挂接的分区状态</span>
+<span>fdisk</span> -l                      <span># 查看所有分区</span>
+<span>swapon</span> -s                     <span># 查看所有交换分区</span>
+hdparm -i /dev/hda            <span># 查看磁盘参数(仅适用于IDE设备)</span>
+<span>dmesg</span> <span>|</span> <span>grep</span> IDE              <span># 查看启动时IDE设备检测状况网络</span>
+<span>ifconfig</span>                      <span># 查看所有网络接口的属性</span>
+iptables -L                   <span># 查看防火墙设置</span>
+route -n                      <span># 查看路由表</span>
+<span>netstat</span> -lntp                 <span># 查看所有监听端口</span>
+<span>netstat</span> -antp                 <span># 查看所有已经建立的连接</span>
+<span>netstat</span> -s                    <span># 查看网络统计信息进程</span>
+<span>ps</span> -ef                        <span># 查看所有进程</span>
+<span>top</span>                           <span># 实时显示进程状态用户</span>
+w                             <span># 查看活动用户</span>
+<span>id</span>                            <span># 查看指定用户信息</span>
+last                          <span># 查看用户登录日志</span>
+<span>cut</span> -d: -f1 /etc/passwd       <span># 查看系统所有用户</span>
+<span>cut</span> -d: -f1 /etc/group        <span># 查看系统所有组</span>
+<span>crontab</span> -l                    <span># 查看当前用户的计划任务服务</span>
+<span>chkconfig</span> –list               <span># 列出所有系统服务</span>
+<span>chkconfig</span> –list <span>|</span> <span>grep</span> on     <span># 列出所有启动的系统服务程序</span>
+<span>cat</span> /proc/cpuinfo             <span># 查看CPU相关参数的linux系统命令</span>
+<span>cat</span> /proc/partitions          <span># 查看linux硬盘和分区信息的系统信息命令</span>
+<span>cat</span> /proc/meminfo             <span># 查看linux系统内存信息的linux系统命令</span>
+<span>cat</span> /proc/version             <span># 查看版本，类似uname -r</span>
+<span>cat</span> /proc/ioports             <span># 查看设备io端口</span>
+<span>cat</span> /proc/interrupts          <span># 查看中断</span>
+<span>cat</span> /proc/pci                 <span># 查看pci设备的信息</span>
+<span>cat</span> /proc/swaps               <span># 查看所有swap分区的信息</span>
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br><span>9</span><br><span>10</span><br><span>11</span><br><span>12</span><br><span>13</span><br><span>14</span><br><span>15</span><br><span>16</span><br><span>17</span><br><span>18</span><br><span>19</span><br><span>20</span><br><span>21</span><br><span>22</span><br><span>23</span><br><span>24</span><br><span>25</span><br><span>26</span><br><span>27</span><br><span>28</span><br><span>29</span><br><span>30</span><br><span>31</span><br><span>32</span><br><span>33</span><br><span>34</span><br><span>35</span><br><span>36</span><br><span>37</span><br><span>38</span><br><span>39</span><br><span>40</span><br><span>41</span><br><span>42</span><br><span>43</span><br><span>44</span><br><span>45</span><br><span>46</span><br></div></div>]]></content>
+    <author>
+      <name>方跃明</name>
+    </author>
+    <contributor>
+      <name>方跃明</name>
+    </contributor>
+    <published>2012-04-03T00:00:00.000Z</published>
     <rights>Copyright by 方跃明</rights>
   </entry>
   <entry>
@@ -936,6 +936,71 @@ last                          <span># 查看用户登录日志</span>
     <rights>Copyright by 方跃明</rights>
   </entry>
   <entry>
+    <title type="html">程序员常用工具</title>
+    <id>https://blog.fangyueming.cn/blog/developer-utils/</id>
+    <link href="https://blog.fangyueming.cn/blog/developer-utils/"/>
+    <updated>2021-12-12T12:29:55.000Z</updated>
+    <content type="html"><![CDATA[<h1 id="程序员常用工具"> 程序员常用工具</h1>
+<h2 id="模拟api"> 模拟API</h2>
+<ul>
+<li><a href="https://jsonplaceholder.typicode.com" target="_blank" rel="noopener noreferrer">jsonplaceholder</a></li>
+<li><a href="https://placeholder.com/" target="_blank" rel="noopener noreferrer">placeholder</a></li>
+</ul>
+<h2 id="ui"> UI</h2>
+<ul>
+<li><a href="https://github.com/youzan/zanui-weapp" target="_blank" rel="noopener noreferrer">ZanUI-WeApp</a></li>
+<li><a href="https://github.com/ElemeFE/mint-ui" target="_blank" rel="noopener noreferrer">Mint UI</a></li>
+<li><a href="http://framework7.io" target="_blank" rel="noopener noreferrer">Framework 7</a></li>
+<li><a href="http://www.dcloud.io/mui.html" target="_blank" rel="noopener noreferrer">MUI</a></li>
+<li><a href="http://amazeui.org/widgets" target="_blank" rel="noopener noreferrer">AmazeUI</a></li>
+</ul>
+<h2 id="app"> App</h2>
+<ul>
+<li><a href="https://ionicframework.com" target="_blank" rel="noopener noreferrer">ionic</a></li>
+<li><a href="http://weex.apache.org/cn" target="_blank" rel="noopener noreferrer">WEEX</a></li>
+</ul>
+<h2 id="微信小程序"> 微信小程序</h2>
+<ul>
+<li><a href="https://github.com/Meituan-Dianping/mpvue" target="_blank" rel="noopener noreferrer">mpvue</a></li>
+<li><a href="https://github.com/Tencent/wepy" target="_blank" rel="noopener noreferrer">WePY</a></li>
+</ul>
+<h2 id="打包工具"> 打包工具</h2>
+<ul>
+<li><a href="http://www.appuploader.net" target="_blank" rel="noopener noreferrer">Application Loader</a></li>
+<li><a href="http://www.dcloud.io" target="_blank" rel="noopener noreferrer">HBuilder</a></li>
+<li><a href="https://www.apicloud.com/devtools" target="_blank" rel="noopener noreferrer">APICloud Studio</a></li>
+</ul>
+<h2 id="应用打包"> 应用打包</h2>
+<ul>
+<li><a href="https://github.com/electron/electron" target="_blank" rel="noopener noreferrer">Electron</a></li>
+<li><a href="https://github.com/nwjs/nw.js" target="_blank" rel="noopener noreferrer">NW.js</a></li>
+<li><a href="https://github.com/mimecorg/vuido" target="_blank" rel="noopener noreferrer">Vuido</a></li>
+<li><a href="https://github.com/nexe/nexe" target="_blank" rel="noopener noreferrer">nexe</a></li>
+</ul>
+<h2 id="后台运行"> 后台运行</h2>
+<ul>
+<li>Linux下可以使用<a href="https://github.com/foreverjs/forever" target="_blank" rel="noopener noreferrer">forever</a></li>
+<li>Windows服务使用<a href="https://nssm.cc/usage" target="_blank" rel="noopener noreferrer">NSSM</a></li>
+<li>Corey Butler 后台系列
+<ul>
+<li><a href="https://github.com/coreybutler/node-windows" target="_blank" rel="noopener noreferrer">node-windows</a></li>
+<li><a href="https://github.com/coreybutler/node-linux" target="_blank" rel="noopener noreferrer">node-linux</a></li>
+<li><a href="https://github.com/coreybutler/node-mac" target="_blank" rel="noopener noreferrer">node-mac</a></li>
+</ul>
+</li>
+</ul>
+<p><img src="./assets/nodejs-daemon-nssm.png" alt="nodejs-daemon-nssm" /></p>
+]]></content>
+    <author>
+      <name>方跃明</name>
+    </author>
+    <contributor>
+      <name>方跃明</name>
+    </contributor>
+    <published>2018-03-02T00:00:00.000Z</published>
+    <rights>Copyright by 方跃明</rights>
+  </entry>
+  <entry>
     <title type="html">Docker Mysql</title>
     <id>https://blog.fangyueming.cn/blog/docker-mysql/</id>
     <link href="https://blog.fangyueming.cn/blog/docker-mysql/"/>
@@ -1074,71 +1139,6 @@ docker <span>exec</span> mysql mysqldump --skip-opt --databases <span>${db}</spa
     <rights>Copyright by 方跃明</rights>
   </entry>
   <entry>
-    <title type="html">程序员常用工具</title>
-    <id>https://blog.fangyueming.cn/blog/developer-utils/</id>
-    <link href="https://blog.fangyueming.cn/blog/developer-utils/"/>
-    <updated>2021-12-12T12:29:55.000Z</updated>
-    <content type="html"><![CDATA[<h1 id="程序员常用工具"> 程序员常用工具</h1>
-<h2 id="模拟api"> 模拟API</h2>
-<ul>
-<li><a href="https://jsonplaceholder.typicode.com" target="_blank" rel="noopener noreferrer">jsonplaceholder</a></li>
-<li><a href="https://placeholder.com/" target="_blank" rel="noopener noreferrer">placeholder</a></li>
-</ul>
-<h2 id="ui"> UI</h2>
-<ul>
-<li><a href="https://github.com/youzan/zanui-weapp" target="_blank" rel="noopener noreferrer">ZanUI-WeApp</a></li>
-<li><a href="https://github.com/ElemeFE/mint-ui" target="_blank" rel="noopener noreferrer">Mint UI</a></li>
-<li><a href="http://framework7.io" target="_blank" rel="noopener noreferrer">Framework 7</a></li>
-<li><a href="http://www.dcloud.io/mui.html" target="_blank" rel="noopener noreferrer">MUI</a></li>
-<li><a href="http://amazeui.org/widgets" target="_blank" rel="noopener noreferrer">AmazeUI</a></li>
-</ul>
-<h2 id="app"> App</h2>
-<ul>
-<li><a href="https://ionicframework.com" target="_blank" rel="noopener noreferrer">ionic</a></li>
-<li><a href="http://weex.apache.org/cn" target="_blank" rel="noopener noreferrer">WEEX</a></li>
-</ul>
-<h2 id="微信小程序"> 微信小程序</h2>
-<ul>
-<li><a href="https://github.com/Meituan-Dianping/mpvue" target="_blank" rel="noopener noreferrer">mpvue</a></li>
-<li><a href="https://github.com/Tencent/wepy" target="_blank" rel="noopener noreferrer">WePY</a></li>
-</ul>
-<h2 id="打包工具"> 打包工具</h2>
-<ul>
-<li><a href="http://www.appuploader.net" target="_blank" rel="noopener noreferrer">Application Loader</a></li>
-<li><a href="http://www.dcloud.io" target="_blank" rel="noopener noreferrer">HBuilder</a></li>
-<li><a href="https://www.apicloud.com/devtools" target="_blank" rel="noopener noreferrer">APICloud Studio</a></li>
-</ul>
-<h2 id="应用打包"> 应用打包</h2>
-<ul>
-<li><a href="https://github.com/electron/electron" target="_blank" rel="noopener noreferrer">Electron</a></li>
-<li><a href="https://github.com/nwjs/nw.js" target="_blank" rel="noopener noreferrer">NW.js</a></li>
-<li><a href="https://github.com/mimecorg/vuido" target="_blank" rel="noopener noreferrer">Vuido</a></li>
-<li><a href="https://github.com/nexe/nexe" target="_blank" rel="noopener noreferrer">nexe</a></li>
-</ul>
-<h2 id="后台运行"> 后台运行</h2>
-<ul>
-<li>Linux下可以使用<a href="https://github.com/foreverjs/forever" target="_blank" rel="noopener noreferrer">forever</a></li>
-<li>Windows服务使用<a href="https://nssm.cc/usage" target="_blank" rel="noopener noreferrer">NSSM</a></li>
-<li>Corey Butler 后台系列
-<ul>
-<li><a href="https://github.com/coreybutler/node-windows" target="_blank" rel="noopener noreferrer">node-windows</a></li>
-<li><a href="https://github.com/coreybutler/node-linux" target="_blank" rel="noopener noreferrer">node-linux</a></li>
-<li><a href="https://github.com/coreybutler/node-mac" target="_blank" rel="noopener noreferrer">node-mac</a></li>
-</ul>
-</li>
-</ul>
-<p><img src="./assets/nodejs-daemon-nssm.png" alt="nodejs-daemon-nssm" /></p>
-]]></content>
-    <author>
-      <name>方跃明</name>
-    </author>
-    <contributor>
-      <name>方跃明</name>
-    </contributor>
-    <published>2018-03-02T00:00:00.000Z</published>
-    <rights>Copyright by 方跃明</rights>
-  </entry>
-  <entry>
     <title type="html">钉钉云推送自建RDS最佳实践</title>
     <id>https://blog.fangyueming.cn/blog/ding-cloud-push/</id>
     <link href="https://blog.fangyueming.cn/blog/ding-cloud-push/"/>
@@ -1261,6 +1261,42 @@ CONNECTION<span>=</span><span>'mysql://user:password@localhost:3306/appdb/dingta
       <name>方跃明</name>
     </contributor>
     <published>2019-05-09T00:00:00.000Z</published>
+    <rights>Copyright by 方跃明</rights>
+  </entry>
+  <entry>
+    <title type="html">JavaScript思维导图</title>
+    <id>https://blog.fangyueming.cn/blog/javascript-mind-map/</id>
+    <link href="https://blog.fangyueming.cn/blog/javascript-mind-map/"/>
+    <updated>2021-12-12T12:29:55.000Z</updated>
+    <content type="html"><![CDATA[<h1 id="javascript思维导图"> JavaScript思维导图</h1>
+<h2 id="数据类型"> 数据类型</h2>
+<p><img src="./javascript/javascript-01-data-type.gif" alt="JavaScript数据类型" /></p>
+<h2 id="变量"> 变量</h2>
+<p><img src="./javascript/javascript-02-variable.gif" alt="JavaScript变量" /></p>
+<h2 id="数组"> 数组</h2>
+<p><img src="./javascript/javascript-03-array.gif" alt="JavaScript数组" /></p>
+<h2 id="运算符"> 运算符</h2>
+<p><img src="./javascript/javascript-04-operational-character.gif" alt="JavaScript运算符" /></p>
+<h2 id="函数"> 函数</h2>
+<p><img src="./javascript/javascript-05-function-base.gif" alt="JavaScript函数" /></p>
+<h2 id="流程"> 流程</h2>
+<p><img src="./javascript/javascript-06-process-statement.gif" alt="JavaScript流程" /></p>
+<h2 id="字符串函数"> 字符串函数</h2>
+<p><img src="./javascript/javascript-07-string-function.gif" alt="JavaScript字符串函数" /></p>
+<h2 id="正则表达式"> 正则表达式</h2>
+<p><img src="./javascript/javascript-08-regular-expressions.gif" alt="JavaScript正则表达式" /></p>
+<h2 id="windows对象"> Windows对象</h2>
+<p><img src="./javascript/javascript-09-windows-object.gif" alt="JavaScript Windows对象" /></p>
+<h2 id="dom操作"> DOM操作</h2>
+<p><img src="./javascript/javascript-10-dom-operation.gif" alt="JavaScript DOM操作" /></p>
+]]></content>
+    <author>
+      <name>方跃明</name>
+    </author>
+    <contributor>
+      <name>方跃明</name>
+    </contributor>
+    <published>2015-05-09T00:00:00.000Z</published>
     <rights>Copyright by 方跃明</rights>
   </entry>
   <entry>
@@ -1760,218 +1796,6 @@ yo
     <rights>Copyright by 方跃明</rights>
   </entry>
   <entry>
-    <title type="html">jQuery常用表格操作</title>
-    <id>https://blog.fangyueming.cn/blog/jquery-table/</id>
-    <link href="https://blog.fangyueming.cn/blog/jquery-table/"/>
-    <updated>2021-12-12T12:29:55.000Z</updated>
-    <content type="html"><![CDATA[<h1 id="jquery常用表格操作"> jQuery常用表格操作</h1>
-<div><pre><code><span><span>&lt;!</span><span>DOCTYPE</span> <span>html</span><span>></span></span>
-<span><span><span>&lt;</span>html</span> <span>lang</span><span><span>=</span><span>"</span>en<span>"</span></span><span>></span></span>
-<span><span><span>&lt;</span>head</span><span>></span></span>
-  <span><span><span>&lt;</span>meta</span> <span>charset</span><span><span>=</span><span>"</span>UTF-8<span>"</span></span><span>></span></span>
-  <span><span><span>&lt;</span>meta</span> <span>name</span><span><span>=</span><span>"</span>viewport<span>"</span></span> <span>content</span><span><span>=</span><span>"</span>width=device-width, initial-scale=1.0<span>"</span></span><span>></span></span>
-  <span><span><span>&lt;</span>meta</span> <span>http-equiv</span><span><span>=</span><span>"</span>X-UA-Compatible<span>"</span></span> <span>content</span><span><span>=</span><span>"</span>ie=edge<span>"</span></span><span>></span></span>
-  <span><span><span>&lt;</span>title</span><span>></span></span>常用表格操作<span><span><span>&lt;/</span>title</span><span>></span></span>
-  <span><span><span>&lt;</span>link</span> <span>rel</span><span><span>=</span><span>"</span>stylesheet<span>"</span></span> <span>href</span><span><span>=</span><span>"</span>http://cdn.bootcss.com/qtip2/3.0.3/jquery.qtip.min.css<span>"</span></span><span>></span></span>
-  <span><span><span>&lt;</span>style</span><span>></span></span><span><span>
-  <span>div</span> <span>{</span>
-    <span>margin-bottom</span><span>:</span> 10px<span>;</span>
-  <span>}</span>
-  <span>th span, td span</span> <span>{</span>
-    <span>padding</span><span>:</span> 3px<span>;</span>
-  <span>}</span>
-  <span>.zebra-false</span> <span>{</span>
-    <span>background-color</span><span>:</span> #ccc<span>;</span>
-  <span>}</span>
-  <span>.error</span> <span>{</span>
-    <span>background-color</span><span>:</span> #f99<span>;</span>
-  <span>}</span>
-  </span></span><span><span><span>&lt;/</span>style</span><span>></span></span>
-<span><span><span>&lt;/</span>head</span><span>></span></span>
-<span><span><span>&lt;</span>body</span><span>></span></span>
-  <span><span><span>&lt;</span>div</span> <span>id</span><span><span>=</span><span>"</span>title<span>"</span></span><span>></span></span>
-    <span><span><span>&lt;</span>button</span> <span>role</span><span><span>=</span><span>"</span>delete<span>"</span></span><span>></span></span>删<span><span><span>&lt;/</span>button</span><span>></span></span>
-    <span><span><span>&lt;</span>button</span> <span>role</span><span><span>=</span><span>"</span>insert<span>"</span></span><span>></span></span>增<span><span><span>&lt;/</span>button</span><span>></span></span>
-  <span><span><span>&lt;/</span>div</span><span>></span></span>
-  <span><span><span>&lt;</span>div</span> <span>id</span><span><span>=</span><span>"</span>data<span>"</span></span><span>></span></span><span><span><span>&lt;</span>script</span> <span>id</span><span><span>=</span><span>"</span>tmpl<span>"</span></span> <span>type</span><span><span>=</span><span>"</span>text/x-dot-template<span>"</span></span><span>></span></span><span><span>
-    <span>&lt;</span>table border<span>=</span><span>"1"</span><span>></span>
-      <span>&lt;</span>thead<span>></span>
-        <span>&lt;</span>tr<span>></span>
-          <span>&lt;</span>th role<span>=</span><span>"check"</span><span>></span><span>&lt;</span>span<span>></span><span>&lt;</span>input type<span>=</span><span>"checkbox"</span><span>></span><span>&lt;</span><span>/</span>span<span>></span><span>&lt;</span><span>/</span>th<span>></span>
-          <span>&lt;</span>th<span>></span><span>&lt;</span>span<span>></span>序号<span>&lt;</span><span>/</span>span<span>></span><span>&lt;</span><span>/</span>th<span>></span>
-          <span>&lt;</span>th<span>></span><span>&lt;</span>span<span>></span>网址<span>&lt;</span><span>/</span>span<span>></span><span>&lt;</span><span>/</span>th<span>></span>
-          <span>&lt;</span>th<span>></span><span>&lt;</span>span<span>></span>邮箱<span>&lt;</span><span>/</span>span<span>></span><span>&lt;</span><span>/</span>th<span>></span>
-          <span>&lt;</span>th<span>></span><span>&lt;</span>span<span>></span>时间<span>&lt;</span><span>/</span>span<span>></span><span>&lt;</span><span>/</span>th<span>></span>
-        <span>&lt;</span><span>/</span>tr<span>></span>
-      <span>&lt;</span><span>/</span>thead<span>></span>
-      <span>&lt;</span>tbody<span>></span><span>{</span><span>{</span><span>~</span>it<span>:</span>v<span>:</span>k<span>}</span><span>}</span>
-        <span>&lt;</span>tr<span>></span>
-          <span>&lt;</span>td role<span>=</span><span>"check"</span><span>></span><span>&lt;</span>span<span>></span><span>&lt;</span>input type<span>=</span><span>"checkbox"</span> value<span>=</span><span>"{{=v.id}}"</span><span>></span><span>&lt;</span><span>/</span>span<span>></span><span>&lt;</span><span>/</span>td<span>></span>
-          <span>&lt;</span>td role<span>=</span><span>"index"</span><span>></span><span>&lt;</span>span<span>></span><span>&lt;</span><span>/</span>span<span>></span><span>&lt;</span><span>/</span>td<span>></span>
-          <span>&lt;</span>td role<span>=</span><span>"url"</span><span>></span><span>&lt;</span>span<span>></span><span>{</span><span>{</span><span>=</span>v<span>.</span>url<span>}</span><span>}</span><span>&lt;</span><span>/</span>span<span>></span><span>&lt;</span><span>/</span>td<span>></span>
-          <span>&lt;</span>td role<span>=</span><span>"email"</span><span>></span><span>&lt;</span>span<span>></span><span>{</span><span>{</span><span>=</span>v<span>.</span>email<span>}</span><span>}</span><span>&lt;</span><span>/</span>span<span>></span><span>&lt;</span><span>/</span>td<span>></span>
-          <span>&lt;</span>td role<span>=</span><span>"date"</span><span>></span><span>&lt;</span>span<span>></span><span>{</span><span>{</span><span>=</span>v<span>.</span>date<span>}</span><span>}</span><span>&lt;</span><span>/</span>span<span>></span><span>&lt;</span><span>/</span>td<span>></span>
-        <span>&lt;</span><span>/</span>tr<span>></span><span>{</span><span>{</span><span>~</span><span>}</span><span>}</span>
-      <span>&lt;</span><span>/</span>tbody<span>></span>
-    <span>&lt;</span><span>/</span>table<span>></span></span></span><span><span><span>&lt;/</span>script</span><span>></span></span>
-  <span><span><span>&lt;/</span>div</span><span>></span></span>
-  <span><span><span>&lt;</span>script</span> <span>src</span><span><span>=</span><span>"</span>http://cdn.bootcss.com/jquery/3.2.0/jquery.min.js<span>"</span></span><span>></span></span><span></span><span><span><span>&lt;/</span>script</span><span>></span></span>
-  <span><span><span>&lt;</span>script</span> <span>src</span><span><span>=</span><span>"</span>http://cdn.bootcss.com/validator/7.0.0/validator.min.js<span>"</span></span><span>></span></span><span></span><span><span><span>&lt;/</span>script</span><span>></span></span>
-  <span><span><span>&lt;</span>script</span> <span>src</span><span><span>=</span><span>"</span>http://cdn.bootcss.com/qtip2/3.0.3/jquery.qtip.min.js<span>"</span></span><span>></span></span><span></span><span><span><span>&lt;/</span>script</span><span>></span></span>
-  <span><span><span>&lt;</span>script</span> <span>src</span><span><span>=</span><span>"</span>http://cdn.bootcss.com/dot/2.0.0-beta.0/doT.min.js<span>"</span></span><span>></span></span><span></span><span><span><span>&lt;/</span>script</span><span>></span></span>
-  <span><span><span>&lt;</span>script</span><span>></span></span><span><span>
-  <span>$</span><span>(</span>document<span>)</span><span>.</span><span>ready</span><span>(</span><span>function</span><span>(</span><span>)</span> <span>{</span>
-    <span>// 数据</span>
-    <span>var</span> data <span>=</span> <span>[</span>
-      <span>{</span><span>"id"</span><span>:</span> <span>"1"</span><span>,</span>  <span>"url"</span><span>:</span> <span>"163.com"</span><span>,</span>     <span>"email"</span><span>:</span> <span>"admin@163.com"</span><span>,</span>    <span>"date"</span><span>:</span> <span>"2016-09-01"</span><span>}</span><span>,</span>
-      <span>{</span><span>"id"</span><span>:</span> <span>"5"</span><span>,</span>  <span>"url"</span><span>:</span> <span>"163.com"</span><span>,</span>     <span>"email"</span><span>:</span> <span>"test@163.com"</span><span>,</span>     <span>"date"</span><span>:</span> <span>"2016-09-05"</span><span>}</span><span>,</span>
-      <span>{</span><span>"id"</span><span>:</span> <span>"6"</span><span>,</span>  <span>"url"</span><span>:</span> <span>"163.com"</span><span>,</span>     <span>"email"</span><span>:</span> <span>"user@163.com"</span><span>,</span>     <span>"date"</span><span>:</span> <span>"2016-09-10"</span><span>}</span><span>,</span>
-      <span>{</span><span>"id"</span><span>:</span> <span>"7"</span><span>,</span>  <span>"url"</span><span>:</span> <span>"google.com"</span><span>,</span>  <span>"email"</span><span>:</span> <span>"google@gmail.com"</span><span>,</span> <span>"date"</span><span>:</span> <span>"2004-06-06"</span><span>}</span><span>,</span>
-      <span>{</span><span>"id"</span><span>:</span> <span>"8"</span><span>,</span>  <span>"url"</span><span>:</span> <span>"google.com"</span><span>,</span>  <span>"email"</span><span>:</span> <span>"admin@gmail.com"</span><span>,</span>  <span>"date"</span><span>:</span> <span>"2004-01-01"</span><span>}</span><span>,</span>
-      <span>{</span><span>"id"</span><span>:</span> <span>"9"</span><span>,</span>  <span>"url"</span><span>:</span> <span>"google.com"</span><span>,</span>  <span>"email"</span><span>:</span> <span>"test@gmail.com"</span><span>,</span>   <span>"date"</span><span>:</span> <span>"2006-10-10"</span><span>}</span><span>,</span>
-      <span>{</span><span>"id"</span><span>:</span> <span>"11"</span><span>,</span> <span>"url"</span><span>:</span> <span>"qq.com"</span><span>,</span>      <span>"email"</span><span>:</span> <span>"admin@qq.com"</span><span>,</span>     <span>"date"</span><span>:</span> <span>"2005-12-23"</span><span>}</span><span>,</span>
-      <span>{</span><span>"id"</span><span>:</span> <span>"14"</span><span>,</span> <span>"url"</span><span>:</span> <span>"qq.com"</span><span>,</span>      <span>"email"</span><span>:</span> <span>"test@qq.com"</span><span>,</span>      <span>"date"</span><span>:</span> <span>"2008-09-01"</span><span>}</span><span>,</span>
-      <span>{</span><span>"id"</span><span>:</span> <span>"15"</span><span>,</span> <span>"url"</span><span>:</span> <span>"baidu.com"</span><span>,</span>   <span>"email"</span><span>:</span> <span>"admin@baidu.com"</span><span>,</span>  <span>"date"</span><span>:</span> <span>"2003-02-01"</span><span>}</span><span>,</span>
-      <span>{</span><span>"id"</span><span>:</span> <span>"16"</span><span>,</span> <span>"url"</span><span>:</span> <span>"baidu.com"</span><span>,</span>   <span>"email"</span><span>:</span> <span>"test@baidu.com"</span><span>,</span>   <span>"date"</span><span>:</span> <span>"2006-12-31"</span><span>}</span>
-    <span>]</span>
-    <span>// 模版</span>
-    <span>var</span> tmpl <span>=</span> doT<span>.</span><span>template</span><span>(</span><span>$</span><span>(</span><span>'#tmpl'</span><span>)</span><span>.</span><span>text</span><span>(</span><span>)</span><span>)</span>
-    <span>// 编译模版</span>
-    <span>$</span><span>(</span><span>'#data'</span><span>)</span><span>.</span><span>html</span><span>(</span><span>tmpl</span><span>(</span>data<span>)</span><span>)</span>
-    <span>// 斑马纹</span>
-    <span>var</span> zebra <span>=</span> <span>true</span>
-    <span>$</span><span>(</span><span>'table tbody tr'</span><span>)</span><span>.</span><span>each</span><span>(</span><span>function</span><span>(</span><span>e</span><span>)</span><span>{</span>
-      <span>$</span><span>(</span><span>this</span><span>)</span><span>.</span><span>addClass</span><span>(</span><span>'zebra-'</span> <span>+</span> zebra<span>)</span>
-      <span>if</span><span>(</span><span>$</span><span>(</span><span>this</span><span>)</span><span>.</span><span>children</span><span>(</span><span>'td[role="url"]'</span><span>)</span><span>.</span><span>find</span><span>(</span><span>'span'</span><span>)</span><span>.</span><span>text</span><span>(</span><span>)</span> <span>!=</span>
-         <span>$</span><span>(</span><span>this</span><span>)</span><span>.</span><span>next</span><span>(</span><span>)</span><span>.</span><span>children</span><span>(</span><span>'td[role="url"]'</span><span>)</span><span>.</span><span>find</span><span>(</span><span>'span'</span><span>)</span><span>.</span><span>text</span><span>(</span><span>)</span><span>)</span><span>{</span>
-        zebra <span>=</span> <span>!</span>zebra
-      <span>}</span>
-    <span>}</span><span>)</span>
-    <span>// 序号</span>
-    <span>var</span> index <span>=</span> <span>0</span>
-    <span>$</span><span>(</span><span>'table tbody tr'</span><span>)</span><span>.</span><span>each</span><span>(</span><span>function</span><span>(</span><span>)</span><span>{</span>
-      <span>$</span><span>(</span><span>this</span><span>)</span><span>.</span><span>children</span><span>(</span><span>'td[role="index"]'</span><span>)</span><span>.</span><span>children</span><span>(</span><span>'span'</span><span>)</span><span>.</span><span>text</span><span>(</span><span>++</span>index<span>)</span>
-    <span>}</span><span>)</span>
-    <span>// 表格编辑</span>
-    <span>var</span> typing <span>=</span> <span>false</span>                                                 <span>// 变量：可编辑</span>
-    <span>var</span> pretyping <span>=</span> <span>''</span>                                                 <span>// 变量：保存编辑前内容</span>
-    <span>// 进入编辑</span>
-    <span>$</span><span>(</span><span>'table'</span><span>)</span><span>.</span><span>on</span><span>(</span><span>'dblclick'</span><span>,</span> <span>'tbody tr'</span><span>,</span> <span>function</span><span>(</span><span>e</span><span>)</span><span>{</span>                 <span>// 响应编辑事件</span>
-      <span>if</span><span>(</span>typing<span>)</span> <span>{</span>                                                     <span>// 有编辑未完成</span>
-        <span>alert</span><span>(</span><span>"输入进行中"</span><span>)</span>
-      <span>}</span> <span>else</span> <span>{</span>
-        <span>var</span> el <span>=</span> <span>$</span><span>(</span><span>this</span><span>)</span>
-        pretyping <span>=</span> el<span>.</span><span>html</span><span>(</span><span>)</span>                                    <span>// 保存编辑前内容</span>
-        el<span>.</span><span>children</span><span>(</span><span>'td[role="check"]'</span><span>)</span><span>.</span><span>find</span><span>(</span><span>'span'</span><span>)</span><span>.</span><span>html</span><span>(</span><span>[</span>      <span>// 构建操作按钮</span>
-          <span>'&lt;button role="cancel">弃&lt;/button>'</span><span>,</span>
-          <span>'&lt;button role="save">存&lt;/button>'</span>
-        <span>]</span><span>.</span><span>join</span><span>(</span><span>'\n'</span><span>)</span><span>)</span>
-        <span>// 构建行内表单</span>
-        el<span>.</span><span>children</span><span>(</span><span>'td:not([role="check"],[role="index"])'</span><span>)</span><span>.</span><span>each</span><span>(</span><span>function</span><span>(</span><span>)</span><span>{</span>
-          <span>$</span><span>(</span><span>this</span><span>)</span><span>.</span><span>html</span><span>(</span><span>'&lt;input type="text" value="'</span> <span>+</span> <span>$</span><span>(</span><span>this</span><span>)</span><span>.</span><span>text</span><span>(</span><span>)</span> <span>+</span> <span>'">'</span><span>)</span>
-        <span>}</span><span>)</span>
-        typing <span>=</span> <span>true</span>      <span>// 正在编辑</span>
-      <span>}</span>
-    <span>}</span><span>)</span>
-    <span>// 取消编辑</span>
-    <span>$</span><span>(</span><span>'table'</span><span>)</span><span>.</span><span>on</span><span>(</span><span>'click'</span><span>,</span> <span>'td[role="check"] button[role="cancel"]'</span><span>,</span> <span>function</span><span>(</span><span>e</span><span>)</span><span>{</span>
-      <span>var</span> el <span>=</span> <span>$</span><span>(</span><span>this</span><span>)</span><span>.</span><span>parent</span><span>(</span><span>)</span><span>.</span><span>parent</span><span>(</span><span>)</span><span>.</span><span>parent</span><span>(</span><span>)</span>      <span>// 定位到tr</span>
-      el<span>.</span><span>html</span><span>(</span>pretyping<span>)</span>                               <span>// 恢复行原始数据</span>
-      typing <span>=</span> <span>false</span>                                   <span>// 可编辑</span>
-    <span>}</span><span>)</span>
-    <span>// 保存编辑</span>
-    <span>// TODO select, textarea, ...</span>
-    <span>$</span><span>(</span><span>'table'</span><span>)</span><span>.</span><span>on</span><span>(</span><span>'click'</span><span>,</span> <span>'td[role="check"] button[role="save"]'</span><span>,</span> <span>function</span><span>(</span><span>e</span><span>)</span><span>{</span>
-      <span>var</span> data <span>=</span> <span>[</span><span>]</span>                                    <span>// 预定义数据（名称、验证、类型）</span>
-      <span>var</span> eq <span>=</span> <span>0</span>                                       <span>// 目前使用eq，考虑统一进预定义数据</span>
-      <span>var</span> el <span>=</span> <span>$</span><span>(</span><span>this</span><span>)</span><span>.</span><span>parent</span><span>(</span><span>)</span><span>.</span><span>parent</span><span>(</span><span>)</span><span>.</span><span>parent</span><span>(</span><span>)</span>              <span>// 元素定位</span>
-      <span>var</span> isValid <span>=</span> <span>false</span>                                      <span>// 客户端验证</span>
-      el<span>.</span><span>children</span><span>(</span><span>'td'</span><span>)</span><span>.</span><span>each</span><span>(</span><span>function</span><span>(</span><span>)</span><span>{</span>                      <span>// 遍历单元格</span>
-        <span>var</span> val <span>=</span> <span>$</span><span>(</span><span>this</span><span>)</span><span>.</span><span>find</span><span>(</span><span>'input'</span><span>)</span><span>.</span><span>val</span><span>(</span><span>)</span>                 <span>// 取输入值</span>
-        <span>undefined</span> <span>!=</span> val <span>&amp;&amp;</span> data<span>.</span><span>push</span><span>(</span><span>{</span> eq<span>:</span> eq<span>,</span> val<span>:</span> val <span>}</span><span>)</span>   <span>// 按需保存</span>
-        eq<span>++</span>                                                  <span>// 递增索引</span>
-      <span>}</span><span>)</span>
-      isValid <span>=</span>                                              <span>// 统一验证</span>
-        validator<span>.</span><span>isURL</span><span>(</span>data<span>[</span><span>0</span><span>]</span><span>.</span>val<span>)</span> <span>&amp;&amp;</span>
-        validator<span>.</span><span>isEmail</span><span>(</span>data<span>[</span><span>1</span><span>]</span><span>.</span>val<span>)</span> <span>&amp;&amp;</span>
-        validator<span>.</span><span>isISO8601</span><span>(</span>data<span>[</span><span>2</span><span>]</span><span>.</span>val<span>)</span>
-      <span>if</span><span>(</span>isValid<span>)</span> <span>{</span>                                         <span>// 验证通过</span>
-        <span>// TODO 新增、更新分支</span>
-        <span>// TODO 服务端保存（AJAX回调）</span>
-        el<span>.</span><span>html</span><span>(</span>pretyping<span>)</span>                                  <span>// 复原原始内容</span>
-        <span>for</span><span>(</span>k <span>in</span> data<span>)</span> <span>{</span>                                    <span>// 遍历数据</span>
-          el<span>.</span><span>children</span><span>(</span><span>'td'</span><span>)</span><span>.</span><span>eq</span><span>(</span>data<span>[</span>k<span>]</span><span>.</span>eq<span>)</span><span>.</span><span>find</span><span>(</span><span>'span'</span><span>)</span><span>.</span><span>html</span><span>(</span>data<span>[</span>k<span>]</span><span>.</span>val<span>)</span> <span>// 按需填充</span>
-        <span>}</span>
-        typing <span>=</span> <span>false</span>                                      <span>// 恢复可编辑</span>
-      <span>}</span> <span>else</span> <span>{</span>
-        <span>// 验证失败</span>
-        <span>alert</span><span>(</span><span>'验证失败'</span><span>)</span>
-      <span>}</span>
-    <span>}</span><span>)</span>
-    <span>// 数据格式提醒</span>
-    <span>$</span><span>(</span><span>'table'</span><span>)</span><span>.</span><span>on</span><span>(</span><span>'blur'</span><span>,</span> <span>'input'</span><span>,</span> <span>function</span><span>(</span><span>e</span><span>)</span><span>{</span>
-      <span>var</span> el <span>=</span> <span>$</span><span>(</span><span>this</span><span>)</span><span>.</span><span>parent</span><span>(</span><span>)</span>
-      <span>var</span> role <span>=</span> el<span>.</span><span>attr</span><span>(</span><span>'role'</span><span>)</span>
-      <span>var</span> val <span>=</span> <span>$</span><span>(</span><span>this</span><span>)</span><span>.</span><span>val</span><span>(</span><span>)</span>
-      <span>switch</span><span>(</span>role<span>)</span> <span>{</span>
-        <span>case</span> <span>'url'</span><span>:</span>
-          validator<span>.</span><span>isURL</span><span>(</span>val<span>)</span> <span>||</span> <span>tip</span><span>(</span>el<span>,</span> <span>'网址格式错误'</span><span>)</span>
-        <span>break</span>
-        <span>case</span> <span>'email'</span><span>:</span>
-          validator<span>.</span><span>isEmail</span><span>(</span>val<span>)</span> <span>||</span> <span>tip</span><span>(</span>el<span>,</span> <span>'邮箱格式错误'</span><span>)</span>
-        <span>break</span>
-        <span>case</span> <span>'date'</span><span>:</span>
-          validator<span>.</span><span>isISO8601</span><span>(</span>val<span>)</span> <span>||</span> <span>tip</span><span>(</span>el<span>,</span> <span>'日期格式错误'</span><span>)</span>
-        <span>break</span>
-        <span>default</span><span>:</span>
-        <span>break</span>
-      <span>}</span>
-    <span>}</span><span>)</span>
-    <span>// 消除错误提示</span>
-    <span>$</span><span>(</span><span>'table'</span><span>)</span><span>.</span><span>on</span><span>(</span><span>'focus'</span><span>,</span> <span>'input'</span><span>,</span> <span>function</span><span>(</span><span>e</span><span>)</span><span>{</span>
-      <span>var</span> el <span>=</span> <span>$</span><span>(</span><span>this</span><span>)</span><span>.</span><span>parent</span><span>(</span><span>)</span>
-      el<span>.</span><span>qtip</span><span>(</span><span>'destroy'</span><span>)</span>
-      el<span>.</span><span>children</span><span>(</span><span>)</span><span>.</span><span>removeClass</span><span>(</span><span>'error'</span><span>)</span>
-    <span>}</span><span>)</span>
-    <span>// 出错提醒函数</span>
-    <span>var</span> <span>tip</span> <span>=</span> <span>function</span><span>(</span><span>el<span>,</span> text</span><span>)</span> <span>{</span>
-      el<span>.</span><span>children</span><span>(</span><span>)</span><span>.</span><span>addClass</span><span>(</span><span>'error'</span><span>)</span>
-      el<span>.</span><span>qtip</span><span>(</span><span>{</span>
-        content<span>:</span> <span>{</span> text<span>:</span> text <span>}</span><span>,</span>
-        position<span>:</span> <span>{</span> at<span>:</span> <span>'bottom center'</span> <span>}</span><span>,</span>
-        show<span>:</span> <span>{</span> ready<span>:</span> <span>true</span><span>,</span> solo<span>:</span> <span>true</span> <span>}</span>
-      <span>}</span><span>)</span>
-    <span>}</span>
-    <span>// 全选、不选</span>
-    <span>$</span><span>(</span><span>'table'</span><span>)</span><span>.</span><span>on</span><span>(</span><span>'click'</span><span>,</span> <span>'th[role="check"] input[type="checkbox"]'</span><span>,</span> <span>function</span><span>(</span><span>e</span><span>)</span><span>{</span>
-      <span>$</span><span>(</span><span>'td input:nth-child(1)'</span><span>)</span><span>.</span><span>prop</span><span>(</span><span>'checked'</span><span>,</span> <span>$</span><span>(</span><span>this</span><span>)</span><span>.</span><span>is</span><span>(</span><span>':checked'</span><span>)</span><span>)</span>
-    <span>}</span><span>)</span>
-    <span>// 删除选中</span>
-    <span>$</span><span>(</span><span>'#title'</span><span>)</span><span>.</span><span>on</span><span>(</span><span>'click'</span><span>,</span> <span>'button[role="delete"]'</span><span>,</span> <span>function</span><span>(</span><span>e</span><span>)</span><span>{</span>
-      <span>var</span> checked <span>=</span> <span>[</span><span>]</span>
-      <span>$</span><span>(</span><span>'#data tbody tr'</span><span>)</span><span>.</span><span>each</span><span>(</span><span>function</span><span>(</span><span>)</span><span>{</span>
-        <span>var</span> tr <span>=</span> <span>$</span><span>(</span><span>this</span><span>)</span>
-        <span>var</span> checkbox <span>=</span> tr<span>.</span><span>children</span><span>(</span><span>'td[role="check"]'</span><span>)</span><span>.</span><span>find</span><span>(</span><span>'input[type="checkbox"]'</span><span>)</span>
-        checkbox<span>.</span><span>is</span><span>(</span><span>':checked'</span><span>)</span> <span>&amp;&amp;</span> checked<span>.</span><span>push</span><span>(</span>checkbox<span>.</span><span>val</span><span>(</span><span>)</span><span>)</span>
-      <span>}</span><span>)</span>
-      <span>alert</span><span>(</span><span>JSON</span><span>.</span><span>stringify</span><span>(</span>checked<span>)</span><span>)</span>
-    <span>}</span><span>)</span>
-  <span>}</span><span>)</span>
-</span></span><span><span><span>&lt;/</span>script</span><span>></span></span>
-<span><span><span>&lt;/</span>body</span><span>></span></span>
-<span><span><span>&lt;/</span>html</span><span>></span></span>
-</code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br><span>9</span><br><span>10</span><br><span>11</span><br><span>12</span><br><span>13</span><br><span>14</span><br><span>15</span><br><span>16</span><br><span>17</span><br><span>18</span><br><span>19</span><br><span>20</span><br><span>21</span><br><span>22</span><br><span>23</span><br><span>24</span><br><span>25</span><br><span>26</span><br><span>27</span><br><span>28</span><br><span>29</span><br><span>30</span><br><span>31</span><br><span>32</span><br><span>33</span><br><span>34</span><br><span>35</span><br><span>36</span><br><span>37</span><br><span>38</span><br><span>39</span><br><span>40</span><br><span>41</span><br><span>42</span><br><span>43</span><br><span>44</span><br><span>45</span><br><span>46</span><br><span>47</span><br><span>48</span><br><span>49</span><br><span>50</span><br><span>51</span><br><span>52</span><br><span>53</span><br><span>54</span><br><span>55</span><br><span>56</span><br><span>57</span><br><span>58</span><br><span>59</span><br><span>60</span><br><span>61</span><br><span>62</span><br><span>63</span><br><span>64</span><br><span>65</span><br><span>66</span><br><span>67</span><br><span>68</span><br><span>69</span><br><span>70</span><br><span>71</span><br><span>72</span><br><span>73</span><br><span>74</span><br><span>75</span><br><span>76</span><br><span>77</span><br><span>78</span><br><span>79</span><br><span>80</span><br><span>81</span><br><span>82</span><br><span>83</span><br><span>84</span><br><span>85</span><br><span>86</span><br><span>87</span><br><span>88</span><br><span>89</span><br><span>90</span><br><span>91</span><br><span>92</span><br><span>93</span><br><span>94</span><br><span>95</span><br><span>96</span><br><span>97</span><br><span>98</span><br><span>99</span><br><span>100</span><br><span>101</span><br><span>102</span><br><span>103</span><br><span>104</span><br><span>105</span><br><span>106</span><br><span>107</span><br><span>108</span><br><span>109</span><br><span>110</span><br><span>111</span><br><span>112</span><br><span>113</span><br><span>114</span><br><span>115</span><br><span>116</span><br><span>117</span><br><span>118</span><br><span>119</span><br><span>120</span><br><span>121</span><br><span>122</span><br><span>123</span><br><span>124</span><br><span>125</span><br><span>126</span><br><span>127</span><br><span>128</span><br><span>129</span><br><span>130</span><br><span>131</span><br><span>132</span><br><span>133</span><br><span>134</span><br><span>135</span><br><span>136</span><br><span>137</span><br><span>138</span><br><span>139</span><br><span>140</span><br><span>141</span><br><span>142</span><br><span>143</span><br><span>144</span><br><span>145</span><br><span>146</span><br><span>147</span><br><span>148</span><br><span>149</span><br><span>150</span><br><span>151</span><br><span>152</span><br><span>153</span><br><span>154</span><br><span>155</span><br><span>156</span><br><span>157</span><br><span>158</span><br><span>159</span><br><span>160</span><br><span>161</span><br><span>162</span><br><span>163</span><br><span>164</span><br><span>165</span><br><span>166</span><br><span>167</span><br><span>168</span><br><span>169</span><br><span>170</span><br><span>171</span><br><span>172</span><br><span>173</span><br><span>174</span><br><span>175</span><br><span>176</span><br><span>177</span><br><span>178</span><br><span>179</span><br><span>180</span><br><span>181</span><br><span>182</span><br><span>183</span><br><span>184</span><br><span>185</span><br><span>186</span><br><span>187</span><br><span>188</span><br><span>189</span><br><span>190</span><br><span>191</span><br><span>192</span><br><span>193</span><br><span>194</span><br><span>195</span><br></div></div>]]></content>
-    <author>
-      <name>方跃明</name>
-    </author>
-    <contributor>
-      <name>方跃明</name>
-    </contributor>
-    <published>2016-10-30T00:00:00.000Z</published>
-    <rights>Copyright by 方跃明</rights>
-  </entry>
-  <entry>
     <title type="html">图解Git常用操作</title>
     <id>https://blog.fangyueming.cn/blog/git/</id>
     <link href="https://blog.fangyueming.cn/blog/git/"/>
@@ -2015,6 +1839,160 @@ yo
       <name>方跃明</name>
     </contributor>
     <published>2018-04-28T00:00:00.000Z</published>
+    <rights>Copyright by 方跃明</rights>
+  </entry>
+  <entry>
+    <title type="html">kubernetes安装指南</title>
+    <id>https://blog.fangyueming.cn/blog/kubernetes-install/</id>
+    <link href="https://blog.fangyueming.cn/blog/kubernetes-install/"/>
+    <updated>2021-12-12T12:29:55.000Z</updated>
+    <content type="html"><![CDATA[<h1 id="kubernetes安装指南"> kubernetes安装指南</h1>
+<p><img src="./kubernetes/container.jpg" alt="容器生态圈" /></p>
+<h2 id="简介"> 简介</h2>
+<h3 id="kubernetes"> kubernetes</h3>
+<p>kubernetes（简称k8s）是Google开源的容器集群管理系统。它构建Ddocker技术之上，为容器化的应用提供资源调度、部署运行、服务发现、扩容缩容等整一套功能，本质上可看作是基于容器技术的mini-PaaS平台。</p>
+<p><img src="./kubernetes/architecture.png" alt="kubernetes" /></p>
+<h3 id="kubernetes-master"> kubernetes-master</h3>
+<ul>
+<li>kube-apiserver：k8s的管理接口</li>
+<li>kube-scheduer：k8s调度器，容器的启动、迁移、扩容缩减时候，选择哪个node，就看它了。</li>
+<li>kube-controller-manager：k8s对node的控制行为，比如怎么去调用node启动一个容器。</li>
+</ul>
+<h3 id="kubernetes-node"> kubernetes-node</h3>
+<ul>
+<li>kubelet：负责node的管理，基本所有操作都靠它。</li>
+<li>kube-proxy：每个node里的container都在一个私有网络中，kube-proxy的作用就是做一个反向代理，让访问者访问这个node的时候，可以转发到内部对应的container。</li>
+</ul>
+<h3 id="flannel"> flannel</h3>
+<p>flannel可以为容器提供网络服务。其模型为全部的容器使用一个network，然后在每个host上从network中划分一个子网subnet。为host上的容器创建网络时，从subnet中划分一个ip给容器。其采用目前比较流行的no server的方式，即不存在所谓的控制节点，而是每个host上的flanneld从一个etcd中获取相关数据，然后声明自己的子网网段，并记录在etcd中。其他的host对数据转发时，从etcd中查询到该子网所在的host的ip，然后将数据发往对应host上的flanneld，交由其进行转发。根据kubernetes的模型，即为每个pod提供一个ip。flannel的模型正好与之契合。因此flannel是最简单易用的kubernetes集群网络方案。</p>
+<p><img src="./kubernetes/cluster.png" alt="flannel" /></p>
+<h3 id="etcd"> etcd</h3>
+<p>在分布式系统中，如何管理节点间的状态一直是一个难题，etcd像是专门为集群环境的服务发现和注册而设计，它提供了数据TTL失效、数据改变监视、多值、目录监听、分布式锁原子操作等功能，可以方便的跟踪并管理集群节点的状态。etcd的特性如下：</p>
+<ul>
+<li>简单: curl可访问的用户的API（HTTP+JSON）</li>
+<li>安全: 可选的SSL客户端证书认证</li>
+<li>快速: 单实例每秒 1000 次写操作</li>
+<li>可靠: 使用Raft保证一致性</li>
+</ul>
+<p>etcd是CoreOS的核心组件，负责节点间的服务发现和配置共享，运行在CoreOS中的应用可以通过etcd读取或者写入数据。虽然etcd是为CoreOS而设计，但其可以运行在多个平台上，包括 OS X、Linux、BSD。角色功能如下：</p>
+<ul>
+<li>作为kubernetes的数据库，存储了k8s自身的信息、以及各种业务容器信息等。</li>
+<li>存储flannel网络配置信息，供各节点协调。</li>
+</ul>
+<p><img src="./kubernetes/etcd.png" alt="etcd" /></p>
+<h3 id="docker"> docker</h3>
+<p>Docker 是一个开源的应用容器引擎，让开发者可以打包他们的应用以及依赖包到一个可移植的容器中，然后发布到任何流行的Linux机器上，也可以实现虚拟化，容器是完全使用沙箱机制，相互之间不会有任何接口。一个完整的Docker有以下几个部分组成：</p>
+<ul>
+<li>Client：客户端</li>
+<li>Daemon：守护进程</li>
+<li>Container：容器</li>
+<li>Image：镜像</li>
+</ul>
+<p><img src="./kubernetes/docker.png" alt="docker" /></p>
+<h2 id="规划"> 规划</h2>
+<p>本例虽然均用IP进行操作，但是建议部署的时候，建议用hosts或者DNS取代IP。</p>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>组件</th>
+<th style="text-align:center">数量</th>
+<th>IP</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Master</td>
+<td>kubernetes-master etcd</td>
+<td style="text-align:center">1</td>
+<td>192.168.20.25</td>
+</tr>
+<tr>
+<td>Node</td>
+<td>kubernetes-node docker flannel</td>
+<td style="text-align:center">2</td>
+<td>192.168.20.22 192.168.20.26</td>
+</tr>
+</tbody>
+</table>
+<p><img src="./kubernetes/flannel.png" alt="kubernetes with Flannel" /></p>
+<h3 id="前提"> 前提</h3>
+<ul>
+<li>SELinux关闭</li>
+<li>firewalld开放8080、2379端口</li>
+</ul>
+<h2 id="配置"> 配置</h2>
+<h3 id="etcd配置"> etcd配置</h3>
+<div><pre><code><span># 安装</span>
+yum <span>install</span> etcd
+</code></pre>
+<div><span>1</span><br><span>2</span><br></div></div><div><pre><code><span># 配置 /etc/etcd/etcd.conf</span>
+<span>ETCD_NAME</span><span>=</span><span>default</span>
+<span>ETCD_DATA_DIR</span><span>=</span><span>"<span>/var/lib/etcd/default.etcd</span>"</span>
+<span>ETCD_LISTEN_CLIENT_URLS</span><span>=</span><span>"<span>http://0.0.0.0:2379</span>"</span>
+<span>ETCD_ADVERTISE_CLIENT_URLS</span><span>=</span><span>"<span>http://192.168.20.25:2379</span>"</span>
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br></div></div><div><pre><code><span># 启动</span>
+systemctl <span>enable</span> etcd
+systemctl start etcd
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br></div></div><div><pre><code>etcdctl <span>set</span> /coreos.com/network/config <span>'{ "Network": "10.1.0.0/16" }'</span>
+</code></pre>
+<div><span>1</span><br></div></div><h4 id="master"> master</h4>
+<div><pre><code><span># 安装</span>
+yum <span>install</span> kubernetes-master
+</code></pre>
+<div><span>1</span><br><span>2</span><br></div></div><div><pre><code><span># 配置 /etc/kubernetes/apiserver</span>
+<span>KUBE_API_ADDRESS</span><span>=</span><span>"<span>--address=0.0.0.0</span>"</span>
+<span>KUBE_ETCD_SERVERS</span><span>=</span><span>"<span>--etcd_servers=http://192.168.20.25:2379</span>"</span>
+<span>KUBE_SERVICE_ADDRESSES</span><span>=</span><span>"<span>--service-cluster-ip-range=10.254.0.0/16</span>"</span>
+<span>KUBE_ADMISSION_CONTROL</span><span>=</span><span>"<span>--admission_control=NamespaceLifecycle,NamespaceExists,LimitRanger,SecurityContextDeny,ResourceQuota</span>"</span>
+<span>KUBE_API_ARGS</span><span>=</span><span>""</span>
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br></div></div><div><pre><code><span># 配置 /etc/kubernetes/controller-manager</span>
+<span>KUBE_CONTROLLER_MANAGER_ARGS</span><span>=</span><span>"<span>--node-monitor-grace-period=10s --pod-eviction-timeout=10s</span>"</span>
+</code></pre>
+<div><span>1</span><br><span>2</span><br></div></div><div><pre><code><span># 配置 /etc/kubernetes/config</span>
+<span>KUBE_LOGTOSTDERR</span><span>=</span><span>"<span>--logtostderr=true</span>"</span>
+<span>KUBE_LOG_LEVEL</span><span>=</span><span>"<span>--v=0</span>"</span>
+<span>KUBE_ALLOW_PRIV</span><span>=</span><span>"<span>--allow_privileged=false</span>"</span>
+<span>KUBE_MASTER</span><span>=</span><span>"<span>--master=http://192.168.20.25:8080</span>"</span>
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br></div></div><div><pre><code><span># 启动服务</span>
+systemctl <span>enable</span> kube-apiserver kube-scheduler kube-controller-manager
+systemctl start kube-apiserver kube-scheduler kube-controller-manager
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br></div></div><h3 id="node"> node</h3>
+<div><pre><code><span># 安装</span>
+yum <span>install</span> kubernetes-node flannel docker
+</code></pre>
+<div><span>1</span><br><span>2</span><br></div></div><div><pre><code><span># 配置 /etc/kubernetes/config</span>
+<span>KUBE_LOGTOSTDERR</span><span>=</span><span>"<span>--logtostderr=true</span>"</span>
+<span>KUBE_LOG_LEVEL</span><span>=</span><span>"<span>--v=0</span>"</span>
+<span>KUBE_ALLOW_PRIV</span><span>=</span><span>"<span>--allow_privileged=false</span>"</span>
+<span>KUBE_MASTER</span><span>=</span><span>"<span>--master=http://192.168.20.25:8080</span>"</span>
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br></div></div><div><pre><code><span># 配置 /etc/kubernetes/kubelet</span>
+<span>KUBELET_ADDRESS</span><span>=</span><span>"<span>--address=127.0.0.1</span>"</span>
+<span>KUBELET_HOSTNAME</span><span>=</span><span>"<span>--hostname_override=192.168.20.22</span>"</span>
+<span>KUBELET_API_SERVER</span><span>=</span><span>"<span>--api_servers=http://192.168.20.25:8080</span>"</span>
+<span>KUBELET_ARGS</span><span>=</span><span>"<span>--pod-infra-container-image=kubernetes/pause</span>"</span>
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br></div></div><div><pre><code><span># 配置 /etc/sysconfig/flanneld</span>
+<span>FLANNEL_ETCD</span><span>=</span><span>"<span>http://192.168.20.25:2379</span>"</span>
+<span>FLANNEL_ETCD_KEY</span><span>=</span><span>"<span>/coreos.com/network</span>"</span>
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br></div></div><div><pre><code>systemctl <span>enable</span> kubelet kube-proxy flanenld docker
+systemctl start kubelet kube-proxy flanneld docker
+</code></pre>
+<div><span>1</span><br><span>2</span><br></div></div>]]></content>
+    <author>
+      <name>方跃明</name>
+    </author>
+    <contributor>
+      <name>方跃明</name>
+    </contributor>
+    <published>2018-04-29T00:00:00.000Z</published>
     <rights>Copyright by 方跃明</rights>
   </entry>
   <entry>
@@ -2244,196 +2222,6 @@ yo
     <rights>Copyright by 方跃明</rights>
   </entry>
   <entry>
-    <title type="html">JavaScript思维导图</title>
-    <id>https://blog.fangyueming.cn/blog/javascript-mind-map/</id>
-    <link href="https://blog.fangyueming.cn/blog/javascript-mind-map/"/>
-    <updated>2021-12-12T12:29:55.000Z</updated>
-    <content type="html"><![CDATA[<h1 id="javascript思维导图"> JavaScript思维导图</h1>
-<h2 id="数据类型"> 数据类型</h2>
-<p><img src="./javascript/javascript-01-data-type.gif" alt="JavaScript数据类型" /></p>
-<h2 id="变量"> 变量</h2>
-<p><img src="./javascript/javascript-02-variable.gif" alt="JavaScript变量" /></p>
-<h2 id="数组"> 数组</h2>
-<p><img src="./javascript/javascript-03-array.gif" alt="JavaScript数组" /></p>
-<h2 id="运算符"> 运算符</h2>
-<p><img src="./javascript/javascript-04-operational-character.gif" alt="JavaScript运算符" /></p>
-<h2 id="函数"> 函数</h2>
-<p><img src="./javascript/javascript-05-function-base.gif" alt="JavaScript函数" /></p>
-<h2 id="流程"> 流程</h2>
-<p><img src="./javascript/javascript-06-process-statement.gif" alt="JavaScript流程" /></p>
-<h2 id="字符串函数"> 字符串函数</h2>
-<p><img src="./javascript/javascript-07-string-function.gif" alt="JavaScript字符串函数" /></p>
-<h2 id="正则表达式"> 正则表达式</h2>
-<p><img src="./javascript/javascript-08-regular-expressions.gif" alt="JavaScript正则表达式" /></p>
-<h2 id="windows对象"> Windows对象</h2>
-<p><img src="./javascript/javascript-09-windows-object.gif" alt="JavaScript Windows对象" /></p>
-<h2 id="dom操作"> DOM操作</h2>
-<p><img src="./javascript/javascript-10-dom-operation.gif" alt="JavaScript DOM操作" /></p>
-]]></content>
-    <author>
-      <name>方跃明</name>
-    </author>
-    <contributor>
-      <name>方跃明</name>
-    </contributor>
-    <published>2015-05-09T00:00:00.000Z</published>
-    <rights>Copyright by 方跃明</rights>
-  </entry>
-  <entry>
-    <title type="html">kubernetes安装指南</title>
-    <id>https://blog.fangyueming.cn/blog/kubernetes-install/</id>
-    <link href="https://blog.fangyueming.cn/blog/kubernetes-install/"/>
-    <updated>2021-12-12T12:29:55.000Z</updated>
-    <content type="html"><![CDATA[<h1 id="kubernetes安装指南"> kubernetes安装指南</h1>
-<p><img src="./kubernetes/container.jpg" alt="容器生态圈" /></p>
-<h2 id="简介"> 简介</h2>
-<h3 id="kubernetes"> kubernetes</h3>
-<p>kubernetes（简称k8s）是Google开源的容器集群管理系统。它构建Ddocker技术之上，为容器化的应用提供资源调度、部署运行、服务发现、扩容缩容等整一套功能，本质上可看作是基于容器技术的mini-PaaS平台。</p>
-<p><img src="./kubernetes/architecture.png" alt="kubernetes" /></p>
-<h3 id="kubernetes-master"> kubernetes-master</h3>
-<ul>
-<li>kube-apiserver：k8s的管理接口</li>
-<li>kube-scheduer：k8s调度器，容器的启动、迁移、扩容缩减时候，选择哪个node，就看它了。</li>
-<li>kube-controller-manager：k8s对node的控制行为，比如怎么去调用node启动一个容器。</li>
-</ul>
-<h3 id="kubernetes-node"> kubernetes-node</h3>
-<ul>
-<li>kubelet：负责node的管理，基本所有操作都靠它。</li>
-<li>kube-proxy：每个node里的container都在一个私有网络中，kube-proxy的作用就是做一个反向代理，让访问者访问这个node的时候，可以转发到内部对应的container。</li>
-</ul>
-<h3 id="flannel"> flannel</h3>
-<p>flannel可以为容器提供网络服务。其模型为全部的容器使用一个network，然后在每个host上从network中划分一个子网subnet。为host上的容器创建网络时，从subnet中划分一个ip给容器。其采用目前比较流行的no server的方式，即不存在所谓的控制节点，而是每个host上的flanneld从一个etcd中获取相关数据，然后声明自己的子网网段，并记录在etcd中。其他的host对数据转发时，从etcd中查询到该子网所在的host的ip，然后将数据发往对应host上的flanneld，交由其进行转发。根据kubernetes的模型，即为每个pod提供一个ip。flannel的模型正好与之契合。因此flannel是最简单易用的kubernetes集群网络方案。</p>
-<p><img src="./kubernetes/cluster.png" alt="flannel" /></p>
-<h3 id="etcd"> etcd</h3>
-<p>在分布式系统中，如何管理节点间的状态一直是一个难题，etcd像是专门为集群环境的服务发现和注册而设计，它提供了数据TTL失效、数据改变监视、多值、目录监听、分布式锁原子操作等功能，可以方便的跟踪并管理集群节点的状态。etcd的特性如下：</p>
-<ul>
-<li>简单: curl可访问的用户的API（HTTP+JSON）</li>
-<li>安全: 可选的SSL客户端证书认证</li>
-<li>快速: 单实例每秒 1000 次写操作</li>
-<li>可靠: 使用Raft保证一致性</li>
-</ul>
-<p>etcd是CoreOS的核心组件，负责节点间的服务发现和配置共享，运行在CoreOS中的应用可以通过etcd读取或者写入数据。虽然etcd是为CoreOS而设计，但其可以运行在多个平台上，包括 OS X、Linux、BSD。角色功能如下：</p>
-<ul>
-<li>作为kubernetes的数据库，存储了k8s自身的信息、以及各种业务容器信息等。</li>
-<li>存储flannel网络配置信息，供各节点协调。</li>
-</ul>
-<p><img src="./kubernetes/etcd.png" alt="etcd" /></p>
-<h3 id="docker"> docker</h3>
-<p>Docker 是一个开源的应用容器引擎，让开发者可以打包他们的应用以及依赖包到一个可移植的容器中，然后发布到任何流行的Linux机器上，也可以实现虚拟化，容器是完全使用沙箱机制，相互之间不会有任何接口。一个完整的Docker有以下几个部分组成：</p>
-<ul>
-<li>Client：客户端</li>
-<li>Daemon：守护进程</li>
-<li>Container：容器</li>
-<li>Image：镜像</li>
-</ul>
-<p><img src="./kubernetes/docker.png" alt="docker" /></p>
-<h2 id="规划"> 规划</h2>
-<p>本例虽然均用IP进行操作，但是建议部署的时候，建议用hosts或者DNS取代IP。</p>
-<table>
-<thead>
-<tr>
-<th>类型</th>
-<th>组件</th>
-<th style="text-align:center">数量</th>
-<th>IP</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Master</td>
-<td>kubernetes-master etcd</td>
-<td style="text-align:center">1</td>
-<td>192.168.20.25</td>
-</tr>
-<tr>
-<td>Node</td>
-<td>kubernetes-node docker flannel</td>
-<td style="text-align:center">2</td>
-<td>192.168.20.22 192.168.20.26</td>
-</tr>
-</tbody>
-</table>
-<p><img src="./kubernetes/flannel.png" alt="kubernetes with Flannel" /></p>
-<h3 id="前提"> 前提</h3>
-<ul>
-<li>SELinux关闭</li>
-<li>firewalld开放8080、2379端口</li>
-</ul>
-<h2 id="配置"> 配置</h2>
-<h3 id="etcd配置"> etcd配置</h3>
-<div><pre><code><span># 安装</span>
-yum <span>install</span> etcd
-</code></pre>
-<div><span>1</span><br><span>2</span><br></div></div><div><pre><code><span># 配置 /etc/etcd/etcd.conf</span>
-<span>ETCD_NAME</span><span>=</span><span>default</span>
-<span>ETCD_DATA_DIR</span><span>=</span><span>"<span>/var/lib/etcd/default.etcd</span>"</span>
-<span>ETCD_LISTEN_CLIENT_URLS</span><span>=</span><span>"<span>http://0.0.0.0:2379</span>"</span>
-<span>ETCD_ADVERTISE_CLIENT_URLS</span><span>=</span><span>"<span>http://192.168.20.25:2379</span>"</span>
-</code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br></div></div><div><pre><code><span># 启动</span>
-systemctl <span>enable</span> etcd
-systemctl start etcd
-</code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br></div></div><div><pre><code>etcdctl <span>set</span> /coreos.com/network/config <span>'{ "Network": "10.1.0.0/16" }'</span>
-</code></pre>
-<div><span>1</span><br></div></div><h4 id="master"> master</h4>
-<div><pre><code><span># 安装</span>
-yum <span>install</span> kubernetes-master
-</code></pre>
-<div><span>1</span><br><span>2</span><br></div></div><div><pre><code><span># 配置 /etc/kubernetes/apiserver</span>
-<span>KUBE_API_ADDRESS</span><span>=</span><span>"<span>--address=0.0.0.0</span>"</span>
-<span>KUBE_ETCD_SERVERS</span><span>=</span><span>"<span>--etcd_servers=http://192.168.20.25:2379</span>"</span>
-<span>KUBE_SERVICE_ADDRESSES</span><span>=</span><span>"<span>--service-cluster-ip-range=10.254.0.0/16</span>"</span>
-<span>KUBE_ADMISSION_CONTROL</span><span>=</span><span>"<span>--admission_control=NamespaceLifecycle,NamespaceExists,LimitRanger,SecurityContextDeny,ResourceQuota</span>"</span>
-<span>KUBE_API_ARGS</span><span>=</span><span>""</span>
-</code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br></div></div><div><pre><code><span># 配置 /etc/kubernetes/controller-manager</span>
-<span>KUBE_CONTROLLER_MANAGER_ARGS</span><span>=</span><span>"<span>--node-monitor-grace-period=10s --pod-eviction-timeout=10s</span>"</span>
-</code></pre>
-<div><span>1</span><br><span>2</span><br></div></div><div><pre><code><span># 配置 /etc/kubernetes/config</span>
-<span>KUBE_LOGTOSTDERR</span><span>=</span><span>"<span>--logtostderr=true</span>"</span>
-<span>KUBE_LOG_LEVEL</span><span>=</span><span>"<span>--v=0</span>"</span>
-<span>KUBE_ALLOW_PRIV</span><span>=</span><span>"<span>--allow_privileged=false</span>"</span>
-<span>KUBE_MASTER</span><span>=</span><span>"<span>--master=http://192.168.20.25:8080</span>"</span>
-</code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br></div></div><div><pre><code><span># 启动服务</span>
-systemctl <span>enable</span> kube-apiserver kube-scheduler kube-controller-manager
-systemctl start kube-apiserver kube-scheduler kube-controller-manager
-</code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br></div></div><h3 id="node"> node</h3>
-<div><pre><code><span># 安装</span>
-yum <span>install</span> kubernetes-node flannel docker
-</code></pre>
-<div><span>1</span><br><span>2</span><br></div></div><div><pre><code><span># 配置 /etc/kubernetes/config</span>
-<span>KUBE_LOGTOSTDERR</span><span>=</span><span>"<span>--logtostderr=true</span>"</span>
-<span>KUBE_LOG_LEVEL</span><span>=</span><span>"<span>--v=0</span>"</span>
-<span>KUBE_ALLOW_PRIV</span><span>=</span><span>"<span>--allow_privileged=false</span>"</span>
-<span>KUBE_MASTER</span><span>=</span><span>"<span>--master=http://192.168.20.25:8080</span>"</span>
-</code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br></div></div><div><pre><code><span># 配置 /etc/kubernetes/kubelet</span>
-<span>KUBELET_ADDRESS</span><span>=</span><span>"<span>--address=127.0.0.1</span>"</span>
-<span>KUBELET_HOSTNAME</span><span>=</span><span>"<span>--hostname_override=192.168.20.22</span>"</span>
-<span>KUBELET_API_SERVER</span><span>=</span><span>"<span>--api_servers=http://192.168.20.25:8080</span>"</span>
-<span>KUBELET_ARGS</span><span>=</span><span>"<span>--pod-infra-container-image=kubernetes/pause</span>"</span>
-</code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br></div></div><div><pre><code><span># 配置 /etc/sysconfig/flanneld</span>
-<span>FLANNEL_ETCD</span><span>=</span><span>"<span>http://192.168.20.25:2379</span>"</span>
-<span>FLANNEL_ETCD_KEY</span><span>=</span><span>"<span>/coreos.com/network</span>"</span>
-</code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br></div></div><div><pre><code>systemctl <span>enable</span> kubelet kube-proxy flanenld docker
-systemctl start kubelet kube-proxy flanneld docker
-</code></pre>
-<div><span>1</span><br><span>2</span><br></div></div>]]></content>
-    <author>
-      <name>方跃明</name>
-    </author>
-    <contributor>
-      <name>方跃明</name>
-    </contributor>
-    <published>2018-04-29T00:00:00.000Z</published>
-    <rights>Copyright by 方跃明</rights>
-  </entry>
-  <entry>
     <title type="html">Docker、kubernetes和Apache Mesos之间的正确关系</title>
     <id>https://blog.fangyueming.cn/blog/kubernetes-docker-mesos/</id>
     <link href="https://blog.fangyueming.cn/blog/kubernetes-docker-mesos/"/>
@@ -2514,6 +2302,263 @@ systemctl start kubelet kube-proxy flanneld docker
       <name>方跃明</name>
     </contributor>
     <published>2018-04-29T00:00:00.000Z</published>
+    <rights>Copyright by 方跃明</rights>
+  </entry>
+  <entry>
+    <title type="html">jQuery常用表格操作</title>
+    <id>https://blog.fangyueming.cn/blog/jquery-table/</id>
+    <link href="https://blog.fangyueming.cn/blog/jquery-table/"/>
+    <updated>2021-12-12T12:29:55.000Z</updated>
+    <content type="html"><![CDATA[<h1 id="jquery常用表格操作"> jQuery常用表格操作</h1>
+<div><pre><code><span><span>&lt;!</span><span>DOCTYPE</span> <span>html</span><span>></span></span>
+<span><span><span>&lt;</span>html</span> <span>lang</span><span><span>=</span><span>"</span>en<span>"</span></span><span>></span></span>
+<span><span><span>&lt;</span>head</span><span>></span></span>
+  <span><span><span>&lt;</span>meta</span> <span>charset</span><span><span>=</span><span>"</span>UTF-8<span>"</span></span><span>></span></span>
+  <span><span><span>&lt;</span>meta</span> <span>name</span><span><span>=</span><span>"</span>viewport<span>"</span></span> <span>content</span><span><span>=</span><span>"</span>width=device-width, initial-scale=1.0<span>"</span></span><span>></span></span>
+  <span><span><span>&lt;</span>meta</span> <span>http-equiv</span><span><span>=</span><span>"</span>X-UA-Compatible<span>"</span></span> <span>content</span><span><span>=</span><span>"</span>ie=edge<span>"</span></span><span>></span></span>
+  <span><span><span>&lt;</span>title</span><span>></span></span>常用表格操作<span><span><span>&lt;/</span>title</span><span>></span></span>
+  <span><span><span>&lt;</span>link</span> <span>rel</span><span><span>=</span><span>"</span>stylesheet<span>"</span></span> <span>href</span><span><span>=</span><span>"</span>http://cdn.bootcss.com/qtip2/3.0.3/jquery.qtip.min.css<span>"</span></span><span>></span></span>
+  <span><span><span>&lt;</span>style</span><span>></span></span><span><span>
+  <span>div</span> <span>{</span>
+    <span>margin-bottom</span><span>:</span> 10px<span>;</span>
+  <span>}</span>
+  <span>th span, td span</span> <span>{</span>
+    <span>padding</span><span>:</span> 3px<span>;</span>
+  <span>}</span>
+  <span>.zebra-false</span> <span>{</span>
+    <span>background-color</span><span>:</span> #ccc<span>;</span>
+  <span>}</span>
+  <span>.error</span> <span>{</span>
+    <span>background-color</span><span>:</span> #f99<span>;</span>
+  <span>}</span>
+  </span></span><span><span><span>&lt;/</span>style</span><span>></span></span>
+<span><span><span>&lt;/</span>head</span><span>></span></span>
+<span><span><span>&lt;</span>body</span><span>></span></span>
+  <span><span><span>&lt;</span>div</span> <span>id</span><span><span>=</span><span>"</span>title<span>"</span></span><span>></span></span>
+    <span><span><span>&lt;</span>button</span> <span>role</span><span><span>=</span><span>"</span>delete<span>"</span></span><span>></span></span>删<span><span><span>&lt;/</span>button</span><span>></span></span>
+    <span><span><span>&lt;</span>button</span> <span>role</span><span><span>=</span><span>"</span>insert<span>"</span></span><span>></span></span>增<span><span><span>&lt;/</span>button</span><span>></span></span>
+  <span><span><span>&lt;/</span>div</span><span>></span></span>
+  <span><span><span>&lt;</span>div</span> <span>id</span><span><span>=</span><span>"</span>data<span>"</span></span><span>></span></span><span><span><span>&lt;</span>script</span> <span>id</span><span><span>=</span><span>"</span>tmpl<span>"</span></span> <span>type</span><span><span>=</span><span>"</span>text/x-dot-template<span>"</span></span><span>></span></span><span><span>
+    <span>&lt;</span>table border<span>=</span><span>"1"</span><span>></span>
+      <span>&lt;</span>thead<span>></span>
+        <span>&lt;</span>tr<span>></span>
+          <span>&lt;</span>th role<span>=</span><span>"check"</span><span>></span><span>&lt;</span>span<span>></span><span>&lt;</span>input type<span>=</span><span>"checkbox"</span><span>></span><span>&lt;</span><span>/</span>span<span>></span><span>&lt;</span><span>/</span>th<span>></span>
+          <span>&lt;</span>th<span>></span><span>&lt;</span>span<span>></span>序号<span>&lt;</span><span>/</span>span<span>></span><span>&lt;</span><span>/</span>th<span>></span>
+          <span>&lt;</span>th<span>></span><span>&lt;</span>span<span>></span>网址<span>&lt;</span><span>/</span>span<span>></span><span>&lt;</span><span>/</span>th<span>></span>
+          <span>&lt;</span>th<span>></span><span>&lt;</span>span<span>></span>邮箱<span>&lt;</span><span>/</span>span<span>></span><span>&lt;</span><span>/</span>th<span>></span>
+          <span>&lt;</span>th<span>></span><span>&lt;</span>span<span>></span>时间<span>&lt;</span><span>/</span>span<span>></span><span>&lt;</span><span>/</span>th<span>></span>
+        <span>&lt;</span><span>/</span>tr<span>></span>
+      <span>&lt;</span><span>/</span>thead<span>></span>
+      <span>&lt;</span>tbody<span>></span><span>{</span><span>{</span><span>~</span>it<span>:</span>v<span>:</span>k<span>}</span><span>}</span>
+        <span>&lt;</span>tr<span>></span>
+          <span>&lt;</span>td role<span>=</span><span>"check"</span><span>></span><span>&lt;</span>span<span>></span><span>&lt;</span>input type<span>=</span><span>"checkbox"</span> value<span>=</span><span>"{{=v.id}}"</span><span>></span><span>&lt;</span><span>/</span>span<span>></span><span>&lt;</span><span>/</span>td<span>></span>
+          <span>&lt;</span>td role<span>=</span><span>"index"</span><span>></span><span>&lt;</span>span<span>></span><span>&lt;</span><span>/</span>span<span>></span><span>&lt;</span><span>/</span>td<span>></span>
+          <span>&lt;</span>td role<span>=</span><span>"url"</span><span>></span><span>&lt;</span>span<span>></span><span>{</span><span>{</span><span>=</span>v<span>.</span>url<span>}</span><span>}</span><span>&lt;</span><span>/</span>span<span>></span><span>&lt;</span><span>/</span>td<span>></span>
+          <span>&lt;</span>td role<span>=</span><span>"email"</span><span>></span><span>&lt;</span>span<span>></span><span>{</span><span>{</span><span>=</span>v<span>.</span>email<span>}</span><span>}</span><span>&lt;</span><span>/</span>span<span>></span><span>&lt;</span><span>/</span>td<span>></span>
+          <span>&lt;</span>td role<span>=</span><span>"date"</span><span>></span><span>&lt;</span>span<span>></span><span>{</span><span>{</span><span>=</span>v<span>.</span>date<span>}</span><span>}</span><span>&lt;</span><span>/</span>span<span>></span><span>&lt;</span><span>/</span>td<span>></span>
+        <span>&lt;</span><span>/</span>tr<span>></span><span>{</span><span>{</span><span>~</span><span>}</span><span>}</span>
+      <span>&lt;</span><span>/</span>tbody<span>></span>
+    <span>&lt;</span><span>/</span>table<span>></span></span></span><span><span><span>&lt;/</span>script</span><span>></span></span>
+  <span><span><span>&lt;/</span>div</span><span>></span></span>
+  <span><span><span>&lt;</span>script</span> <span>src</span><span><span>=</span><span>"</span>http://cdn.bootcss.com/jquery/3.2.0/jquery.min.js<span>"</span></span><span>></span></span><span></span><span><span><span>&lt;/</span>script</span><span>></span></span>
+  <span><span><span>&lt;</span>script</span> <span>src</span><span><span>=</span><span>"</span>http://cdn.bootcss.com/validator/7.0.0/validator.min.js<span>"</span></span><span>></span></span><span></span><span><span><span>&lt;/</span>script</span><span>></span></span>
+  <span><span><span>&lt;</span>script</span> <span>src</span><span><span>=</span><span>"</span>http://cdn.bootcss.com/qtip2/3.0.3/jquery.qtip.min.js<span>"</span></span><span>></span></span><span></span><span><span><span>&lt;/</span>script</span><span>></span></span>
+  <span><span><span>&lt;</span>script</span> <span>src</span><span><span>=</span><span>"</span>http://cdn.bootcss.com/dot/2.0.0-beta.0/doT.min.js<span>"</span></span><span>></span></span><span></span><span><span><span>&lt;/</span>script</span><span>></span></span>
+  <span><span><span>&lt;</span>script</span><span>></span></span><span><span>
+  <span>$</span><span>(</span>document<span>)</span><span>.</span><span>ready</span><span>(</span><span>function</span><span>(</span><span>)</span> <span>{</span>
+    <span>// 数据</span>
+    <span>var</span> data <span>=</span> <span>[</span>
+      <span>{</span><span>"id"</span><span>:</span> <span>"1"</span><span>,</span>  <span>"url"</span><span>:</span> <span>"163.com"</span><span>,</span>     <span>"email"</span><span>:</span> <span>"admin@163.com"</span><span>,</span>    <span>"date"</span><span>:</span> <span>"2016-09-01"</span><span>}</span><span>,</span>
+      <span>{</span><span>"id"</span><span>:</span> <span>"5"</span><span>,</span>  <span>"url"</span><span>:</span> <span>"163.com"</span><span>,</span>     <span>"email"</span><span>:</span> <span>"test@163.com"</span><span>,</span>     <span>"date"</span><span>:</span> <span>"2016-09-05"</span><span>}</span><span>,</span>
+      <span>{</span><span>"id"</span><span>:</span> <span>"6"</span><span>,</span>  <span>"url"</span><span>:</span> <span>"163.com"</span><span>,</span>     <span>"email"</span><span>:</span> <span>"user@163.com"</span><span>,</span>     <span>"date"</span><span>:</span> <span>"2016-09-10"</span><span>}</span><span>,</span>
+      <span>{</span><span>"id"</span><span>:</span> <span>"7"</span><span>,</span>  <span>"url"</span><span>:</span> <span>"google.com"</span><span>,</span>  <span>"email"</span><span>:</span> <span>"google@gmail.com"</span><span>,</span> <span>"date"</span><span>:</span> <span>"2004-06-06"</span><span>}</span><span>,</span>
+      <span>{</span><span>"id"</span><span>:</span> <span>"8"</span><span>,</span>  <span>"url"</span><span>:</span> <span>"google.com"</span><span>,</span>  <span>"email"</span><span>:</span> <span>"admin@gmail.com"</span><span>,</span>  <span>"date"</span><span>:</span> <span>"2004-01-01"</span><span>}</span><span>,</span>
+      <span>{</span><span>"id"</span><span>:</span> <span>"9"</span><span>,</span>  <span>"url"</span><span>:</span> <span>"google.com"</span><span>,</span>  <span>"email"</span><span>:</span> <span>"test@gmail.com"</span><span>,</span>   <span>"date"</span><span>:</span> <span>"2006-10-10"</span><span>}</span><span>,</span>
+      <span>{</span><span>"id"</span><span>:</span> <span>"11"</span><span>,</span> <span>"url"</span><span>:</span> <span>"qq.com"</span><span>,</span>      <span>"email"</span><span>:</span> <span>"admin@qq.com"</span><span>,</span>     <span>"date"</span><span>:</span> <span>"2005-12-23"</span><span>}</span><span>,</span>
+      <span>{</span><span>"id"</span><span>:</span> <span>"14"</span><span>,</span> <span>"url"</span><span>:</span> <span>"qq.com"</span><span>,</span>      <span>"email"</span><span>:</span> <span>"test@qq.com"</span><span>,</span>      <span>"date"</span><span>:</span> <span>"2008-09-01"</span><span>}</span><span>,</span>
+      <span>{</span><span>"id"</span><span>:</span> <span>"15"</span><span>,</span> <span>"url"</span><span>:</span> <span>"baidu.com"</span><span>,</span>   <span>"email"</span><span>:</span> <span>"admin@baidu.com"</span><span>,</span>  <span>"date"</span><span>:</span> <span>"2003-02-01"</span><span>}</span><span>,</span>
+      <span>{</span><span>"id"</span><span>:</span> <span>"16"</span><span>,</span> <span>"url"</span><span>:</span> <span>"baidu.com"</span><span>,</span>   <span>"email"</span><span>:</span> <span>"test@baidu.com"</span><span>,</span>   <span>"date"</span><span>:</span> <span>"2006-12-31"</span><span>}</span>
+    <span>]</span>
+    <span>// 模版</span>
+    <span>var</span> tmpl <span>=</span> doT<span>.</span><span>template</span><span>(</span><span>$</span><span>(</span><span>'#tmpl'</span><span>)</span><span>.</span><span>text</span><span>(</span><span>)</span><span>)</span>
+    <span>// 编译模版</span>
+    <span>$</span><span>(</span><span>'#data'</span><span>)</span><span>.</span><span>html</span><span>(</span><span>tmpl</span><span>(</span>data<span>)</span><span>)</span>
+    <span>// 斑马纹</span>
+    <span>var</span> zebra <span>=</span> <span>true</span>
+    <span>$</span><span>(</span><span>'table tbody tr'</span><span>)</span><span>.</span><span>each</span><span>(</span><span>function</span><span>(</span><span>e</span><span>)</span><span>{</span>
+      <span>$</span><span>(</span><span>this</span><span>)</span><span>.</span><span>addClass</span><span>(</span><span>'zebra-'</span> <span>+</span> zebra<span>)</span>
+      <span>if</span><span>(</span><span>$</span><span>(</span><span>this</span><span>)</span><span>.</span><span>children</span><span>(</span><span>'td[role="url"]'</span><span>)</span><span>.</span><span>find</span><span>(</span><span>'span'</span><span>)</span><span>.</span><span>text</span><span>(</span><span>)</span> <span>!=</span>
+         <span>$</span><span>(</span><span>this</span><span>)</span><span>.</span><span>next</span><span>(</span><span>)</span><span>.</span><span>children</span><span>(</span><span>'td[role="url"]'</span><span>)</span><span>.</span><span>find</span><span>(</span><span>'span'</span><span>)</span><span>.</span><span>text</span><span>(</span><span>)</span><span>)</span><span>{</span>
+        zebra <span>=</span> <span>!</span>zebra
+      <span>}</span>
+    <span>}</span><span>)</span>
+    <span>// 序号</span>
+    <span>var</span> index <span>=</span> <span>0</span>
+    <span>$</span><span>(</span><span>'table tbody tr'</span><span>)</span><span>.</span><span>each</span><span>(</span><span>function</span><span>(</span><span>)</span><span>{</span>
+      <span>$</span><span>(</span><span>this</span><span>)</span><span>.</span><span>children</span><span>(</span><span>'td[role="index"]'</span><span>)</span><span>.</span><span>children</span><span>(</span><span>'span'</span><span>)</span><span>.</span><span>text</span><span>(</span><span>++</span>index<span>)</span>
+    <span>}</span><span>)</span>
+    <span>// 表格编辑</span>
+    <span>var</span> typing <span>=</span> <span>false</span>                                                 <span>// 变量：可编辑</span>
+    <span>var</span> pretyping <span>=</span> <span>''</span>                                                 <span>// 变量：保存编辑前内容</span>
+    <span>// 进入编辑</span>
+    <span>$</span><span>(</span><span>'table'</span><span>)</span><span>.</span><span>on</span><span>(</span><span>'dblclick'</span><span>,</span> <span>'tbody tr'</span><span>,</span> <span>function</span><span>(</span><span>e</span><span>)</span><span>{</span>                 <span>// 响应编辑事件</span>
+      <span>if</span><span>(</span>typing<span>)</span> <span>{</span>                                                     <span>// 有编辑未完成</span>
+        <span>alert</span><span>(</span><span>"输入进行中"</span><span>)</span>
+      <span>}</span> <span>else</span> <span>{</span>
+        <span>var</span> el <span>=</span> <span>$</span><span>(</span><span>this</span><span>)</span>
+        pretyping <span>=</span> el<span>.</span><span>html</span><span>(</span><span>)</span>                                    <span>// 保存编辑前内容</span>
+        el<span>.</span><span>children</span><span>(</span><span>'td[role="check"]'</span><span>)</span><span>.</span><span>find</span><span>(</span><span>'span'</span><span>)</span><span>.</span><span>html</span><span>(</span><span>[</span>      <span>// 构建操作按钮</span>
+          <span>'&lt;button role="cancel">弃&lt;/button>'</span><span>,</span>
+          <span>'&lt;button role="save">存&lt;/button>'</span>
+        <span>]</span><span>.</span><span>join</span><span>(</span><span>'\n'</span><span>)</span><span>)</span>
+        <span>// 构建行内表单</span>
+        el<span>.</span><span>children</span><span>(</span><span>'td:not([role="check"],[role="index"])'</span><span>)</span><span>.</span><span>each</span><span>(</span><span>function</span><span>(</span><span>)</span><span>{</span>
+          <span>$</span><span>(</span><span>this</span><span>)</span><span>.</span><span>html</span><span>(</span><span>'&lt;input type="text" value="'</span> <span>+</span> <span>$</span><span>(</span><span>this</span><span>)</span><span>.</span><span>text</span><span>(</span><span>)</span> <span>+</span> <span>'">'</span><span>)</span>
+        <span>}</span><span>)</span>
+        typing <span>=</span> <span>true</span>      <span>// 正在编辑</span>
+      <span>}</span>
+    <span>}</span><span>)</span>
+    <span>// 取消编辑</span>
+    <span>$</span><span>(</span><span>'table'</span><span>)</span><span>.</span><span>on</span><span>(</span><span>'click'</span><span>,</span> <span>'td[role="check"] button[role="cancel"]'</span><span>,</span> <span>function</span><span>(</span><span>e</span><span>)</span><span>{</span>
+      <span>var</span> el <span>=</span> <span>$</span><span>(</span><span>this</span><span>)</span><span>.</span><span>parent</span><span>(</span><span>)</span><span>.</span><span>parent</span><span>(</span><span>)</span><span>.</span><span>parent</span><span>(</span><span>)</span>      <span>// 定位到tr</span>
+      el<span>.</span><span>html</span><span>(</span>pretyping<span>)</span>                               <span>// 恢复行原始数据</span>
+      typing <span>=</span> <span>false</span>                                   <span>// 可编辑</span>
+    <span>}</span><span>)</span>
+    <span>// 保存编辑</span>
+    <span>// TODO select, textarea, ...</span>
+    <span>$</span><span>(</span><span>'table'</span><span>)</span><span>.</span><span>on</span><span>(</span><span>'click'</span><span>,</span> <span>'td[role="check"] button[role="save"]'</span><span>,</span> <span>function</span><span>(</span><span>e</span><span>)</span><span>{</span>
+      <span>var</span> data <span>=</span> <span>[</span><span>]</span>                                    <span>// 预定义数据（名称、验证、类型）</span>
+      <span>var</span> eq <span>=</span> <span>0</span>                                       <span>// 目前使用eq，考虑统一进预定义数据</span>
+      <span>var</span> el <span>=</span> <span>$</span><span>(</span><span>this</span><span>)</span><span>.</span><span>parent</span><span>(</span><span>)</span><span>.</span><span>parent</span><span>(</span><span>)</span><span>.</span><span>parent</span><span>(</span><span>)</span>              <span>// 元素定位</span>
+      <span>var</span> isValid <span>=</span> <span>false</span>                                      <span>// 客户端验证</span>
+      el<span>.</span><span>children</span><span>(</span><span>'td'</span><span>)</span><span>.</span><span>each</span><span>(</span><span>function</span><span>(</span><span>)</span><span>{</span>                      <span>// 遍历单元格</span>
+        <span>var</span> val <span>=</span> <span>$</span><span>(</span><span>this</span><span>)</span><span>.</span><span>find</span><span>(</span><span>'input'</span><span>)</span><span>.</span><span>val</span><span>(</span><span>)</span>                 <span>// 取输入值</span>
+        <span>undefined</span> <span>!=</span> val <span>&amp;&amp;</span> data<span>.</span><span>push</span><span>(</span><span>{</span> eq<span>:</span> eq<span>,</span> val<span>:</span> val <span>}</span><span>)</span>   <span>// 按需保存</span>
+        eq<span>++</span>                                                  <span>// 递增索引</span>
+      <span>}</span><span>)</span>
+      isValid <span>=</span>                                              <span>// 统一验证</span>
+        validator<span>.</span><span>isURL</span><span>(</span>data<span>[</span><span>0</span><span>]</span><span>.</span>val<span>)</span> <span>&amp;&amp;</span>
+        validator<span>.</span><span>isEmail</span><span>(</span>data<span>[</span><span>1</span><span>]</span><span>.</span>val<span>)</span> <span>&amp;&amp;</span>
+        validator<span>.</span><span>isISO8601</span><span>(</span>data<span>[</span><span>2</span><span>]</span><span>.</span>val<span>)</span>
+      <span>if</span><span>(</span>isValid<span>)</span> <span>{</span>                                         <span>// 验证通过</span>
+        <span>// TODO 新增、更新分支</span>
+        <span>// TODO 服务端保存（AJAX回调）</span>
+        el<span>.</span><span>html</span><span>(</span>pretyping<span>)</span>                                  <span>// 复原原始内容</span>
+        <span>for</span><span>(</span>k <span>in</span> data<span>)</span> <span>{</span>                                    <span>// 遍历数据</span>
+          el<span>.</span><span>children</span><span>(</span><span>'td'</span><span>)</span><span>.</span><span>eq</span><span>(</span>data<span>[</span>k<span>]</span><span>.</span>eq<span>)</span><span>.</span><span>find</span><span>(</span><span>'span'</span><span>)</span><span>.</span><span>html</span><span>(</span>data<span>[</span>k<span>]</span><span>.</span>val<span>)</span> <span>// 按需填充</span>
+        <span>}</span>
+        typing <span>=</span> <span>false</span>                                      <span>// 恢复可编辑</span>
+      <span>}</span> <span>else</span> <span>{</span>
+        <span>// 验证失败</span>
+        <span>alert</span><span>(</span><span>'验证失败'</span><span>)</span>
+      <span>}</span>
+    <span>}</span><span>)</span>
+    <span>// 数据格式提醒</span>
+    <span>$</span><span>(</span><span>'table'</span><span>)</span><span>.</span><span>on</span><span>(</span><span>'blur'</span><span>,</span> <span>'input'</span><span>,</span> <span>function</span><span>(</span><span>e</span><span>)</span><span>{</span>
+      <span>var</span> el <span>=</span> <span>$</span><span>(</span><span>this</span><span>)</span><span>.</span><span>parent</span><span>(</span><span>)</span>
+      <span>var</span> role <span>=</span> el<span>.</span><span>attr</span><span>(</span><span>'role'</span><span>)</span>
+      <span>var</span> val <span>=</span> <span>$</span><span>(</span><span>this</span><span>)</span><span>.</span><span>val</span><span>(</span><span>)</span>
+      <span>switch</span><span>(</span>role<span>)</span> <span>{</span>
+        <span>case</span> <span>'url'</span><span>:</span>
+          validator<span>.</span><span>isURL</span><span>(</span>val<span>)</span> <span>||</span> <span>tip</span><span>(</span>el<span>,</span> <span>'网址格式错误'</span><span>)</span>
+        <span>break</span>
+        <span>case</span> <span>'email'</span><span>:</span>
+          validator<span>.</span><span>isEmail</span><span>(</span>val<span>)</span> <span>||</span> <span>tip</span><span>(</span>el<span>,</span> <span>'邮箱格式错误'</span><span>)</span>
+        <span>break</span>
+        <span>case</span> <span>'date'</span><span>:</span>
+          validator<span>.</span><span>isISO8601</span><span>(</span>val<span>)</span> <span>||</span> <span>tip</span><span>(</span>el<span>,</span> <span>'日期格式错误'</span><span>)</span>
+        <span>break</span>
+        <span>default</span><span>:</span>
+        <span>break</span>
+      <span>}</span>
+    <span>}</span><span>)</span>
+    <span>// 消除错误提示</span>
+    <span>$</span><span>(</span><span>'table'</span><span>)</span><span>.</span><span>on</span><span>(</span><span>'focus'</span><span>,</span> <span>'input'</span><span>,</span> <span>function</span><span>(</span><span>e</span><span>)</span><span>{</span>
+      <span>var</span> el <span>=</span> <span>$</span><span>(</span><span>this</span><span>)</span><span>.</span><span>parent</span><span>(</span><span>)</span>
+      el<span>.</span><span>qtip</span><span>(</span><span>'destroy'</span><span>)</span>
+      el<span>.</span><span>children</span><span>(</span><span>)</span><span>.</span><span>removeClass</span><span>(</span><span>'error'</span><span>)</span>
+    <span>}</span><span>)</span>
+    <span>// 出错提醒函数</span>
+    <span>var</span> <span>tip</span> <span>=</span> <span>function</span><span>(</span><span>el<span>,</span> text</span><span>)</span> <span>{</span>
+      el<span>.</span><span>children</span><span>(</span><span>)</span><span>.</span><span>addClass</span><span>(</span><span>'error'</span><span>)</span>
+      el<span>.</span><span>qtip</span><span>(</span><span>{</span>
+        content<span>:</span> <span>{</span> text<span>:</span> text <span>}</span><span>,</span>
+        position<span>:</span> <span>{</span> at<span>:</span> <span>'bottom center'</span> <span>}</span><span>,</span>
+        show<span>:</span> <span>{</span> ready<span>:</span> <span>true</span><span>,</span> solo<span>:</span> <span>true</span> <span>}</span>
+      <span>}</span><span>)</span>
+    <span>}</span>
+    <span>// 全选、不选</span>
+    <span>$</span><span>(</span><span>'table'</span><span>)</span><span>.</span><span>on</span><span>(</span><span>'click'</span><span>,</span> <span>'th[role="check"] input[type="checkbox"]'</span><span>,</span> <span>function</span><span>(</span><span>e</span><span>)</span><span>{</span>
+      <span>$</span><span>(</span><span>'td input:nth-child(1)'</span><span>)</span><span>.</span><span>prop</span><span>(</span><span>'checked'</span><span>,</span> <span>$</span><span>(</span><span>this</span><span>)</span><span>.</span><span>is</span><span>(</span><span>':checked'</span><span>)</span><span>)</span>
+    <span>}</span><span>)</span>
+    <span>// 删除选中</span>
+    <span>$</span><span>(</span><span>'#title'</span><span>)</span><span>.</span><span>on</span><span>(</span><span>'click'</span><span>,</span> <span>'button[role="delete"]'</span><span>,</span> <span>function</span><span>(</span><span>e</span><span>)</span><span>{</span>
+      <span>var</span> checked <span>=</span> <span>[</span><span>]</span>
+      <span>$</span><span>(</span><span>'#data tbody tr'</span><span>)</span><span>.</span><span>each</span><span>(</span><span>function</span><span>(</span><span>)</span><span>{</span>
+        <span>var</span> tr <span>=</span> <span>$</span><span>(</span><span>this</span><span>)</span>
+        <span>var</span> checkbox <span>=</span> tr<span>.</span><span>children</span><span>(</span><span>'td[role="check"]'</span><span>)</span><span>.</span><span>find</span><span>(</span><span>'input[type="checkbox"]'</span><span>)</span>
+        checkbox<span>.</span><span>is</span><span>(</span><span>':checked'</span><span>)</span> <span>&amp;&amp;</span> checked<span>.</span><span>push</span><span>(</span>checkbox<span>.</span><span>val</span><span>(</span><span>)</span><span>)</span>
+      <span>}</span><span>)</span>
+      <span>alert</span><span>(</span><span>JSON</span><span>.</span><span>stringify</span><span>(</span>checked<span>)</span><span>)</span>
+    <span>}</span><span>)</span>
+  <span>}</span><span>)</span>
+</span></span><span><span><span>&lt;/</span>script</span><span>></span></span>
+<span><span><span>&lt;/</span>body</span><span>></span></span>
+<span><span><span>&lt;/</span>html</span><span>></span></span>
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br><span>9</span><br><span>10</span><br><span>11</span><br><span>12</span><br><span>13</span><br><span>14</span><br><span>15</span><br><span>16</span><br><span>17</span><br><span>18</span><br><span>19</span><br><span>20</span><br><span>21</span><br><span>22</span><br><span>23</span><br><span>24</span><br><span>25</span><br><span>26</span><br><span>27</span><br><span>28</span><br><span>29</span><br><span>30</span><br><span>31</span><br><span>32</span><br><span>33</span><br><span>34</span><br><span>35</span><br><span>36</span><br><span>37</span><br><span>38</span><br><span>39</span><br><span>40</span><br><span>41</span><br><span>42</span><br><span>43</span><br><span>44</span><br><span>45</span><br><span>46</span><br><span>47</span><br><span>48</span><br><span>49</span><br><span>50</span><br><span>51</span><br><span>52</span><br><span>53</span><br><span>54</span><br><span>55</span><br><span>56</span><br><span>57</span><br><span>58</span><br><span>59</span><br><span>60</span><br><span>61</span><br><span>62</span><br><span>63</span><br><span>64</span><br><span>65</span><br><span>66</span><br><span>67</span><br><span>68</span><br><span>69</span><br><span>70</span><br><span>71</span><br><span>72</span><br><span>73</span><br><span>74</span><br><span>75</span><br><span>76</span><br><span>77</span><br><span>78</span><br><span>79</span><br><span>80</span><br><span>81</span><br><span>82</span><br><span>83</span><br><span>84</span><br><span>85</span><br><span>86</span><br><span>87</span><br><span>88</span><br><span>89</span><br><span>90</span><br><span>91</span><br><span>92</span><br><span>93</span><br><span>94</span><br><span>95</span><br><span>96</span><br><span>97</span><br><span>98</span><br><span>99</span><br><span>100</span><br><span>101</span><br><span>102</span><br><span>103</span><br><span>104</span><br><span>105</span><br><span>106</span><br><span>107</span><br><span>108</span><br><span>109</span><br><span>110</span><br><span>111</span><br><span>112</span><br><span>113</span><br><span>114</span><br><span>115</span><br><span>116</span><br><span>117</span><br><span>118</span><br><span>119</span><br><span>120</span><br><span>121</span><br><span>122</span><br><span>123</span><br><span>124</span><br><span>125</span><br><span>126</span><br><span>127</span><br><span>128</span><br><span>129</span><br><span>130</span><br><span>131</span><br><span>132</span><br><span>133</span><br><span>134</span><br><span>135</span><br><span>136</span><br><span>137</span><br><span>138</span><br><span>139</span><br><span>140</span><br><span>141</span><br><span>142</span><br><span>143</span><br><span>144</span><br><span>145</span><br><span>146</span><br><span>147</span><br><span>148</span><br><span>149</span><br><span>150</span><br><span>151</span><br><span>152</span><br><span>153</span><br><span>154</span><br><span>155</span><br><span>156</span><br><span>157</span><br><span>158</span><br><span>159</span><br><span>160</span><br><span>161</span><br><span>162</span><br><span>163</span><br><span>164</span><br><span>165</span><br><span>166</span><br><span>167</span><br><span>168</span><br><span>169</span><br><span>170</span><br><span>171</span><br><span>172</span><br><span>173</span><br><span>174</span><br><span>175</span><br><span>176</span><br><span>177</span><br><span>178</span><br><span>179</span><br><span>180</span><br><span>181</span><br><span>182</span><br><span>183</span><br><span>184</span><br><span>185</span><br><span>186</span><br><span>187</span><br><span>188</span><br><span>189</span><br><span>190</span><br><span>191</span><br><span>192</span><br><span>193</span><br><span>194</span><br><span>195</span><br></div></div>]]></content>
+    <author>
+      <name>方跃明</name>
+    </author>
+    <contributor>
+      <name>方跃明</name>
+    </contributor>
+    <published>2016-10-30T00:00:00.000Z</published>
+    <rights>Copyright by 方跃明</rights>
+  </entry>
+  <entry>
+    <title type="html">LeoVue的由来</title>
+    <id>https://blog.fangyueming.cn/blog/leovue-why/</id>
+    <link href="https://blog.fangyueming.cn/blog/leovue-why/"/>
+    <updated>2021-12-12T12:29:55.000Z</updated>
+    <content type="html"><![CDATA[<h1 id="leovue的由来"> LeoVue的由来</h1>
+<p>几十年来传统软件服务商店大欺客的现状，于信者毋庸多言，于疑者多说无益。
+以至于业界流传有民谣，叫做“<strong>一流的公关，二流的营销，三流的技术，四流的服务</strong>”。
+往往一个毛坯交付上线，客户如若后续没有二次开发的需求，可以借此多多进账，
+服务商此后便想着撒手不管，丢给售后服务部门提供日常的电话支持，每年却收着不菲的服务年费。
+甚至于连起码的基本服务都敷衍应付，所谓文档寥寥几页纸，全要所谓技术工程师口传心授。
+因为系统大多封闭，大多数无章法可循，无从入口，定是缺他不可的，往往十分跋扈，
+及时响应是不太可能的，不看人脸色就谢天谢地了。</p>
+<p>服务商的软件系统很多是十多年的老技术，框架陈旧，屡次迭代都要考虑兼容性，于是乎能将就就将就。
+漏洞百出，甚至千疮百孔，都是十分常见的。日常用起来都要小心翼翼如履薄冰，仿佛穷人家穿了十多年的破纱衣，一不小心就能洞穿。</p>
+<p>由于预算问题，这些系统大多都是毛坯交付，所谓标准功能，往往不能满足企业真正需求，需要二次开发。而这就是一个无底洞，
+明明几年前给其他客户做的有现成的方案，也要调研需求，评估工时，搞得复杂上天，尽其忽悠之能事，其目的就为了可以多多进账。
+<strong>上线十来万，二开几百万的项目比比皆是</strong>，这也成了软件服务商赚钱的法宝，所谓城市套路深，不过如此，企业一旦陷入就难以自拔。
+这种情况更多见于国内的传统软件服务商，对企业来说苦不堪言，搞到后来争执不休，废弃不用的甚至对簿公堂的也不在少数。</p>
+<p>因此稍微有点远见有点实力的企业，深苦于此，<strong>不愿被掣肘，定要自己弄出一个量身定做的系统来</strong>。
+但网络上开源的各种插件、各种库、各种框架，针对企业的本就不多，一旦投入开发，光框架、插件、库的选择上就足够抓耳挠腮了。
+加之自备的开发人员良莠不齐，技术水平天差地别，有的甚至仅仅只会当年的“网页三剑客”。
+开发力量薄弱，如何折衷选择让所有力量都有所发挥，这是个问题。</p>
+<p><a href="https://cn.vuejs.org" target="_blank" rel="noopener noreferrer">Vue.js</a>横空出世，其先进的设计理念，大大减低了前端开发的艰难程度，围绕<code>Vue.js</code>的生态系统雨后春笋般日渐丰富。
+<code>Vue.js</code>可以用组件封装最晦涩难懂的部分，暴露出最简单的接口供调用，一个简单的自定义<code>HTML</code>标签就能搞定原先复杂到令人痛不欲生的难题，
+非常类似于基于<code>API</code>开发，真正可以开箱即用。普通开发人员根本不用关心组件内实现，使得企业自行开发难度，一下子从天上拉到了凡间。
+也许自备开发人员真的只会“三剑客”，可能只需稍加学习也能胜任部分简单开发，对普通企业来说自己研发量身定制系统已不再是高山险阻。</p>
+<p><a href="https://axolo.github.io/leovue" target="_blank" rel="noopener noreferrer">LeoVue</a>就是针对企业开发而创建的组件库，力求简单明了，力求开箱即用，完善<code>80%</code>，丢弃<code>20%</code>。
+纯前端实现 <strong>从Excel导入数据</strong>，<strong>导出到Excel文件</strong>、<strong>选择不同模板打印输出</strong> 等必备组件已经上线，
+更多组件后续慢慢丰富。</p>
+<p>由于作者才疏学浅，错漏难免，欢迎大家批评指正，不吝赐教。</p>
+<div><p>声明</p>
+<p>以上言论，一家之言，有则改之，无则加勉，切勿对号入座。
+—— 方跃明2018年8月19日于杭州</p>
+</div>
+]]></content>
+    <author>
+      <name>方跃明</name>
+    </author>
+    <contributor>
+      <name>方跃明</name>
+    </contributor>
+    <published>2018-08-19T00:00:00.000Z</published>
     <rights>Copyright by 方跃明</rights>
   </entry>
   <entry>
@@ -2650,227 +2695,6 @@ found in <code>&lt;Component&gt;</code></p>
     <rights>Copyright by 方跃明</rights>
   </entry>
   <entry>
-    <title type="html">LeoVue的由来</title>
-    <id>https://blog.fangyueming.cn/blog/leovue-why/</id>
-    <link href="https://blog.fangyueming.cn/blog/leovue-why/"/>
-    <updated>2021-12-12T12:29:55.000Z</updated>
-    <content type="html"><![CDATA[<h1 id="leovue的由来"> LeoVue的由来</h1>
-<p>几十年来传统软件服务商店大欺客的现状，于信者毋庸多言，于疑者多说无益。
-以至于业界流传有民谣，叫做“<strong>一流的公关，二流的营销，三流的技术，四流的服务</strong>”。
-往往一个毛坯交付上线，客户如若后续没有二次开发的需求，可以借此多多进账，
-服务商此后便想着撒手不管，丢给售后服务部门提供日常的电话支持，每年却收着不菲的服务年费。
-甚至于连起码的基本服务都敷衍应付，所谓文档寥寥几页纸，全要所谓技术工程师口传心授。
-因为系统大多封闭，大多数无章法可循，无从入口，定是缺他不可的，往往十分跋扈，
-及时响应是不太可能的，不看人脸色就谢天谢地了。</p>
-<p>服务商的软件系统很多是十多年的老技术，框架陈旧，屡次迭代都要考虑兼容性，于是乎能将就就将就。
-漏洞百出，甚至千疮百孔，都是十分常见的。日常用起来都要小心翼翼如履薄冰，仿佛穷人家穿了十多年的破纱衣，一不小心就能洞穿。</p>
-<p>由于预算问题，这些系统大多都是毛坯交付，所谓标准功能，往往不能满足企业真正需求，需要二次开发。而这就是一个无底洞，
-明明几年前给其他客户做的有现成的方案，也要调研需求，评估工时，搞得复杂上天，尽其忽悠之能事，其目的就为了可以多多进账。
-<strong>上线十来万，二开几百万的项目比比皆是</strong>，这也成了软件服务商赚钱的法宝，所谓城市套路深，不过如此，企业一旦陷入就难以自拔。
-这种情况更多见于国内的传统软件服务商，对企业来说苦不堪言，搞到后来争执不休，废弃不用的甚至对簿公堂的也不在少数。</p>
-<p>因此稍微有点远见有点实力的企业，深苦于此，<strong>不愿被掣肘，定要自己弄出一个量身定做的系统来</strong>。
-但网络上开源的各种插件、各种库、各种框架，针对企业的本就不多，一旦投入开发，光框架、插件、库的选择上就足够抓耳挠腮了。
-加之自备的开发人员良莠不齐，技术水平天差地别，有的甚至仅仅只会当年的“网页三剑客”。
-开发力量薄弱，如何折衷选择让所有力量都有所发挥，这是个问题。</p>
-<p><a href="https://cn.vuejs.org" target="_blank" rel="noopener noreferrer">Vue.js</a>横空出世，其先进的设计理念，大大减低了前端开发的艰难程度，围绕<code>Vue.js</code>的生态系统雨后春笋般日渐丰富。
-<code>Vue.js</code>可以用组件封装最晦涩难懂的部分，暴露出最简单的接口供调用，一个简单的自定义<code>HTML</code>标签就能搞定原先复杂到令人痛不欲生的难题，
-非常类似于基于<code>API</code>开发，真正可以开箱即用。普通开发人员根本不用关心组件内实现，使得企业自行开发难度，一下子从天上拉到了凡间。
-也许自备开发人员真的只会“三剑客”，可能只需稍加学习也能胜任部分简单开发，对普通企业来说自己研发量身定制系统已不再是高山险阻。</p>
-<p><a href="https://axolo.github.io/leovue" target="_blank" rel="noopener noreferrer">LeoVue</a>就是针对企业开发而创建的组件库，力求简单明了，力求开箱即用，完善<code>80%</code>，丢弃<code>20%</code>。
-纯前端实现 <strong>从Excel导入数据</strong>，<strong>导出到Excel文件</strong>、<strong>选择不同模板打印输出</strong> 等必备组件已经上线，
-更多组件后续慢慢丰富。</p>
-<p>由于作者才疏学浅，错漏难免，欢迎大家批评指正，不吝赐教。</p>
-<div><p>声明</p>
-<p>以上言论，一家之言，有则改之，无则加勉，切勿对号入座。
-—— 方跃明2018年8月19日于杭州</p>
-</div>
-]]></content>
-    <author>
-      <name>方跃明</name>
-    </author>
-    <contributor>
-      <name>方跃明</name>
-    </contributor>
-    <published>2018-08-19T00:00:00.000Z</published>
-    <rights>Copyright by 方跃明</rights>
-  </entry>
-  <entry>
-    <title type="html">Linux Shell 入门</title>
-    <id>https://blog.fangyueming.cn/blog/linux-shell/</id>
-    <link href="https://blog.fangyueming.cn/blog/linux-shell/"/>
-    <updated>2021-12-12T12:29:55.000Z</updated>
-    <content type="html"><![CDATA[<h1 id="linux-shell-入门"> Linux Shell 入门</h1>
-<h2 id="脚本文件"> 脚本文件</h2>
-<ul>
-<li>扩展名：<code>.sh</code></li>
-<li>第一行：<code>#!/bin/bash</code></li>
-<li>执行
-<ul>
-<li><code>chmod +x shell脚本</code></li>
-<li><code>./shell脚本</code></li>
-</ul>
-</li>
-</ul>
-<h2 id="脚本内部执行命令"> 脚本内部执行命令</h2>
-<p>反引号</p>
-<h2 id="变量"> 变量</h2>
-<h3 id="系统变量"> 系统变量</h3>
-<table>
-<thead>
-<tr>
-<th>名称</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>PATH</td>
-<td>shell查找命令的目录列表，由冒号分隔</td>
-</tr>
-<tr>
-<td>HOSTNAME</td>
-<td>当前主机名</td>
-</tr>
-<tr>
-<td>HOME</td>
-<td>当前用户主目录</td>
-</tr>
-<tr>
-<td>SHELL</td>
-<td>当前shell</td>
-</tr>
-<tr>
-<td>USER</td>
-<td>当前用户</td>
-</tr>
-<tr>
-<td>UID</td>
-<td>当前用户ID</td>
-</tr>
-<tr>
-<td>GID</td>
-<td>当前用户组ID</td>
-</tr>
-<tr>
-<td>PWD</td>
-<td>当前所在目录</td>
-</tr>
-<tr>
-<td>OLDPWD</td>
-<td>上次所在目录</td>
-</tr>
-<tr>
-<td>0</td>
-<td>当前命令名称</td>
-</tr>
-<tr>
-<td>n</td>
-<td>当前命令的第n个参数，n=1,2,...,9</td>
-</tr>
-<tr>
-<td>*</td>
-<td>以”参数1，参数2…..”形式保存所有参数</td>
-</tr>
-<tr>
-<td>@</td>
-<td>以”参数1”，”参数2”…..”形式保存所有参数</td>
-</tr>
-<tr>
-<td>#</td>
-<td>命令行参数的个数</td>
-</tr>
-<tr>
-<td>?</td>
-<td>执行上一个指令或函数的返回值，0=没有错误</td>
-</tr>
-<tr>
-<td>$</td>
-<td>本程序的PID（ProcessID）</td>
-</tr>
-<tr>
-<td>!</td>
-<td>后台运行的最后一个进程的进程ID号</td>
-</tr>
-<tr>
-<td>-</td>
-<td>显示shell使用的当前选项，与set命令功能相同</td>
-</tr>
-<tr>
-<td>_</td>
-<td>shell的绝对路径名，最近执行的命令，最近命令最后一个参数</td>
-</tr>
-<tr>
-<td>LINENO</td>
-<td>当前执行的脚本行号</td>
-</tr>
-</tbody>
-</table>
-<h3 id="用户变量"> 用户变量</h3>
-<h4 id="定义变量"> 定义变量</h4>
-<ul>
-<li>变量名=变量值</li>
-</ul>
-<h4 id="引用变量"> 引用变量</h4>
-<ul>
-<li>$变量名</li>
-<li>${变量名}</li>
-</ul>
-<h4 id="只读变量"> 只读变量</h4>
-<ul>
-<li>变量名=变量值</li>
-<li>readonly 变量名</li>
-</ul>
-<h4 id="删除变量"> 删除变量</h4>
-<ul>
-<li>变量名=变量值</li>
-<li>unset 变量名</li>
-</ul>
-<h3 id="字符串变量"> 字符串变量</h3>
-<h4 id="定义"> 定义</h4>
-<ul>
-<li>单引号字符串变量='不可转义字符串'</li>
-<li>双引号字符串变量=&quot;可转义字符串&quot;</li>
-</ul>
-<h4 id="获取字符串长度"> 获取字符串长度</h4>
-<div><pre><code><span>string</span><span>=</span><span>"abcd"</span>
-<span>echo</span> <span>${<span>#</span>string}</span>     <span># 4</span>
-</code></pre>
-<div><span>1</span><br><span>2</span><br></div></div><h4 id="提取字符串"> 提取字符串</h4>
-<div><pre><code><span>string</span><span>=</span><span>"runoob is a great site"</span>
-<span>echo</span> <span>${string<span>:</span>1<span>:</span>4}</span>  <span># unoo</span>
-</code></pre>
-<div><span>1</span><br><span>2</span><br></div></div><h4 id="查找字符串位置"> 查找字符串位置</h4>
-<div><pre><code><span>string</span><span>=</span><span>"runoob is a great company"</span>
-<span>echo</span> <span><span>`</span><span>expr</span> index <span>"<span>$string</span>"</span> is<span>`</span></span>  <span># 8</span>
-</code></pre>
-<div><span>1</span><br><span>2</span><br></div></div><h3 id="数组变量"> 数组变量</h3>
-<h4 id="定义数组"> 定义数组</h4>
-<div><pre><code><span>array_name</span><span>=</span><span>(</span>value0 value1 value2 value3<span>)</span>  <span># 整体定义，可分行</span>
-array_name<span>[</span><span>0</span><span>]</span><span>=</span>value0                      <span># 可单独定义</span>
-</code></pre>
-<div><span>1</span><br><span>2</span><br></div></div><h4 id="引用"> 引用</h4>
-<div><pre><code><span>echo</span> <span>${array_name<span>[</span>n<span>]</span>}</span>   <span># 读取第n个数组，数组下标从0开始</span>
-<span>echo</span> <span>${array_name<span>[</span>*<span>]</span>}</span>   <span># 读取所有数组</span>
-<span>echo</span> <span>${array_name<span>[</span>@<span>]</span>}</span>   <span># 读取所有数组</span>
-</code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br></div></div><h4 id="获取长度"> 获取长度</h4>
-<div><pre><code><span>${<span>#</span>array_name<span>[</span>n<span>]</span>}</span>     <span># 第n个数组长度</span>
-<span>${<span>#</span>array_name<span>[</span>*<span>]</span>}</span>     <span># 整个数组长度</span>
-<span>${<span>#</span>array_name<span>[</span>@<span>]</span>}</span>     <span># 整个数组长度</span>
-</code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br></div></div><h2 id="运算符"> 运算符</h2>
-<h2 id="控制语句"> 控制语句</h2>
-]]></content>
-    <author>
-      <name>方跃明</name>
-    </author>
-    <contributor>
-      <name>方跃明</name>
-    </contributor>
-    <published>2017-08-09T00:00:00.000Z</published>
-    <rights>Copyright by 方跃明</rights>
-  </entry>
-  <entry>
     <title type="html">Linux个人目录规划</title>
     <id>https://blog.fangyueming.cn/blog/linux-home/</id>
     <link href="https://blog.fangyueming.cn/blog/linux-home/"/>
@@ -2909,68 +2733,6 @@ array_name<span>[</span><span>0</span><span>]</span><span>=</span>value0        
       <name>方跃明</name>
     </contributor>
     <published>2014-04-03T00:00:00.000Z</published>
-    <rights>Copyright by 方跃明</rights>
-  </entry>
-  <entry>
-    <title type="html">MySQL自动备份</title>
-    <id>https://blog.fangyueming.cn/blog/mysql-backup/</id>
-    <link href="https://blog.fangyueming.cn/blog/mysql-backup/"/>
-    <updated>2021-12-12T12:13:19.000Z</updated>
-    <content type="html"><![CDATA[<h1 id="mysql自动备份"> MySQL自动备份</h1>
-<h2 id="相关软件"> 相关软件</h2>
-<ul>
-<li><a href="https://dev.mysql.com/doc/refman/8.0/en/mysqldump.html" target="_blank" rel="noopener noreferrer">mysqldump</a></li>
-<li><a href="http://www.gzip.org" target="_blank" rel="noopener noreferrer">gzip</a></li>
-</ul>
-<p>Windows下需要用到gzip压缩软件，当然也可用zip、7z、rar等软件代替。
-gzip安装完成后，方便起见，请将gzip加入Windows的PATH环境变量。</p>
-<h2 id="windows"> Windows</h2>
-<h3 id="编写mysql-backup-bat"> 编写mysql-backup.bat</h3>
-<div><pre><code>rem 删除一周前的备份
-forfiles /p &quot;D:\Backup\databasename&quot; /d -7 /c &quot;cmd /c del /f @path&quot;
-rem 按日期命名备份并压缩
-mysqldump -hhostname -uusername -ppassword --databases databasename | gzip &gt; D:\Backup\databasename\databasename-%date:~0,10%.sql.gz
-</code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br></div></div><h3 id="将mysql-backup-bat加入计划任务"> 将mysql-backup.bat加入计划任务</h3>
-<h2 id="linux"> Linux</h2>
-<h3 id="修改mysql配置"> 修改MySQL配置</h3>
-<div><pre><code><span>vi</span> /etc/my.cnf
-</code></pre>
-<div><span>1</span><br></div></div><div><pre><code><span># 加入 mysqldump 相关配置</span>
-<span><span>[</span><span>mysqldump</span><span>]</span></span>
-<span>user</span><span>=</span><span>user</span>
-<span>password</span><span>=</span><span>password</span>
-</code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br></div></div><h3 id="编写备份脚本"> 编写备份脚本</h3>
-<div><pre><code><span>#!/bin/bash</span>
-<span># 定义目录</span>
-<span>dir</span><span>=</span>/path/to/backup/mysql/yourdatabase
-<span># 删除一周前的备份</span>
-<span>find</span> <span>${dir}</span> -ctime +7 -type f <span>|</span> <span>xargs</span> <span>rm</span> -rf
-<span># 每日备份</span>
-<span>rq</span><span>=</span><span><span>`</span><span>date</span> +%Y%m%d<span>`</span></span>
-mysqldump --databases yourdatabase <span>|</span> <span>gzip</span> <span>></span> <span>${dir}</span>/yourdatabase-<span>${rq}</span>.sql.gz
-</code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br></div></div><h3 id="修改文件属性为可执行"> 修改文件属性为可执行</h3>
-<div><pre><code><span>chmod</span> +x /path/to/backmysql.sh
-</code></pre>
-<div><span>1</span><br></div></div><h3 id="添加到crontab"> 添加到<code>crontab</code></h3>
-<div><pre><code># mysql-backup.cron
-# 每天3点钟执行备份
-0 3 * * * bash /path/to/backmysql.sh
-</code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br></div></div><div><pre><code><span>crontab</span> mysql-backup.cron
-<span>crontab</span> -l
-<span># 0 3 * * * bash /path/to/backmysql.sh</span>
-</code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br></div></div>]]></content>
-    <author>
-      <name>方跃明</name>
-    </author>
-    <contributor>
-      <name>方跃明</name>
-    </contributor>
-    <published>2019-05-11T00:00:00.000Z</published>
     <rights>Copyright by 方跃明</rights>
   </entry>
   <entry>
@@ -3184,6 +2946,182 @@ mysqldump --databases yourdatabase <span>|</span> <span>gzip</span> <span>></spa
     <rights>Copyright by 方跃明</rights>
   </entry>
   <entry>
+    <title type="html">Linux Shell 入门</title>
+    <id>https://blog.fangyueming.cn/blog/linux-shell/</id>
+    <link href="https://blog.fangyueming.cn/blog/linux-shell/"/>
+    <updated>2021-12-12T12:29:55.000Z</updated>
+    <content type="html"><![CDATA[<h1 id="linux-shell-入门"> Linux Shell 入门</h1>
+<h2 id="脚本文件"> 脚本文件</h2>
+<ul>
+<li>扩展名：<code>.sh</code></li>
+<li>第一行：<code>#!/bin/bash</code></li>
+<li>执行
+<ul>
+<li><code>chmod +x shell脚本</code></li>
+<li><code>./shell脚本</code></li>
+</ul>
+</li>
+</ul>
+<h2 id="脚本内部执行命令"> 脚本内部执行命令</h2>
+<p>反引号</p>
+<h2 id="变量"> 变量</h2>
+<h3 id="系统变量"> 系统变量</h3>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PATH</td>
+<td>shell查找命令的目录列表，由冒号分隔</td>
+</tr>
+<tr>
+<td>HOSTNAME</td>
+<td>当前主机名</td>
+</tr>
+<tr>
+<td>HOME</td>
+<td>当前用户主目录</td>
+</tr>
+<tr>
+<td>SHELL</td>
+<td>当前shell</td>
+</tr>
+<tr>
+<td>USER</td>
+<td>当前用户</td>
+</tr>
+<tr>
+<td>UID</td>
+<td>当前用户ID</td>
+</tr>
+<tr>
+<td>GID</td>
+<td>当前用户组ID</td>
+</tr>
+<tr>
+<td>PWD</td>
+<td>当前所在目录</td>
+</tr>
+<tr>
+<td>OLDPWD</td>
+<td>上次所在目录</td>
+</tr>
+<tr>
+<td>0</td>
+<td>当前命令名称</td>
+</tr>
+<tr>
+<td>n</td>
+<td>当前命令的第n个参数，n=1,2,...,9</td>
+</tr>
+<tr>
+<td>*</td>
+<td>以”参数1，参数2…..”形式保存所有参数</td>
+</tr>
+<tr>
+<td>@</td>
+<td>以”参数1”，”参数2”…..”形式保存所有参数</td>
+</tr>
+<tr>
+<td>#</td>
+<td>命令行参数的个数</td>
+</tr>
+<tr>
+<td>?</td>
+<td>执行上一个指令或函数的返回值，0=没有错误</td>
+</tr>
+<tr>
+<td>$</td>
+<td>本程序的PID（ProcessID）</td>
+</tr>
+<tr>
+<td>!</td>
+<td>后台运行的最后一个进程的进程ID号</td>
+</tr>
+<tr>
+<td>-</td>
+<td>显示shell使用的当前选项，与set命令功能相同</td>
+</tr>
+<tr>
+<td>_</td>
+<td>shell的绝对路径名，最近执行的命令，最近命令最后一个参数</td>
+</tr>
+<tr>
+<td>LINENO</td>
+<td>当前执行的脚本行号</td>
+</tr>
+</tbody>
+</table>
+<h3 id="用户变量"> 用户变量</h3>
+<h4 id="定义变量"> 定义变量</h4>
+<ul>
+<li>变量名=变量值</li>
+</ul>
+<h4 id="引用变量"> 引用变量</h4>
+<ul>
+<li>$变量名</li>
+<li>${变量名}</li>
+</ul>
+<h4 id="只读变量"> 只读变量</h4>
+<ul>
+<li>变量名=变量值</li>
+<li>readonly 变量名</li>
+</ul>
+<h4 id="删除变量"> 删除变量</h4>
+<ul>
+<li>变量名=变量值</li>
+<li>unset 变量名</li>
+</ul>
+<h3 id="字符串变量"> 字符串变量</h3>
+<h4 id="定义"> 定义</h4>
+<ul>
+<li>单引号字符串变量='不可转义字符串'</li>
+<li>双引号字符串变量=&quot;可转义字符串&quot;</li>
+</ul>
+<h4 id="获取字符串长度"> 获取字符串长度</h4>
+<div><pre><code><span>string</span><span>=</span><span>"abcd"</span>
+<span>echo</span> <span>${<span>#</span>string}</span>     <span># 4</span>
+</code></pre>
+<div><span>1</span><br><span>2</span><br></div></div><h4 id="提取字符串"> 提取字符串</h4>
+<div><pre><code><span>string</span><span>=</span><span>"runoob is a great site"</span>
+<span>echo</span> <span>${string<span>:</span>1<span>:</span>4}</span>  <span># unoo</span>
+</code></pre>
+<div><span>1</span><br><span>2</span><br></div></div><h4 id="查找字符串位置"> 查找字符串位置</h4>
+<div><pre><code><span>string</span><span>=</span><span>"runoob is a great company"</span>
+<span>echo</span> <span><span>`</span><span>expr</span> index <span>"<span>$string</span>"</span> is<span>`</span></span>  <span># 8</span>
+</code></pre>
+<div><span>1</span><br><span>2</span><br></div></div><h3 id="数组变量"> 数组变量</h3>
+<h4 id="定义数组"> 定义数组</h4>
+<div><pre><code><span>array_name</span><span>=</span><span>(</span>value0 value1 value2 value3<span>)</span>  <span># 整体定义，可分行</span>
+array_name<span>[</span><span>0</span><span>]</span><span>=</span>value0                      <span># 可单独定义</span>
+</code></pre>
+<div><span>1</span><br><span>2</span><br></div></div><h4 id="引用"> 引用</h4>
+<div><pre><code><span>echo</span> <span>${array_name<span>[</span>n<span>]</span>}</span>   <span># 读取第n个数组，数组下标从0开始</span>
+<span>echo</span> <span>${array_name<span>[</span>*<span>]</span>}</span>   <span># 读取所有数组</span>
+<span>echo</span> <span>${array_name<span>[</span>@<span>]</span>}</span>   <span># 读取所有数组</span>
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br></div></div><h4 id="获取长度"> 获取长度</h4>
+<div><pre><code><span>${<span>#</span>array_name<span>[</span>n<span>]</span>}</span>     <span># 第n个数组长度</span>
+<span>${<span>#</span>array_name<span>[</span>*<span>]</span>}</span>     <span># 整个数组长度</span>
+<span>${<span>#</span>array_name<span>[</span>@<span>]</span>}</span>     <span># 整个数组长度</span>
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br></div></div><h2 id="运算符"> 运算符</h2>
+<h2 id="控制语句"> 控制语句</h2>
+]]></content>
+    <author>
+      <name>方跃明</name>
+    </author>
+    <contributor>
+      <name>方跃明</name>
+    </contributor>
+    <published>2017-08-09T00:00:00.000Z</published>
+    <rights>Copyright by 方跃明</rights>
+  </entry>
+  <entry>
     <title type="html">CentOS 安装 MySQL 8</title>
     <id>https://blog.fangyueming.cn/blog/mysql-8-install/</id>
     <link href="https://blog.fangyueming.cn/blog/mysql-8-install/"/>
@@ -3362,6 +3300,68 @@ yum -y <span>install</span> <span>make</span> gcc-c++ cmake bison-devel ncurses 
     <rights>Copyright by 方跃明</rights>
   </entry>
   <entry>
+    <title type="html">MySQL自动备份</title>
+    <id>https://blog.fangyueming.cn/blog/mysql-backup/</id>
+    <link href="https://blog.fangyueming.cn/blog/mysql-backup/"/>
+    <updated>2021-12-12T12:13:19.000Z</updated>
+    <content type="html"><![CDATA[<h1 id="mysql自动备份"> MySQL自动备份</h1>
+<h2 id="相关软件"> 相关软件</h2>
+<ul>
+<li><a href="https://dev.mysql.com/doc/refman/8.0/en/mysqldump.html" target="_blank" rel="noopener noreferrer">mysqldump</a></li>
+<li><a href="http://www.gzip.org" target="_blank" rel="noopener noreferrer">gzip</a></li>
+</ul>
+<p>Windows下需要用到gzip压缩软件，当然也可用zip、7z、rar等软件代替。
+gzip安装完成后，方便起见，请将gzip加入Windows的PATH环境变量。</p>
+<h2 id="windows"> Windows</h2>
+<h3 id="编写mysql-backup-bat"> 编写mysql-backup.bat</h3>
+<div><pre><code>rem 删除一周前的备份
+forfiles /p &quot;D:\Backup\databasename&quot; /d -7 /c &quot;cmd /c del /f @path&quot;
+rem 按日期命名备份并压缩
+mysqldump -hhostname -uusername -ppassword --databases databasename | gzip &gt; D:\Backup\databasename\databasename-%date:~0,10%.sql.gz
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br></div></div><h3 id="将mysql-backup-bat加入计划任务"> 将mysql-backup.bat加入计划任务</h3>
+<h2 id="linux"> Linux</h2>
+<h3 id="修改mysql配置"> 修改MySQL配置</h3>
+<div><pre><code><span>vi</span> /etc/my.cnf
+</code></pre>
+<div><span>1</span><br></div></div><div><pre><code><span># 加入 mysqldump 相关配置</span>
+<span><span>[</span><span>mysqldump</span><span>]</span></span>
+<span>user</span><span>=</span><span>user</span>
+<span>password</span><span>=</span><span>password</span>
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br></div></div><h3 id="编写备份脚本"> 编写备份脚本</h3>
+<div><pre><code><span>#!/bin/bash</span>
+<span># 定义目录</span>
+<span>dir</span><span>=</span>/path/to/backup/mysql/yourdatabase
+<span># 删除一周前的备份</span>
+<span>find</span> <span>${dir}</span> -ctime +7 -type f <span>|</span> <span>xargs</span> <span>rm</span> -rf
+<span># 每日备份</span>
+<span>rq</span><span>=</span><span><span>`</span><span>date</span> +%Y%m%d<span>`</span></span>
+mysqldump --databases yourdatabase <span>|</span> <span>gzip</span> <span>></span> <span>${dir}</span>/yourdatabase-<span>${rq}</span>.sql.gz
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br></div></div><h3 id="修改文件属性为可执行"> 修改文件属性为可执行</h3>
+<div><pre><code><span>chmod</span> +x /path/to/backmysql.sh
+</code></pre>
+<div><span>1</span><br></div></div><h3 id="添加到crontab"> 添加到<code>crontab</code></h3>
+<div><pre><code># mysql-backup.cron
+# 每天3点钟执行备份
+0 3 * * * bash /path/to/backmysql.sh
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br></div></div><div><pre><code><span>crontab</span> mysql-backup.cron
+<span>crontab</span> -l
+<span># 0 3 * * * bash /path/to/backmysql.sh</span>
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br></div></div>]]></content>
+    <author>
+      <name>方跃明</name>
+    </author>
+    <contributor>
+      <name>方跃明</name>
+    </contributor>
+    <published>2019-05-11T00:00:00.000Z</published>
+    <rights>Copyright by 方跃明</rights>
+  </entry>
+  <entry>
     <title type="html">NGiNX反向代理实现https</title>
     <id>https://blog.fangyueming.cn/blog/nginx-https/</id>
     <link href="https://blog.fangyueming.cn/blog/nginx-https/"/>
@@ -3412,6 +3412,39 @@ https、cluster、负载均衡、反向代理这样的事，注定WEB服务器�
       <name>方跃明</name>
     </contributor>
     <published>2018-11-11T00:00:00.000Z</published>
+    <rights>Copyright by 方跃明</rights>
+  </entry>
+  <entry>
+    <title type="html">MVC及PHP++、PHP--胡思乱想杂记</title>
+    <id>https://blog.fangyueming.cn/blog/php-cut/</id>
+    <link href="https://blog.fangyueming.cn/blog/php-cut/"/>
+    <updated>2021-12-12T12:29:55.000Z</updated>
+    <content type="html"><![CDATA[<h1 id="mvc及php-、php-胡思乱想杂记"> MVC及PHP++、PHP--胡思乱想杂记</h1>
+<blockquote>
+<p><a href="http://user.qzone.qq.com/61077523/blog/1249101307" target="_blank" rel="noopener noreferrer">http://user.qzone.qq.com/61077523/blog/1249101307</a></p>
+</blockquote>
+<p>有一定经验的开发者都了解MVC模式，特别是基于WEB而且又是可以使用嵌入HTML语言进行开发的，比如PHP。诚然PHP作为一种嵌入式的脚本语言是强大的，这也是一直以来传统PHP给很多人的认知。以至于在PHP3甚至在PHP4时代接触过并最终放弃了PHP的人，都停留在这个认识上，认为PHP没有什么长处，太过简陋。其实不然，从技术角度来讲，一门语言的语法不能决定一个应用的好坏，很多情况下，语言仅仅是实现工具，几乎所有大中型应该都不太会单一的采用一门语言来开发，各种语言都有其自身的长处。</p>
+<p>长期以来PHP被杂糅进太多的东西了，要负责Db、又要负责HTML、还要负责Controller、还要负责Model，等等，成了PHP++了。发展到今天，PHP早就脱离了嵌入HTML脚本语言的范畴。应该有更重要的事情给PHP做。当然嵌入HTML当脚本使唤，仍然是强项，但不应该杂糅了。在此换个角度来看PHP。把PHP按角色来理清一下，顺便来发明几个新名词。与数据库层面打交道的叫PHP-Db，与流程控制相关的叫PHP-Controler，与HTML等终端呈现打交道的叫PHP-Client，等等。这样认识可能会更清晰点。</p>
+<p>这几天闲来无事，朝思暮想，对MVC的理解有了新的认识，有一点点浅见，于是折腾了一张图。</p>
+<p><img src="./assets/php-cut.gif" alt="我的MVC框架示意图" /></p>
+<p>最大的收获是我们是否需要很肥大的View呢？在各种PHP框架中，View端的语言基本上都采用PHP-Client，比如ZendFramework、QeePHP等，还有的采用模板标签或模板引擎。在我看来这其实是方便开发者使用的，其实对于View，可以精简至极至。图中的Input和Output都涉及到View。精简后的View可以根本就不用去管Input和Output的设备、形式、语言，只需要Input进正确格式的数据（比如JSON、XML），而Output出指定格式的数据（比如JSON、XML）。同样，Output的呈现形式、方法、手段等不是我们要关注的。对于WEB来说可以Output出的数据可以交给ExtJS，可以交给PHP(此时的PHP是WEB前端脚本语言)，可以交给原生Javascript处理。甚至可以以WML语言输出到WAP。也就是说View如何呈现不是核心所要关注的。</p>
+<p>然而我们是怎么做的呢？在Controller中很多开发者并不注重数据的格式统一与规划，很随意的就丢给了View。更有甚者Controller和View杂糅了，权责不分，该View做的事让Controller做了，而View又在做Controller的事。不管是从设计简单的网站应用出发还是企业行业应用出发，PHP-Controller都不应该糅进PHP-Client。View里Output出单纯的格式化的数据，有利于AJAX及WebService等。规范了输出，View的呈现就可以由其它团队单独负责，他们爱用PHP，爱用ExtJS，爱用jQuery，爱谁用谁。</p>
+<p>至于什么是Model我也理解一下，理解的不对的话，请各位多踹几脚。Model在很多人心里长期以来被Db给占了。而在Controller中写了大量应该Model去完成的内容。广义上说其实Model并不仅仅是Db。比如我们用的FCKeditor我们可以说是一个Model，它用来创建一个可视编辑器。大方面的Model估计都能重视。再说一个小的，比如一个用户系统中的“用户新增（UserAdd）”这个功能，用户端可能是用户注册，管理端可以是直接创建一个用户。如果在控制器里直接写，用户端和管理端那就重复写代码了。这样的功能就应该放到Model里，拿来调用。这个就叫Model，类似函数，也叫业务逻辑。控制器控制的只是业务流程。如果控制器掺和模型的事，凡事诸葛亮，会弄得拥肿无比，非常繁琐，会被累死。</p>
+<p>Cache又是一个什么概念呢？一个简单的例子，商品分类列表，当去存取这个列表时，核心就应该先去Cache里找，找到了核对一下是不是要更新，如果没找到或者要更新，那么就先更新或者在Cache里建立一个副本(这显然是一个很小的循环或者是分支判断)。然后把Cache里的列表取出来。这样做是免除大量的去存取数据库操作，或称为大量的Model运算。当然我们可以设计成，如果这个列表有变动就主动去更新Cache。这样命中率会高很多。应该的效率就会提高很多。很多人以为生成静态HTML脚本就是Cache的全部，只是Cache局部小应用，模板引擎里常用。想开了去，放大了说，Cache跟View没直接关系。Cache可以用在View，当然也可以用在Controller和Model。</p>
+<p>最近AD挺多，顺路也AD一下：你的PHP--了么？</p>
+<blockquote>
+<p>注：PHP-Client、PHP-Controler、PHP-Db等都是作者发明的名词，非专业通用名词
+方跃明
+2009-8-1 12:35</p>
+</blockquote>
+]]></content>
+    <author>
+      <name>方跃明</name>
+    </author>
+    <contributor>
+      <name>方跃明</name>
+    </contributor>
+    <published>2009-08-01T00:00:00.000Z</published>
     <rights>Copyright by 方跃明</rights>
   </entry>
   <entry>
@@ -3541,121 +3574,6 @@ https、cluster、负载均衡、反向代理这样的事，注定WEB服务器�
     <rights>Copyright by 方跃明</rights>
   </entry>
   <entry>
-    <title type="html">配置Oracle PL/SQL Developer</title>
-    <id>https://blog.fangyueming.cn/blog/oracle-plsql/</id>
-    <link href="https://blog.fangyueming.cn/blog/oracle-plsql/"/>
-    <updated>2021-12-13T13:04:11.000Z</updated>
-    <content type="html"><![CDATA[<h1 id="配置oracle-pl-sql-developer"> 配置Oracle PL/SQL Developer</h1>
-<p>参见：<a href="http://blog.csdn.net/helifengwell/article/details/5820434" target="_blank" rel="noopener noreferrer">http://blog.csdn.net/helifengwell/article/details/5820434</a></p>
-<ul>
-<li>
-<p>Instant Client</p>
-<p>先到Oracle网站下载<a href="http://www.oracle.com/technology/global/cn/software/tech/oci/instantclient/index.html" target="_blank" rel="noopener noreferrer">Instant Client</a>。
-根据你的操作系统选择不同的Instant Client版本。解压之后放在你喜欢的目录即可.例如:D:/instantclient_11_2。</p>
-</li>
-<li>
-<p>在D:/instantclient_11_2目录下新建目录network，在network目录下再新建admin目录，在admin目录下新建文件tnsnames.ora，使用文本编辑器打开写入如下内容:</p>
-<div><pre><code><span>MWDB</span> <span>=</span>
-<span>(DESCRIPTION</span> <span>=</span>
-    <span>(ADDRESS_LIST</span> <span>=</span>
-      <span>(ADDRESS</span> <span>=</span> <span>(PROTOCOL = TCP)(HOST = 192.168.0.58)(PORT = 1521))</span>
-    )
-    <span>(CONNECT_DATA</span> <span>=</span>
-      <span>(SERVICE_NAME</span> <span>=</span> <span>MWDB)</span>
-    )
-)
-</code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br><span>9</span><br></div></div><blockquote>
-<p>MWDB =：表示定义远程服务器的在本地主机名
-SERVICE_NAME =：远程数据库实例名</p>
-</blockquote>
-</li>
-<li>
-<p>添加一个环境变量，名为TNS_ADMIN，值为tnsnames.ora文件所在路径。比如我的本机为：D:/instantclient_11_2/network/admin</p>
-</li>
-<li>
-<p>设置ORACLE的语言，添加环境变量NLS_LANG，值为SIMPLIFIED CHINESE_CHINA.ZHS16GBK。如果不清楚远程数据库的ORACLE 语言，可以ssh或者telnet到远程机器,在命令界面输入，用命令行连接到数据库。</p>
-<div><pre><code><span>select</span> <span>*</span> <span>from</span> nls_instance_parameters<span>;</span>
-</code></pre>
-<div><span>1</span><br></div></div><p>查看 NLS_LANGUAGE 的值
-NLS_LANGUAGE
-NLS_TERRITORY</p>
-</li>
-<li>
-<p>下载并安装PL/SQL Developer配置应用，配置tools -&gt; preferences -&gt; connection（工具 -&gt; 首选项 -&gt; 连接）</p>
-<ul>
-<li>Oracle Home（Oracle主目录）: D:/instantclient_11_2</li>
-<li>OCI library（OCI库）: D:/instantclient_11_2/oci.dll</li>
-</ul>
-</li>
-<li>
-<p>关闭PL/SQL Developer，重启Developer。主机名就会出现在PL/SQL Developer的列表里，输入用户名密码，就可以登录远程oracle 11g数据库了。</p>
-</li>
-<li>
-<p>补充Instant Client 说明</p>
-<p>Oracle Instant client 是oracle提供的简便客户端, 支持多种平台。可从oracle网站下载, 下载地址为：
-<a href="http://www.oracle.com/technetwork/database/features/instant-client/index-097480.html" target="_blank" rel="noopener noreferrer">http://www.oracle.com/technetwork/database/features/instant-client/index-097480.html</a></p>
-<p>包括如下内容:</p>
-<ul>
-<li>Instant client Package - Basic 运行OCI, OCCI, 和JDBC-OCI应用程序需要的所有文件</li>
-<li>Instant client Package - Basic Lite: 只包含英语错误信息, 只支持unicode, ascii, 西欧字符集</li>
-<li>Instant client Package - JDBC Supplement  为jdbc增加了xa, 国际化和RowSet操作。</li>
-<li>Instant Client Package - SQL *Plus 包含sqlplus和需要的库文件</li>
-<li>Instant client Package - SDK 使用Instant Client开发Oracle 应用程序需要的头文件及示例makefile</li>
-<li>Instant client package - ODBC 使用odbc时需要的库, 不是所有平台都有. linux平台包含</li>
-</ul>
-<p>Basic和Basic Lite两个中必须选一个, 其他包都是可选的. 我下载了 Basic, JDBC supplement, SQL *Plus, SDK, ODBC. 解压后放在一个文件夹下, 在这个文件夹下建立文件tnsnames.ora，设置环境变量LD_LIBRARY_PATH和TNS_ADMIN指向解压后的目录, 就可以使用sqlplus了。</p>
-<p>我下载的instant client版本为10.2.0.2.0, 测试了联接到oracle 9.2.0.4和oracle 10.2.0.1.</p>
-<p>Instant Client中不包含tnsping, exp/imp, rman, netca等工具. 如果需要这些工具则需要安装oracle client</p>
-</li>
-</ul>
-<h2 id="oracle备份"> Oracle备份</h2>
-<div><pre><code>exp newsoft/econage@ptime file=E:\Backup\%date:~0,10%exp.dmp log=E:\Backup\%date:~0,10exp.log owner=newsoft
-</code></pre>
-<div><span>1</span><br></div></div>]]></content>
-    <author>
-      <name>方跃明</name>
-    </author>
-    <contributor>
-      <name>方跃明</name>
-    </contributor>
-    <published>2018-05-12T00:00:00.000Z</published>
-    <rights>Copyright by 方跃明</rights>
-  </entry>
-  <entry>
-    <title type="html">MVC及PHP++、PHP--胡思乱想杂记</title>
-    <id>https://blog.fangyueming.cn/blog/php-cut/</id>
-    <link href="https://blog.fangyueming.cn/blog/php-cut/"/>
-    <updated>2021-12-12T12:29:55.000Z</updated>
-    <content type="html"><![CDATA[<h1 id="mvc及php-、php-胡思乱想杂记"> MVC及PHP++、PHP--胡思乱想杂记</h1>
-<blockquote>
-<p><a href="http://user.qzone.qq.com/61077523/blog/1249101307" target="_blank" rel="noopener noreferrer">http://user.qzone.qq.com/61077523/blog/1249101307</a></p>
-</blockquote>
-<p>有一定经验的开发者都了解MVC模式，特别是基于WEB而且又是可以使用嵌入HTML语言进行开发的，比如PHP。诚然PHP作为一种嵌入式的脚本语言是强大的，这也是一直以来传统PHP给很多人的认知。以至于在PHP3甚至在PHP4时代接触过并最终放弃了PHP的人，都停留在这个认识上，认为PHP没有什么长处，太过简陋。其实不然，从技术角度来讲，一门语言的语法不能决定一个应用的好坏，很多情况下，语言仅仅是实现工具，几乎所有大中型应该都不太会单一的采用一门语言来开发，各种语言都有其自身的长处。</p>
-<p>长期以来PHP被杂糅进太多的东西了，要负责Db、又要负责HTML、还要负责Controller、还要负责Model，等等，成了PHP++了。发展到今天，PHP早就脱离了嵌入HTML脚本语言的范畴。应该有更重要的事情给PHP做。当然嵌入HTML当脚本使唤，仍然是强项，但不应该杂糅了。在此换个角度来看PHP。把PHP按角色来理清一下，顺便来发明几个新名词。与数据库层面打交道的叫PHP-Db，与流程控制相关的叫PHP-Controler，与HTML等终端呈现打交道的叫PHP-Client，等等。这样认识可能会更清晰点。</p>
-<p>这几天闲来无事，朝思暮想，对MVC的理解有了新的认识，有一点点浅见，于是折腾了一张图。</p>
-<p><img src="./assets/php-cut.gif" alt="我的MVC框架示意图" /></p>
-<p>最大的收获是我们是否需要很肥大的View呢？在各种PHP框架中，View端的语言基本上都采用PHP-Client，比如ZendFramework、QeePHP等，还有的采用模板标签或模板引擎。在我看来这其实是方便开发者使用的，其实对于View，可以精简至极至。图中的Input和Output都涉及到View。精简后的View可以根本就不用去管Input和Output的设备、形式、语言，只需要Input进正确格式的数据（比如JSON、XML），而Output出指定格式的数据（比如JSON、XML）。同样，Output的呈现形式、方法、手段等不是我们要关注的。对于WEB来说可以Output出的数据可以交给ExtJS，可以交给PHP(此时的PHP是WEB前端脚本语言)，可以交给原生Javascript处理。甚至可以以WML语言输出到WAP。也就是说View如何呈现不是核心所要关注的。</p>
-<p>然而我们是怎么做的呢？在Controller中很多开发者并不注重数据的格式统一与规划，很随意的就丢给了View。更有甚者Controller和View杂糅了，权责不分，该View做的事让Controller做了，而View又在做Controller的事。不管是从设计简单的网站应用出发还是企业行业应用出发，PHP-Controller都不应该糅进PHP-Client。View里Output出单纯的格式化的数据，有利于AJAX及WebService等。规范了输出，View的呈现就可以由其它团队单独负责，他们爱用PHP，爱用ExtJS，爱用jQuery，爱谁用谁。</p>
-<p>至于什么是Model我也理解一下，理解的不对的话，请各位多踹几脚。Model在很多人心里长期以来被Db给占了。而在Controller中写了大量应该Model去完成的内容。广义上说其实Model并不仅仅是Db。比如我们用的FCKeditor我们可以说是一个Model，它用来创建一个可视编辑器。大方面的Model估计都能重视。再说一个小的，比如一个用户系统中的“用户新增（UserAdd）”这个功能，用户端可能是用户注册，管理端可以是直接创建一个用户。如果在控制器里直接写，用户端和管理端那就重复写代码了。这样的功能就应该放到Model里，拿来调用。这个就叫Model，类似函数，也叫业务逻辑。控制器控制的只是业务流程。如果控制器掺和模型的事，凡事诸葛亮，会弄得拥肿无比，非常繁琐，会被累死。</p>
-<p>Cache又是一个什么概念呢？一个简单的例子，商品分类列表，当去存取这个列表时，核心就应该先去Cache里找，找到了核对一下是不是要更新，如果没找到或者要更新，那么就先更新或者在Cache里建立一个副本(这显然是一个很小的循环或者是分支判断)。然后把Cache里的列表取出来。这样做是免除大量的去存取数据库操作，或称为大量的Model运算。当然我们可以设计成，如果这个列表有变动就主动去更新Cache。这样命中率会高很多。应该的效率就会提高很多。很多人以为生成静态HTML脚本就是Cache的全部，只是Cache局部小应用，模板引擎里常用。想开了去，放大了说，Cache跟View没直接关系。Cache可以用在View，当然也可以用在Controller和Model。</p>
-<p>最近AD挺多，顺路也AD一下：你的PHP--了么？</p>
-<blockquote>
-<p>注：PHP-Client、PHP-Controler、PHP-Db等都是作者发明的名词，非专业通用名词
-方跃明
-2009-8-1 12:35</p>
-</blockquote>
-]]></content>
-    <author>
-      <name>方跃明</name>
-    </author>
-    <contributor>
-      <name>方跃明</name>
-    </contributor>
-    <published>2009-08-01T00:00:00.000Z</published>
-    <rights>Copyright by 方跃明</rights>
-  </entry>
-  <entry>
     <title type="html">图解SQL JOINS</title>
     <id>https://blog.fangyueming.cn/blog/sql-joins/</id>
     <link href="https://blog.fangyueming.cn/blog/sql-joins/"/>
@@ -3735,6 +3653,88 @@ NLS_TERRITORY</p>
       <name>方跃明</name>
     </contributor>
     <published>2010-08-02T00:00:00.000Z</published>
+    <rights>Copyright by 方跃明</rights>
+  </entry>
+  <entry>
+    <title type="html">配置Oracle PL/SQL Developer</title>
+    <id>https://blog.fangyueming.cn/blog/oracle-plsql/</id>
+    <link href="https://blog.fangyueming.cn/blog/oracle-plsql/"/>
+    <updated>2021-12-13T13:04:11.000Z</updated>
+    <content type="html"><![CDATA[<h1 id="配置oracle-pl-sql-developer"> 配置Oracle PL/SQL Developer</h1>
+<p>参见：<a href="http://blog.csdn.net/helifengwell/article/details/5820434" target="_blank" rel="noopener noreferrer">http://blog.csdn.net/helifengwell/article/details/5820434</a></p>
+<ul>
+<li>
+<p>Instant Client</p>
+<p>先到Oracle网站下载<a href="http://www.oracle.com/technology/global/cn/software/tech/oci/instantclient/index.html" target="_blank" rel="noopener noreferrer">Instant Client</a>。
+根据你的操作系统选择不同的Instant Client版本。解压之后放在你喜欢的目录即可.例如:D:/instantclient_11_2。</p>
+</li>
+<li>
+<p>在D:/instantclient_11_2目录下新建目录network，在network目录下再新建admin目录，在admin目录下新建文件tnsnames.ora，使用文本编辑器打开写入如下内容:</p>
+<div><pre><code><span>MWDB</span> <span>=</span>
+<span>(DESCRIPTION</span> <span>=</span>
+    <span>(ADDRESS_LIST</span> <span>=</span>
+      <span>(ADDRESS</span> <span>=</span> <span>(PROTOCOL = TCP)(HOST = 192.168.0.58)(PORT = 1521))</span>
+    )
+    <span>(CONNECT_DATA</span> <span>=</span>
+      <span>(SERVICE_NAME</span> <span>=</span> <span>MWDB)</span>
+    )
+)
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br><span>9</span><br></div></div><blockquote>
+<p>MWDB =：表示定义远程服务器的在本地主机名
+SERVICE_NAME =：远程数据库实例名</p>
+</blockquote>
+</li>
+<li>
+<p>添加一个环境变量，名为TNS_ADMIN，值为tnsnames.ora文件所在路径。比如我的本机为：D:/instantclient_11_2/network/admin</p>
+</li>
+<li>
+<p>设置ORACLE的语言，添加环境变量NLS_LANG，值为SIMPLIFIED CHINESE_CHINA.ZHS16GBK。如果不清楚远程数据库的ORACLE 语言，可以ssh或者telnet到远程机器,在命令界面输入，用命令行连接到数据库。</p>
+<div><pre><code><span>select</span> <span>*</span> <span>from</span> nls_instance_parameters<span>;</span>
+</code></pre>
+<div><span>1</span><br></div></div><p>查看 NLS_LANGUAGE 的值
+NLS_LANGUAGE
+NLS_TERRITORY</p>
+</li>
+<li>
+<p>下载并安装PL/SQL Developer配置应用，配置tools -&gt; preferences -&gt; connection（工具 -&gt; 首选项 -&gt; 连接）</p>
+<ul>
+<li>Oracle Home（Oracle主目录）: D:/instantclient_11_2</li>
+<li>OCI library（OCI库）: D:/instantclient_11_2/oci.dll</li>
+</ul>
+</li>
+<li>
+<p>关闭PL/SQL Developer，重启Developer。主机名就会出现在PL/SQL Developer的列表里，输入用户名密码，就可以登录远程oracle 11g数据库了。</p>
+</li>
+<li>
+<p>补充Instant Client 说明</p>
+<p>Oracle Instant client 是oracle提供的简便客户端, 支持多种平台。可从oracle网站下载, 下载地址为：
+<a href="http://www.oracle.com/technetwork/database/features/instant-client/index-097480.html" target="_blank" rel="noopener noreferrer">http://www.oracle.com/technetwork/database/features/instant-client/index-097480.html</a></p>
+<p>包括如下内容:</p>
+<ul>
+<li>Instant client Package - Basic 运行OCI, OCCI, 和JDBC-OCI应用程序需要的所有文件</li>
+<li>Instant client Package - Basic Lite: 只包含英语错误信息, 只支持unicode, ascii, 西欧字符集</li>
+<li>Instant client Package - JDBC Supplement  为jdbc增加了xa, 国际化和RowSet操作。</li>
+<li>Instant Client Package - SQL *Plus 包含sqlplus和需要的库文件</li>
+<li>Instant client Package - SDK 使用Instant Client开发Oracle 应用程序需要的头文件及示例makefile</li>
+<li>Instant client package - ODBC 使用odbc时需要的库, 不是所有平台都有. linux平台包含</li>
+</ul>
+<p>Basic和Basic Lite两个中必须选一个, 其他包都是可选的. 我下载了 Basic, JDBC supplement, SQL *Plus, SDK, ODBC. 解压后放在一个文件夹下, 在这个文件夹下建立文件tnsnames.ora，设置环境变量LD_LIBRARY_PATH和TNS_ADMIN指向解压后的目录, 就可以使用sqlplus了。</p>
+<p>我下载的instant client版本为10.2.0.2.0, 测试了联接到oracle 9.2.0.4和oracle 10.2.0.1.</p>
+<p>Instant Client中不包含tnsping, exp/imp, rman, netca等工具. 如果需要这些工具则需要安装oracle client</p>
+</li>
+</ul>
+<h2 id="oracle备份"> Oracle备份</h2>
+<div><pre><code>exp newsoft/econage@ptime file=E:\Backup\%date:~0,10%exp.dmp log=E:\Backup\%date:~0,10exp.log owner=newsoft
+</code></pre>
+<div><span>1</span><br></div></div>]]></content>
+    <author>
+      <name>方跃明</name>
+    </author>
+    <contributor>
+      <name>方跃明</name>
+    </contributor>
+    <published>2018-05-12T00:00:00.000Z</published>
     <rights>Copyright by 方跃明</rights>
   </entry>
   <entry>
@@ -4769,6 +4769,63 @@ NLS_TERRITORY</p>
     <rights>Copyright by 方跃明</rights>
   </entry>
   <entry>
+    <title type="html">Vue CLI 编译移除控制台输出</title>
+    <id>https://blog.fangyueming.cn/blog/vue-cli-drop-console/</id>
+    <link href="https://blog.fangyueming.cn/blog/vue-cli-drop-console/"/>
+    <updated>2021-12-14T13:07:11.000Z</updated>
+    <content type="html"><![CDATA[<h1 id="vue-cli-编译移除控制台输出"> Vue CLI 编译移除控制台输出</h1>
+<p>前端程序员在开发的时候经常会使用<code>console.log</code>来调试。
+然而，出于安全渗透和代码审计需要，生产环境往往需要移除控制台（<code>console</code>系列函数）输出。
+一个个去删除难免漏网之鱼，而且有时候开发环境仍需要用到。
+此时使用 <a href="https://webpack.js.org/plugins/terser-webpack-plugin/" target="_blank" rel="noopener noreferrer">terser-webpack-plugin</a> 不失为一个好办法。</p>
+<p>本文以 <a href="https://cli.vuejs.org/zh/" target="_blank" rel="noopener noreferrer">Vue CLI</a> 为例来实现，当前 <a href="https://cli.vuejs.org/zh/" target="_blank" rel="noopener noreferrer">Vue CLI</a> 对应适配的 <a href="https://webpack.js.org/plugins/terser-webpack-plugin/" target="_blank" rel="noopener noreferrer">terser-webpack-plugin</a> 版本为：<code>4.2.3</code>。</p>
+<h2 id="安装"> 安装</h2>
+<div><pre><code><span>yarn</span> <span>add</span> terser-webpack-plugin@4.2.3
+</code></pre>
+<div><span>1</span><br></div></div><h2 id="配置"> 配置</h2>
+<div><pre><code><span>// vue.config.js</span>
+<span>const</span> TerserPlugin <span>=</span> <span>require</span><span>(</span><span>'terser-webpack-plugin'</span><span>)</span>
+
+module<span>.</span>exports <span>=</span> <span>{</span>
+ configureWebpack<span>:</span> <span>{</span>
+   optimization<span>:</span> <span>{</span>
+     minimizer<span>:</span> <span>[</span>
+       <span>new</span> <span>TerserPlugin</span><span>(</span><span>{</span>
+         terserOptions<span>:</span> <span>{</span>
+           ecma<span>:</span> <span>undefined</span><span>,</span>
+           warnings<span>:</span> <span>false</span><span>,</span>
+           parse<span>:</span> <span>{</span><span>}</span><span>,</span>
+           compress<span>:</span> <span>{</span>
+             drop_console<span>:</span> <span>true</span><span>,</span>
+             drop_debugger<span>:</span> <span>false</span><span>,</span>
+             <span>// pure_funcs: ['console.log'], // 移除console</span>
+           <span>}</span>
+         <span>}</span>
+       <span>}</span><span>)</span>
+     <span>]</span>
+   <span>}</span>
+ <span>}</span>
+<span>}</span>
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br><span>9</span><br><span>10</span><br><span>11</span><br><span>12</span><br><span>13</span><br><span>14</span><br><span>15</span><br><span>16</span><br><span>17</span><br><span>18</span><br><span>19</span><br><span>20</span><br><span>21</span><br><span>22</span><br><span>23</span><br></div></div><h2 id="编译"> 编译</h2>
+<div><pre><code><span>yarn</span> build
+</code></pre>
+<div><span>1</span><br></div></div><p>至此，<code>console</code>系列函数已不会在编译后的代码里从控制台输出了。</p>
+<blockquote>
+<p>方跃明
+2021-12-14</p>
+</blockquote>
+]]></content>
+    <author>
+      <name>方跃明</name>
+    </author>
+    <contributor>
+      <name>方跃明</name>
+    </contributor>
+    <published>2021-12-14T00:00:00.000Z</published>
+    <rights>Copyright by 方跃明</rights>
+  </entry>
+  <entry>
     <title type="html">RBAC之我见</title>
     <id>https://blog.fangyueming.cn/blog/rbac/</id>
     <link href="https://blog.fangyueming.cn/blog/rbac/"/>
@@ -4887,124 +4944,6 @@ Zend_Acl 提供了一个树结构，它可以添加多个 resources (或者叫�
       <name>方跃明</name>
     </contributor>
     <published>2009-09-09T00:00:00.000Z</published>
-    <rights>Copyright by 方跃明</rights>
-  </entry>
-  <entry>
-    <title type="html">Internet技术概览</title>
-    <id>https://blog.fangyueming.cn/blog/web-internet/</id>
-    <link href="https://blog.fangyueming.cn/blog/web-internet/"/>
-    <updated>2021-12-12T12:29:55.000Z</updated>
-    <content type="html"><![CDATA[<h1 id="internet技术概览"> Internet技术概览</h1>
-<p><img src="./assets/web-internet.jpg" alt="Internet技术概览" /></p>
-]]></content>
-    <author>
-      <name>方跃明</name>
-    </author>
-    <contributor>
-      <name>方跃明</name>
-    </contributor>
-    <published>2016-12-20T00:00:00.000Z</published>
-    <rights>Copyright by 方跃明</rights>
-  </entry>
-  <entry>
-    <title type="html">Vue父子组件通信</title>
-    <id>https://blog.fangyueming.cn/blog/vue-props/</id>
-    <link href="https://blog.fangyueming.cn/blog/vue-props/"/>
-    <updated>2021-12-12T12:29:55.000Z</updated>
-    <content type="html"><![CDATA[<h1 id="vue父子组件通信"> Vue父子组件通信</h1>
-<h2 id="理解"> 理解</h2>
-<ul>
-<li><code>component</code>：相当于一个函数，<code>props =&gt; { return event =&gt; $emit }</code></li>
-<li><code>props</code>：相当于传统意义上类的<code>public</code>属性，但此属性不能被自身初始化</li>
-<li><code>data</code>：相当于传统意义上类的<code>private</code>属性，此属性必须被自身初始化</li>
-<li><code>$emit('event')</code>：里的<code>event</code>相当于传统意义上类的<code>callback</code>回调</li>
-<li><code>methods</code>: 里的方法相当于传统意义上类的<code>private</code>方法</li>
-<li><code>mounted()</code>：相当于传统意义上类的构造函数</li>
-</ul>
-<h2 id="官方文档"> 官方文档</h2>
-<ul>
-<li><a href="https://cn.vuejs.org/v2/guide/components-props.html" target="_blank" rel="noopener noreferrer">props</a></li>
-<li><a href="https://cn.vuejs.org/v2/guide/components-custom-events.html#sync-%E4%BF%AE%E9%A5%B0%E7%AC%A6" target="_blank" rel="noopener noreferrer">.sync</a></li>
-</ul>
-<h2 id="分析"> 分析</h2>
-<ul>
-<li>子组件
-<ul>
-<li>定义<code>props</code>，父组件调用子组件时，父组件可直接改变绑定的<code>props</code>值</li>
-<li>通过<code>this.$emit('event', val)</code>传递事件（<code>event</code>）和值（<code>val</code>）到父组件</li>
-</ul>
-</li>
-<li>父组件
-<ul>
-<li>调用子组件，其中<code>props</code>值的变化，直接被传递到子组件</li>
-<li>子组件若要将<code>props</code>的值传给父组件，需要通过<code>emit</code>发射事件和值到父组件</li>
-</ul>
-</li>
-</ul>
-<p><img src="./assets/vue-props.png" alt="Vue父子组件通信" /></p>
-<h2 id="示例"> 示例</h2>
-<div><pre><code><span>&lt;!-- Children.vue --></span>
-<span><span><span>&lt;</span>template</span><span>></span></span>
-  <span><span><span>&lt;</span>div</span> <span>id</span><span><span>=</span><span>"</span>children<span>"</span></span><span>></span></span>
-    <span><span><span>&lt;</span>h3</span><span>></span></span>Children<span><span><span>&lt;/</span>h3</span><span>></span></span>
-    <span><span><span>&lt;</span>button</span> <span>@click</span><span><span>=</span><span>"</span>toParent<span>"</span></span><span>></span></span>get data from Children<span><span><span>&lt;/</span>button</span><span>></span></span>
-    <span><span><span>&lt;</span>div</span><span>></span></span>{{message}}<span><span><span>&lt;/</span>div</span><span>></span></span>
-  <span><span><span>&lt;/</span>div</span><span>></span></span>
-<span><span><span>&lt;/</span>template</span><span>></span></span>
-
-<span><span><span>&lt;</span>script</span><span>></span></span><span><span>
-<span>export</span> <span>default</span> <span>{</span>
-  name<span>:</span> <span>'Children'</span><span>,</span>
-  props<span>:</span> <span>[</span><span>'message'</span><span>]</span><span>,</span>
-  <span>data</span><span>(</span><span>)</span> <span>{</span>
-    <span>return</span> <span>{</span>
-
-    <span>}</span>
-  <span>}</span><span>,</span>
-  methods<span>:</span> <span>{</span>
-    <span>toParent</span><span>(</span><span>)</span> <span>{</span>
-      <span>this</span><span>.</span><span>$emit</span><span>(</span><span>'monitor'</span><span>,</span><span>'click: data from Children'</span><span>)</span><span>;</span>
-    <span>}</span>
-  <span>}</span>
-<span>}</span>
-</span></span><span><span><span>&lt;/</span>script</span><span>></span></span>
-</code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br><span>9</span><br><span>10</span><br><span>11</span><br><span>12</span><br><span>13</span><br><span>14</span><br><span>15</span><br><span>16</span><br><span>17</span><br><span>18</span><br><span>19</span><br><span>20</span><br><span>21</span><br><span>22</span><br><span>23</span><br><span>24</span><br><span>25</span><br></div></div><div><pre><code><span>&lt;!-- Parent.vue --></span>
-<span><span><span>&lt;</span>template</span><span>></span></span>
-  <span><span><span>&lt;</span>div</span> <span>id</span><span><span>=</span><span>"</span>parent<span>"</span></span><span>></span></span>
-    <span><span><span>&lt;</span>h3</span><span>></span></span>Parent<span><span><span>&lt;/</span>h3</span><span>></span></span>
-    <span><span><span>&lt;</span>children</span> <span>:message</span><span><span>=</span><span>"</span>fromParent<span>"</span></span> <span>@monitor</span><span><span>=</span><span>"</span>fromChildren<span>"</span></span><span>></span></span><span><span><span>&lt;/</span>children</span><span>></span></span>
-  <span><span><span>&lt;/</span>div</span><span>></span></span>
-<span><span><span>&lt;/</span>template</span><span>></span></span>
-
-<span><span><span>&lt;</span>script</span><span>></span></span><span><span>
-<span>import</span> Children <span>from</span> <span>'./Children'</span>
-<span>export</span> <span>default</span> <span>{</span>
-  name<span>:</span> <span>'Parent'</span><span>,</span>
-  components<span>:</span> <span>{</span>
-    Children
-  <span>}</span><span>,</span>
-  <span>data</span><span>(</span><span>)</span> <span>{</span>
-    <span>return</span> <span>{</span>
-      fromParent<span>:</span> <span>'init: data from Parent'</span>
-    <span>}</span>
-  <span>}</span><span>,</span>
-  methods<span>:</span> <span>{</span>
-    <span>fromChildren</span><span>(</span><span>val</span><span>)</span> <span>{</span>
-      <span>this</span><span>.</span>fromParent <span>=</span> val
-    <span>}</span>
-  <span>}</span>
-<span>}</span>
-</span></span><span><span><span>&lt;/</span>script</span><span>></span></span>
-</code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br><span>9</span><br><span>10</span><br><span>11</span><br><span>12</span><br><span>13</span><br><span>14</span><br><span>15</span><br><span>16</span><br><span>17</span><br><span>18</span><br><span>19</span><br><span>20</span><br><span>21</span><br><span>22</span><br><span>23</span><br><span>24</span><br><span>25</span><br><span>26</span><br><span>27</span><br></div></div>]]></content>
-    <author>
-      <name>方跃明</name>
-    </author>
-    <contributor>
-      <name>方跃明</name>
-    </contributor>
-    <published>2018-09-30T00:00:00.000Z</published>
     <rights>Copyright by 方跃明</rights>
   </entry>
   <entry>
@@ -5196,136 +5135,113 @@ ReactDOM<span>.</span><span>render</span><span>(</span>
     <rights>Copyright by 方跃明</rights>
   </entry>
   <entry>
-    <title type="html">Zabbix安装笔记</title>
-    <id>https://blog.fangyueming.cn/blog/zabbix/</id>
-    <link href="https://blog.fangyueming.cn/blog/zabbix/"/>
+    <title type="html">Vue父子组件通信</title>
+    <id>https://blog.fangyueming.cn/blog/vue-props/</id>
+    <link href="https://blog.fangyueming.cn/blog/vue-props/"/>
     <updated>2021-12-12T12:29:55.000Z</updated>
-    <content type="html"><![CDATA[<h1 id="zabbix安装笔记"> Zabbix安装笔记</h1>
-<p>详细安装步骤参见：<a href="https://www.zabbix.com/documentation/3.0/manual/installation/install_from_packages" target="_blank" rel="noopener noreferrer">官方安装手册</a></p>
-<h2 id="zabbix-server"> Zabbix Server</h2>
-<p><img src="./assets/zabbix-schema.jpg" alt="Zabbix部署示意图" /></p>
-<h3 id="安装数据库"> 安装数据库</h3>
-<div><pre><code><span># 安装 MariaDB 服务器和客户端</span>
-yum <span>install</span> mariadb-server mariadb
-systemctl start mariadb
-mysql -uroot -ppassword    <span># 进入MySQL命令行</span>
-</code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br></div></div><div><pre><code><span>-- MariaDB新建zabbix用户</span>
-<span>UPDATE</span> <span>user</span> <span>SET</span> password<span>=</span>PASSWORD<span>(</span><span>'zabbix'</span><span>)</span> <span>WHERE</span> <span>user</span><span>=</span><span>'zabbix'</span><span>;</span>
-<span>CREATE</span> <span>DATABASE</span> <span>IF</span> <span>NOT</span> <span>EXISTS</span> zabbix <span>DEFAULT</span> <span>CHARACTER</span> <span>SET</span> utf8 <span>COLLATE</span> utf8_general_ci<span>;</span>
-FLUSH <span>PRIVILEGES</span><span>;</span>
-QUIT
-</code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br></div></div><h3 id="安装服务端"> 安装服务端</h3>
-<div><pre><code><span>rpm</span> -ivh http://repo.zabbix.com/zabbix/3.0/rhel/7/x86_64/zabbix-release-3.0-1.el7.noarch.rpm
-yum <span>install</span> zabbix-server-mysql zabbix-web-mysql
-<span>cd</span> /usr/share/doc/zabbix-server-mysql-3.0.3
-zcat create.sql.gz <span>|</span> mysql -uzabbix -pzabbix zabbix
-</code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br></div></div><h3 id="修改服务器配置"> 修改服务器配置</h3>
-<div><pre><code><span>## vi /etc/zabbix/zabbix_server.conf</span>
-<span>DBHost</span><span>=</span><span>localhost</span>
-<span>DBName</span><span>=</span><span>zabbix</span>
-<span>DBUser</span><span>=</span><span>zabbix</span>
-<span>DBPassword</span><span>=</span><span>zabbix</span>
-</code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br></div></div><h3 id="修改web服务器配置文件"> 修改WEB服务器配置文件</h3>
-<div><pre><code><span>## vi /etc/httpd/conf.d/zabbix.conf</span>
-php_value data.timezone Asia/Shanghai
-</code></pre>
-<div><span>1</span><br><span>2</span><br></div></div><h3 id="启动zabbix服务器和web服务器"> 启动Zabbix服务器和WEB服务器</h3>
-<div><pre><code>systemctl start zabbix-server
-systemctl start httpd
-</code></pre>
-<div><span>1</span><br><span>2</span><br></div></div><h2 id="zabbix-agent"> Zabbix Agent</h2>
-<p><img src="./assets/zabbix-proxy.png" alt="Zabbix分布式部署示意图" /></p>
-<h3 id="centos"> CentOS</h3>
-<h4 id="安装"> 安装</h4>
-<div><pre><code>yum <span>install</span> zabbix-agent
-</code></pre>
-<div><span>1</span><br></div></div><h4 id="配置"> 配置</h4>
-<div><pre><code><span># vi /etc/zabbix/zabbix_agent.conf</span>
-<span>LogFile</span><span>=</span><span>/var/log/zabbix/zabbix_agentd.log   # 日志</span>
-<span>Server</span><span>=</span><span>127.0.0.1                            # Zabbix Server（直接连接）或者Zabbix Proxy（通过Proxy）</span>
-<span>Hostname</span><span>=</span><span>Zabbix Server                      # 对应zabbix web里面的host，不一定是os本机名称</span>
-<span>ServerActive</span><span>=</span><span>127.0.0.1                      # Zabbix Server或Zabbix Proxy</span>
-</code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br></div></div><h4 id="配置防火墙-打开zabbix-agent端口-默认入站端口10050"> 配置防火墙，打开Zabbix Agent端口（默认入站端口10050）</h4>
-<div><pre><code>systemctl start zabbix-agent
-</code></pre>
-<div><span>1</span><br></div></div><h3 id="windows"> Windows</h3>
-<h4 id="下载并解压到运行目录"> 下载并解压到运行目录</h4>
-<p><a href="http://www.zabbix.com/download.php" target="_blank" rel="noopener noreferrer">Zabbix pre-compiled agents for Windows</a></p>
-<h4 id="配置conf-conf-zabbix-agentd-win-conf"> 配置conf(conf\zabbix-agentd.win.conf)</h4>
-<div><pre><code><span>LogFile</span><span>=</span><span>c:\zabbix_agentd.log  # 日志</span>
-<span>Server</span><span>=</span><span>127.0.0.1              # Zabbix服务器</span>
-<span>Hostname</span><span>=</span><span>Windows Host         # 对应zabbix web里面的host，不一定是本机名称</span>
-<span>ServerActive</span><span>=</span><span>127.0.0.1        # Zabbix服务器</span>
-</code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br></div></div><ul>
-<li>注册为Windows服务：<code>bin\zabbix_agentd.exe -c \conf\zabbix_agentd.win.conf –i</code></li>
-<li>打开Zabbix Agent端口（默认入站端口10050）</li>
-<li>从Windows服务启动Zabbix Agent客户端</li>
+    <content type="html"><![CDATA[<h1 id="vue父子组件通信"> Vue父子组件通信</h1>
+<h2 id="理解"> 理解</h2>
+<ul>
+<li><code>component</code>：相当于一个函数，<code>props =&gt; { return event =&gt; $emit }</code></li>
+<li><code>props</code>：相当于传统意义上类的<code>public</code>属性，但此属性不能被自身初始化</li>
+<li><code>data</code>：相当于传统意义上类的<code>private</code>属性，此属性必须被自身初始化</li>
+<li><code>$emit('event')</code>：里的<code>event</code>相当于传统意义上类的<code>callback</code>回调</li>
+<li><code>methods</code>: 里的方法相当于传统意义上类的<code>private</code>方法</li>
+<li><code>mounted()</code>：相当于传统意义上类的构造函数</li>
 </ul>
-<h2 id="zabbix-proxy"> Zabbix Proxy</h2>
-<h3 id="安装服务器"> 安装服务器</h3>
-<div><pre><code><span>rpm</span> -ivh http://repo.zabbix.com/zabbix/3.0/rhel/7/x86_64/zabbix-release-3.0-1.el7.noarch.rpm
-yum <span>install</span> mariadb-server mariadb zabbix-proxy-mysql
-systemctl start mariadb
-mysql                       <span># 进入MySQL命令行</span>
-</code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br></div></div><h3 id="分配帐号、授权及建立数据库"> 分配帐号、授权及建立数据库</h3>
-<div><pre><code><span>UPDATE</span> <span>user</span> <span>SET</span> password<span>=</span>PASSWORD<span>(</span><span>'zabbix'</span><span>)</span> <span>WHERE</span> <span>user</span><span>=</span><span>'zabbix'</span><span>;</span>
-FLUSH <span>PRIVILEGES</span><span>;</span>
-<span>CREATE</span> <span>DATABASE</span> <span>IF</span> <span>NOT</span> <span>EXISTS</span> zabbix_proxy <span>DEFAULT</span> <span>CHARACTER</span> <span>SET</span> utf8 <span>COLLATE</span> utf8_general_ci<span>;</span>
-QUIT
-</code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br></div></div><h3 id="导入数据库"> 导入数据库</h3>
-<div><pre><code><span># cd /usr/share/doc/zabbix-proxy-mysql-3.0.3</span>
-zcat schema.sql.gz <span>|</span> mysql -uzabbix -pzabbix zabbix_proxy
-</code></pre>
-<div><span>1</span><br><span>2</span><br></div></div><h3 id="修改服务器配置文件"> 修改服务器配置文件</h3>
-<div><pre><code><span># vi /etc/zabbix/zabbix_proxy.conf</span>
-<span>Server</span><span>=</span><span>zabbix.server.url      # Zabbix Server 所在IP或者DNS Name</span>
-<span>Hostname</span><span>=</span><span>proxy.zabbix.name    # Zabbix Proxy 名字（对应Server里的Proxies名字）</span>
-<span>DBHost</span><span>=</span><span>localhost</span>
-<span>DBName</span><span>=</span><span>zabbix_proxy</span>
-<span>DBUser</span><span>=</span><span>zabbix</span>
-<span>DBPassword</span><span>=</span><span>zabbix</span>
-</code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br></div></div><h3 id="打开zabbix-agent端口-默认入站端口10050"> 打开Zabbix Agent端口（默认入站端口10050）</h3>
-<h3 id="启动zabbix服务器"> 启动Zabbix服务器</h3>
-<div><pre><code>systemctl start zabbix-proxy
-</code></pre>
-<div><span>1</span><br></div></div><h3 id="zabbix-server-web-对应的设置"> Zabbix Server Web 对应的设置</h3>
+<h2 id="官方文档"> 官方文档</h2>
 <ul>
-<li>添加代理：Administration -&gt; Proxies -&gt; Create proxy -&gt; Proxy name -&gt; proxy.zabbix.name</li>
-<li>添加代理下的主机：Configuration -&gt; Hosts -&gt; Create Host -&gt; Monitored by proxy -&gt; proxy.zabbix.name</li>
+<li><a href="https://cn.vuejs.org/v2/guide/components-props.html" target="_blank" rel="noopener noreferrer">props</a></li>
+<li><a href="https://cn.vuejs.org/v2/guide/components-custom-events.html#sync-%E4%BF%AE%E9%A5%B0%E7%AC%A6" target="_blank" rel="noopener noreferrer">.sync</a></li>
 </ul>
-<h3 id="注意事项"> 注意事项</h3>
+<h2 id="分析"> 分析</h2>
 <ul>
-<li>Proxy只能使用proxy的数据库，不能使用Server的数据库</li>
-<li>注意Server端和Proxy端的IP/DNS名称、配置主机名称、Web端名称、各选项正确且一一对应</li>
-</ul>
-<h2 id="zabbix-snmp"> Zabbix SNMP</h2>
+<li>子组件
 <ul>
-<li>
-<p>Windows Server 2008 R2</p>
-<ul>
-<li>客户机端安装：SNMP Service</li>
-<li>客户机端设置：服务 -&gt; SNMP Service -&gt; 安全 -&gt; 接受的社区名称：public，只读 -&gt; 添加接受主机：Zabbix服务器</li>
-<li>客户机端防火墙：入站规则 -&gt; 默认端口161 -&gt; 协议UDP</li>
-<li>Zabbix Web端添加SNMP主机及端口号</li>
+<li>定义<code>props</code>，父组件调用子组件时，父组件可直接改变绑定的<code>props</code>值</li>
+<li>通过<code>this.$emit('event', val)</code>传递事件（<code>event</code>）和值（<code>val</code>）到父组件</li>
 </ul>
 </li>
-<li>
-<p>CentOS</p>
+<li>父组件
 <ul>
-<li>安装：<code>yum install net-snmp net-snmp-utils</code></li>
-<li>参见：<a href="https://blog.csdn.net/sinat_21302587/article/details/75099915" target="_blank" rel="noopener noreferrer">https://blog.csdn.net/sinat_21302587/article/details/75099915</a></li>
+<li>调用子组件，其中<code>props</code>值的变化，直接被传递到子组件</li>
+<li>子组件若要将<code>props</code>的值传给父组件，需要通过<code>emit</code>发射事件和值到父组件</li>
 </ul>
 </li>
 </ul>
+<p><img src="./assets/vue-props.png" alt="Vue父子组件通信" /></p>
+<h2 id="示例"> 示例</h2>
+<div><pre><code><span>&lt;!-- Children.vue --></span>
+<span><span><span>&lt;</span>template</span><span>></span></span>
+  <span><span><span>&lt;</span>div</span> <span>id</span><span><span>=</span><span>"</span>children<span>"</span></span><span>></span></span>
+    <span><span><span>&lt;</span>h3</span><span>></span></span>Children<span><span><span>&lt;/</span>h3</span><span>></span></span>
+    <span><span><span>&lt;</span>button</span> <span>@click</span><span><span>=</span><span>"</span>toParent<span>"</span></span><span>></span></span>get data from Children<span><span><span>&lt;/</span>button</span><span>></span></span>
+    <span><span><span>&lt;</span>div</span><span>></span></span>{{message}}<span><span><span>&lt;/</span>div</span><span>></span></span>
+  <span><span><span>&lt;/</span>div</span><span>></span></span>
+<span><span><span>&lt;/</span>template</span><span>></span></span>
+
+<span><span><span>&lt;</span>script</span><span>></span></span><span><span>
+<span>export</span> <span>default</span> <span>{</span>
+  name<span>:</span> <span>'Children'</span><span>,</span>
+  props<span>:</span> <span>[</span><span>'message'</span><span>]</span><span>,</span>
+  <span>data</span><span>(</span><span>)</span> <span>{</span>
+    <span>return</span> <span>{</span>
+
+    <span>}</span>
+  <span>}</span><span>,</span>
+  methods<span>:</span> <span>{</span>
+    <span>toParent</span><span>(</span><span>)</span> <span>{</span>
+      <span>this</span><span>.</span><span>$emit</span><span>(</span><span>'monitor'</span><span>,</span><span>'click: data from Children'</span><span>)</span><span>;</span>
+    <span>}</span>
+  <span>}</span>
+<span>}</span>
+</span></span><span><span><span>&lt;/</span>script</span><span>></span></span>
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br><span>9</span><br><span>10</span><br><span>11</span><br><span>12</span><br><span>13</span><br><span>14</span><br><span>15</span><br><span>16</span><br><span>17</span><br><span>18</span><br><span>19</span><br><span>20</span><br><span>21</span><br><span>22</span><br><span>23</span><br><span>24</span><br><span>25</span><br></div></div><div><pre><code><span>&lt;!-- Parent.vue --></span>
+<span><span><span>&lt;</span>template</span><span>></span></span>
+  <span><span><span>&lt;</span>div</span> <span>id</span><span><span>=</span><span>"</span>parent<span>"</span></span><span>></span></span>
+    <span><span><span>&lt;</span>h3</span><span>></span></span>Parent<span><span><span>&lt;/</span>h3</span><span>></span></span>
+    <span><span><span>&lt;</span>children</span> <span>:message</span><span><span>=</span><span>"</span>fromParent<span>"</span></span> <span>@monitor</span><span><span>=</span><span>"</span>fromChildren<span>"</span></span><span>></span></span><span><span><span>&lt;/</span>children</span><span>></span></span>
+  <span><span><span>&lt;/</span>div</span><span>></span></span>
+<span><span><span>&lt;/</span>template</span><span>></span></span>
+
+<span><span><span>&lt;</span>script</span><span>></span></span><span><span>
+<span>import</span> Children <span>from</span> <span>'./Children'</span>
+<span>export</span> <span>default</span> <span>{</span>
+  name<span>:</span> <span>'Parent'</span><span>,</span>
+  components<span>:</span> <span>{</span>
+    Children
+  <span>}</span><span>,</span>
+  <span>data</span><span>(</span><span>)</span> <span>{</span>
+    <span>return</span> <span>{</span>
+      fromParent<span>:</span> <span>'init: data from Parent'</span>
+    <span>}</span>
+  <span>}</span><span>,</span>
+  methods<span>:</span> <span>{</span>
+    <span>fromChildren</span><span>(</span><span>val</span><span>)</span> <span>{</span>
+      <span>this</span><span>.</span>fromParent <span>=</span> val
+    <span>}</span>
+  <span>}</span>
+<span>}</span>
+</span></span><span><span><span>&lt;/</span>script</span><span>></span></span>
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br><span>9</span><br><span>10</span><br><span>11</span><br><span>12</span><br><span>13</span><br><span>14</span><br><span>15</span><br><span>16</span><br><span>17</span><br><span>18</span><br><span>19</span><br><span>20</span><br><span>21</span><br><span>22</span><br><span>23</span><br><span>24</span><br><span>25</span><br><span>26</span><br><span>27</span><br></div></div>]]></content>
+    <author>
+      <name>方跃明</name>
+    </author>
+    <contributor>
+      <name>方跃明</name>
+    </contributor>
+    <published>2018-09-30T00:00:00.000Z</published>
+    <rights>Copyright by 方跃明</rights>
+  </entry>
+  <entry>
+    <title type="html">Internet技术概览</title>
+    <id>https://blog.fangyueming.cn/blog/web-internet/</id>
+    <link href="https://blog.fangyueming.cn/blog/web-internet/"/>
+    <updated>2021-12-12T12:29:55.000Z</updated>
+    <content type="html"><![CDATA[<h1 id="internet技术概览"> Internet技术概览</h1>
+<p><img src="./assets/web-internet.jpg" alt="Internet技术概览" /></p>
 ]]></content>
     <author>
       <name>方跃明</name>
@@ -5333,7 +5249,7 @@ zcat schema.sql.gz <span>|</span> mysql -uzabbix -pzabbix zabbix_proxy
     <contributor>
       <name>方跃明</name>
     </contributor>
-    <published>2011-11-11T00:00:00.000Z</published>
+    <published>2016-12-20T00:00:00.000Z</published>
     <rights>Copyright by 方跃明</rights>
   </entry>
   <entry>
@@ -5654,6 +5570,147 @@ you need to accept <span>add</span> key
       <name>方跃明</name>
     </contributor>
     <published>2013-12-30T00:00:00.000Z</published>
+    <rights>Copyright by 方跃明</rights>
+  </entry>
+  <entry>
+    <title type="html">Zabbix安装笔记</title>
+    <id>https://blog.fangyueming.cn/blog/zabbix/</id>
+    <link href="https://blog.fangyueming.cn/blog/zabbix/"/>
+    <updated>2021-12-12T12:29:55.000Z</updated>
+    <content type="html"><![CDATA[<h1 id="zabbix安装笔记"> Zabbix安装笔记</h1>
+<p>详细安装步骤参见：<a href="https://www.zabbix.com/documentation/3.0/manual/installation/install_from_packages" target="_blank" rel="noopener noreferrer">官方安装手册</a></p>
+<h2 id="zabbix-server"> Zabbix Server</h2>
+<p><img src="./assets/zabbix-schema.jpg" alt="Zabbix部署示意图" /></p>
+<h3 id="安装数据库"> 安装数据库</h3>
+<div><pre><code><span># 安装 MariaDB 服务器和客户端</span>
+yum <span>install</span> mariadb-server mariadb
+systemctl start mariadb
+mysql -uroot -ppassword    <span># 进入MySQL命令行</span>
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br></div></div><div><pre><code><span>-- MariaDB新建zabbix用户</span>
+<span>UPDATE</span> <span>user</span> <span>SET</span> password<span>=</span>PASSWORD<span>(</span><span>'zabbix'</span><span>)</span> <span>WHERE</span> <span>user</span><span>=</span><span>'zabbix'</span><span>;</span>
+<span>CREATE</span> <span>DATABASE</span> <span>IF</span> <span>NOT</span> <span>EXISTS</span> zabbix <span>DEFAULT</span> <span>CHARACTER</span> <span>SET</span> utf8 <span>COLLATE</span> utf8_general_ci<span>;</span>
+FLUSH <span>PRIVILEGES</span><span>;</span>
+QUIT
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br></div></div><h3 id="安装服务端"> 安装服务端</h3>
+<div><pre><code><span>rpm</span> -ivh http://repo.zabbix.com/zabbix/3.0/rhel/7/x86_64/zabbix-release-3.0-1.el7.noarch.rpm
+yum <span>install</span> zabbix-server-mysql zabbix-web-mysql
+<span>cd</span> /usr/share/doc/zabbix-server-mysql-3.0.3
+zcat create.sql.gz <span>|</span> mysql -uzabbix -pzabbix zabbix
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br></div></div><h3 id="修改服务器配置"> 修改服务器配置</h3>
+<div><pre><code><span>## vi /etc/zabbix/zabbix_server.conf</span>
+<span>DBHost</span><span>=</span><span>localhost</span>
+<span>DBName</span><span>=</span><span>zabbix</span>
+<span>DBUser</span><span>=</span><span>zabbix</span>
+<span>DBPassword</span><span>=</span><span>zabbix</span>
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br></div></div><h3 id="修改web服务器配置文件"> 修改WEB服务器配置文件</h3>
+<div><pre><code><span>## vi /etc/httpd/conf.d/zabbix.conf</span>
+php_value data.timezone Asia/Shanghai
+</code></pre>
+<div><span>1</span><br><span>2</span><br></div></div><h3 id="启动zabbix服务器和web服务器"> 启动Zabbix服务器和WEB服务器</h3>
+<div><pre><code>systemctl start zabbix-server
+systemctl start httpd
+</code></pre>
+<div><span>1</span><br><span>2</span><br></div></div><h2 id="zabbix-agent"> Zabbix Agent</h2>
+<p><img src="./assets/zabbix-proxy.png" alt="Zabbix分布式部署示意图" /></p>
+<h3 id="centos"> CentOS</h3>
+<h4 id="安装"> 安装</h4>
+<div><pre><code>yum <span>install</span> zabbix-agent
+</code></pre>
+<div><span>1</span><br></div></div><h4 id="配置"> 配置</h4>
+<div><pre><code><span># vi /etc/zabbix/zabbix_agent.conf</span>
+<span>LogFile</span><span>=</span><span>/var/log/zabbix/zabbix_agentd.log   # 日志</span>
+<span>Server</span><span>=</span><span>127.0.0.1                            # Zabbix Server（直接连接）或者Zabbix Proxy（通过Proxy）</span>
+<span>Hostname</span><span>=</span><span>Zabbix Server                      # 对应zabbix web里面的host，不一定是os本机名称</span>
+<span>ServerActive</span><span>=</span><span>127.0.0.1                      # Zabbix Server或Zabbix Proxy</span>
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br></div></div><h4 id="配置防火墙-打开zabbix-agent端口-默认入站端口10050"> 配置防火墙，打开Zabbix Agent端口（默认入站端口10050）</h4>
+<div><pre><code>systemctl start zabbix-agent
+</code></pre>
+<div><span>1</span><br></div></div><h3 id="windows"> Windows</h3>
+<h4 id="下载并解压到运行目录"> 下载并解压到运行目录</h4>
+<p><a href="http://www.zabbix.com/download.php" target="_blank" rel="noopener noreferrer">Zabbix pre-compiled agents for Windows</a></p>
+<h4 id="配置conf-conf-zabbix-agentd-win-conf"> 配置conf(conf\zabbix-agentd.win.conf)</h4>
+<div><pre><code><span>LogFile</span><span>=</span><span>c:\zabbix_agentd.log  # 日志</span>
+<span>Server</span><span>=</span><span>127.0.0.1              # Zabbix服务器</span>
+<span>Hostname</span><span>=</span><span>Windows Host         # 对应zabbix web里面的host，不一定是本机名称</span>
+<span>ServerActive</span><span>=</span><span>127.0.0.1        # Zabbix服务器</span>
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br></div></div><ul>
+<li>注册为Windows服务：<code>bin\zabbix_agentd.exe -c \conf\zabbix_agentd.win.conf –i</code></li>
+<li>打开Zabbix Agent端口（默认入站端口10050）</li>
+<li>从Windows服务启动Zabbix Agent客户端</li>
+</ul>
+<h2 id="zabbix-proxy"> Zabbix Proxy</h2>
+<h3 id="安装服务器"> 安装服务器</h3>
+<div><pre><code><span>rpm</span> -ivh http://repo.zabbix.com/zabbix/3.0/rhel/7/x86_64/zabbix-release-3.0-1.el7.noarch.rpm
+yum <span>install</span> mariadb-server mariadb zabbix-proxy-mysql
+systemctl start mariadb
+mysql                       <span># 进入MySQL命令行</span>
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br></div></div><h3 id="分配帐号、授权及建立数据库"> 分配帐号、授权及建立数据库</h3>
+<div><pre><code><span>UPDATE</span> <span>user</span> <span>SET</span> password<span>=</span>PASSWORD<span>(</span><span>'zabbix'</span><span>)</span> <span>WHERE</span> <span>user</span><span>=</span><span>'zabbix'</span><span>;</span>
+FLUSH <span>PRIVILEGES</span><span>;</span>
+<span>CREATE</span> <span>DATABASE</span> <span>IF</span> <span>NOT</span> <span>EXISTS</span> zabbix_proxy <span>DEFAULT</span> <span>CHARACTER</span> <span>SET</span> utf8 <span>COLLATE</span> utf8_general_ci<span>;</span>
+QUIT
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br></div></div><h3 id="导入数据库"> 导入数据库</h3>
+<div><pre><code><span># cd /usr/share/doc/zabbix-proxy-mysql-3.0.3</span>
+zcat schema.sql.gz <span>|</span> mysql -uzabbix -pzabbix zabbix_proxy
+</code></pre>
+<div><span>1</span><br><span>2</span><br></div></div><h3 id="修改服务器配置文件"> 修改服务器配置文件</h3>
+<div><pre><code><span># vi /etc/zabbix/zabbix_proxy.conf</span>
+<span>Server</span><span>=</span><span>zabbix.server.url      # Zabbix Server 所在IP或者DNS Name</span>
+<span>Hostname</span><span>=</span><span>proxy.zabbix.name    # Zabbix Proxy 名字（对应Server里的Proxies名字）</span>
+<span>DBHost</span><span>=</span><span>localhost</span>
+<span>DBName</span><span>=</span><span>zabbix_proxy</span>
+<span>DBUser</span><span>=</span><span>zabbix</span>
+<span>DBPassword</span><span>=</span><span>zabbix</span>
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br></div></div><h3 id="打开zabbix-agent端口-默认入站端口10050"> 打开Zabbix Agent端口（默认入站端口10050）</h3>
+<h3 id="启动zabbix服务器"> 启动Zabbix服务器</h3>
+<div><pre><code>systemctl start zabbix-proxy
+</code></pre>
+<div><span>1</span><br></div></div><h3 id="zabbix-server-web-对应的设置"> Zabbix Server Web 对应的设置</h3>
+<ul>
+<li>添加代理：Administration -&gt; Proxies -&gt; Create proxy -&gt; Proxy name -&gt; proxy.zabbix.name</li>
+<li>添加代理下的主机：Configuration -&gt; Hosts -&gt; Create Host -&gt; Monitored by proxy -&gt; proxy.zabbix.name</li>
+</ul>
+<h3 id="注意事项"> 注意事项</h3>
+<ul>
+<li>Proxy只能使用proxy的数据库，不能使用Server的数据库</li>
+<li>注意Server端和Proxy端的IP/DNS名称、配置主机名称、Web端名称、各选项正确且一一对应</li>
+</ul>
+<h2 id="zabbix-snmp"> Zabbix SNMP</h2>
+<ul>
+<li>
+<p>Windows Server 2008 R2</p>
+<ul>
+<li>客户机端安装：SNMP Service</li>
+<li>客户机端设置：服务 -&gt; SNMP Service -&gt; 安全 -&gt; 接受的社区名称：public，只读 -&gt; 添加接受主机：Zabbix服务器</li>
+<li>客户机端防火墙：入站规则 -&gt; 默认端口161 -&gt; 协议UDP</li>
+<li>Zabbix Web端添加SNMP主机及端口号</li>
+</ul>
+</li>
+<li>
+<p>CentOS</p>
+<ul>
+<li>安装：<code>yum install net-snmp net-snmp-utils</code></li>
+<li>参见：<a href="https://blog.csdn.net/sinat_21302587/article/details/75099915" target="_blank" rel="noopener noreferrer">https://blog.csdn.net/sinat_21302587/article/details/75099915</a></li>
+</ul>
+</li>
+</ul>
+]]></content>
+    <author>
+      <name>方跃明</name>
+    </author>
+    <contributor>
+      <name>方跃明</name>
+    </contributor>
+    <published>2011-11-11T00:00:00.000Z</published>
     <rights>Copyright by 方跃明</rights>
   </entry>
 </feed>
