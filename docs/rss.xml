@@ -6,8 +6,8 @@
     <link>https://blog.fangyueming.cn/</link>
     <description>分享WEB应用开发技术</description>
     <language>zh-CN</language>
-    <pubDate>Mon, 13 Dec 2021 13:04:29 GMT</pubDate>
-    <lastBuildDate>Mon, 13 Dec 2021 13:04:29 GMT</lastBuildDate>
+    <pubDate>Tue, 14 Dec 2021 12:02:42 GMT</pubDate>
+    <lastBuildDate>Tue, 14 Dec 2021 12:02:42 GMT</lastBuildDate>
     <generator>@mr-hope/vuepress-plugin-feed</generator>
     <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
     <copyright>Copyright by 方跃明</copyright>
@@ -17,6 +17,119 @@
       <guid>https://blog.fangyueming.cn/</guid>
       <source url="https://blog.fangyueming.cn/rss.xml">博客主页</source>
       <pubDate>Thu, 01 Jul 2021 08:45:43 GMT</pubDate>
+    </item>
+    <item>
+      <title>CentOS 查看各种信息</title>
+      <link>https://blog.fangyueming.cn/blog/centos-information/</link>
+      <guid>https://blog.fangyueming.cn/blog/centos-information/</guid>
+      <source url="https://blog.fangyueming.cn/rss.xml">CentOS 查看各种信息</source>
+      <pubDate>Tue, 03 Apr 2012 00:00:00 GMT</pubDate>
+      <content:encoded><![CDATA[<h1 id="centos-查看各种信息"> CentOS 查看各种信息</h1>
+<div><pre><code><span>rpm</span> -ql nginx                 <span># 查看nginx软件包的安装位置</span>
+<span>rpm</span> -qa                       <span># 查看所有安装的软件包</span>
+<span>uname</span> -a                      <span># 查看内核/操作系统/CPU信息的linux系统信息命令</span>
+<span>head</span> -n <span>1</span> /etc/issue          <span># 查看操作系统版本，是数字1不是字母L</span>
+<span>cat</span> /proc/cpuinfo             <span># 查看CPU信息的linux系统信息命令</span>
+<span>hostname</span>                      <span># 查看计算机名的linux系统信息命令</span>
+lspci -tv                     <span># 列出所有PCI设备</span>
+lsusb -tv                     <span># 列出所有USB设备的linux系统信息命令</span>
+lsmod                         <span># 列出加载的内核模块</span>
+<span>env</span>                           <span># 查看环境变量资源</span>
+<span>free</span> -m                       <span># 查看内存使用量和交换区使用量</span>
+<span>df</span> -h                         <span># 查看各分区使用情况</span>
+<span>du</span> -sh                        <span># 查看指定目录的大小</span>
+<span>grep</span> MemTotal /proc/meminfo   <span># 查看内存总量</span>
+<span>grep</span> MemFree /proc/meminfo    <span># 查看空闲内存量</span>
+<span>uptime</span>                        <span># 查看系统运行时间、用户数、负载</span>
+<span>cat</span> /proc/loadavg             <span># 查看系统负载磁盘和分区</span>
+<span>mount</span> <span>|</span> <span>column</span> -t             <span># 查看挂接的分区状态</span>
+<span>fdisk</span> -l                      <span># 查看所有分区</span>
+<span>swapon</span> -s                     <span># 查看所有交换分区</span>
+hdparm -i /dev/hda            <span># 查看磁盘参数(仅适用于IDE设备)</span>
+<span>dmesg</span> <span>|</span> <span>grep</span> IDE              <span># 查看启动时IDE设备检测状况网络</span>
+<span>ifconfig</span>                      <span># 查看所有网络接口的属性</span>
+iptables -L                   <span># 查看防火墙设置</span>
+route -n                      <span># 查看路由表</span>
+<span>netstat</span> -lntp                 <span># 查看所有监听端口</span>
+<span>netstat</span> -antp                 <span># 查看所有已经建立的连接</span>
+<span>netstat</span> -s                    <span># 查看网络统计信息进程</span>
+<span>ps</span> -ef                        <span># 查看所有进程</span>
+<span>top</span>                           <span># 实时显示进程状态用户</span>
+w                             <span># 查看活动用户</span>
+<span>id</span>                            <span># 查看指定用户信息</span>
+last                          <span># 查看用户登录日志</span>
+<span>cut</span> -d: -f1 /etc/passwd       <span># 查看系统所有用户</span>
+<span>cut</span> -d: -f1 /etc/group        <span># 查看系统所有组</span>
+<span>crontab</span> -l                    <span># 查看当前用户的计划任务服务</span>
+<span>chkconfig</span> –list               <span># 列出所有系统服务</span>
+<span>chkconfig</span> –list <span>|</span> <span>grep</span> on     <span># 列出所有启动的系统服务程序</span>
+<span>cat</span> /proc/cpuinfo             <span># 查看CPU相关参数的linux系统命令</span>
+<span>cat</span> /proc/partitions          <span># 查看linux硬盘和分区信息的系统信息命令</span>
+<span>cat</span> /proc/meminfo             <span># 查看linux系统内存信息的linux系统命令</span>
+<span>cat</span> /proc/version             <span># 查看版本，类似uname -r</span>
+<span>cat</span> /proc/ioports             <span># 查看设备io端口</span>
+<span>cat</span> /proc/interrupts          <span># 查看中断</span>
+<span>cat</span> /proc/pci                 <span># 查看pci设备的信息</span>
+<span>cat</span> /proc/swaps               <span># 查看所有swap分区的信息</span>
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br><span>9</span><br><span>10</span><br><span>11</span><br><span>12</span><br><span>13</span><br><span>14</span><br><span>15</span><br><span>16</span><br><span>17</span><br><span>18</span><br><span>19</span><br><span>20</span><br><span>21</span><br><span>22</span><br><span>23</span><br><span>24</span><br><span>25</span><br><span>26</span><br><span>27</span><br><span>28</span><br><span>29</span><br><span>30</span><br><span>31</span><br><span>32</span><br><span>33</span><br><span>34</span><br><span>35</span><br><span>36</span><br><span>37</span><br><span>38</span><br><span>39</span><br><span>40</span><br><span>41</span><br><span>42</span><br><span>43</span><br><span>44</span><br><span>45</span><br><span>46</span><br></div></div>]]></content:encoded>
+    </item>
+    <item>
+      <title>CentOS 快速安装常用开发工具</title>
+      <link>https://blog.fangyueming.cn/blog/centos-develop/</link>
+      <guid>https://blog.fangyueming.cn/blog/centos-develop/</guid>
+      <source url="https://blog.fangyueming.cn/rss.xml">CentOS 快速安装常用开发工具</source>
+      <pubDate>Mon, 11 May 2020 00:00:00 GMT</pubDate>
+      <content:encoded><![CDATA[<h1 id="centos-快速安装常用开发工具"> CentOS 快速安装常用开发工具</h1>
+<h2 id="docker"> Docker</h2>
+<div><pre><code><span># https://docs.docker.com/engine/install/centos/</span>
+yum <span>install</span> -y yum-utils
+yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+yum <span>install</span> docker-ce docker-ce-cli containerd.io
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br></div></div><h2 id="mysql-8-x"> MySQL 8.x</h2>
+<div><pre><code><span># 安装官方仓库</span>
+yum localinstall https://repo.mysql.com/mysql80-community-release-el7-1.noarch.rpm
+<span># 安装 MySQL Server</span>
+yum <span>install</span> mysql-community-server
+<span># 启动MySQL</span>
+systemctl start mysqld
+<span># 检查服务状态</span>
+systemctl status mysqld
+<span># 查看初始密码</span>
+<span>grep</span> <span>'temporary password'</span> /var/log/mysqld.log
+mysql -uroot -p
+<span># 输入密码进入mysql命令行</span>
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br><span>9</span><br><span>10</span><br><span>11</span><br><span>12</span><br></div></div><h2 id="node-js"> Node.js</h2>
+<div><pre><code><span># https://github.com/nodesource/distributions#rpm</span>
+<span>curl</span> -sL https://rpm.nodesource.com/setup_11.x <span>|</span> <span>bash</span> -
+</code></pre>
+<div><span>1</span><br><span>2</span><br></div></div><h2 id="yarn"> Yarn</h2>
+<div><pre><code><span># https://yarn.bootcss.com/docs/install/#centos-stable</span>
+<span>curl</span> --silent --location https://dl.yarnpkg.com/rpm/yarn.repo <span>|</span> <span>sudo</span> <span>tee</span> /etc/yum.repos.d/yarn.repo
+</code></pre>
+<div><span>1</span><br><span>2</span><br></div></div><h2 id="git"> Git</h2>
+<div><pre><code><span># https://stackoverflow.com/questions/21820715/how-to-install-latest-version-of-git-on-centos-7-x-6-x</span>
+yum <span>install</span> http://opensource.wandisco.com/centos/7/git/x86_64/wandisco-git-release-7-2.noarch.rpm
+yum <span>install</span> <span>git</span>
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br></div></div><h2 id="nginx"> NGiNX</h2>
+<div><pre><code><span># https://www.nginx.com/resources/wiki/start/topics/tutorials/install/</span>
+<span>vim</span> /etc/yum.repos.d/nginx.repo
+</code></pre>
+<div><span>1</span><br><span>2</span><br></div></div><div><pre><code><span><span>[</span><span>nginx</span><span>]</span></span>
+<span>name</span><span>=</span><span>nginx repo</span>
+<span>baseurl</span><span>=</span><span>https://nginx.org/packages/centos/$releasever/$basearch/</span>
+<span>gpgcheck</span><span>=</span><span>0</span>
+<span>enabled</span><span>=</span><span>1</span>
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br></div></div><h2 id="python"> Python</h2>
+<h2 id="java"> Java</h2>
+<h2 id="oracle"> Oracle</h2>
+<h2 id="apache"> Apache</h2>
+<h2 id="php"> PHP</h2>
+]]></content:encoded>
     </item>
     <item>
       <title>CentOS安装KVM</title>
@@ -149,63 +262,6 @@ list
 <p>方跃明
 2014-04-04</p>
 </blockquote>
-]]></content:encoded>
-    </item>
-    <item>
-      <title>CentOS 快速安装常用开发工具</title>
-      <link>https://blog.fangyueming.cn/blog/centos-develop/</link>
-      <guid>https://blog.fangyueming.cn/blog/centos-develop/</guid>
-      <source url="https://blog.fangyueming.cn/rss.xml">CentOS 快速安装常用开发工具</source>
-      <pubDate>Mon, 11 May 2020 00:00:00 GMT</pubDate>
-      <content:encoded><![CDATA[<h1 id="centos-快速安装常用开发工具"> CentOS 快速安装常用开发工具</h1>
-<h2 id="docker"> Docker</h2>
-<div><pre><code><span># https://docs.docker.com/engine/install/centos/</span>
-yum <span>install</span> -y yum-utils
-yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
-yum <span>install</span> docker-ce docker-ce-cli containerd.io
-</code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br></div></div><h2 id="mysql-8-x"> MySQL 8.x</h2>
-<div><pre><code><span># 安装官方仓库</span>
-yum localinstall https://repo.mysql.com/mysql80-community-release-el7-1.noarch.rpm
-<span># 安装 MySQL Server</span>
-yum <span>install</span> mysql-community-server
-<span># 启动MySQL</span>
-systemctl start mysqld
-<span># 检查服务状态</span>
-systemctl status mysqld
-<span># 查看初始密码</span>
-<span>grep</span> <span>'temporary password'</span> /var/log/mysqld.log
-mysql -uroot -p
-<span># 输入密码进入mysql命令行</span>
-</code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br><span>9</span><br><span>10</span><br><span>11</span><br><span>12</span><br></div></div><h2 id="node-js"> Node.js</h2>
-<div><pre><code><span># https://github.com/nodesource/distributions#rpm</span>
-<span>curl</span> -sL https://rpm.nodesource.com/setup_11.x <span>|</span> <span>bash</span> -
-</code></pre>
-<div><span>1</span><br><span>2</span><br></div></div><h2 id="yarn"> Yarn</h2>
-<div><pre><code><span># https://yarn.bootcss.com/docs/install/#centos-stable</span>
-<span>curl</span> --silent --location https://dl.yarnpkg.com/rpm/yarn.repo <span>|</span> <span>sudo</span> <span>tee</span> /etc/yum.repos.d/yarn.repo
-</code></pre>
-<div><span>1</span><br><span>2</span><br></div></div><h2 id="git"> Git</h2>
-<div><pre><code><span># https://stackoverflow.com/questions/21820715/how-to-install-latest-version-of-git-on-centos-7-x-6-x</span>
-yum <span>install</span> http://opensource.wandisco.com/centos/7/git/x86_64/wandisco-git-release-7-2.noarch.rpm
-yum <span>install</span> <span>git</span>
-</code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br></div></div><h2 id="nginx"> NGiNX</h2>
-<div><pre><code><span># https://www.nginx.com/resources/wiki/start/topics/tutorials/install/</span>
-<span>vim</span> /etc/yum.repos.d/nginx.repo
-</code></pre>
-<div><span>1</span><br><span>2</span><br></div></div><div><pre><code><span><span>[</span><span>nginx</span><span>]</span></span>
-<span>name</span><span>=</span><span>nginx repo</span>
-<span>baseurl</span><span>=</span><span>https://nginx.org/packages/centos/$releasever/$basearch/</span>
-<span>gpgcheck</span><span>=</span><span>0</span>
-<span>enabled</span><span>=</span><span>1</span>
-</code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br></div></div><h2 id="python"> Python</h2>
-<h2 id="java"> Java</h2>
-<h2 id="oracle"> Oracle</h2>
-<h2 id="apache"> Apache</h2>
-<h2 id="php"> PHP</h2>
 ]]></content:encoded>
     </item>
     <item>
@@ -842,60 +898,128 @@ last                          <span># 查看用户登录日志</span>
 <div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br><span>9</span><br><span>10</span><br><span>11</span><br><span>12</span><br><span>13</span><br><span>14</span><br><span>15</span><br><span>16</span><br><span>17</span><br><span>18</span><br><span>19</span><br><span>20</span><br><span>21</span><br><span>22</span><br><span>23</span><br><span>24</span><br><span>25</span><br><span>26</span><br><span>27</span><br><span>28</span><br><span>29</span><br><span>30</span><br><span>31</span><br><span>32</span><br><span>33</span><br><span>34</span><br><span>35</span><br><span>36</span><br><span>37</span><br><span>38</span><br><span>39</span><br><span>40</span><br><span>41</span><br><span>42</span><br><span>43</span><br><span>44</span><br><span>45</span><br><span>46</span><br></div></div>]]></content:encoded>
     </item>
     <item>
-      <title>CentOS 查看各种信息</title>
-      <link>https://blog.fangyueming.cn/blog/centos-information/</link>
-      <guid>https://blog.fangyueming.cn/blog/centos-information/</guid>
-      <source url="https://blog.fangyueming.cn/rss.xml">CentOS 查看各种信息</source>
-      <pubDate>Tue, 03 Apr 2012 00:00:00 GMT</pubDate>
-      <content:encoded><![CDATA[<h1 id="centos-查看各种信息"> CentOS 查看各种信息</h1>
-<div><pre><code><span>rpm</span> -ql nginx                 <span># 查看nginx软件包的安装位置</span>
-<span>rpm</span> -qa                       <span># 查看所有安装的软件包</span>
-<span>uname</span> -a                      <span># 查看内核/操作系统/CPU信息的linux系统信息命令</span>
-<span>head</span> -n <span>1</span> /etc/issue          <span># 查看操作系统版本，是数字1不是字母L</span>
-<span>cat</span> /proc/cpuinfo             <span># 查看CPU信息的linux系统信息命令</span>
-<span>hostname</span>                      <span># 查看计算机名的linux系统信息命令</span>
-lspci -tv                     <span># 列出所有PCI设备</span>
-lsusb -tv                     <span># 列出所有USB设备的linux系统信息命令</span>
-lsmod                         <span># 列出加载的内核模块</span>
-<span>env</span>                           <span># 查看环境变量资源</span>
-<span>free</span> -m                       <span># 查看内存使用量和交换区使用量</span>
-<span>df</span> -h                         <span># 查看各分区使用情况</span>
-<span>du</span> -sh                        <span># 查看指定目录的大小</span>
-<span>grep</span> MemTotal /proc/meminfo   <span># 查看内存总量</span>
-<span>grep</span> MemFree /proc/meminfo    <span># 查看空闲内存量</span>
-<span>uptime</span>                        <span># 查看系统运行时间、用户数、负载</span>
-<span>cat</span> /proc/loadavg             <span># 查看系统负载磁盘和分区</span>
-<span>mount</span> <span>|</span> <span>column</span> -t             <span># 查看挂接的分区状态</span>
-<span>fdisk</span> -l                      <span># 查看所有分区</span>
-<span>swapon</span> -s                     <span># 查看所有交换分区</span>
-hdparm -i /dev/hda            <span># 查看磁盘参数(仅适用于IDE设备)</span>
-<span>dmesg</span> <span>|</span> <span>grep</span> IDE              <span># 查看启动时IDE设备检测状况网络</span>
-<span>ifconfig</span>                      <span># 查看所有网络接口的属性</span>
-iptables -L                   <span># 查看防火墙设置</span>
-route -n                      <span># 查看路由表</span>
-<span>netstat</span> -lntp                 <span># 查看所有监听端口</span>
-<span>netstat</span> -antp                 <span># 查看所有已经建立的连接</span>
-<span>netstat</span> -s                    <span># 查看网络统计信息进程</span>
-<span>ps</span> -ef                        <span># 查看所有进程</span>
-<span>top</span>                           <span># 实时显示进程状态用户</span>
-w                             <span># 查看活动用户</span>
-<span>id</span>                            <span># 查看指定用户信息</span>
-last                          <span># 查看用户登录日志</span>
-<span>cut</span> -d: -f1 /etc/passwd       <span># 查看系统所有用户</span>
-<span>cut</span> -d: -f1 /etc/group        <span># 查看系统所有组</span>
-<span>crontab</span> -l                    <span># 查看当前用户的计划任务服务</span>
-<span>chkconfig</span> –list               <span># 列出所有系统服务</span>
-<span>chkconfig</span> –list <span>|</span> <span>grep</span> on     <span># 列出所有启动的系统服务程序</span>
-<span>cat</span> /proc/cpuinfo             <span># 查看CPU相关参数的linux系统命令</span>
-<span>cat</span> /proc/partitions          <span># 查看linux硬盘和分区信息的系统信息命令</span>
-<span>cat</span> /proc/meminfo             <span># 查看linux系统内存信息的linux系统命令</span>
-<span>cat</span> /proc/version             <span># 查看版本，类似uname -r</span>
-<span>cat</span> /proc/ioports             <span># 查看设备io端口</span>
-<span>cat</span> /proc/interrupts          <span># 查看中断</span>
-<span>cat</span> /proc/pci                 <span># 查看pci设备的信息</span>
-<span>cat</span> /proc/swaps               <span># 查看所有swap分区的信息</span>
+      <title>Docker Mysql</title>
+      <link>https://blog.fangyueming.cn/blog/docker-mysql/</link>
+      <guid>https://blog.fangyueming.cn/blog/docker-mysql/</guid>
+      <source url="https://blog.fangyueming.cn/rss.xml">Docker Mysql</source>
+      <pubDate>Fri, 18 Jun 2021 00:00:00 GMT</pubDate>
+      <content:encoded><![CDATA[<h1 id="docker-mysql"> Docker Mysql</h1>
+<h2 id="install"> Install</h2>
+<div><pre><code><span>#!/bin/bash</span>
+<span>#author: Yueming Fang</span>
+
+<span>name</span><span>=</span>mysql
+
+docker run -d --name <span>${name}</span> <span>\</span>
+-v /root/docker/<span>${name}</span>/conf:/etc/mysql/conf.d <span>\</span>
+-v /root/docker/<span>${name}</span>/logs:/usr/local/mysql/logs <span>\</span>
+-v /root/docker/<span>${name}</span>/data:/var/lib/mysql <span>\</span>
+-v /etc/localtime:/etc/localtime <span>\</span>
+-e <span>MYSQL_ROOT_PASSWORD</span><span>=</span>password <span>\</span>
+-p <span>3306</span>:3306 <span>\</span>
+mysql:latest
 </code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br><span>9</span><br><span>10</span><br><span>11</span><br><span>12</span><br><span>13</span><br><span>14</span><br><span>15</span><br><span>16</span><br><span>17</span><br><span>18</span><br><span>19</span><br><span>20</span><br><span>21</span><br><span>22</span><br><span>23</span><br><span>24</span><br><span>25</span><br><span>26</span><br><span>27</span><br><span>28</span><br><span>29</span><br><span>30</span><br><span>31</span><br><span>32</span><br><span>33</span><br><span>34</span><br><span>35</span><br><span>36</span><br><span>37</span><br><span>38</span><br><span>39</span><br><span>40</span><br><span>41</span><br><span>42</span><br><span>43</span><br><span>44</span><br><span>45</span><br><span>46</span><br></div></div>]]></content:encoded>
+<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br><span>9</span><br><span>10</span><br><span>11</span><br><span>12</span><br><span>13</span><br></div></div><h2 id="backup"> Backup</h2>
+<div><pre><code><span>#!/bin/bash</span>
+<span># Author: Yueming Fang</span>
+<span># Update: 2021-06-18</span>
+<span>#</span>
+<span># Usage:</span>
+<span>#</span>
+<span># 1. add user to mysql</span>
+<span>#</span>
+<span># create user 'backup'@'localhost' identified by 'backup';</span>
+<span># grant SELECT, RELOAD, LOCK TABLES, REPLICATION CLIENT, SHOW VIEW, TRIGGER, PROCESS on *.* to 'backup'@'localhost';</span>
+<span>#</span>
+<span># 2. my.cnf</span>
+<span>#</span>
+<span># [mysqldump]</span>
+<span># user = backup</span>
+<span># password = backup</span>
+<span>#</span>
+<span># 3. bash</span>
+<span>#</span>
+<span># ./mysql-backup db1</span>
+<span>#</span>
+<span># 4. crontab -e</span>
+<span>#</span>
+<span># 0 1 * * * bash /root/bash/mysql-backup.sh db1</span>
+
+<span># define</span>
+<span>set</span> -ex
+<span>date</span><span>=</span><span><span>`</span><span>date</span> +%Y%m%d<span>`</span></span>
+<span>dir</span><span>=</span>/root/backup/mysql/<span>${date}</span>
+<span>db</span><span>=</span><span>$1</span>
+
+<span>echo</span> <span>${db}</span> <span>=</span><span>\</span><span>></span> <span>${dir}</span> <span>..</span>.
+
+<span># create dir</span>
+<span>if</span> <span>[</span> <span>!</span> -d <span>${dir}</span> <span>]</span><span>;</span> <span>then</span> <span>mkdir</span> -p <span>${dir}</span><span>;</span> <span>fi</span>
+
+<span># rm file of backup a week ago</span>
+<span># find ${dir} -ctime +7 -type f | xargs rm -rf</span>
+
+<span># rm dir of backup a week ago</span>
+<span>find</span> /root/backup/mysql/ -ctime +7 -type d <span>|</span> <span>xargs</span> <span>rm</span> -rf
+
+<span># backup everyday</span>
+<span># db1 => /root/backup/mysql/20210314/db1-20210314.sql.gz</span>
+<span># db2 => /root/backup/mysql/20210314/db2-20210314.sql.gz</span>
+<span># ...</span>
+docker <span>exec</span> mysql mysqldump --skip-opt --databases <span>${db}</span> <span>|</span> <span>gzip</span> <span>></span> <span>${dir}</span>/<span>${db}</span>-<span>${date}</span>.sql.gz
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br><span>9</span><br><span>10</span><br><span>11</span><br><span>12</span><br><span>13</span><br><span>14</span><br><span>15</span><br><span>16</span><br><span>17</span><br><span>18</span><br><span>19</span><br><span>20</span><br><span>21</span><br><span>22</span><br><span>23</span><br><span>24</span><br><span>25</span><br><span>26</span><br><span>27</span><br><span>28</span><br><span>29</span><br><span>30</span><br><span>31</span><br><span>32</span><br><span>33</span><br><span>34</span><br><span>35</span><br><span>36</span><br><span>37</span><br><span>38</span><br><span>39</span><br><span>40</span><br><span>41</span><br><span>42</span><br><span>43</span><br><span>44</span><br><span>45</span><br><span>46</span><br><span>47</span><br></div></div><h2 id="cli"> CLI</h2>
+<div><pre><code>docker <span>exec</span> -it mysql <span>bash</span>
+</code></pre>
+<div><span>1</span><br></div></div>]]></content:encoded>
+    </item>
+    <item>
+      <title>Chrome inspect开发钉钉应用</title>
+      <link>https://blog.fangyueming.cn/blog/chrome-inspect-dingtalk/</link>
+      <guid>https://blog.fangyueming.cn/blog/chrome-inspect-dingtalk/</guid>
+      <source url="https://blog.fangyueming.cn/rss.xml">Chrome inspect开发钉钉应用</source>
+      <pubDate>Sun, 07 Apr 2019 00:00:00 GMT</pubDate>
+      <content:encoded><![CDATA[<h1 id="chrome-inspect开发钉钉应用"> Chrome inspect开发钉钉应用</h1>
+<p><code>Chrome inspect</code>是<code>Chrome</code>浏览器基于<code>webkit remote debug</code>的实现，支持<code>Andorid</code>模拟器和<code>Andorid</code>真实设备。</p>
+<p>但由于国情所致，国内<code>Android</code>大部分手机对于<code>Google Mobile Service</code>的支持甚是微弱，很多设备甚至完全阉割，且无法安装。</p>
+<p>因此，推荐使用未被阉割的<code>Android</code>模拟器进行开发。</p>
+<div><p>提示</p>
+<p>由于国情所致，下载和访问页面可能产生不可预期的错误，请自行解决。</p>
+</div>
+<h2 id="钉钉开发版"> 钉钉开发版</h2>
+<p>钉钉正式版不支持<code>Chrome nspect</code>，请在<a href="https://open-doc.dingtalk.com/microapp/kn6zg7" target="_blank" rel="noopener noreferrer">钉钉开发者工具</a>中下载钉钉开发版。</p>
+<h2 id="真机调试"> 真机调试</h2>
+<p>真机使用USB连接到电脑，打开开发者模式，允许调试，才能被<code>Chrome nspect</code>发现。</p>
+<p><img src="./chrome-inspect/android-develop.jpg" alt="开发者模式" /></p>
+<p><img src="./chrome-inspect/android-allow-debug.jpg" alt="允许调试" /></p>
+<h2 id="模拟器"> 模拟器</h2>
+<p>推荐<a href="https://www.genymotion.com/download" target="_blank" rel="noopener noreferrer">下载</a>对开发支持良好的<a href="https://www.genymotion.com" target="_blank" rel="noopener noreferrer">Genymotion</a>Android模拟器，若无<code>VirtualBox</code>环境请选择<code>with VirtualBox</code>的安装包。
+一般使用默认安装方式，安装时请注意选择<code>Personal Use</code>免费使用，土豪随意。</p>
+<div><p>友情提示</p>
+<p>请勿下载夜神、mumu之类的模拟器（<s>游戏机</s>）。</p>
+</div>
+<h2 id="虚拟机"> 虚拟机</h2>
+<p>打开<code>Genymotion</code>模拟器，请选择较高版本的虚拟设备模板，点击右侧菜单<code>INSTALL</code>，下载完成自动安装。</p>
+<p><img src="./chrome-inspect/vm-install.jpg" alt="安装虚拟机" /></p>
+<p>回到<code>Genymotion</code>模拟器，启动虚拟机，默认已经打开开发者模式。</p>
+<p>将钉钉开发版拖入虚拟机中，完成安装，打开钉钉应用，进入钉钉微应用。</p>
+<p><img src="./chrome-inspect/vm-run.jpg" alt="虚拟机启动" /></p>
+<div><p>离线下载</p>
+<p>若网络环境慢需要离线下载模板包，请打开<code>C:\Users\your-name\AppData\Local\Genymobile\genymotion.log</code>日志，查找<code>.ova</code>（<code>VirtualBox</code>模板格式）字符串。
+得到你想离线下载的文件链接，使用迅雷极速版等符合国情的下载工具下载，完成后双击导入<code>VirtualBox</code>。</p>
+</div>
+<p>若错误请根据错误提示解决问题，比如网络配置错误：</p>
+<p><img src="./chrome-inspect/vm-setting.jpg" alt="虚拟机网络配置" /></p>
+<h2 id="chrome-inspect"> Chrome inspect</h2>
+<p>使用<code>Chrome</code>浏览器打开<code>chrome://inspect/#devices</code>新标签页，将<code>Remote Target</code>下对应设备的对应页面<code>inspect</code>到桌面端的<code>Chrome</code>。</p>
+<p><img src="./chrome-inspect/inspect-device.jpg" alt="Chrome inspect" /></p>
+<p>正常情况进入调试页面。</p>
+<p><img src="./chrome-inspect/inspect-debug.jpg" alt="Chrome debug" /></p>
+<div><p>谨防受骗</p>
+<p>国情问题，很可能会弹出空白页面或者404错误页面（<code>HTTP/1.1 404 Not Found</code>）。
+据说有<code>Chrome inspect</code>对应的<code>WebView</code>离线工具解决，可能需要付费，请务必谨慎。</p>
+</div>
+]]></content:encoded>
     </item>
     <item>
       <title>程序员常用工具</title>
@@ -1037,169 +1161,6 @@ federated
 CONNECTION<span>=</span><span>'mysql://user:password@localhost:3306/appdb/dingtalk_cloud_push'</span><span>;</span>
 </code></pre>
 <div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br><span>9</span><br><span>10</span><br><span>11</span><br><span>12</span><br><span>13</span><br><span>14</span><br><span>15</span><br><span>16</span><br></div></div>]]></content:encoded>
-    </item>
-    <item>
-      <title>Chrome inspect开发钉钉应用</title>
-      <link>https://blog.fangyueming.cn/blog/chrome-inspect-dingtalk/</link>
-      <guid>https://blog.fangyueming.cn/blog/chrome-inspect-dingtalk/</guid>
-      <source url="https://blog.fangyueming.cn/rss.xml">Chrome inspect开发钉钉应用</source>
-      <pubDate>Sun, 07 Apr 2019 00:00:00 GMT</pubDate>
-      <content:encoded><![CDATA[<h1 id="chrome-inspect开发钉钉应用"> Chrome inspect开发钉钉应用</h1>
-<p><code>Chrome inspect</code>是<code>Chrome</code>浏览器基于<code>webkit remote debug</code>的实现，支持<code>Andorid</code>模拟器和<code>Andorid</code>真实设备。</p>
-<p>但由于国情所致，国内<code>Android</code>大部分手机对于<code>Google Mobile Service</code>的支持甚是微弱，很多设备甚至完全阉割，且无法安装。</p>
-<p>因此，推荐使用未被阉割的<code>Android</code>模拟器进行开发。</p>
-<div><p>提示</p>
-<p>由于国情所致，下载和访问页面可能产生不可预期的错误，请自行解决。</p>
-</div>
-<h2 id="钉钉开发版"> 钉钉开发版</h2>
-<p>钉钉正式版不支持<code>Chrome nspect</code>，请在<a href="https://open-doc.dingtalk.com/microapp/kn6zg7" target="_blank" rel="noopener noreferrer">钉钉开发者工具</a>中下载钉钉开发版。</p>
-<h2 id="真机调试"> 真机调试</h2>
-<p>真机使用USB连接到电脑，打开开发者模式，允许调试，才能被<code>Chrome nspect</code>发现。</p>
-<p><img src="./chrome-inspect/android-develop.jpg" alt="开发者模式" /></p>
-<p><img src="./chrome-inspect/android-allow-debug.jpg" alt="允许调试" /></p>
-<h2 id="模拟器"> 模拟器</h2>
-<p>推荐<a href="https://www.genymotion.com/download" target="_blank" rel="noopener noreferrer">下载</a>对开发支持良好的<a href="https://www.genymotion.com" target="_blank" rel="noopener noreferrer">Genymotion</a>Android模拟器，若无<code>VirtualBox</code>环境请选择<code>with VirtualBox</code>的安装包。
-一般使用默认安装方式，安装时请注意选择<code>Personal Use</code>免费使用，土豪随意。</p>
-<div><p>友情提示</p>
-<p>请勿下载夜神、mumu之类的模拟器（<s>游戏机</s>）。</p>
-</div>
-<h2 id="虚拟机"> 虚拟机</h2>
-<p>打开<code>Genymotion</code>模拟器，请选择较高版本的虚拟设备模板，点击右侧菜单<code>INSTALL</code>，下载完成自动安装。</p>
-<p><img src="./chrome-inspect/vm-install.jpg" alt="安装虚拟机" /></p>
-<p>回到<code>Genymotion</code>模拟器，启动虚拟机，默认已经打开开发者模式。</p>
-<p>将钉钉开发版拖入虚拟机中，完成安装，打开钉钉应用，进入钉钉微应用。</p>
-<p><img src="./chrome-inspect/vm-run.jpg" alt="虚拟机启动" /></p>
-<div><p>离线下载</p>
-<p>若网络环境慢需要离线下载模板包，请打开<code>C:\Users\your-name\AppData\Local\Genymobile\genymotion.log</code>日志，查找<code>.ova</code>（<code>VirtualBox</code>模板格式）字符串。
-得到你想离线下载的文件链接，使用迅雷极速版等符合国情的下载工具下载，完成后双击导入<code>VirtualBox</code>。</p>
-</div>
-<p>若错误请根据错误提示解决问题，比如网络配置错误：</p>
-<p><img src="./chrome-inspect/vm-setting.jpg" alt="虚拟机网络配置" /></p>
-<h2 id="chrome-inspect"> Chrome inspect</h2>
-<p>使用<code>Chrome</code>浏览器打开<code>chrome://inspect/#devices</code>新标签页，将<code>Remote Target</code>下对应设备的对应页面<code>inspect</code>到桌面端的<code>Chrome</code>。</p>
-<p><img src="./chrome-inspect/inspect-device.jpg" alt="Chrome inspect" /></p>
-<p>正常情况进入调试页面。</p>
-<p><img src="./chrome-inspect/inspect-debug.jpg" alt="Chrome debug" /></p>
-<div><p>谨防受骗</p>
-<p>国情问题，很可能会弹出空白页面或者404错误页面（<code>HTTP/1.1 404 Not Found</code>）。
-据说有<code>Chrome inspect</code>对应的<code>WebView</code>离线工具解决，可能需要付费，请务必谨慎。</p>
-</div>
-]]></content:encoded>
-    </item>
-    <item>
-      <title>图解Git常用操作</title>
-      <link>https://blog.fangyueming.cn/blog/git/</link>
-      <guid>https://blog.fangyueming.cn/blog/git/</guid>
-      <source url="https://blog.fangyueming.cn/rss.xml">图解Git常用操作</source>
-      <pubDate>Sat, 28 Apr 2018 00:00:00 GMT</pubDate>
-      <content:encoded><![CDATA[<h1 id="图解git常用操作"> 图解Git常用操作</h1>
-<h2 id="git"> git</h2>
-<p>你真的需要记住那么多Git操作吗？
-也许阮一峰老师的<a href="http://www.ruanyifeng.com/blog/2015/12/git-cheat-sheet.html" target="_blank" rel="noopener noreferrer">《常用Git命令清单》</a>就够了。
-<img src="./assets/git.png" alt="Git常见操作图解" /></p>
-<h2 id="git-subtree"> git subtree</h2>
-<p>项目包含子项目这么办？是时候让你出场了！show time！</p>
-<ul>
-<li><a href="https://segmentfault.com/a/1190000012002151" target="_blank" rel="noopener noreferrer">git subtree教程</a></li>
-<li><a href="https://segmentfault.com/a/1190000003969060" target="_blank" rel="noopener noreferrer">用 Git Subtree 在多个 Git 项目间双向同步子项目</a></li>
-</ul>
-<p><img src="./assets/git-subtree.png" alt="git subtree" /></p>
-<div><pre><code><span># 克隆主项目仓库到本地</span>
-<span>git</span> clone https://coding.net/axolo/lcoamaxy
-<span># 建立子项目，并从远程克隆子项目到本地对应目录</span>
-<span>git</span> subtree <span>add</span> --prefix<span>=</span>www origin coding-pages
-<span># 主项目正常提交</span>
-<span>git</span> <span>add</span> --all
-<span>git</span> commit -m <span>"use git subtree"</span>
-<span>git</span> push
-<span># 提交子项目的变更到远程仓库</span>
-<span>git</span> subtree push -P www/ origin coding-pages
-<span># 从远程获取子项目的变更</span>
-<span>git</span> subtree pull -P www/ origin coding-pages
-<span># 在子项目生成新分支hotfix-001</span>
-<span>git</span> subtree push -P www/ origin hotfix-001
-</code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br><span>9</span><br><span>10</span><br><span>11</span><br><span>12</span><br><span>13</span><br><span>14</span><br></div></div><blockquote>
-<p>方跃明
-2018-4-28</p>
-</blockquote>
-]]></content:encoded>
-    </item>
-    <item>
-      <title>Docker Mysql</title>
-      <link>https://blog.fangyueming.cn/blog/docker-mysql/</link>
-      <guid>https://blog.fangyueming.cn/blog/docker-mysql/</guid>
-      <source url="https://blog.fangyueming.cn/rss.xml">Docker Mysql</source>
-      <pubDate>Fri, 18 Jun 2021 00:00:00 GMT</pubDate>
-      <content:encoded><![CDATA[<h1 id="docker-mysql"> Docker Mysql</h1>
-<h2 id="install"> Install</h2>
-<div><pre><code><span>#!/bin/bash</span>
-<span>#author: Yueming Fang</span>
-
-<span>name</span><span>=</span>mysql
-
-docker run -d --name <span>${name}</span> <span>\</span>
--v /root/docker/<span>${name}</span>/conf:/etc/mysql/conf.d <span>\</span>
--v /root/docker/<span>${name}</span>/logs:/usr/local/mysql/logs <span>\</span>
--v /root/docker/<span>${name}</span>/data:/var/lib/mysql <span>\</span>
--v /etc/localtime:/etc/localtime <span>\</span>
--e <span>MYSQL_ROOT_PASSWORD</span><span>=</span>password <span>\</span>
--p <span>3306</span>:3306 <span>\</span>
-mysql:latest
-</code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br><span>9</span><br><span>10</span><br><span>11</span><br><span>12</span><br><span>13</span><br></div></div><h2 id="backup"> Backup</h2>
-<div><pre><code><span>#!/bin/bash</span>
-<span># Author: Yueming Fang</span>
-<span># Update: 2021-06-18</span>
-<span>#</span>
-<span># Usage:</span>
-<span>#</span>
-<span># 1. add user to mysql</span>
-<span>#</span>
-<span># create user 'backup'@'localhost' identified by 'backup';</span>
-<span># grant SELECT, RELOAD, LOCK TABLES, REPLICATION CLIENT, SHOW VIEW, TRIGGER, PROCESS on *.* to 'backup'@'localhost';</span>
-<span>#</span>
-<span># 2. my.cnf</span>
-<span>#</span>
-<span># [mysqldump]</span>
-<span># user = backup</span>
-<span># password = backup</span>
-<span>#</span>
-<span># 3. bash</span>
-<span>#</span>
-<span># ./mysql-backup db1</span>
-<span>#</span>
-<span># 4. crontab -e</span>
-<span>#</span>
-<span># 0 1 * * * bash /root/bash/mysql-backup.sh db1</span>
-
-<span># define</span>
-<span>set</span> -ex
-<span>date</span><span>=</span><span><span>`</span><span>date</span> +%Y%m%d<span>`</span></span>
-<span>dir</span><span>=</span>/root/backup/mysql/<span>${date}</span>
-<span>db</span><span>=</span><span>$1</span>
-
-<span>echo</span> <span>${db}</span> <span>=</span><span>\</span><span>></span> <span>${dir}</span> <span>..</span>.
-
-<span># create dir</span>
-<span>if</span> <span>[</span> <span>!</span> -d <span>${dir}</span> <span>]</span><span>;</span> <span>then</span> <span>mkdir</span> -p <span>${dir}</span><span>;</span> <span>fi</span>
-
-<span># rm file of backup a week ago</span>
-<span># find ${dir} -ctime +7 -type f | xargs rm -rf</span>
-
-<span># rm dir of backup a week ago</span>
-<span>find</span> /root/backup/mysql/ -ctime +7 -type d <span>|</span> <span>xargs</span> <span>rm</span> -rf
-
-<span># backup everyday</span>
-<span># db1 => /root/backup/mysql/20210314/db1-20210314.sql.gz</span>
-<span># db2 => /root/backup/mysql/20210314/db2-20210314.sql.gz</span>
-<span># ...</span>
-docker <span>exec</span> mysql mysqldump --skip-opt --databases <span>${db}</span> <span>|</span> <span>gzip</span> <span>></span> <span>${dir}</span>/<span>${db}</span>-<span>${date}</span>.sql.gz
-</code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br><span>9</span><br><span>10</span><br><span>11</span><br><span>12</span><br><span>13</span><br><span>14</span><br><span>15</span><br><span>16</span><br><span>17</span><br><span>18</span><br><span>19</span><br><span>20</span><br><span>21</span><br><span>22</span><br><span>23</span><br><span>24</span><br><span>25</span><br><span>26</span><br><span>27</span><br><span>28</span><br><span>29</span><br><span>30</span><br><span>31</span><br><span>32</span><br><span>33</span><br><span>34</span><br><span>35</span><br><span>36</span><br><span>37</span><br><span>38</span><br><span>39</span><br><span>40</span><br><span>41</span><br><span>42</span><br><span>43</span><br><span>44</span><br><span>45</span><br><span>46</span><br><span>47</span><br></div></div><h2 id="cli"> CLI</h2>
-<div><pre><code>docker <span>exec</span> -it mysql <span>bash</span>
-</code></pre>
-<div><span>1</span><br></div></div>]]></content:encoded>
     </item>
     <item>
       <title>CentOS 8 安装</title>
@@ -1719,35 +1680,6 @@ yo
 ]]></content:encoded>
     </item>
     <item>
-      <title>JavaScript思维导图</title>
-      <link>https://blog.fangyueming.cn/blog/javascript-mind-map/</link>
-      <guid>https://blog.fangyueming.cn/blog/javascript-mind-map/</guid>
-      <source url="https://blog.fangyueming.cn/rss.xml">JavaScript思维导图</source>
-      <pubDate>Sat, 09 May 2015 00:00:00 GMT</pubDate>
-      <content:encoded><![CDATA[<h1 id="javascript思维导图"> JavaScript思维导图</h1>
-<h2 id="数据类型"> 数据类型</h2>
-<p><img src="./javascript/javascript-01-data-type.gif" alt="JavaScript数据类型" /></p>
-<h2 id="变量"> 变量</h2>
-<p><img src="./javascript/javascript-02-variable.gif" alt="JavaScript变量" /></p>
-<h2 id="数组"> 数组</h2>
-<p><img src="./javascript/javascript-03-array.gif" alt="JavaScript数组" /></p>
-<h2 id="运算符"> 运算符</h2>
-<p><img src="./javascript/javascript-04-operational-character.gif" alt="JavaScript运算符" /></p>
-<h2 id="函数"> 函数</h2>
-<p><img src="./javascript/javascript-05-function-base.gif" alt="JavaScript函数" /></p>
-<h2 id="流程"> 流程</h2>
-<p><img src="./javascript/javascript-06-process-statement.gif" alt="JavaScript流程" /></p>
-<h2 id="字符串函数"> 字符串函数</h2>
-<p><img src="./javascript/javascript-07-string-function.gif" alt="JavaScript字符串函数" /></p>
-<h2 id="正则表达式"> 正则表达式</h2>
-<p><img src="./javascript/javascript-08-regular-expressions.gif" alt="JavaScript正则表达式" /></p>
-<h2 id="windows对象"> Windows对象</h2>
-<p><img src="./javascript/javascript-09-windows-object.gif" alt="JavaScript Windows对象" /></p>
-<h2 id="dom操作"> DOM操作</h2>
-<p><img src="./javascript/javascript-10-dom-operation.gif" alt="JavaScript DOM操作" /></p>
-]]></content:encoded>
-    </item>
-    <item>
       <title>jQuery常用表格操作</title>
       <link>https://blog.fangyueming.cn/blog/jquery-table/</link>
       <guid>https://blog.fangyueming.cn/blog/jquery-table/</guid>
@@ -1953,227 +1885,43 @@ yo
 <div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br><span>9</span><br><span>10</span><br><span>11</span><br><span>12</span><br><span>13</span><br><span>14</span><br><span>15</span><br><span>16</span><br><span>17</span><br><span>18</span><br><span>19</span><br><span>20</span><br><span>21</span><br><span>22</span><br><span>23</span><br><span>24</span><br><span>25</span><br><span>26</span><br><span>27</span><br><span>28</span><br><span>29</span><br><span>30</span><br><span>31</span><br><span>32</span><br><span>33</span><br><span>34</span><br><span>35</span><br><span>36</span><br><span>37</span><br><span>38</span><br><span>39</span><br><span>40</span><br><span>41</span><br><span>42</span><br><span>43</span><br><span>44</span><br><span>45</span><br><span>46</span><br><span>47</span><br><span>48</span><br><span>49</span><br><span>50</span><br><span>51</span><br><span>52</span><br><span>53</span><br><span>54</span><br><span>55</span><br><span>56</span><br><span>57</span><br><span>58</span><br><span>59</span><br><span>60</span><br><span>61</span><br><span>62</span><br><span>63</span><br><span>64</span><br><span>65</span><br><span>66</span><br><span>67</span><br><span>68</span><br><span>69</span><br><span>70</span><br><span>71</span><br><span>72</span><br><span>73</span><br><span>74</span><br><span>75</span><br><span>76</span><br><span>77</span><br><span>78</span><br><span>79</span><br><span>80</span><br><span>81</span><br><span>82</span><br><span>83</span><br><span>84</span><br><span>85</span><br><span>86</span><br><span>87</span><br><span>88</span><br><span>89</span><br><span>90</span><br><span>91</span><br><span>92</span><br><span>93</span><br><span>94</span><br><span>95</span><br><span>96</span><br><span>97</span><br><span>98</span><br><span>99</span><br><span>100</span><br><span>101</span><br><span>102</span><br><span>103</span><br><span>104</span><br><span>105</span><br><span>106</span><br><span>107</span><br><span>108</span><br><span>109</span><br><span>110</span><br><span>111</span><br><span>112</span><br><span>113</span><br><span>114</span><br><span>115</span><br><span>116</span><br><span>117</span><br><span>118</span><br><span>119</span><br><span>120</span><br><span>121</span><br><span>122</span><br><span>123</span><br><span>124</span><br><span>125</span><br><span>126</span><br><span>127</span><br><span>128</span><br><span>129</span><br><span>130</span><br><span>131</span><br><span>132</span><br><span>133</span><br><span>134</span><br><span>135</span><br><span>136</span><br><span>137</span><br><span>138</span><br><span>139</span><br><span>140</span><br><span>141</span><br><span>142</span><br><span>143</span><br><span>144</span><br><span>145</span><br><span>146</span><br><span>147</span><br><span>148</span><br><span>149</span><br><span>150</span><br><span>151</span><br><span>152</span><br><span>153</span><br><span>154</span><br><span>155</span><br><span>156</span><br><span>157</span><br><span>158</span><br><span>159</span><br><span>160</span><br><span>161</span><br><span>162</span><br><span>163</span><br><span>164</span><br><span>165</span><br><span>166</span><br><span>167</span><br><span>168</span><br><span>169</span><br><span>170</span><br><span>171</span><br><span>172</span><br><span>173</span><br><span>174</span><br><span>175</span><br><span>176</span><br><span>177</span><br><span>178</span><br><span>179</span><br><span>180</span><br><span>181</span><br><span>182</span><br><span>183</span><br><span>184</span><br><span>185</span><br><span>186</span><br><span>187</span><br><span>188</span><br><span>189</span><br><span>190</span><br><span>191</span><br><span>192</span><br><span>193</span><br><span>194</span><br><span>195</span><br></div></div>]]></content:encoded>
     </item>
     <item>
-      <title>Docker、kubernetes和Apache Mesos之间的正确关系</title>
-      <link>https://blog.fangyueming.cn/blog/kubernetes-docker-mesos/</link>
-      <guid>https://blog.fangyueming.cn/blog/kubernetes-docker-mesos/</guid>
-      <source url="https://blog.fangyueming.cn/rss.xml">Docker、kubernetes和Apache Mesos之间的正确关系</source>
-      <pubDate>Sun, 29 Apr 2018 00:00:00 GMT</pubDate>
-      <content:encoded><![CDATA[<h1 id="docker、kubernetes和apache-mesos之间的正确关系"> Docker、kubernetes和Apache Mesos之间的正确关系</h1>
-<p><a href="http://www.techug.com/post/docker-vs-kubernetes-vs-apache-mesos.html" target="_blank" rel="noopener noreferrer">http://www.techug.com/post/docker-vs-kubernetes-vs-apache-mesos.html</a></p>
-<p>无数的文章、社交媒体在探讨Docker、kubernetes、Mesos三者之间孰优孰劣。如果你听信了某些一知半解者的言论，你可能会认为这三个开源项目正在为争夺容器霸权而殊死战斗。同时，你也会相信，在这三者间的选择无异于对其所奉宗教的信仰，而且真正的信徒敢于大胆和异教徒作斗争，并且拥护自己的信仰。</p>
-<p>那些都是扯淡。</p>
-<p>虽然这三种技术都可以使用容器来部署、管理和扩展应用程序，但实际上它们每个都侧重解决不同的问题，并且扎根非常不同的环境之上。事实上，这三种被广泛采用的工具链彼此完全不同。</p>
-<p>与其比较这些快速演进的技术的重叠特性，不如让我们回顾一下每个项目的原始任务、架构以及它们之间如何相互补充和交互。</p>
-<h2 id="docker"> Docker</h2>
-<p>今天的Docker公司脱胎于一个平台即服务的初创公司dotCloud。dotCloud团队发现，在许多应用程序和客户之间管理依赖关系和二进制文件需要做大量的工作。因此，他们将Linux cgroups和namespaces的一些功能组合成一个简单易用的包，这样应用程序就可以在任何基础设施上持续运行。这个包就是Docker镜像，它提供以下功能:</p>
-<ol>
-<li>
-<p>将应用程序和库封装在单个包中(Docker镜像)，因此应用程序可以跨多环境一致部署;
-提供类似于git的语义，例如“dockerpush”，“docker commit”，这样可以让应用程序开发人员可以轻松地采用新技术，并将其融入到现有的workflow中;</p>
-</li>
-<li>
-<p>将Docker镜像定义为不可变层，启用不可变的基础设施。提交的更改被存储为一个单独的只读层，这让镜像复用和跟踪更改变得更加容易。另外，层还可以通过传输更新而不是整个镜像来节省磁盘空间和网络流量;</p>
-</li>
-<li>
-<p>通过使用可以临时存储运行时更改的可写层来实例化不可变映像，从而方便快速部署和扩展应用程序的多个实例。</p>
-</li>
-<li>
-<p>随着Docker的风靡，开发人员开始从笔记本电脑转移到在生产环境中运行。这就需要借助工具来协调这些容器，我们称为容器编排。有趣的是，Apache Mesos的Marathon成为当时(2014年6月)第一个支持Docker镜像的容器编排工具(我们将在下面详细描述它)。就连Docker创始人、首席技术官Solomon Hykes也推荐Mesos为“生产集群的黄金标准”。不久之后，除了Marathon之外，许多容器编排技术出现了，这其中包括：Nomad、kubernetes、DockerSwarm(现在是Docker引擎的一部分)。</p>
-</li>
-</ol>
-<p>随着Docker开始商业化开源文件格式，该公司也开始引入工具来补充核心Docker文件格式和runtime引擎，包括:</p>
+      <title>图解Git常用操作</title>
+      <link>https://blog.fangyueming.cn/blog/git/</link>
+      <guid>https://blog.fangyueming.cn/blog/git/</guid>
+      <source url="https://blog.fangyueming.cn/rss.xml">图解Git常用操作</source>
+      <pubDate>Sat, 28 Apr 2018 00:00:00 GMT</pubDate>
+      <content:encoded><![CDATA[<h1 id="图解git常用操作"> 图解Git常用操作</h1>
+<h2 id="git"> git</h2>
+<p>你真的需要记住那么多Git操作吗？
+也许阮一峰老师的<a href="http://www.ruanyifeng.com/blog/2015/12/git-cheat-sheet.html" target="_blank" rel="noopener noreferrer">《常用Git命令清单》</a>就够了。
+<img src="./assets/git.png" alt="Git常见操作图解" /></p>
+<h2 id="git-subtree"> git subtree</h2>
+<p>项目包含子项目这么办？是时候让你出场了！show time！</p>
 <ul>
-<li>Docker hub</li>
-<li>Docker registry</li>
-<li>Docker cloud</li>
-<li>Docker datacenter</li>
+<li><a href="https://segmentfault.com/a/1190000012002151" target="_blank" rel="noopener noreferrer">git subtree教程</a></li>
+<li><a href="https://segmentfault.com/a/1190000003969060" target="_blank" rel="noopener noreferrer">用 Git Subtree 在多个 Git 项目间双向同步子项目</a></li>
 </ul>
-<p><img src="./kubernetes/docker-architecture.png" alt="Docker结构" /></p>
-<p>​Docker让开发者可以打包他们的应用以及依赖包到一个可移植的容器中的特性，使其成为软件行业的游戏规则改变者;这有点类似mp3格式帮助重塑了音乐产业。Docker文件格式成为行业标准，并且领导容器技术供应商(包括Docker、Pivotal, Mesosphere以及其他许多)成立CNCF和OCI。今天，CNCF和OCI的目标就是确保跨容器技术的互操作性和标准化接口，并确保使用任何工具构建的Docker容器，都可以在任何runtime或基础设施上运行。</p>
-<h2 id="kubernetes"> kubernetes</h2>
-<p>谷歌很早就认识到Docker镜像的潜力，并试图在谷歌云平台上交付“容器编排即服务”。谷歌在容器方面有丰富的经验(他们在Linux中引入了cgroups)，但是现有的内部容器和像Borg这样的分布式计算工具与它们的基础设施直接耦合。因此，谷歌没有使用现有系统中的任何代码，而是从头开始设计了kubernetes，以编排Docker容器。kubernetes于2015年2月发布，并提出以下目标和考虑:</p>
-<ol>
-<li>为应用程序开发人员提供一个强大的工具，用于Docker容器编排，而不必与底层基础设施交互;</li>
-<li>跨云环境下，为一致的应用程序部署经验和APIs 提供标准部署接口和原型;</li>
-<li>构建一个模块化的API核心，允许供应商围绕核心kubernetes技术集成系统。</li>
-</ol>
-<p>截至2016年3月，谷歌向CNCF捐赠了kubernetes，至今谷歌仍是该项目的主要贡献者(其次是Redhat、CoreOS等)。</p>
-<p><img src="./kubernetes/architecture-2.png" alt="kubernetes结构" /></p>
-<p>kubernetes对应用程序开发人员非常有吸引力，因为它减少了对基础设施和操作团队的依赖。供应商也非常喜欢kubernetes，因为它提供了一种简单的方式来让他们拥抱容器运动，并为他们运行自己的kubernetes部署提供一个商业化解决方案。kubernetes之所以很有吸引力，因为它是CNCF下的开源项目，与Docker集群相比，后者虽然是开源的，但却受到Docker Inc .的严格控制。</p>
-<p>kubernetes的核心优势是为应用程序开发人员提供强大的工具来编排无状态的Docker容器。虽然有多个计划将项目的范围扩展到更多的工作负载(如分析和有状态的数据服务)，但这些计划仍然处于非常早期的阶段，还有待观察。</p>
-<h2 id="apache-mesos"> Apache Mesos</h2>
-<p>Apache Mesos最初是UCBerkeley为创建下一代集群管理器而诞生的项目，并从如谷歌的Borg和Facebook的Tupperware中吸取经验教训。但是Borg和Tupperware是单体架构，并且是和物理基础设施绑定的封源专有技术。Mesos引入了模块化架构，采用开源的方法，且其设计完全独立于底层基础架构。基于这些因素，Mesos很快被Twitter、Apple(Siri)、Yelp、Uber、Netflix以及许多领先的科技公司所采用，以支持他们在微服务、大数据和实时分析到弹性伸缩的一切实践。</p>
-<p>作为一个集群管理器，Mesos的架构是为了解决一组非常不同的挑战:</p>
-<ol>
-<li>将数据中心资源整合成一个单一的池，以简化资源配置，同时在私有或公共云之间提供一致的应用程序和操作体验;</li>
-<li>在相同的基础设施上使用不同的工作负载，比如分析、无状态微服务、分布式数据服务和传统应用程序，以提高利用率，降低成本和空间;</li>
-<li>特定应用程序的任务(如部署、自修复、扩展和升级)设置为自动化day-two 操作;提供高可用的容错基础设施;</li>
-<li>在不修改集群管理器或现有应用程序的情况下，提供常绿的可扩展性来运行新的应用程序和技术;</li>
-<li>将应用程序和底层基础设施弹性扩展到数万个节点。</li>
-</ol>
-<p>Mesos的独特之处还在于，可以单独管理各种不同的工作负载——包括传统的应用程序，如Java、无状态Docker微服务、批处理作业、实时分析和有状态的分布式数据服务。Mesos广泛的工作负载覆盖来自于它的两级架构，它支持“应用感知”的调度。应用感知调度是通过将应用程序特定操作逻辑封装到“Mesos框架”(类似于运行中的runbook)来完成的。</p>
-<p>Mesos Master资源管理器，提供这些底层基础设施的框架部分，同时保持隔离。这种方法允许每个工作负载有自己专用的应用程序调度器，它了解其对部署、缩放和升级的具体操作需求。应用程序调度程序也独立地被开发、管理和更新，这让Mesos保持高度可扩展性，支持新的工作负载，或者随着时间的推移增加更多的操作能力。</p>
-<p><img src="./kubernetes/mesos.png" alt="Mesos结构" /></p>
-<p>以一个团队如何管理升级为例。无状态应用程序可以从“蓝/绿”部署方法中获益;当旧的应用程序还在使用的时候，另一个完整版本的应用程序已经spun up，当旧的应用程序被销毁时，流量切换到新的应用程序。但是，升级像HDFS或Cassandra这样的数据工作负载需要一次脱机，维护本地数据量以避免数据丢失，执行特定序列的升级，并在升级之前和之后对每个节点类型执行特殊检查和命令。这些步骤中的所有环节针对特定的应用程序或服务，甚至是特定版本进行的。这使得用常规容器编排调度器管理数据服务变得非常困难。</p>
-<p>Mesos具备按需管理每个工作负载的能力，使得许多公司将Mesos作为一个统一的平台，并通过其将微服务和数据服务结合运行。运行数据密集型应用程序的一个通用参考架构是“SMACK堆栈”。</p>
-<h2 id="清晰时刻"> 清晰时刻</h2>
-<p>注意：我们在描述Apache Mesos的过程中，没有提及任何关于容器编排的内容。那么，为什么人们总是会将Mesos与容器编排联系起来呢？容器编排是一个可以在Mesos模块化架构上运行的工作负载的例子，它使用的是构建在Mesos上的一个专门的编排“框架”Marathon。Marathon最初是为了在cgroup容器中编排应用程序(如JARs、tarball、ZIP文件)而开发的，并且在2014年成为第一批支持Docker容器的容器编排之一。</p>
-<p>因此，当人们拿Docker、kubernetes和Mesos比较时，他们实际上是在对比kubernetes、Docker Swarm和Mesos上运行的Marathon。</p>
-<p>为什么这很重要？因为Mesos根本不关心上面跑的是什么。Mesos可以为Java应用服务器、Docker容器编排、Jenkins CI Jobs, Apache Spark analytics, Apache Kafka streaming以及更多的共享基础设施提供集群服务。Mesos甚至可以运行kubernetes或其他容器编排，尽管还没有对外集成。</p>
-<p>Mesos的另一个考虑(以及为什么它对许多企业架构师有吸引力)是它在运行任务关键工作负载时的成熟度。Mesos已经在大规模生产环境下运行(数万台服务器)超过7年，这就是为什么它比市场上其他技术更成熟，更可靠的原因。</p>
-<h2 id="这一切意味着什么"> 这一切意味着什么？</h2>
-<p>总之，这三种技术都与Docker容器有关，并允许您访问容器编排，以获得应用程序的可移植性和伸缩性。那么在这三者间要如何选择呢？这就要视不同的工作环境需求而定，工作需求不同，所适用的工具自然也是各不相同。如果您是一名应用程序开发人员，并且正在寻找一种现代的方法来构建和打包您的应用程序，或者加快微服务项目，那么Docker容器格式和开发工具是你最好的选择。</p>
-<p>如果你是一个dev / devops团队,想要构建一个专门的docker容器编排系统,并愿意亲自动手让你的解决方案和底层基础设施集成(或依赖于公共云基础设施如谷歌引擎或Azure容器服务),kubernetes将是你一个很好的选项。</p>
-<p>如果您想构建一个可靠的平台，用以运行多任务关键工作负载，包括Docker容器、遗留应用程序(例如Java)和分布式数据服务(例如Spark、Kafka、Cassandra、Elastic)，并希望所有这些都可以在云或数据中心上可移植，那么，Mesos是最适合你的。</p>
-<p>无论你作何选择，你所拥抱的一系列工具都将提升你的服务器资源利用率，同时简化应用程序移植，并提高开发人员的敏捷性。你真的值得拥有！</p>
+<p><img src="./assets/git-subtree.png" alt="git subtree" /></p>
+<div><pre><code><span># 克隆主项目仓库到本地</span>
+<span>git</span> clone https://coding.net/axolo/lcoamaxy
+<span># 建立子项目，并从远程克隆子项目到本地对应目录</span>
+<span>git</span> subtree <span>add</span> --prefix<span>=</span>www origin coding-pages
+<span># 主项目正常提交</span>
+<span>git</span> <span>add</span> --all
+<span>git</span> commit -m <span>"use git subtree"</span>
+<span>git</span> push
+<span># 提交子项目的变更到远程仓库</span>
+<span>git</span> subtree push -P www/ origin coding-pages
+<span># 从远程获取子项目的变更</span>
+<span>git</span> subtree pull -P www/ origin coding-pages
+<span># 在子项目生成新分支hotfix-001</span>
+<span>git</span> subtree push -P www/ origin hotfix-001
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br><span>9</span><br><span>10</span><br><span>11</span><br><span>12</span><br><span>13</span><br><span>14</span><br></div></div><blockquote>
+<p>方跃明
+2018-4-28</p>
+</blockquote>
 ]]></content:encoded>
-    </item>
-    <item>
-      <title>kubernetes安装指南</title>
-      <link>https://blog.fangyueming.cn/blog/kubernetes-install/</link>
-      <guid>https://blog.fangyueming.cn/blog/kubernetes-install/</guid>
-      <source url="https://blog.fangyueming.cn/rss.xml">kubernetes安装指南</source>
-      <pubDate>Sun, 29 Apr 2018 00:00:00 GMT</pubDate>
-      <content:encoded><![CDATA[<h1 id="kubernetes安装指南"> kubernetes安装指南</h1>
-<p><img src="./kubernetes/container.jpg" alt="容器生态圈" /></p>
-<h2 id="简介"> 简介</h2>
-<h3 id="kubernetes"> kubernetes</h3>
-<p>kubernetes（简称k8s）是Google开源的容器集群管理系统。它构建Ddocker技术之上，为容器化的应用提供资源调度、部署运行、服务发现、扩容缩容等整一套功能，本质上可看作是基于容器技术的mini-PaaS平台。</p>
-<p><img src="./kubernetes/architecture.png" alt="kubernetes" /></p>
-<h3 id="kubernetes-master"> kubernetes-master</h3>
-<ul>
-<li>kube-apiserver：k8s的管理接口</li>
-<li>kube-scheduer：k8s调度器，容器的启动、迁移、扩容缩减时候，选择哪个node，就看它了。</li>
-<li>kube-controller-manager：k8s对node的控制行为，比如怎么去调用node启动一个容器。</li>
-</ul>
-<h3 id="kubernetes-node"> kubernetes-node</h3>
-<ul>
-<li>kubelet：负责node的管理，基本所有操作都靠它。</li>
-<li>kube-proxy：每个node里的container都在一个私有网络中，kube-proxy的作用就是做一个反向代理，让访问者访问这个node的时候，可以转发到内部对应的container。</li>
-</ul>
-<h3 id="flannel"> flannel</h3>
-<p>flannel可以为容器提供网络服务。其模型为全部的容器使用一个network，然后在每个host上从network中划分一个子网subnet。为host上的容器创建网络时，从subnet中划分一个ip给容器。其采用目前比较流行的no server的方式，即不存在所谓的控制节点，而是每个host上的flanneld从一个etcd中获取相关数据，然后声明自己的子网网段，并记录在etcd中。其他的host对数据转发时，从etcd中查询到该子网所在的host的ip，然后将数据发往对应host上的flanneld，交由其进行转发。根据kubernetes的模型，即为每个pod提供一个ip。flannel的模型正好与之契合。因此flannel是最简单易用的kubernetes集群网络方案。</p>
-<p><img src="./kubernetes/cluster.png" alt="flannel" /></p>
-<h3 id="etcd"> etcd</h3>
-<p>在分布式系统中，如何管理节点间的状态一直是一个难题，etcd像是专门为集群环境的服务发现和注册而设计，它提供了数据TTL失效、数据改变监视、多值、目录监听、分布式锁原子操作等功能，可以方便的跟踪并管理集群节点的状态。etcd的特性如下：</p>
-<ul>
-<li>简单: curl可访问的用户的API（HTTP+JSON）</li>
-<li>安全: 可选的SSL客户端证书认证</li>
-<li>快速: 单实例每秒 1000 次写操作</li>
-<li>可靠: 使用Raft保证一致性</li>
-</ul>
-<p>etcd是CoreOS的核心组件，负责节点间的服务发现和配置共享，运行在CoreOS中的应用可以通过etcd读取或者写入数据。虽然etcd是为CoreOS而设计，但其可以运行在多个平台上，包括 OS X、Linux、BSD。角色功能如下：</p>
-<ul>
-<li>作为kubernetes的数据库，存储了k8s自身的信息、以及各种业务容器信息等。</li>
-<li>存储flannel网络配置信息，供各节点协调。</li>
-</ul>
-<p><img src="./kubernetes/etcd.png" alt="etcd" /></p>
-<h3 id="docker"> docker</h3>
-<p>Docker 是一个开源的应用容器引擎，让开发者可以打包他们的应用以及依赖包到一个可移植的容器中，然后发布到任何流行的Linux机器上，也可以实现虚拟化，容器是完全使用沙箱机制，相互之间不会有任何接口。一个完整的Docker有以下几个部分组成：</p>
-<ul>
-<li>Client：客户端</li>
-<li>Daemon：守护进程</li>
-<li>Container：容器</li>
-<li>Image：镜像</li>
-</ul>
-<p><img src="./kubernetes/docker.png" alt="docker" /></p>
-<h2 id="规划"> 规划</h2>
-<p>本例虽然均用IP进行操作，但是建议部署的时候，建议用hosts或者DNS取代IP。</p>
-<table>
-<thead>
-<tr>
-<th>类型</th>
-<th>组件</th>
-<th style="text-align:center">数量</th>
-<th>IP</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Master</td>
-<td>kubernetes-master etcd</td>
-<td style="text-align:center">1</td>
-<td>192.168.20.25</td>
-</tr>
-<tr>
-<td>Node</td>
-<td>kubernetes-node docker flannel</td>
-<td style="text-align:center">2</td>
-<td>192.168.20.22 192.168.20.26</td>
-</tr>
-</tbody>
-</table>
-<p><img src="./kubernetes/flannel.png" alt="kubernetes with Flannel" /></p>
-<h3 id="前提"> 前提</h3>
-<ul>
-<li>SELinux关闭</li>
-<li>firewalld开放8080、2379端口</li>
-</ul>
-<h2 id="配置"> 配置</h2>
-<h3 id="etcd配置"> etcd配置</h3>
-<div><pre><code><span># 安装</span>
-yum <span>install</span> etcd
-</code></pre>
-<div><span>1</span><br><span>2</span><br></div></div><div><pre><code><span># 配置 /etc/etcd/etcd.conf</span>
-<span>ETCD_NAME</span><span>=</span><span>default</span>
-<span>ETCD_DATA_DIR</span><span>=</span><span>"<span>/var/lib/etcd/default.etcd</span>"</span>
-<span>ETCD_LISTEN_CLIENT_URLS</span><span>=</span><span>"<span>http://0.0.0.0:2379</span>"</span>
-<span>ETCD_ADVERTISE_CLIENT_URLS</span><span>=</span><span>"<span>http://192.168.20.25:2379</span>"</span>
-</code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br></div></div><div><pre><code><span># 启动</span>
-systemctl <span>enable</span> etcd
-systemctl start etcd
-</code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br></div></div><div><pre><code>etcdctl <span>set</span> /coreos.com/network/config <span>'{ "Network": "10.1.0.0/16" }'</span>
-</code></pre>
-<div><span>1</span><br></div></div><h4 id="master"> master</h4>
-<div><pre><code><span># 安装</span>
-yum <span>install</span> kubernetes-master
-</code></pre>
-<div><span>1</span><br><span>2</span><br></div></div><div><pre><code><span># 配置 /etc/kubernetes/apiserver</span>
-<span>KUBE_API_ADDRESS</span><span>=</span><span>"<span>--address=0.0.0.0</span>"</span>
-<span>KUBE_ETCD_SERVERS</span><span>=</span><span>"<span>--etcd_servers=http://192.168.20.25:2379</span>"</span>
-<span>KUBE_SERVICE_ADDRESSES</span><span>=</span><span>"<span>--service-cluster-ip-range=10.254.0.0/16</span>"</span>
-<span>KUBE_ADMISSION_CONTROL</span><span>=</span><span>"<span>--admission_control=NamespaceLifecycle,NamespaceExists,LimitRanger,SecurityContextDeny,ResourceQuota</span>"</span>
-<span>KUBE_API_ARGS</span><span>=</span><span>""</span>
-</code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br></div></div><div><pre><code><span># 配置 /etc/kubernetes/controller-manager</span>
-<span>KUBE_CONTROLLER_MANAGER_ARGS</span><span>=</span><span>"<span>--node-monitor-grace-period=10s --pod-eviction-timeout=10s</span>"</span>
-</code></pre>
-<div><span>1</span><br><span>2</span><br></div></div><div><pre><code><span># 配置 /etc/kubernetes/config</span>
-<span>KUBE_LOGTOSTDERR</span><span>=</span><span>"<span>--logtostderr=true</span>"</span>
-<span>KUBE_LOG_LEVEL</span><span>=</span><span>"<span>--v=0</span>"</span>
-<span>KUBE_ALLOW_PRIV</span><span>=</span><span>"<span>--allow_privileged=false</span>"</span>
-<span>KUBE_MASTER</span><span>=</span><span>"<span>--master=http://192.168.20.25:8080</span>"</span>
-</code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br></div></div><div><pre><code><span># 启动服务</span>
-systemctl <span>enable</span> kube-apiserver kube-scheduler kube-controller-manager
-systemctl start kube-apiserver kube-scheduler kube-controller-manager
-</code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br></div></div><h3 id="node"> node</h3>
-<div><pre><code><span># 安装</span>
-yum <span>install</span> kubernetes-node flannel docker
-</code></pre>
-<div><span>1</span><br><span>2</span><br></div></div><div><pre><code><span># 配置 /etc/kubernetes/config</span>
-<span>KUBE_LOGTOSTDERR</span><span>=</span><span>"<span>--logtostderr=true</span>"</span>
-<span>KUBE_LOG_LEVEL</span><span>=</span><span>"<span>--v=0</span>"</span>
-<span>KUBE_ALLOW_PRIV</span><span>=</span><span>"<span>--allow_privileged=false</span>"</span>
-<span>KUBE_MASTER</span><span>=</span><span>"<span>--master=http://192.168.20.25:8080</span>"</span>
-</code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br></div></div><div><pre><code><span># 配置 /etc/kubernetes/kubelet</span>
-<span>KUBELET_ADDRESS</span><span>=</span><span>"<span>--address=127.0.0.1</span>"</span>
-<span>KUBELET_HOSTNAME</span><span>=</span><span>"<span>--hostname_override=192.168.20.22</span>"</span>
-<span>KUBELET_API_SERVER</span><span>=</span><span>"<span>--api_servers=http://192.168.20.25:8080</span>"</span>
-<span>KUBELET_ARGS</span><span>=</span><span>"<span>--pod-infra-container-image=kubernetes/pause</span>"</span>
-</code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br></div></div><div><pre><code><span># 配置 /etc/sysconfig/flanneld</span>
-<span>FLANNEL_ETCD</span><span>=</span><span>"<span>http://192.168.20.25:2379</span>"</span>
-<span>FLANNEL_ETCD_KEY</span><span>=</span><span>"<span>/coreos.com/network</span>"</span>
-</code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br></div></div><div><pre><code>systemctl <span>enable</span> kubelet kube-proxy flanenld docker
-systemctl start kubelet kube-proxy flanneld docker
-</code></pre>
-<div><span>1</span><br><span>2</span><br></div></div>]]></content:encoded>
     </item>
     <item>
       <title>LeoPHP Framework</title>
@@ -2395,38 +2143,256 @@ systemctl start kubelet kube-proxy flanneld docker
 ]]></content:encoded>
     </item>
     <item>
-      <title>Linux个人目录规划</title>
-      <link>https://blog.fangyueming.cn/blog/linux-home/</link>
-      <guid>https://blog.fangyueming.cn/blog/linux-home/</guid>
-      <source url="https://blog.fangyueming.cn/rss.xml">Linux个人目录规划</source>
-      <pubDate>Thu, 03 Apr 2014 00:00:00 GMT</pubDate>
-      <content:encoded><![CDATA[<h1 id="linux个人目录规划"> Linux个人目录规划</h1>
-<div><pre><code>~
-|-- .bashrc                                 # 启动配置文件
-|-- bin                                     # 可执行脚本
-|   |-- mysql-back.sh                       #   MySQL备份
-|   `-- mysql57.sh                          #   MySQL 5.7 相关
-|-- usr                                     # 应用目录
-|   |-- mysql-5.7                           #   MySQL 5.7
-|   |-- nginx                               #   NGiNX
-|   |-- node                                #   Node.js
-|   `-- redis                               #   Redis
-|-- backup                                  # 备份目录
-|   |-- mysql                               #   MySQL
-|   |-- crontab                             #   自动任务
-|   `-- certs                               #   证书
-|-- projects                                # 项目
-|   |-- github                              #   GitHUB
-|   `-- coding                              #   Coding.net
-|-- downloads                               # 下载
-|   |-- git-2.9.5.tar                       #   Git
-|   |-- node-v9.11.2-linux-x86.tar.gz       #   Node.js
-|   |-- yarn-v1.12.3.tar.gz                 #   Yarn
-|   `-- nginx-5.7.tar.gz                    #   NGiNX
-|-- logs                                    # 日志
-`-- tmp                                     # 临时文件
+      <title>JavaScript思维导图</title>
+      <link>https://blog.fangyueming.cn/blog/javascript-mind-map/</link>
+      <guid>https://blog.fangyueming.cn/blog/javascript-mind-map/</guid>
+      <source url="https://blog.fangyueming.cn/rss.xml">JavaScript思维导图</source>
+      <pubDate>Sat, 09 May 2015 00:00:00 GMT</pubDate>
+      <content:encoded><![CDATA[<h1 id="javascript思维导图"> JavaScript思维导图</h1>
+<h2 id="数据类型"> 数据类型</h2>
+<p><img src="./javascript/javascript-01-data-type.gif" alt="JavaScript数据类型" /></p>
+<h2 id="变量"> 变量</h2>
+<p><img src="./javascript/javascript-02-variable.gif" alt="JavaScript变量" /></p>
+<h2 id="数组"> 数组</h2>
+<p><img src="./javascript/javascript-03-array.gif" alt="JavaScript数组" /></p>
+<h2 id="运算符"> 运算符</h2>
+<p><img src="./javascript/javascript-04-operational-character.gif" alt="JavaScript运算符" /></p>
+<h2 id="函数"> 函数</h2>
+<p><img src="./javascript/javascript-05-function-base.gif" alt="JavaScript函数" /></p>
+<h2 id="流程"> 流程</h2>
+<p><img src="./javascript/javascript-06-process-statement.gif" alt="JavaScript流程" /></p>
+<h2 id="字符串函数"> 字符串函数</h2>
+<p><img src="./javascript/javascript-07-string-function.gif" alt="JavaScript字符串函数" /></p>
+<h2 id="正则表达式"> 正则表达式</h2>
+<p><img src="./javascript/javascript-08-regular-expressions.gif" alt="JavaScript正则表达式" /></p>
+<h2 id="windows对象"> Windows对象</h2>
+<p><img src="./javascript/javascript-09-windows-object.gif" alt="JavaScript Windows对象" /></p>
+<h2 id="dom操作"> DOM操作</h2>
+<p><img src="./javascript/javascript-10-dom-operation.gif" alt="JavaScript DOM操作" /></p>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>kubernetes安装指南</title>
+      <link>https://blog.fangyueming.cn/blog/kubernetes-install/</link>
+      <guid>https://blog.fangyueming.cn/blog/kubernetes-install/</guid>
+      <source url="https://blog.fangyueming.cn/rss.xml">kubernetes安装指南</source>
+      <pubDate>Sun, 29 Apr 2018 00:00:00 GMT</pubDate>
+      <content:encoded><![CDATA[<h1 id="kubernetes安装指南"> kubernetes安装指南</h1>
+<p><img src="./kubernetes/container.jpg" alt="容器生态圈" /></p>
+<h2 id="简介"> 简介</h2>
+<h3 id="kubernetes"> kubernetes</h3>
+<p>kubernetes（简称k8s）是Google开源的容器集群管理系统。它构建Ddocker技术之上，为容器化的应用提供资源调度、部署运行、服务发现、扩容缩容等整一套功能，本质上可看作是基于容器技术的mini-PaaS平台。</p>
+<p><img src="./kubernetes/architecture.png" alt="kubernetes" /></p>
+<h3 id="kubernetes-master"> kubernetes-master</h3>
+<ul>
+<li>kube-apiserver：k8s的管理接口</li>
+<li>kube-scheduer：k8s调度器，容器的启动、迁移、扩容缩减时候，选择哪个node，就看它了。</li>
+<li>kube-controller-manager：k8s对node的控制行为，比如怎么去调用node启动一个容器。</li>
+</ul>
+<h3 id="kubernetes-node"> kubernetes-node</h3>
+<ul>
+<li>kubelet：负责node的管理，基本所有操作都靠它。</li>
+<li>kube-proxy：每个node里的container都在一个私有网络中，kube-proxy的作用就是做一个反向代理，让访问者访问这个node的时候，可以转发到内部对应的container。</li>
+</ul>
+<h3 id="flannel"> flannel</h3>
+<p>flannel可以为容器提供网络服务。其模型为全部的容器使用一个network，然后在每个host上从network中划分一个子网subnet。为host上的容器创建网络时，从subnet中划分一个ip给容器。其采用目前比较流行的no server的方式，即不存在所谓的控制节点，而是每个host上的flanneld从一个etcd中获取相关数据，然后声明自己的子网网段，并记录在etcd中。其他的host对数据转发时，从etcd中查询到该子网所在的host的ip，然后将数据发往对应host上的flanneld，交由其进行转发。根据kubernetes的模型，即为每个pod提供一个ip。flannel的模型正好与之契合。因此flannel是最简单易用的kubernetes集群网络方案。</p>
+<p><img src="./kubernetes/cluster.png" alt="flannel" /></p>
+<h3 id="etcd"> etcd</h3>
+<p>在分布式系统中，如何管理节点间的状态一直是一个难题，etcd像是专门为集群环境的服务发现和注册而设计，它提供了数据TTL失效、数据改变监视、多值、目录监听、分布式锁原子操作等功能，可以方便的跟踪并管理集群节点的状态。etcd的特性如下：</p>
+<ul>
+<li>简单: curl可访问的用户的API（HTTP+JSON）</li>
+<li>安全: 可选的SSL客户端证书认证</li>
+<li>快速: 单实例每秒 1000 次写操作</li>
+<li>可靠: 使用Raft保证一致性</li>
+</ul>
+<p>etcd是CoreOS的核心组件，负责节点间的服务发现和配置共享，运行在CoreOS中的应用可以通过etcd读取或者写入数据。虽然etcd是为CoreOS而设计，但其可以运行在多个平台上，包括 OS X、Linux、BSD。角色功能如下：</p>
+<ul>
+<li>作为kubernetes的数据库，存储了k8s自身的信息、以及各种业务容器信息等。</li>
+<li>存储flannel网络配置信息，供各节点协调。</li>
+</ul>
+<p><img src="./kubernetes/etcd.png" alt="etcd" /></p>
+<h3 id="docker"> docker</h3>
+<p>Docker 是一个开源的应用容器引擎，让开发者可以打包他们的应用以及依赖包到一个可移植的容器中，然后发布到任何流行的Linux机器上，也可以实现虚拟化，容器是完全使用沙箱机制，相互之间不会有任何接口。一个完整的Docker有以下几个部分组成：</p>
+<ul>
+<li>Client：客户端</li>
+<li>Daemon：守护进程</li>
+<li>Container：容器</li>
+<li>Image：镜像</li>
+</ul>
+<p><img src="./kubernetes/docker.png" alt="docker" /></p>
+<h2 id="规划"> 规划</h2>
+<p>本例虽然均用IP进行操作，但是建议部署的时候，建议用hosts或者DNS取代IP。</p>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>组件</th>
+<th style="text-align:center">数量</th>
+<th>IP</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Master</td>
+<td>kubernetes-master etcd</td>
+<td style="text-align:center">1</td>
+<td>192.168.20.25</td>
+</tr>
+<tr>
+<td>Node</td>
+<td>kubernetes-node docker flannel</td>
+<td style="text-align:center">2</td>
+<td>192.168.20.22 192.168.20.26</td>
+</tr>
+</tbody>
+</table>
+<p><img src="./kubernetes/flannel.png" alt="kubernetes with Flannel" /></p>
+<h3 id="前提"> 前提</h3>
+<ul>
+<li>SELinux关闭</li>
+<li>firewalld开放8080、2379端口</li>
+</ul>
+<h2 id="配置"> 配置</h2>
+<h3 id="etcd配置"> etcd配置</h3>
+<div><pre><code><span># 安装</span>
+yum <span>install</span> etcd
 </code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br><span>9</span><br><span>10</span><br><span>11</span><br><span>12</span><br><span>13</span><br><span>14</span><br><span>15</span><br><span>16</span><br><span>17</span><br><span>18</span><br><span>19</span><br><span>20</span><br><span>21</span><br><span>22</span><br><span>23</span><br><span>24</span><br></div></div>]]></content:encoded>
+<div><span>1</span><br><span>2</span><br></div></div><div><pre><code><span># 配置 /etc/etcd/etcd.conf</span>
+<span>ETCD_NAME</span><span>=</span><span>default</span>
+<span>ETCD_DATA_DIR</span><span>=</span><span>"<span>/var/lib/etcd/default.etcd</span>"</span>
+<span>ETCD_LISTEN_CLIENT_URLS</span><span>=</span><span>"<span>http://0.0.0.0:2379</span>"</span>
+<span>ETCD_ADVERTISE_CLIENT_URLS</span><span>=</span><span>"<span>http://192.168.20.25:2379</span>"</span>
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br></div></div><div><pre><code><span># 启动</span>
+systemctl <span>enable</span> etcd
+systemctl start etcd
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br></div></div><div><pre><code>etcdctl <span>set</span> /coreos.com/network/config <span>'{ "Network": "10.1.0.0/16" }'</span>
+</code></pre>
+<div><span>1</span><br></div></div><h4 id="master"> master</h4>
+<div><pre><code><span># 安装</span>
+yum <span>install</span> kubernetes-master
+</code></pre>
+<div><span>1</span><br><span>2</span><br></div></div><div><pre><code><span># 配置 /etc/kubernetes/apiserver</span>
+<span>KUBE_API_ADDRESS</span><span>=</span><span>"<span>--address=0.0.0.0</span>"</span>
+<span>KUBE_ETCD_SERVERS</span><span>=</span><span>"<span>--etcd_servers=http://192.168.20.25:2379</span>"</span>
+<span>KUBE_SERVICE_ADDRESSES</span><span>=</span><span>"<span>--service-cluster-ip-range=10.254.0.0/16</span>"</span>
+<span>KUBE_ADMISSION_CONTROL</span><span>=</span><span>"<span>--admission_control=NamespaceLifecycle,NamespaceExists,LimitRanger,SecurityContextDeny,ResourceQuota</span>"</span>
+<span>KUBE_API_ARGS</span><span>=</span><span>""</span>
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br></div></div><div><pre><code><span># 配置 /etc/kubernetes/controller-manager</span>
+<span>KUBE_CONTROLLER_MANAGER_ARGS</span><span>=</span><span>"<span>--node-monitor-grace-period=10s --pod-eviction-timeout=10s</span>"</span>
+</code></pre>
+<div><span>1</span><br><span>2</span><br></div></div><div><pre><code><span># 配置 /etc/kubernetes/config</span>
+<span>KUBE_LOGTOSTDERR</span><span>=</span><span>"<span>--logtostderr=true</span>"</span>
+<span>KUBE_LOG_LEVEL</span><span>=</span><span>"<span>--v=0</span>"</span>
+<span>KUBE_ALLOW_PRIV</span><span>=</span><span>"<span>--allow_privileged=false</span>"</span>
+<span>KUBE_MASTER</span><span>=</span><span>"<span>--master=http://192.168.20.25:8080</span>"</span>
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br></div></div><div><pre><code><span># 启动服务</span>
+systemctl <span>enable</span> kube-apiserver kube-scheduler kube-controller-manager
+systemctl start kube-apiserver kube-scheduler kube-controller-manager
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br></div></div><h3 id="node"> node</h3>
+<div><pre><code><span># 安装</span>
+yum <span>install</span> kubernetes-node flannel docker
+</code></pre>
+<div><span>1</span><br><span>2</span><br></div></div><div><pre><code><span># 配置 /etc/kubernetes/config</span>
+<span>KUBE_LOGTOSTDERR</span><span>=</span><span>"<span>--logtostderr=true</span>"</span>
+<span>KUBE_LOG_LEVEL</span><span>=</span><span>"<span>--v=0</span>"</span>
+<span>KUBE_ALLOW_PRIV</span><span>=</span><span>"<span>--allow_privileged=false</span>"</span>
+<span>KUBE_MASTER</span><span>=</span><span>"<span>--master=http://192.168.20.25:8080</span>"</span>
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br></div></div><div><pre><code><span># 配置 /etc/kubernetes/kubelet</span>
+<span>KUBELET_ADDRESS</span><span>=</span><span>"<span>--address=127.0.0.1</span>"</span>
+<span>KUBELET_HOSTNAME</span><span>=</span><span>"<span>--hostname_override=192.168.20.22</span>"</span>
+<span>KUBELET_API_SERVER</span><span>=</span><span>"<span>--api_servers=http://192.168.20.25:8080</span>"</span>
+<span>KUBELET_ARGS</span><span>=</span><span>"<span>--pod-infra-container-image=kubernetes/pause</span>"</span>
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br></div></div><div><pre><code><span># 配置 /etc/sysconfig/flanneld</span>
+<span>FLANNEL_ETCD</span><span>=</span><span>"<span>http://192.168.20.25:2379</span>"</span>
+<span>FLANNEL_ETCD_KEY</span><span>=</span><span>"<span>/coreos.com/network</span>"</span>
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br></div></div><div><pre><code>systemctl <span>enable</span> kubelet kube-proxy flanenld docker
+systemctl start kubelet kube-proxy flanneld docker
+</code></pre>
+<div><span>1</span><br><span>2</span><br></div></div>]]></content:encoded>
+    </item>
+    <item>
+      <title>Docker、kubernetes和Apache Mesos之间的正确关系</title>
+      <link>https://blog.fangyueming.cn/blog/kubernetes-docker-mesos/</link>
+      <guid>https://blog.fangyueming.cn/blog/kubernetes-docker-mesos/</guid>
+      <source url="https://blog.fangyueming.cn/rss.xml">Docker、kubernetes和Apache Mesos之间的正确关系</source>
+      <pubDate>Sun, 29 Apr 2018 00:00:00 GMT</pubDate>
+      <content:encoded><![CDATA[<h1 id="docker、kubernetes和apache-mesos之间的正确关系"> Docker、kubernetes和Apache Mesos之间的正确关系</h1>
+<p><a href="http://www.techug.com/post/docker-vs-kubernetes-vs-apache-mesos.html" target="_blank" rel="noopener noreferrer">http://www.techug.com/post/docker-vs-kubernetes-vs-apache-mesos.html</a></p>
+<p>无数的文章、社交媒体在探讨Docker、kubernetes、Mesos三者之间孰优孰劣。如果你听信了某些一知半解者的言论，你可能会认为这三个开源项目正在为争夺容器霸权而殊死战斗。同时，你也会相信，在这三者间的选择无异于对其所奉宗教的信仰，而且真正的信徒敢于大胆和异教徒作斗争，并且拥护自己的信仰。</p>
+<p>那些都是扯淡。</p>
+<p>虽然这三种技术都可以使用容器来部署、管理和扩展应用程序，但实际上它们每个都侧重解决不同的问题，并且扎根非常不同的环境之上。事实上，这三种被广泛采用的工具链彼此完全不同。</p>
+<p>与其比较这些快速演进的技术的重叠特性，不如让我们回顾一下每个项目的原始任务、架构以及它们之间如何相互补充和交互。</p>
+<h2 id="docker"> Docker</h2>
+<p>今天的Docker公司脱胎于一个平台即服务的初创公司dotCloud。dotCloud团队发现，在许多应用程序和客户之间管理依赖关系和二进制文件需要做大量的工作。因此，他们将Linux cgroups和namespaces的一些功能组合成一个简单易用的包，这样应用程序就可以在任何基础设施上持续运行。这个包就是Docker镜像，它提供以下功能:</p>
+<ol>
+<li>
+<p>将应用程序和库封装在单个包中(Docker镜像)，因此应用程序可以跨多环境一致部署;
+提供类似于git的语义，例如“dockerpush”，“docker commit”，这样可以让应用程序开发人员可以轻松地采用新技术，并将其融入到现有的workflow中;</p>
+</li>
+<li>
+<p>将Docker镜像定义为不可变层，启用不可变的基础设施。提交的更改被存储为一个单独的只读层，这让镜像复用和跟踪更改变得更加容易。另外，层还可以通过传输更新而不是整个镜像来节省磁盘空间和网络流量;</p>
+</li>
+<li>
+<p>通过使用可以临时存储运行时更改的可写层来实例化不可变映像，从而方便快速部署和扩展应用程序的多个实例。</p>
+</li>
+<li>
+<p>随着Docker的风靡，开发人员开始从笔记本电脑转移到在生产环境中运行。这就需要借助工具来协调这些容器，我们称为容器编排。有趣的是，Apache Mesos的Marathon成为当时(2014年6月)第一个支持Docker镜像的容器编排工具(我们将在下面详细描述它)。就连Docker创始人、首席技术官Solomon Hykes也推荐Mesos为“生产集群的黄金标准”。不久之后，除了Marathon之外，许多容器编排技术出现了，这其中包括：Nomad、kubernetes、DockerSwarm(现在是Docker引擎的一部分)。</p>
+</li>
+</ol>
+<p>随着Docker开始商业化开源文件格式，该公司也开始引入工具来补充核心Docker文件格式和runtime引擎，包括:</p>
+<ul>
+<li>Docker hub</li>
+<li>Docker registry</li>
+<li>Docker cloud</li>
+<li>Docker datacenter</li>
+</ul>
+<p><img src="./kubernetes/docker-architecture.png" alt="Docker结构" /></p>
+<p>​Docker让开发者可以打包他们的应用以及依赖包到一个可移植的容器中的特性，使其成为软件行业的游戏规则改变者;这有点类似mp3格式帮助重塑了音乐产业。Docker文件格式成为行业标准，并且领导容器技术供应商(包括Docker、Pivotal, Mesosphere以及其他许多)成立CNCF和OCI。今天，CNCF和OCI的目标就是确保跨容器技术的互操作性和标准化接口，并确保使用任何工具构建的Docker容器，都可以在任何runtime或基础设施上运行。</p>
+<h2 id="kubernetes"> kubernetes</h2>
+<p>谷歌很早就认识到Docker镜像的潜力，并试图在谷歌云平台上交付“容器编排即服务”。谷歌在容器方面有丰富的经验(他们在Linux中引入了cgroups)，但是现有的内部容器和像Borg这样的分布式计算工具与它们的基础设施直接耦合。因此，谷歌没有使用现有系统中的任何代码，而是从头开始设计了kubernetes，以编排Docker容器。kubernetes于2015年2月发布，并提出以下目标和考虑:</p>
+<ol>
+<li>为应用程序开发人员提供一个强大的工具，用于Docker容器编排，而不必与底层基础设施交互;</li>
+<li>跨云环境下，为一致的应用程序部署经验和APIs 提供标准部署接口和原型;</li>
+<li>构建一个模块化的API核心，允许供应商围绕核心kubernetes技术集成系统。</li>
+</ol>
+<p>截至2016年3月，谷歌向CNCF捐赠了kubernetes，至今谷歌仍是该项目的主要贡献者(其次是Redhat、CoreOS等)。</p>
+<p><img src="./kubernetes/architecture-2.png" alt="kubernetes结构" /></p>
+<p>kubernetes对应用程序开发人员非常有吸引力，因为它减少了对基础设施和操作团队的依赖。供应商也非常喜欢kubernetes，因为它提供了一种简单的方式来让他们拥抱容器运动，并为他们运行自己的kubernetes部署提供一个商业化解决方案。kubernetes之所以很有吸引力，因为它是CNCF下的开源项目，与Docker集群相比，后者虽然是开源的，但却受到Docker Inc .的严格控制。</p>
+<p>kubernetes的核心优势是为应用程序开发人员提供强大的工具来编排无状态的Docker容器。虽然有多个计划将项目的范围扩展到更多的工作负载(如分析和有状态的数据服务)，但这些计划仍然处于非常早期的阶段，还有待观察。</p>
+<h2 id="apache-mesos"> Apache Mesos</h2>
+<p>Apache Mesos最初是UCBerkeley为创建下一代集群管理器而诞生的项目，并从如谷歌的Borg和Facebook的Tupperware中吸取经验教训。但是Borg和Tupperware是单体架构，并且是和物理基础设施绑定的封源专有技术。Mesos引入了模块化架构，采用开源的方法，且其设计完全独立于底层基础架构。基于这些因素，Mesos很快被Twitter、Apple(Siri)、Yelp、Uber、Netflix以及许多领先的科技公司所采用，以支持他们在微服务、大数据和实时分析到弹性伸缩的一切实践。</p>
+<p>作为一个集群管理器，Mesos的架构是为了解决一组非常不同的挑战:</p>
+<ol>
+<li>将数据中心资源整合成一个单一的池，以简化资源配置，同时在私有或公共云之间提供一致的应用程序和操作体验;</li>
+<li>在相同的基础设施上使用不同的工作负载，比如分析、无状态微服务、分布式数据服务和传统应用程序，以提高利用率，降低成本和空间;</li>
+<li>特定应用程序的任务(如部署、自修复、扩展和升级)设置为自动化day-two 操作;提供高可用的容错基础设施;</li>
+<li>在不修改集群管理器或现有应用程序的情况下，提供常绿的可扩展性来运行新的应用程序和技术;</li>
+<li>将应用程序和底层基础设施弹性扩展到数万个节点。</li>
+</ol>
+<p>Mesos的独特之处还在于，可以单独管理各种不同的工作负载——包括传统的应用程序，如Java、无状态Docker微服务、批处理作业、实时分析和有状态的分布式数据服务。Mesos广泛的工作负载覆盖来自于它的两级架构，它支持“应用感知”的调度。应用感知调度是通过将应用程序特定操作逻辑封装到“Mesos框架”(类似于运行中的runbook)来完成的。</p>
+<p>Mesos Master资源管理器，提供这些底层基础设施的框架部分，同时保持隔离。这种方法允许每个工作负载有自己专用的应用程序调度器，它了解其对部署、缩放和升级的具体操作需求。应用程序调度程序也独立地被开发、管理和更新，这让Mesos保持高度可扩展性，支持新的工作负载，或者随着时间的推移增加更多的操作能力。</p>
+<p><img src="./kubernetes/mesos.png" alt="Mesos结构" /></p>
+<p>以一个团队如何管理升级为例。无状态应用程序可以从“蓝/绿”部署方法中获益;当旧的应用程序还在使用的时候，另一个完整版本的应用程序已经spun up，当旧的应用程序被销毁时，流量切换到新的应用程序。但是，升级像HDFS或Cassandra这样的数据工作负载需要一次脱机，维护本地数据量以避免数据丢失，执行特定序列的升级，并在升级之前和之后对每个节点类型执行特殊检查和命令。这些步骤中的所有环节针对特定的应用程序或服务，甚至是特定版本进行的。这使得用常规容器编排调度器管理数据服务变得非常困难。</p>
+<p>Mesos具备按需管理每个工作负载的能力，使得许多公司将Mesos作为一个统一的平台，并通过其将微服务和数据服务结合运行。运行数据密集型应用程序的一个通用参考架构是“SMACK堆栈”。</p>
+<h2 id="清晰时刻"> 清晰时刻</h2>
+<p>注意：我们在描述Apache Mesos的过程中，没有提及任何关于容器编排的内容。那么，为什么人们总是会将Mesos与容器编排联系起来呢？容器编排是一个可以在Mesos模块化架构上运行的工作负载的例子，它使用的是构建在Mesos上的一个专门的编排“框架”Marathon。Marathon最初是为了在cgroup容器中编排应用程序(如JARs、tarball、ZIP文件)而开发的，并且在2014年成为第一批支持Docker容器的容器编排之一。</p>
+<p>因此，当人们拿Docker、kubernetes和Mesos比较时，他们实际上是在对比kubernetes、Docker Swarm和Mesos上运行的Marathon。</p>
+<p>为什么这很重要？因为Mesos根本不关心上面跑的是什么。Mesos可以为Java应用服务器、Docker容器编排、Jenkins CI Jobs, Apache Spark analytics, Apache Kafka streaming以及更多的共享基础设施提供集群服务。Mesos甚至可以运行kubernetes或其他容器编排，尽管还没有对外集成。</p>
+<p>Mesos的另一个考虑(以及为什么它对许多企业架构师有吸引力)是它在运行任务关键工作负载时的成熟度。Mesos已经在大规模生产环境下运行(数万台服务器)超过7年，这就是为什么它比市场上其他技术更成熟，更可靠的原因。</p>
+<h2 id="这一切意味着什么"> 这一切意味着什么？</h2>
+<p>总之，这三种技术都与Docker容器有关，并允许您访问容器编排，以获得应用程序的可移植性和伸缩性。那么在这三者间要如何选择呢？这就要视不同的工作环境需求而定，工作需求不同，所适用的工具自然也是各不相同。如果您是一名应用程序开发人员，并且正在寻找一种现代的方法来构建和打包您的应用程序，或者加快微服务项目，那么Docker容器格式和开发工具是你最好的选择。</p>
+<p>如果你是一个dev / devops团队,想要构建一个专门的docker容器编排系统,并愿意亲自动手让你的解决方案和底层基础设施集成(或依赖于公共云基础设施如谷歌引擎或Azure容器服务),kubernetes将是你一个很好的选项。</p>
+<p>如果您想构建一个可靠的平台，用以运行多任务关键工作负载，包括Docker容器、遗留应用程序(例如Java)和分布式数据服务(例如Spark、Kafka、Cassandra、Elastic)，并希望所有这些都可以在云或数据中心上可移植，那么，Mesos是最适合你的。</p>
+<p>无论你作何选择，你所拥抱的一系列工具都将提升你的服务器资源利用率，同时简化应用程序移植，并提高开发人员的敏捷性。你真的值得拥有！</p>
+]]></content:encoded>
     </item>
     <item>
       <title>LeoVue打包发布npmjs折腾记</title>
@@ -2762,6 +2728,95 @@ array_name<span>[</span><span>0</span><span>]</span><span>=</span>value0        
 ]]></content:encoded>
     </item>
     <item>
+      <title>Linux个人目录规划</title>
+      <link>https://blog.fangyueming.cn/blog/linux-home/</link>
+      <guid>https://blog.fangyueming.cn/blog/linux-home/</guid>
+      <source url="https://blog.fangyueming.cn/rss.xml">Linux个人目录规划</source>
+      <pubDate>Thu, 03 Apr 2014 00:00:00 GMT</pubDate>
+      <content:encoded><![CDATA[<h1 id="linux个人目录规划"> Linux个人目录规划</h1>
+<div><pre><code>~
+|-- .bashrc                                 # 启动配置文件
+|-- bin                                     # 可执行脚本
+|   |-- mysql-back.sh                       #   MySQL备份
+|   `-- mysql57.sh                          #   MySQL 5.7 相关
+|-- usr                                     # 应用目录
+|   |-- mysql-5.7                           #   MySQL 5.7
+|   |-- nginx                               #   NGiNX
+|   |-- node                                #   Node.js
+|   `-- redis                               #   Redis
+|-- backup                                  # 备份目录
+|   |-- mysql                               #   MySQL
+|   |-- crontab                             #   自动任务
+|   `-- certs                               #   证书
+|-- projects                                # 项目
+|   |-- github                              #   GitHUB
+|   `-- coding                              #   Coding.net
+|-- downloads                               # 下载
+|   |-- git-2.9.5.tar                       #   Git
+|   |-- node-v9.11.2-linux-x86.tar.gz       #   Node.js
+|   |-- yarn-v1.12.3.tar.gz                 #   Yarn
+|   `-- nginx-5.7.tar.gz                    #   NGiNX
+|-- logs                                    # 日志
+`-- tmp                                     # 临时文件
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br><span>9</span><br><span>10</span><br><span>11</span><br><span>12</span><br><span>13</span><br><span>14</span><br><span>15</span><br><span>16</span><br><span>17</span><br><span>18</span><br><span>19</span><br><span>20</span><br><span>21</span><br><span>22</span><br><span>23</span><br><span>24</span><br></div></div>]]></content:encoded>
+    </item>
+    <item>
+      <title>MySQL自动备份</title>
+      <link>https://blog.fangyueming.cn/blog/mysql-backup/</link>
+      <guid>https://blog.fangyueming.cn/blog/mysql-backup/</guid>
+      <source url="https://blog.fangyueming.cn/rss.xml">MySQL自动备份</source>
+      <pubDate>Sat, 11 May 2019 00:00:00 GMT</pubDate>
+      <content:encoded><![CDATA[<h1 id="mysql自动备份"> MySQL自动备份</h1>
+<h2 id="相关软件"> 相关软件</h2>
+<ul>
+<li><a href="https://dev.mysql.com/doc/refman/8.0/en/mysqldump.html" target="_blank" rel="noopener noreferrer">mysqldump</a></li>
+<li><a href="http://www.gzip.org" target="_blank" rel="noopener noreferrer">gzip</a></li>
+</ul>
+<p>Windows下需要用到gzip压缩软件，当然也可用zip、7z、rar等软件代替。
+gzip安装完成后，方便起见，请将gzip加入Windows的PATH环境变量。</p>
+<h2 id="windows"> Windows</h2>
+<h3 id="编写mysql-backup-bat"> 编写mysql-backup.bat</h3>
+<div><pre><code>rem 删除一周前的备份
+forfiles /p &quot;D:\Backup\databasename&quot; /d -7 /c &quot;cmd /c del /f @path&quot;
+rem 按日期命名备份并压缩
+mysqldump -hhostname -uusername -ppassword --databases databasename | gzip &gt; D:\Backup\databasename\databasename-%date:~0,10%.sql.gz
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br></div></div><h3 id="将mysql-backup-bat加入计划任务"> 将mysql-backup.bat加入计划任务</h3>
+<h2 id="linux"> Linux</h2>
+<h3 id="修改mysql配置"> 修改MySQL配置</h3>
+<div><pre><code><span>vi</span> /etc/my.cnf
+</code></pre>
+<div><span>1</span><br></div></div><div><pre><code><span># 加入 mysqldump 相关配置</span>
+<span><span>[</span><span>mysqldump</span><span>]</span></span>
+<span>user</span><span>=</span><span>user</span>
+<span>password</span><span>=</span><span>password</span>
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br></div></div><h3 id="编写备份脚本"> 编写备份脚本</h3>
+<div><pre><code><span>#!/bin/bash</span>
+<span># 定义目录</span>
+<span>dir</span><span>=</span>/path/to/backup/mysql/yourdatabase
+<span># 删除一周前的备份</span>
+<span>find</span> <span>${dir}</span> -ctime +7 -type f <span>|</span> <span>xargs</span> <span>rm</span> -rf
+<span># 每日备份</span>
+<span>rq</span><span>=</span><span><span>`</span><span>date</span> +%Y%m%d<span>`</span></span>
+mysqldump --databases yourdatabase <span>|</span> <span>gzip</span> <span>></span> <span>${dir}</span>/yourdatabase-<span>${rq}</span>.sql.gz
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br></div></div><h3 id="修改文件属性为可执行"> 修改文件属性为可执行</h3>
+<div><pre><code><span>chmod</span> +x /path/to/backmysql.sh
+</code></pre>
+<div><span>1</span><br></div></div><h3 id="添加到crontab"> 添加到<code>crontab</code></h3>
+<div><pre><code># mysql-backup.cron
+# 每天3点钟执行备份
+0 3 * * * bash /path/to/backmysql.sh
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br></div></div><div><pre><code><span>crontab</span> mysql-backup.cron
+<span>crontab</span> -l
+<span># 0 3 * * * bash /path/to/backmysql.sh</span>
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br></div></div>]]></content:encoded>
+    </item>
+    <item>
       <title>Lodop打印解决方案</title>
       <link>https://blog.fangyueming.cn/blog/lodop/</link>
       <guid>https://blog.fangyueming.cn/blog/lodop/</guid>
@@ -3041,127 +3096,6 @@ mysqldump -B sys -uroot -ppassword <span>|</span> <span>gzip</span> <span>></spa
 <div><span>1</span><br></div></div>]]></content:encoded>
     </item>
     <item>
-      <title>NGiNX反向代理实现https</title>
-      <link>https://blog.fangyueming.cn/blog/nginx-https/</link>
-      <guid>https://blog.fangyueming.cn/blog/nginx-https/</guid>
-      <source url="https://blog.fangyueming.cn/rss.xml">NGiNX反向代理实现https</source>
-      <pubDate>Sun, 11 Nov 2018 00:00:00 GMT</pubDate>
-      <content:encoded><![CDATA[<h1 id="nginx反向代理实现https"> NGiNX反向代理实现https</h1>
-<p>越来越多的应用需要https支持，因此支持https是大势所趋，也是必须的。
-比如微信小程序的第三方数据接口必须是https协议的，Google将所有http协议默认为不安全协议。
-所以开发上也需要对https进行测试，而https的前提就是需要SSL证书，哪怕是自建的。</p>
-<p>参见：<a href="https://blog.csdn.net/pz0605/article/details/51954876" target="_blank" rel="noopener noreferrer">自建证书配置HTTPS服务器</a></p>
-<div><pre><code><span># 生成私钥</span>
-openssl genrsa -out private.key <span>2048</span>
-<span># 生成证书请求</span>
-openssl req -new -key private.key -out server.csr
-<span># 生成服务器的私钥，去除密钥口令</span>
-openssl rsa -in private.key -out server.key
-<span># 使用私钥为证书请求签名，生成给服务器签署的证书，格式是x509的PEM格式</span>
-openssl x509 -req -in server.csr -out server.crt -signkey server.key -days <span>3650</span>
-</code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br></div></div><p>经过以上步骤得到server.crt和server.key，拷贝到nginx的certs目录。
-由于证书是自建的，一般情况下浏览器会给出不安全提示，仅供开发环境测试使用。</p>
-<div><pre><code><span># nginx/conf/nginx.conf</span>
-server {
-  <span># 开启SSL</span>
-  listen       443 ssl;
-  server_name  localhost;                   # 外网域名
-  <span># 加载证书，可用openssl自建证书</span>
-  ssl_certificate      ../certs/server.crt;
-  ssl_certificate_key  ../certs/server.key;
-  ssl_session_cache    shared:SSL:1m;
-  ssl_session_timeout  5m;
-  ssl_ciphers  HIGH:!aNULL:!MD5;
-  ssl_prefer_server_ciphers  on;
-  <span># 反向代理</span>
-  location / {
-    proxy_pass        http://localhost:7001;  # 内网应用网址
-  }
-}
-</code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br><span>9</span><br><span>10</span><br><span>11</span><br><span>12</span><br><span>13</span><br><span>14</span><br><span>15</span><br><span>16</span><br><span>17</span><br></div></div><p>虽然<a href="https://github.com/eggjs/egg-cluster" target="_blank" rel="noopener noreferrer">egg-cluster</a>内置参数支持https，
-但这终究不是API该做的事情，就跟OAuth不应该由API来做一样。
-能者多劳就是个谬论，往往是无能者的无奈之举和推脱之辞。
-https、cluster、负载均衡、反向代理这样的事，注定WEB服务器来做，是诸如NGiNX、Apache、IIS之类的天职。</p>
-]]></content:encoded>
-    </item>
-    <item>
-      <title>配置Oracle PL/SQL Developer</title>
-      <link>https://blog.fangyueming.cn/blog/oracle-plsql/</link>
-      <guid>https://blog.fangyueming.cn/blog/oracle-plsql/</guid>
-      <source url="https://blog.fangyueming.cn/rss.xml">配置Oracle PL/SQL Developer</source>
-      <pubDate>Sat, 12 May 2018 00:00:00 GMT</pubDate>
-      <content:encoded><![CDATA[<h1 id="配置oracle-pl-sql-developer"> 配置Oracle PL/SQL Developer</h1>
-<p>参见：<a href="http://blog.csdn.net/helifengwell/article/details/5820434" target="_blank" rel="noopener noreferrer">http://blog.csdn.net/helifengwell/article/details/5820434</a></p>
-<ul>
-<li>
-<p>Instant Client</p>
-<p>先到Oracle网站下载<a href="http://www.oracle.com/technology/global/cn/software/tech/oci/instantclient/index.html" target="_blank" rel="noopener noreferrer">Instant Client</a>。
-根据你的操作系统选择不同的Instant Client版本。解压之后放在你喜欢的目录即可.例如:D:/instantclient_11_2。</p>
-</li>
-<li>
-<p>在D:/instantclient_11_2目录下新建目录network，在network目录下再新建admin目录，在admin目录下新建文件tnsnames.ora，使用文本编辑器打开写入如下内容:</p>
-<div><pre><code><span>MWDB</span> <span>=</span>
-<span>(DESCRIPTION</span> <span>=</span>
-    <span>(ADDRESS_LIST</span> <span>=</span>
-      <span>(ADDRESS</span> <span>=</span> <span>(PROTOCOL = TCP)(HOST = 192.168.0.58)(PORT = 1521))</span>
-    )
-    <span>(CONNECT_DATA</span> <span>=</span>
-      <span>(SERVICE_NAME</span> <span>=</span> <span>MWDB)</span>
-    )
-)
-</code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br><span>9</span><br></div></div><blockquote>
-<p>MWDB =：表示定义远程服务器的在本地主机名
-SERVICE_NAME =：远程数据库实例名</p>
-</blockquote>
-</li>
-<li>
-<p>添加一个环境变量，名为TNS_ADMIN，值为tnsnames.ora文件所在路径。比如我的本机为：D:/instantclient_11_2/network/admin</p>
-</li>
-<li>
-<p>设置ORACLE的语言，添加环境变量NLS_LANG，值为SIMPLIFIED CHINESE_CHINA.ZHS16GBK。如果不清楚远程数据库的ORACLE 语言，可以ssh或者telnet到远程机器,在命令界面输入，用命令行连接到数据库。</p>
-<div><pre><code><span>select</span> <span>*</span> <span>from</span> nls_instance_parameters<span>;</span>
-</code></pre>
-<div><span>1</span><br></div></div><p>查看 NLS_LANGUAGE 的值
-NLS_LANGUAGE
-NLS_TERRITORY</p>
-</li>
-<li>
-<p>下载并安装PL/SQL Developer配置应用，配置tools -&gt; preferences -&gt; connection（工具 -&gt; 首选项 -&gt; 连接）</p>
-<ul>
-<li>Oracle Home（Oracle主目录）: D:/instantclient_11_2</li>
-<li>OCI library（OCI库）: D:/instantclient_11_2/oci.dll</li>
-</ul>
-</li>
-<li>
-<p>关闭PL/SQL Developer，重启Developer。主机名就会出现在PL/SQL Developer的列表里，输入用户名密码，就可以登录远程oracle 11g数据库了。</p>
-</li>
-<li>
-<p>补充Instant Client 说明</p>
-<p>Oracle Instant client 是oracle提供的简便客户端, 支持多种平台。可从oracle网站下载, 下载地址为：
-<a href="http://www.oracle.com/technetwork/database/features/instant-client/index-097480.html" target="_blank" rel="noopener noreferrer">http://www.oracle.com/technetwork/database/features/instant-client/index-097480.html</a></p>
-<p>包括如下内容:</p>
-<ul>
-<li>Instant client Package - Basic 运行OCI, OCCI, 和JDBC-OCI应用程序需要的所有文件</li>
-<li>Instant client Package - Basic Lite: 只包含英语错误信息, 只支持unicode, ascii, 西欧字符集</li>
-<li>Instant client Package - JDBC Supplement  为jdbc增加了xa, 国际化和RowSet操作。</li>
-<li>Instant Client Package - SQL *Plus 包含sqlplus和需要的库文件</li>
-<li>Instant client Package - SDK 使用Instant Client开发Oracle 应用程序需要的头文件及示例makefile</li>
-<li>Instant client package - ODBC 使用odbc时需要的库, 不是所有平台都有. linux平台包含</li>
-</ul>
-<p>Basic和Basic Lite两个中必须选一个, 其他包都是可选的. 我下载了 Basic, JDBC supplement, SQL *Plus, SDK, ODBC. 解压后放在一个文件夹下, 在这个文件夹下建立文件tnsnames.ora，设置环境变量LD_LIBRARY_PATH和TNS_ADMIN指向解压后的目录, 就可以使用sqlplus了。</p>
-<p>我下载的instant client版本为10.2.0.2.0, 测试了联接到oracle 9.2.0.4和oracle 10.2.0.1.</p>
-<p>Instant Client中不包含tnsping, exp/imp, rman, netca等工具. 如果需要这些工具则需要安装oracle client</p>
-</li>
-</ul>
-<h2 id="oracle备份"> Oracle备份</h2>
-<div><pre><code>exp newsoft/econage@ptime file=E:\Backup\%date:~0,10%exp.dmp log=E:\Backup\%date:~0,10exp.log owner=newsoft
-</code></pre>
-<div><span>1</span><br></div></div>]]></content:encoded>
-    </item>
-    <item>
       <title>MySQL多版本单服务器共存</title>
       <link>https://blog.fangyueming.cn/blog/mysql-multi/</link>
       <guid>https://blog.fangyueming.cn/blog/mysql-multi/</guid>
@@ -3248,6 +3182,52 @@ yum -y <span>install</span> <span>make</span> gcc-c++ cmake bison-devel ncurses 
 <span>fi</span>
 </code></pre>
 <div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br><span>9</span><br><span>10</span><br><span>11</span><br><span>12</span><br></div></div>]]></content:encoded>
+    </item>
+    <item>
+      <title>NGiNX反向代理实现https</title>
+      <link>https://blog.fangyueming.cn/blog/nginx-https/</link>
+      <guid>https://blog.fangyueming.cn/blog/nginx-https/</guid>
+      <source url="https://blog.fangyueming.cn/rss.xml">NGiNX反向代理实现https</source>
+      <pubDate>Sun, 11 Nov 2018 00:00:00 GMT</pubDate>
+      <content:encoded><![CDATA[<h1 id="nginx反向代理实现https"> NGiNX反向代理实现https</h1>
+<p>越来越多的应用需要https支持，因此支持https是大势所趋，也是必须的。
+比如微信小程序的第三方数据接口必须是https协议的，Google将所有http协议默认为不安全协议。
+所以开发上也需要对https进行测试，而https的前提就是需要SSL证书，哪怕是自建的。</p>
+<p>参见：<a href="https://blog.csdn.net/pz0605/article/details/51954876" target="_blank" rel="noopener noreferrer">自建证书配置HTTPS服务器</a></p>
+<div><pre><code><span># 生成私钥</span>
+openssl genrsa -out private.key <span>2048</span>
+<span># 生成证书请求</span>
+openssl req -new -key private.key -out server.csr
+<span># 生成服务器的私钥，去除密钥口令</span>
+openssl rsa -in private.key -out server.key
+<span># 使用私钥为证书请求签名，生成给服务器签署的证书，格式是x509的PEM格式</span>
+openssl x509 -req -in server.csr -out server.crt -signkey server.key -days <span>3650</span>
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br></div></div><p>经过以上步骤得到server.crt和server.key，拷贝到nginx的certs目录。
+由于证书是自建的，一般情况下浏览器会给出不安全提示，仅供开发环境测试使用。</p>
+<div><pre><code><span># nginx/conf/nginx.conf</span>
+server {
+  <span># 开启SSL</span>
+  listen       443 ssl;
+  server_name  localhost;                   # 外网域名
+  <span># 加载证书，可用openssl自建证书</span>
+  ssl_certificate      ../certs/server.crt;
+  ssl_certificate_key  ../certs/server.key;
+  ssl_session_cache    shared:SSL:1m;
+  ssl_session_timeout  5m;
+  ssl_ciphers  HIGH:!aNULL:!MD5;
+  ssl_prefer_server_ciphers  on;
+  <span># 反向代理</span>
+  location / {
+    proxy_pass        http://localhost:7001;  # 内网应用网址
+  }
+}
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br><span>9</span><br><span>10</span><br><span>11</span><br><span>12</span><br><span>13</span><br><span>14</span><br><span>15</span><br><span>16</span><br><span>17</span><br></div></div><p>虽然<a href="https://github.com/eggjs/egg-cluster" target="_blank" rel="noopener noreferrer">egg-cluster</a>内置参数支持https，
+但这终究不是API该做的事情，就跟OAuth不应该由API来做一样。
+能者多劳就是个谬论，往往是无能者的无奈之举和推脱之辞。
+https、cluster、负载均衡、反向代理这样的事，注定WEB服务器来做，是诸如NGiNX、Apache、IIS之类的天职。</p>
+]]></content:encoded>
     </item>
     <item>
       <title>有感于“论PHP的倒掉”</title>
@@ -3369,6 +3349,81 @@ yum -y <span>install</span> <span>make</span> gcc-c++ cmake bison-devel ncurses 
 ]]></content:encoded>
     </item>
     <item>
+      <title>配置Oracle PL/SQL Developer</title>
+      <link>https://blog.fangyueming.cn/blog/oracle-plsql/</link>
+      <guid>https://blog.fangyueming.cn/blog/oracle-plsql/</guid>
+      <source url="https://blog.fangyueming.cn/rss.xml">配置Oracle PL/SQL Developer</source>
+      <pubDate>Sat, 12 May 2018 00:00:00 GMT</pubDate>
+      <content:encoded><![CDATA[<h1 id="配置oracle-pl-sql-developer"> 配置Oracle PL/SQL Developer</h1>
+<p>参见：<a href="http://blog.csdn.net/helifengwell/article/details/5820434" target="_blank" rel="noopener noreferrer">http://blog.csdn.net/helifengwell/article/details/5820434</a></p>
+<ul>
+<li>
+<p>Instant Client</p>
+<p>先到Oracle网站下载<a href="http://www.oracle.com/technology/global/cn/software/tech/oci/instantclient/index.html" target="_blank" rel="noopener noreferrer">Instant Client</a>。
+根据你的操作系统选择不同的Instant Client版本。解压之后放在你喜欢的目录即可.例如:D:/instantclient_11_2。</p>
+</li>
+<li>
+<p>在D:/instantclient_11_2目录下新建目录network，在network目录下再新建admin目录，在admin目录下新建文件tnsnames.ora，使用文本编辑器打开写入如下内容:</p>
+<div><pre><code><span>MWDB</span> <span>=</span>
+<span>(DESCRIPTION</span> <span>=</span>
+    <span>(ADDRESS_LIST</span> <span>=</span>
+      <span>(ADDRESS</span> <span>=</span> <span>(PROTOCOL = TCP)(HOST = 192.168.0.58)(PORT = 1521))</span>
+    )
+    <span>(CONNECT_DATA</span> <span>=</span>
+      <span>(SERVICE_NAME</span> <span>=</span> <span>MWDB)</span>
+    )
+)
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br><span>9</span><br></div></div><blockquote>
+<p>MWDB =：表示定义远程服务器的在本地主机名
+SERVICE_NAME =：远程数据库实例名</p>
+</blockquote>
+</li>
+<li>
+<p>添加一个环境变量，名为TNS_ADMIN，值为tnsnames.ora文件所在路径。比如我的本机为：D:/instantclient_11_2/network/admin</p>
+</li>
+<li>
+<p>设置ORACLE的语言，添加环境变量NLS_LANG，值为SIMPLIFIED CHINESE_CHINA.ZHS16GBK。如果不清楚远程数据库的ORACLE 语言，可以ssh或者telnet到远程机器,在命令界面输入，用命令行连接到数据库。</p>
+<div><pre><code><span>select</span> <span>*</span> <span>from</span> nls_instance_parameters<span>;</span>
+</code></pre>
+<div><span>1</span><br></div></div><p>查看 NLS_LANGUAGE 的值
+NLS_LANGUAGE
+NLS_TERRITORY</p>
+</li>
+<li>
+<p>下载并安装PL/SQL Developer配置应用，配置tools -&gt; preferences -&gt; connection（工具 -&gt; 首选项 -&gt; 连接）</p>
+<ul>
+<li>Oracle Home（Oracle主目录）: D:/instantclient_11_2</li>
+<li>OCI library（OCI库）: D:/instantclient_11_2/oci.dll</li>
+</ul>
+</li>
+<li>
+<p>关闭PL/SQL Developer，重启Developer。主机名就会出现在PL/SQL Developer的列表里，输入用户名密码，就可以登录远程oracle 11g数据库了。</p>
+</li>
+<li>
+<p>补充Instant Client 说明</p>
+<p>Oracle Instant client 是oracle提供的简便客户端, 支持多种平台。可从oracle网站下载, 下载地址为：
+<a href="http://www.oracle.com/technetwork/database/features/instant-client/index-097480.html" target="_blank" rel="noopener noreferrer">http://www.oracle.com/technetwork/database/features/instant-client/index-097480.html</a></p>
+<p>包括如下内容:</p>
+<ul>
+<li>Instant client Package - Basic 运行OCI, OCCI, 和JDBC-OCI应用程序需要的所有文件</li>
+<li>Instant client Package - Basic Lite: 只包含英语错误信息, 只支持unicode, ascii, 西欧字符集</li>
+<li>Instant client Package - JDBC Supplement  为jdbc增加了xa, 国际化和RowSet操作。</li>
+<li>Instant Client Package - SQL *Plus 包含sqlplus和需要的库文件</li>
+<li>Instant client Package - SDK 使用Instant Client开发Oracle 应用程序需要的头文件及示例makefile</li>
+<li>Instant client package - ODBC 使用odbc时需要的库, 不是所有平台都有. linux平台包含</li>
+</ul>
+<p>Basic和Basic Lite两个中必须选一个, 其他包都是可选的. 我下载了 Basic, JDBC supplement, SQL *Plus, SDK, ODBC. 解压后放在一个文件夹下, 在这个文件夹下建立文件tnsnames.ora，设置环境变量LD_LIBRARY_PATH和TNS_ADMIN指向解压后的目录, 就可以使用sqlplus了。</p>
+<p>我下载的instant client版本为10.2.0.2.0, 测试了联接到oracle 9.2.0.4和oracle 10.2.0.1.</p>
+<p>Instant Client中不包含tnsping, exp/imp, rman, netca等工具. 如果需要这些工具则需要安装oracle client</p>
+</li>
+</ul>
+<h2 id="oracle备份"> Oracle备份</h2>
+<div><pre><code>exp newsoft/econage@ptime file=E:\Backup\%date:~0,10%exp.dmp log=E:\Backup\%date:~0,10exp.log owner=newsoft
+</code></pre>
+<div><span>1</span><br></div></div>]]></content:encoded>
+    </item>
+    <item>
       <title>MVC及PHP++、PHP--胡思乱想杂记</title>
       <link>https://blog.fangyueming.cn/blog/php-cut/</link>
       <guid>https://blog.fangyueming.cn/blog/php-cut/</guid>
@@ -3391,6 +3446,21 @@ yum -y <span>install</span> <span>make</span> gcc-c++ cmake bison-devel ncurses 
 <p>注：PHP-Client、PHP-Controler、PHP-Db等都是作者发明的名词，非专业通用名词
 方跃明
 2009-8-1 12:35</p>
+</blockquote>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>图解SQL JOINS</title>
+      <link>https://blog.fangyueming.cn/blog/sql-joins/</link>
+      <guid>https://blog.fangyueming.cn/blog/sql-joins/</guid>
+      <source url="https://blog.fangyueming.cn/rss.xml">图解SQL JOINS</source>
+      <pubDate>Sat, 28 Apr 2018 00:00:00 GMT</pubDate>
+      <content:encoded><![CDATA[<h1 id="图解sql-joins"> 图解SQL JOINS</h1>
+<p>左连接、右连接、内连接、外连接……傻傻分不清</p>
+<p><img src="./assets/sql-joins.jpg" alt="SQL JOINS" /></p>
+<blockquote>
+<p>方跃明
+2018-4-28</p>
 </blockquote>
 ]]></content:encoded>
     </item>
@@ -3445,175 +3515,6 @@ yum -y <span>install</span> <span>make</span> gcc-c++ cmake bison-devel ncurses 
 </ul>
 </li>
 </ul>
-]]></content:encoded>
-    </item>
-    <item>
-      <title>MySQL自动备份</title>
-      <link>https://blog.fangyueming.cn/blog/mysql-backup/</link>
-      <guid>https://blog.fangyueming.cn/blog/mysql-backup/</guid>
-      <source url="https://blog.fangyueming.cn/rss.xml">MySQL自动备份</source>
-      <pubDate>Sat, 11 May 2019 00:00:00 GMT</pubDate>
-      <content:encoded><![CDATA[<h1 id="mysql自动备份"> MySQL自动备份</h1>
-<h2 id="相关软件"> 相关软件</h2>
-<ul>
-<li><a href="https://dev.mysql.com/doc/refman/8.0/en/mysqldump.html" target="_blank" rel="noopener noreferrer">mysqldump</a></li>
-<li><a href="http://www.gzip.org" target="_blank" rel="noopener noreferrer">gzip</a></li>
-</ul>
-<p>Windows下需要用到gzip压缩软件，当然也可用zip、7z、rar等软件代替。
-gzip安装完成后，方便起见，请将gzip加入Windows的PATH环境变量。</p>
-<h2 id="windows"> Windows</h2>
-<h3 id="编写mysql-backup-bat"> 编写mysql-backup.bat</h3>
-<div><pre><code>rem 删除一周前的备份
-forfiles /p &quot;D:\Backup\databasename&quot; /d -7 /c &quot;cmd /c del /f @path&quot;
-rem 按日期命名备份并压缩
-mysqldump -hhostname -uusername -ppassword --databases databasename | gzip &gt; D:\Backup\databasename\databasename-%date:~0,10%.sql.gz
-</code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br></div></div><h3 id="将mysql-backup-bat加入计划任务"> 将mysql-backup.bat加入计划任务</h3>
-<h2 id="linux"> Linux</h2>
-<h3 id="修改mysql配置"> 修改MySQL配置</h3>
-<div><pre><code><span>vi</span> /etc/my.cnf
-</code></pre>
-<div><span>1</span><br></div></div><div><pre><code><span># 加入 mysqldump 相关配置</span>
-<span><span>[</span><span>mysqldump</span><span>]</span></span>
-<span>user</span><span>=</span><span>user</span>
-<span>password</span><span>=</span><span>password</span>
-</code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br></div></div><h3 id="编写备份脚本"> 编写备份脚本</h3>
-<div><pre><code><span>#!/bin/bash</span>
-<span># 定义目录</span>
-<span>dir</span><span>=</span>/path/to/backup/mysql/yourdatabase
-<span># 删除一周前的备份</span>
-<span>find</span> <span>${dir}</span> -ctime +7 -type f <span>|</span> <span>xargs</span> <span>rm</span> -rf
-<span># 每日备份</span>
-<span>rq</span><span>=</span><span><span>`</span><span>date</span> +%Y%m%d<span>`</span></span>
-mysqldump --databases yourdatabase <span>|</span> <span>gzip</span> <span>></span> <span>${dir}</span>/yourdatabase-<span>${rq}</span>.sql.gz
-</code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br></div></div><h3 id="修改文件属性为可执行"> 修改文件属性为可执行</h3>
-<div><pre><code><span>chmod</span> +x /path/to/backmysql.sh
-</code></pre>
-<div><span>1</span><br></div></div><h3 id="添加到crontab"> 添加到<code>crontab</code></h3>
-<div><pre><code># mysql-backup.cron
-# 每天3点钟执行备份
-0 3 * * * bash /path/to/backmysql.sh
-</code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br></div></div><div><pre><code><span>crontab</span> mysql-backup.cron
-<span>crontab</span> -l
-<span># 0 3 * * * bash /path/to/backmysql.sh</span>
-</code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br></div></div>]]></content:encoded>
-    </item>
-    <item>
-      <title>RBAC之我见</title>
-      <link>https://blog.fangyueming.cn/blog/rbac/</link>
-      <guid>https://blog.fangyueming.cn/blog/rbac/</guid>
-      <source url="https://blog.fangyueming.cn/rss.xml">RBAC之我见</source>
-      <pubDate>Wed, 09 Sep 2009 00:00:00 GMT</pubDate>
-      <content:encoded><![CDATA[<h1 id="rbac之我见"> RBAC之我见</h1>
-<blockquote>
-<p>原帖见：<a href="http://user.qzone.qq.com/61077523/blog/1374910701" target="_blank" rel="noopener noreferrer">http://user.qzone.qq.com/61077523/blog/1374910701</a></p>
-</blockquote>
-<p>最近又开始折腾权限精细控制，发现多年前发的文章，还挺有思路的。摘录如下：</p>
-<ul>
-<li><a href="http://bbs.phpchina.com/forum.php?mod=redirect&amp;goto=findpost&amp;ptid=105577&amp;pid=877890&amp;fromuid=8531" target="_blank" rel="noopener noreferrer">http://bbs.phpchina.com/forum.php?mod=redirect&amp;goto=findpost&amp;ptid=105577&amp;pid=877890&amp;fromuid=8531</a></li>
-<li><a href="http://bbs.phpchina.com/forum.php?mod=viewthread&amp;tid=151874&amp;fromuid=8531" target="_blank" rel="noopener noreferrer">http://bbs.phpchina.com/forum.php?mod=viewthread&amp;tid=151874&amp;fromuid=8531</a></li>
-</ul>
-<h2 id="一、缘起-zend-acl"> 一、缘起 Zend_Acl</h2>
-<h3 id="_1-简介"> 1. 简介</h3>
-<p>Zend_Acl 为权限管理提供轻量并灵活的访问控制列表 (ACL,access control list) 的实现。一般地，应用软件可以利用这样的功能限制某些特定对象来访问特定保护的对象。
-在本文档中：</p>
-<ul>
-<li>resource （资源）是一个限制访问的对象。</li>
-<li>role （角色）是一个可以发出请求去访问Resource的对象。</li>
-</ul>
-<p>简单地说就是：roles 请求访问 resources。例如，如果停车服务员要进入汽车，那么，这个停车服务员就是发出请求的 role，而这辆汽车就是 resource，因为不是所有人都有权进入汽车。
-通过规范和访问控制列表（ACL）的使用，应用软件可以控制角色（roles）如何来访问资源（resources）。</p>
-<h3 id="_2-关于资源-resource"> 2. 关于资源(Resource)</h3>
-<p>在 Zend_Acl 中，创建一个 resource 非常简单。Zend_Acl 提供了 resource 接口<code>Zend_Acl_Resource_Interface</code> 使开发者在程序中创建 resources 非常容易。为了使Zend_Acl把某个对象当作一个resource，一个类只需要实现这个只包含了一个方法 getResourceId() 的接口。</p>
-<p>另外，Zend_Acl_Resource是一个包含在 Zend_Acl 里作为一个基本的 resource 实现的类，开发者可以任意扩展它。
-Zend_Acl 提供了一个树结构，它可以添加多个 resources (或者叫“访问控制下的区域”）。因为 resources 被存储在这样一个树结构， 所以它们可以被组织成从一般（树根）到特殊（树叶）。基于特殊resource的查询将自动从resource的等级结构中搜索分配给祖先rResources的规则， 它允许简单的规则继承。</p>
-<p>例如，要把一个缺省的规则应用到一个城市的每个建筑物，就简单地把这个规则分配给这个城市， 而不是把规则分配给每个建筑物。然而，有些建筑物也许要求例外的规则，在Zend_Acl里，很容易地通过分配例外规则给每个有这样要求的建筑物来实现。 一个 resource 可以从唯一的一个父 resource 继承，而这个父 resource 也有它自己的父 resource，等等。</p>
-<p>Zend_Acl 也支持基于 resources 的权限（例如：&quot;create&quot;, &quot;read&quot;, &quot;update&quot;, &quot;delete&quot;）， 所以开发者可以根据 resource 分配影响全部或者特殊权限的规则到一个或多个资源。</p>
-<h3 id="_3-关于角色-role"> 3. 关于角色(Role)</h3>
-<p>象 Resources 一样，创建一个 role 也非常简单。 Zend_Acl 提供了 <code>Zend_Acl_Role_Interface</code> 使开发者创建 roles 非常容易。 为了使Zend_Acl把某个对象当作一个 role，一个类只需要实现这个只包含了一个方法 getRoleId() 的接口。</p>
-<p>另外，Zend_Acl_Role是一个包含在Zend_Acl里作为一个基本的 role 实现的类，开发者可以任意扩展它。
-在 Zend_Acl, 一个 role 可以从一个或多个 role 继承，这就是在 role 中支持规则的继承。</p>
-<p>例如，一个用户 role，如 “sally”， 可以属于一个或多个 role，如：“editor”和“administrator”。开发者可以分别给“editor”和“administrator”分配规则， 而“sally”将从它们俩继承规则，不需要直接给“sally”分配规则。
-虽然从多重角色继承的能力非常有用，但是多重继承也带来了一定程度的复杂性。</p>
-<p>下面的例子来示例含糊情形和Zend_Acl如何解决它。</p>
-<h2 id="二、分析"> 二、分析</h2>
-<p>按ZendFramework的做法ACL（访问控制列表）与Auth（认证）是分开的，我用五张表来实现。</p>
-<ul>
-<li>用于ACL的有：role、resource、access</li>
-<li>用于AUTH的有：user</li>
-<li>AUTH和ACL结合的表是：group</li>
-</ul>
-<p>很多RBAC笼统的把ACL和AUTH结合在一起了，所以比较混杂，搞不清楚。下面的草图简要说明ACL和AUTH的结合。</p>
-<p><img src="./assets/rbac-flowchart.jpg" alt="流程图" /></p>
-<h2 id="三、数据模型分析与设计"> 三、数据模型分析与设计</h2>
-<p><img src="./assets/rbac-er.png" alt="模型ER" />
-这个就不多说了，直接贴MySQL代码。</p>
-<div><pre><code><span>-- database leogb</span>
-<span>DROP</span> <span>DATABASE</span> <span>IF</span> <span>EXISTS</span> hent_leogb<span>;</span>
-<span>CREATE</span> <span>DATABASE</span> hent_leogb <span>DEFAULT</span> <span>CHARACTER</span> <span>SET</span> <span>=</span> <span>'utf8'</span><span>;</span>
-<span>USE</span> hent_leogb<span>;</span>
-<span>-- for first import</span>
-<span>-- table user</span>
-<span>CREATE</span> <span>TABLE</span> leo_user <span>(</span>
-    id <span>int</span><span>(</span><span>11</span><span>)</span> <span>NOT</span> <span>NULL</span> <span>AUTO_INCREMENT</span> <span>PRIMARY</span> <span>KEY</span><span>,</span>
-    name <span>char</span><span>(</span><span>40</span><span>)</span> <span>NOT</span> <span>NULL</span> <span>UNIQUE</span> <span>KEY</span><span>,</span>
-    password <span>char</span><span>(</span><span>32</span><span>)</span> <span>NOT</span> <span>NULL</span><span>,</span>
-    <span>time</span> <span>datetime</span> <span>NOT</span> <span>NULL</span><span>,</span>
-    <span>status</span> <span>int</span><span>(</span><span>4</span><span>)</span> <span>NOT</span> <span>NULL</span>
-<span>)</span> <span>DEFAULT</span> <span>CHARACTER</span> <span>SET</span> <span>=</span> <span>'utf8'</span> <span>TYPE</span> <span>=</span> <span>'InnoDB'</span><span>;</span>
-<span>-- table role</span>
-<span>CREATE</span> <span>TABLE</span> leo_role <span>(</span>
-    id <span>int</span><span>(</span><span>11</span><span>)</span> <span>NOT</span> <span>NULL</span> <span>AUTO_INCREMENT</span> <span>PRIMARY</span> <span>KEY</span><span>,</span>
-    role_id <span>int</span><span>(</span><span>11</span><span>)</span> <span>NOT</span> <span>NULL</span><span>,</span>
-    <span>FOREIGN</span> <span>KEY</span> <span>(</span>role_id<span>)</span> <span>REFERENCES</span> leo_role<span>(</span>id<span>)</span> <span>ON</span> <span>UPDATE</span> <span>CASCADE</span> <span>ON</span> <span>DELETE</span> <span>RESTRICT</span><span>,</span>
-    name <span>char</span><span>(</span><span>30</span><span>)</span> <span>NOT</span> <span>NULL</span> <span>UNIQUE</span> <span>KEY</span><span>,</span>
-    <span>status</span> <span>int</span><span>(</span><span>4</span><span>)</span> <span>NOT</span> <span>NULL</span><span>,</span>
-    <span>comment</span> <span>char</span><span>(</span><span>30</span><span>)</span> <span>NOT</span> <span>NULL</span>
-<span>)</span> <span>DEFAULT</span> <span>CHARACTER</span> <span>SET</span> <span>=</span> <span>'utf8'</span> <span>TYPE</span> <span>=</span> <span>'InnoDB'</span><span>;</span>
-<span>-- table resource</span>
-<span>CREATE</span> <span>TABLE</span> leo_resource <span>(</span>
-    id <span>int</span><span>(</span><span>11</span><span>)</span> <span>NOT</span> <span>NULL</span> <span>AUTO_INCREMENT</span> <span>PRIMARY</span> <span>KEY</span><span>,</span>
-    resource_id <span>int</span><span>(</span><span>11</span><span>)</span> <span>NOT</span> <span>NULL</span><span>,</span>
-    <span>FOREIGN</span> <span>KEY</span> <span>(</span>resource_id<span>)</span> <span>REFERENCES</span> leo_resource<span>(</span>id<span>)</span> <span>ON</span> <span>UPDATE</span> <span>CASCADE</span> <span>ON</span> <span>DELETE</span> <span>RESTRICT</span><span>,</span>
-    name <span>char</span><span>(</span><span>30</span><span>)</span> <span>NOT</span> <span>NULL</span> <span>UNIQUE</span> <span>KEY</span><span>,</span>
-    <span>status</span> <span>int</span><span>(</span><span>4</span><span>)</span> <span>NOT</span> <span>NULL</span><span>,</span>
-    <span>comment</span> <span>char</span><span>(</span><span>30</span><span>)</span> <span>NOT</span> <span>NULL</span>
-<span>)</span> <span>DEFAULT</span> <span>CHARACTER</span> <span>SET</span> <span>=</span> <span>'utf8'</span> <span>TYPE</span> <span>=</span> <span>'InnoDB'</span><span>;</span>
-<span>-- table group</span>
-<span>CREATE</span> <span>TABLE</span> leo_group <span>(</span>
-    user_id <span>int</span><span>(</span><span>11</span><span>)</span> <span>NOT</span> <span>NULL</span><span>,</span>
-    <span>FOREIGN</span> <span>KEY</span> <span>(</span>user_id<span>)</span> <span>REFERENCES</span> leo_user<span>(</span>id<span>)</span> <span>ON</span> <span>UPDATE</span> <span>CASCADE</span> <span>ON</span> <span>DELETE</span> <span>CASCADE</span><span>,</span>
-    role_id <span>int</span><span>(</span><span>11</span><span>)</span> <span>NOT</span> <span>NULL</span><span>,</span>
-    <span>FOREIGN</span> <span>KEY</span> <span>(</span>role_id<span>)</span> <span>REFERENCES</span> leo_role<span>(</span>id<span>)</span> <span>ON</span> <span>UPDATE</span> <span>CASCADE</span> <span>ON</span> <span>DELETE</span> <span>CASCADE</span><span>,</span>
-    <span>UNIQUE</span> <span>KEY</span> <span>(</span>user_id<span>,</span> role_id<span>)</span>
-<span>)</span> <span>DEFAULT</span> <span>CHARACTER</span> <span>SET</span> <span>=</span> <span>'utf8'</span> <span>TYPE</span> <span>=</span> <span>'InnoDB'</span><span>;</span>
-<span>-- table access</span>
-<span>CREATE</span> <span>TABLE</span> leo_access <span>(</span>
-    role_id <span>int</span><span>(</span><span>11</span><span>)</span> <span>NOT</span> <span>NULL</span><span>,</span>
-    <span>FOREIGN</span> <span>KEY</span> <span>(</span>role_id<span>)</span> <span>REFERENCES</span> leo_role<span>(</span>id<span>)</span> <span>ON</span> <span>UPDATE</span> <span>CASCADE</span> <span>ON</span> <span>DELETE</span> <span>CASCADE</span><span>,</span>
-    resource_id <span>int</span><span>(</span><span>11</span><span>)</span> <span>NOT</span> <span>NULL</span><span>,</span>
-    <span>FOREIGN</span> <span>KEY</span> <span>(</span>resource_id<span>)</span> <span>REFERENCES</span> leo_resource<span>(</span>id<span>)</span> <span>ON</span> <span>UPDATE</span> <span>CASCADE</span> <span>ON</span> <span>DELETE</span> <span>CASCADE</span><span>,</span>
-    <span>UNIQUE</span> <span>KEY</span> <span>(</span>role_id<span>,</span> resource_id<span>)</span>
-<span>)</span> <span>DEFAULT</span> <span>CHARACTER</span> <span>SET</span> <span>=</span> <span>'utf8'</span> <span>TYPE</span> <span>=</span> <span>'InnoDB'</span><span>;</span>
-</code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br><span>9</span><br><span>10</span><br><span>11</span><br><span>12</span><br><span>13</span><br><span>14</span><br><span>15</span><br><span>16</span><br><span>17</span><br><span>18</span><br><span>19</span><br><span>20</span><br><span>21</span><br><span>22</span><br><span>23</span><br><span>24</span><br><span>25</span><br><span>26</span><br><span>27</span><br><span>28</span><br><span>29</span><br><span>30</span><br><span>31</span><br><span>32</span><br><span>33</span><br><span>34</span><br><span>35</span><br><span>36</span><br><span>37</span><br><span>38</span><br><span>39</span><br><span>40</span><br><span>41</span><br><span>42</span><br><span>43</span><br><span>44</span><br><span>45</span><br><span>46</span><br><span>47</span><br></div></div><h2 id="四、应用分析与实现"> 四、应用分析与实现</h2>
-<p><img src="./assets/rbac-active.png" alt="活动图" /></p>
-<p>以下是按上面的思路做的应用，两张权限分配图是之前没有考虑多层资源结构时设计应用时的截图，供参考：</p>
-<p><img src="./assets/rbac-app01.gif" alt="应用截图01" /></p>
-<p><img src="./assets/rbac-app02.gif" alt="应用截图02" /></p>
-<h2 id="五、后记"> 五、后记</h2>
-<p>当年的思路还是局限于MVC设计中，一堆的Controller和Action，看上去很壮观。
-算是有点过设计了，不过，思路还算清晰吧。
-现在要我来做多半是要REST，估计是一堆的properties或者一堆的json，代码方面要简单很多，设计方面却要费很多脑子。
-前端是APP设计风格MVC，后端是API设计风格REST，两头都得折腾。</p>
-<blockquote>
-<p>方跃明
-发表于 2009-9-9</p>
-</blockquote>
 ]]></content:encoded>
     </item>
     <item>
@@ -4641,18 +4542,127 @@ Zend_Acl 提供了一个树结构，它可以添加多个 resources (或者叫�
 ]]></content:encoded>
     </item>
     <item>
-      <title>图解SQL JOINS</title>
-      <link>https://blog.fangyueming.cn/blog/sql-joins/</link>
-      <guid>https://blog.fangyueming.cn/blog/sql-joins/</guid>
-      <source url="https://blog.fangyueming.cn/rss.xml">图解SQL JOINS</source>
-      <pubDate>Sat, 28 Apr 2018 00:00:00 GMT</pubDate>
-      <content:encoded><![CDATA[<h1 id="图解sql-joins"> 图解SQL JOINS</h1>
-<p>左连接、右连接、内连接、外连接……傻傻分不清</p>
-<p><img src="./assets/sql-joins.jpg" alt="SQL JOINS" /></p>
+      <title>RBAC之我见</title>
+      <link>https://blog.fangyueming.cn/blog/rbac/</link>
+      <guid>https://blog.fangyueming.cn/blog/rbac/</guid>
+      <source url="https://blog.fangyueming.cn/rss.xml">RBAC之我见</source>
+      <pubDate>Wed, 09 Sep 2009 00:00:00 GMT</pubDate>
+      <content:encoded><![CDATA[<h1 id="rbac之我见"> RBAC之我见</h1>
+<blockquote>
+<p>原帖见：<a href="http://user.qzone.qq.com/61077523/blog/1374910701" target="_blank" rel="noopener noreferrer">http://user.qzone.qq.com/61077523/blog/1374910701</a></p>
+</blockquote>
+<p>最近又开始折腾权限精细控制，发现多年前发的文章，还挺有思路的。摘录如下：</p>
+<ul>
+<li><a href="http://bbs.phpchina.com/forum.php?mod=redirect&amp;goto=findpost&amp;ptid=105577&amp;pid=877890&amp;fromuid=8531" target="_blank" rel="noopener noreferrer">http://bbs.phpchina.com/forum.php?mod=redirect&amp;goto=findpost&amp;ptid=105577&amp;pid=877890&amp;fromuid=8531</a></li>
+<li><a href="http://bbs.phpchina.com/forum.php?mod=viewthread&amp;tid=151874&amp;fromuid=8531" target="_blank" rel="noopener noreferrer">http://bbs.phpchina.com/forum.php?mod=viewthread&amp;tid=151874&amp;fromuid=8531</a></li>
+</ul>
+<h2 id="一、缘起-zend-acl"> 一、缘起 Zend_Acl</h2>
+<h3 id="_1-简介"> 1. 简介</h3>
+<p>Zend_Acl 为权限管理提供轻量并灵活的访问控制列表 (ACL,access control list) 的实现。一般地，应用软件可以利用这样的功能限制某些特定对象来访问特定保护的对象。
+在本文档中：</p>
+<ul>
+<li>resource （资源）是一个限制访问的对象。</li>
+<li>role （角色）是一个可以发出请求去访问Resource的对象。</li>
+</ul>
+<p>简单地说就是：roles 请求访问 resources。例如，如果停车服务员要进入汽车，那么，这个停车服务员就是发出请求的 role，而这辆汽车就是 resource，因为不是所有人都有权进入汽车。
+通过规范和访问控制列表（ACL）的使用，应用软件可以控制角色（roles）如何来访问资源（resources）。</p>
+<h3 id="_2-关于资源-resource"> 2. 关于资源(Resource)</h3>
+<p>在 Zend_Acl 中，创建一个 resource 非常简单。Zend_Acl 提供了 resource 接口<code>Zend_Acl_Resource_Interface</code> 使开发者在程序中创建 resources 非常容易。为了使Zend_Acl把某个对象当作一个resource，一个类只需要实现这个只包含了一个方法 getResourceId() 的接口。</p>
+<p>另外，Zend_Acl_Resource是一个包含在 Zend_Acl 里作为一个基本的 resource 实现的类，开发者可以任意扩展它。
+Zend_Acl 提供了一个树结构，它可以添加多个 resources (或者叫“访问控制下的区域”）。因为 resources 被存储在这样一个树结构， 所以它们可以被组织成从一般（树根）到特殊（树叶）。基于特殊resource的查询将自动从resource的等级结构中搜索分配给祖先rResources的规则， 它允许简单的规则继承。</p>
+<p>例如，要把一个缺省的规则应用到一个城市的每个建筑物，就简单地把这个规则分配给这个城市， 而不是把规则分配给每个建筑物。然而，有些建筑物也许要求例外的规则，在Zend_Acl里，很容易地通过分配例外规则给每个有这样要求的建筑物来实现。 一个 resource 可以从唯一的一个父 resource 继承，而这个父 resource 也有它自己的父 resource，等等。</p>
+<p>Zend_Acl 也支持基于 resources 的权限（例如：&quot;create&quot;, &quot;read&quot;, &quot;update&quot;, &quot;delete&quot;）， 所以开发者可以根据 resource 分配影响全部或者特殊权限的规则到一个或多个资源。</p>
+<h3 id="_3-关于角色-role"> 3. 关于角色(Role)</h3>
+<p>象 Resources 一样，创建一个 role 也非常简单。 Zend_Acl 提供了 <code>Zend_Acl_Role_Interface</code> 使开发者创建 roles 非常容易。 为了使Zend_Acl把某个对象当作一个 role，一个类只需要实现这个只包含了一个方法 getRoleId() 的接口。</p>
+<p>另外，Zend_Acl_Role是一个包含在Zend_Acl里作为一个基本的 role 实现的类，开发者可以任意扩展它。
+在 Zend_Acl, 一个 role 可以从一个或多个 role 继承，这就是在 role 中支持规则的继承。</p>
+<p>例如，一个用户 role，如 “sally”， 可以属于一个或多个 role，如：“editor”和“administrator”。开发者可以分别给“editor”和“administrator”分配规则， 而“sally”将从它们俩继承规则，不需要直接给“sally”分配规则。
+虽然从多重角色继承的能力非常有用，但是多重继承也带来了一定程度的复杂性。</p>
+<p>下面的例子来示例含糊情形和Zend_Acl如何解决它。</p>
+<h2 id="二、分析"> 二、分析</h2>
+<p>按ZendFramework的做法ACL（访问控制列表）与Auth（认证）是分开的，我用五张表来实现。</p>
+<ul>
+<li>用于ACL的有：role、resource、access</li>
+<li>用于AUTH的有：user</li>
+<li>AUTH和ACL结合的表是：group</li>
+</ul>
+<p>很多RBAC笼统的把ACL和AUTH结合在一起了，所以比较混杂，搞不清楚。下面的草图简要说明ACL和AUTH的结合。</p>
+<p><img src="./assets/rbac-flowchart.jpg" alt="流程图" /></p>
+<h2 id="三、数据模型分析与设计"> 三、数据模型分析与设计</h2>
+<p><img src="./assets/rbac-er.png" alt="模型ER" />
+这个就不多说了，直接贴MySQL代码。</p>
+<div><pre><code><span>-- database leogb</span>
+<span>DROP</span> <span>DATABASE</span> <span>IF</span> <span>EXISTS</span> hent_leogb<span>;</span>
+<span>CREATE</span> <span>DATABASE</span> hent_leogb <span>DEFAULT</span> <span>CHARACTER</span> <span>SET</span> <span>=</span> <span>'utf8'</span><span>;</span>
+<span>USE</span> hent_leogb<span>;</span>
+<span>-- for first import</span>
+<span>-- table user</span>
+<span>CREATE</span> <span>TABLE</span> leo_user <span>(</span>
+    id <span>int</span><span>(</span><span>11</span><span>)</span> <span>NOT</span> <span>NULL</span> <span>AUTO_INCREMENT</span> <span>PRIMARY</span> <span>KEY</span><span>,</span>
+    name <span>char</span><span>(</span><span>40</span><span>)</span> <span>NOT</span> <span>NULL</span> <span>UNIQUE</span> <span>KEY</span><span>,</span>
+    password <span>char</span><span>(</span><span>32</span><span>)</span> <span>NOT</span> <span>NULL</span><span>,</span>
+    <span>time</span> <span>datetime</span> <span>NOT</span> <span>NULL</span><span>,</span>
+    <span>status</span> <span>int</span><span>(</span><span>4</span><span>)</span> <span>NOT</span> <span>NULL</span>
+<span>)</span> <span>DEFAULT</span> <span>CHARACTER</span> <span>SET</span> <span>=</span> <span>'utf8'</span> <span>TYPE</span> <span>=</span> <span>'InnoDB'</span><span>;</span>
+<span>-- table role</span>
+<span>CREATE</span> <span>TABLE</span> leo_role <span>(</span>
+    id <span>int</span><span>(</span><span>11</span><span>)</span> <span>NOT</span> <span>NULL</span> <span>AUTO_INCREMENT</span> <span>PRIMARY</span> <span>KEY</span><span>,</span>
+    role_id <span>int</span><span>(</span><span>11</span><span>)</span> <span>NOT</span> <span>NULL</span><span>,</span>
+    <span>FOREIGN</span> <span>KEY</span> <span>(</span>role_id<span>)</span> <span>REFERENCES</span> leo_role<span>(</span>id<span>)</span> <span>ON</span> <span>UPDATE</span> <span>CASCADE</span> <span>ON</span> <span>DELETE</span> <span>RESTRICT</span><span>,</span>
+    name <span>char</span><span>(</span><span>30</span><span>)</span> <span>NOT</span> <span>NULL</span> <span>UNIQUE</span> <span>KEY</span><span>,</span>
+    <span>status</span> <span>int</span><span>(</span><span>4</span><span>)</span> <span>NOT</span> <span>NULL</span><span>,</span>
+    <span>comment</span> <span>char</span><span>(</span><span>30</span><span>)</span> <span>NOT</span> <span>NULL</span>
+<span>)</span> <span>DEFAULT</span> <span>CHARACTER</span> <span>SET</span> <span>=</span> <span>'utf8'</span> <span>TYPE</span> <span>=</span> <span>'InnoDB'</span><span>;</span>
+<span>-- table resource</span>
+<span>CREATE</span> <span>TABLE</span> leo_resource <span>(</span>
+    id <span>int</span><span>(</span><span>11</span><span>)</span> <span>NOT</span> <span>NULL</span> <span>AUTO_INCREMENT</span> <span>PRIMARY</span> <span>KEY</span><span>,</span>
+    resource_id <span>int</span><span>(</span><span>11</span><span>)</span> <span>NOT</span> <span>NULL</span><span>,</span>
+    <span>FOREIGN</span> <span>KEY</span> <span>(</span>resource_id<span>)</span> <span>REFERENCES</span> leo_resource<span>(</span>id<span>)</span> <span>ON</span> <span>UPDATE</span> <span>CASCADE</span> <span>ON</span> <span>DELETE</span> <span>RESTRICT</span><span>,</span>
+    name <span>char</span><span>(</span><span>30</span><span>)</span> <span>NOT</span> <span>NULL</span> <span>UNIQUE</span> <span>KEY</span><span>,</span>
+    <span>status</span> <span>int</span><span>(</span><span>4</span><span>)</span> <span>NOT</span> <span>NULL</span><span>,</span>
+    <span>comment</span> <span>char</span><span>(</span><span>30</span><span>)</span> <span>NOT</span> <span>NULL</span>
+<span>)</span> <span>DEFAULT</span> <span>CHARACTER</span> <span>SET</span> <span>=</span> <span>'utf8'</span> <span>TYPE</span> <span>=</span> <span>'InnoDB'</span><span>;</span>
+<span>-- table group</span>
+<span>CREATE</span> <span>TABLE</span> leo_group <span>(</span>
+    user_id <span>int</span><span>(</span><span>11</span><span>)</span> <span>NOT</span> <span>NULL</span><span>,</span>
+    <span>FOREIGN</span> <span>KEY</span> <span>(</span>user_id<span>)</span> <span>REFERENCES</span> leo_user<span>(</span>id<span>)</span> <span>ON</span> <span>UPDATE</span> <span>CASCADE</span> <span>ON</span> <span>DELETE</span> <span>CASCADE</span><span>,</span>
+    role_id <span>int</span><span>(</span><span>11</span><span>)</span> <span>NOT</span> <span>NULL</span><span>,</span>
+    <span>FOREIGN</span> <span>KEY</span> <span>(</span>role_id<span>)</span> <span>REFERENCES</span> leo_role<span>(</span>id<span>)</span> <span>ON</span> <span>UPDATE</span> <span>CASCADE</span> <span>ON</span> <span>DELETE</span> <span>CASCADE</span><span>,</span>
+    <span>UNIQUE</span> <span>KEY</span> <span>(</span>user_id<span>,</span> role_id<span>)</span>
+<span>)</span> <span>DEFAULT</span> <span>CHARACTER</span> <span>SET</span> <span>=</span> <span>'utf8'</span> <span>TYPE</span> <span>=</span> <span>'InnoDB'</span><span>;</span>
+<span>-- table access</span>
+<span>CREATE</span> <span>TABLE</span> leo_access <span>(</span>
+    role_id <span>int</span><span>(</span><span>11</span><span>)</span> <span>NOT</span> <span>NULL</span><span>,</span>
+    <span>FOREIGN</span> <span>KEY</span> <span>(</span>role_id<span>)</span> <span>REFERENCES</span> leo_role<span>(</span>id<span>)</span> <span>ON</span> <span>UPDATE</span> <span>CASCADE</span> <span>ON</span> <span>DELETE</span> <span>CASCADE</span><span>,</span>
+    resource_id <span>int</span><span>(</span><span>11</span><span>)</span> <span>NOT</span> <span>NULL</span><span>,</span>
+    <span>FOREIGN</span> <span>KEY</span> <span>(</span>resource_id<span>)</span> <span>REFERENCES</span> leo_resource<span>(</span>id<span>)</span> <span>ON</span> <span>UPDATE</span> <span>CASCADE</span> <span>ON</span> <span>DELETE</span> <span>CASCADE</span><span>,</span>
+    <span>UNIQUE</span> <span>KEY</span> <span>(</span>role_id<span>,</span> resource_id<span>)</span>
+<span>)</span> <span>DEFAULT</span> <span>CHARACTER</span> <span>SET</span> <span>=</span> <span>'utf8'</span> <span>TYPE</span> <span>=</span> <span>'InnoDB'</span><span>;</span>
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br><span>9</span><br><span>10</span><br><span>11</span><br><span>12</span><br><span>13</span><br><span>14</span><br><span>15</span><br><span>16</span><br><span>17</span><br><span>18</span><br><span>19</span><br><span>20</span><br><span>21</span><br><span>22</span><br><span>23</span><br><span>24</span><br><span>25</span><br><span>26</span><br><span>27</span><br><span>28</span><br><span>29</span><br><span>30</span><br><span>31</span><br><span>32</span><br><span>33</span><br><span>34</span><br><span>35</span><br><span>36</span><br><span>37</span><br><span>38</span><br><span>39</span><br><span>40</span><br><span>41</span><br><span>42</span><br><span>43</span><br><span>44</span><br><span>45</span><br><span>46</span><br><span>47</span><br></div></div><h2 id="四、应用分析与实现"> 四、应用分析与实现</h2>
+<p><img src="./assets/rbac-active.png" alt="活动图" /></p>
+<p>以下是按上面的思路做的应用，两张权限分配图是之前没有考虑多层资源结构时设计应用时的截图，供参考：</p>
+<p><img src="./assets/rbac-app01.gif" alt="应用截图01" /></p>
+<p><img src="./assets/rbac-app02.gif" alt="应用截图02" /></p>
+<h2 id="五、后记"> 五、后记</h2>
+<p>当年的思路还是局限于MVC设计中，一堆的Controller和Action，看上去很壮观。
+算是有点过设计了，不过，思路还算清晰吧。
+现在要我来做多半是要REST，估计是一堆的properties或者一堆的json，代码方面要简单很多，设计方面却要费很多脑子。
+前端是APP设计风格MVC，后端是API设计风格REST，两头都得折腾。</p>
 <blockquote>
 <p>方跃明
-2018-4-28</p>
+发表于 2009-9-9</p>
 </blockquote>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>Internet技术概览</title>
+      <link>https://blog.fangyueming.cn/blog/web-internet/</link>
+      <guid>https://blog.fangyueming.cn/blog/web-internet/</guid>
+      <source url="https://blog.fangyueming.cn/rss.xml">Internet技术概览</source>
+      <pubDate>Tue, 20 Dec 2016 00:00:00 GMT</pubDate>
+      <content:encoded><![CDATA[<h1 id="internet技术概览"> Internet技术概览</h1>
+<p><img src="./assets/web-internet.jpg" alt="Internet技术概览" /></p>
 ]]></content:encoded>
     </item>
     <item>
@@ -4931,13 +4941,137 @@ ReactDOM<span>.</span><span>render</span><span>(</span>
 ]]></content:encoded>
     </item>
     <item>
-      <title>Internet技术概览</title>
-      <link>https://blog.fangyueming.cn/blog/web-internet/</link>
-      <guid>https://blog.fangyueming.cn/blog/web-internet/</guid>
-      <source url="https://blog.fangyueming.cn/rss.xml">Internet技术概览</source>
-      <pubDate>Tue, 20 Dec 2016 00:00:00 GMT</pubDate>
-      <content:encoded><![CDATA[<h1 id="internet技术概览"> Internet技术概览</h1>
-<p><img src="./assets/web-internet.jpg" alt="Internet技术概览" /></p>
+      <title>Zabbix安装笔记</title>
+      <link>https://blog.fangyueming.cn/blog/zabbix/</link>
+      <guid>https://blog.fangyueming.cn/blog/zabbix/</guid>
+      <source url="https://blog.fangyueming.cn/rss.xml">Zabbix安装笔记</source>
+      <pubDate>Fri, 11 Nov 2011 00:00:00 GMT</pubDate>
+      <content:encoded><![CDATA[<h1 id="zabbix安装笔记"> Zabbix安装笔记</h1>
+<p>详细安装步骤参见：<a href="https://www.zabbix.com/documentation/3.0/manual/installation/install_from_packages" target="_blank" rel="noopener noreferrer">官方安装手册</a></p>
+<h2 id="zabbix-server"> Zabbix Server</h2>
+<p><img src="./assets/zabbix-schema.jpg" alt="Zabbix部署示意图" /></p>
+<h3 id="安装数据库"> 安装数据库</h3>
+<div><pre><code><span># 安装 MariaDB 服务器和客户端</span>
+yum <span>install</span> mariadb-server mariadb
+systemctl start mariadb
+mysql -uroot -ppassword    <span># 进入MySQL命令行</span>
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br></div></div><div><pre><code><span>-- MariaDB新建zabbix用户</span>
+<span>UPDATE</span> <span>user</span> <span>SET</span> password<span>=</span>PASSWORD<span>(</span><span>'zabbix'</span><span>)</span> <span>WHERE</span> <span>user</span><span>=</span><span>'zabbix'</span><span>;</span>
+<span>CREATE</span> <span>DATABASE</span> <span>IF</span> <span>NOT</span> <span>EXISTS</span> zabbix <span>DEFAULT</span> <span>CHARACTER</span> <span>SET</span> utf8 <span>COLLATE</span> utf8_general_ci<span>;</span>
+FLUSH <span>PRIVILEGES</span><span>;</span>
+QUIT
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br></div></div><h3 id="安装服务端"> 安装服务端</h3>
+<div><pre><code><span>rpm</span> -ivh http://repo.zabbix.com/zabbix/3.0/rhel/7/x86_64/zabbix-release-3.0-1.el7.noarch.rpm
+yum <span>install</span> zabbix-server-mysql zabbix-web-mysql
+<span>cd</span> /usr/share/doc/zabbix-server-mysql-3.0.3
+zcat create.sql.gz <span>|</span> mysql -uzabbix -pzabbix zabbix
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br></div></div><h3 id="修改服务器配置"> 修改服务器配置</h3>
+<div><pre><code><span>## vi /etc/zabbix/zabbix_server.conf</span>
+<span>DBHost</span><span>=</span><span>localhost</span>
+<span>DBName</span><span>=</span><span>zabbix</span>
+<span>DBUser</span><span>=</span><span>zabbix</span>
+<span>DBPassword</span><span>=</span><span>zabbix</span>
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br></div></div><h3 id="修改web服务器配置文件"> 修改WEB服务器配置文件</h3>
+<div><pre><code><span>## vi /etc/httpd/conf.d/zabbix.conf</span>
+php_value data.timezone Asia/Shanghai
+</code></pre>
+<div><span>1</span><br><span>2</span><br></div></div><h3 id="启动zabbix服务器和web服务器"> 启动Zabbix服务器和WEB服务器</h3>
+<div><pre><code>systemctl start zabbix-server
+systemctl start httpd
+</code></pre>
+<div><span>1</span><br><span>2</span><br></div></div><h2 id="zabbix-agent"> Zabbix Agent</h2>
+<p><img src="./assets/zabbix-proxy.png" alt="Zabbix分布式部署示意图" /></p>
+<h3 id="centos"> CentOS</h3>
+<h4 id="安装"> 安装</h4>
+<div><pre><code>yum <span>install</span> zabbix-agent
+</code></pre>
+<div><span>1</span><br></div></div><h4 id="配置"> 配置</h4>
+<div><pre><code><span># vi /etc/zabbix/zabbix_agent.conf</span>
+<span>LogFile</span><span>=</span><span>/var/log/zabbix/zabbix_agentd.log   # 日志</span>
+<span>Server</span><span>=</span><span>127.0.0.1                            # Zabbix Server（直接连接）或者Zabbix Proxy（通过Proxy）</span>
+<span>Hostname</span><span>=</span><span>Zabbix Server                      # 对应zabbix web里面的host，不一定是os本机名称</span>
+<span>ServerActive</span><span>=</span><span>127.0.0.1                      # Zabbix Server或Zabbix Proxy</span>
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br></div></div><h4 id="配置防火墙-打开zabbix-agent端口-默认入站端口10050"> 配置防火墙，打开Zabbix Agent端口（默认入站端口10050）</h4>
+<div><pre><code>systemctl start zabbix-agent
+</code></pre>
+<div><span>1</span><br></div></div><h3 id="windows"> Windows</h3>
+<h4 id="下载并解压到运行目录"> 下载并解压到运行目录</h4>
+<p><a href="http://www.zabbix.com/download.php" target="_blank" rel="noopener noreferrer">Zabbix pre-compiled agents for Windows</a></p>
+<h4 id="配置conf-conf-zabbix-agentd-win-conf"> 配置conf(conf\zabbix-agentd.win.conf)</h4>
+<div><pre><code><span>LogFile</span><span>=</span><span>c:\zabbix_agentd.log  # 日志</span>
+<span>Server</span><span>=</span><span>127.0.0.1              # Zabbix服务器</span>
+<span>Hostname</span><span>=</span><span>Windows Host         # 对应zabbix web里面的host，不一定是本机名称</span>
+<span>ServerActive</span><span>=</span><span>127.0.0.1        # Zabbix服务器</span>
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br></div></div><ul>
+<li>注册为Windows服务：<code>bin\zabbix_agentd.exe -c \conf\zabbix_agentd.win.conf –i</code></li>
+<li>打开Zabbix Agent端口（默认入站端口10050）</li>
+<li>从Windows服务启动Zabbix Agent客户端</li>
+</ul>
+<h2 id="zabbix-proxy"> Zabbix Proxy</h2>
+<h3 id="安装服务器"> 安装服务器</h3>
+<div><pre><code><span>rpm</span> -ivh http://repo.zabbix.com/zabbix/3.0/rhel/7/x86_64/zabbix-release-3.0-1.el7.noarch.rpm
+yum <span>install</span> mariadb-server mariadb zabbix-proxy-mysql
+systemctl start mariadb
+mysql                       <span># 进入MySQL命令行</span>
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br></div></div><h3 id="分配帐号、授权及建立数据库"> 分配帐号、授权及建立数据库</h3>
+<div><pre><code><span>UPDATE</span> <span>user</span> <span>SET</span> password<span>=</span>PASSWORD<span>(</span><span>'zabbix'</span><span>)</span> <span>WHERE</span> <span>user</span><span>=</span><span>'zabbix'</span><span>;</span>
+FLUSH <span>PRIVILEGES</span><span>;</span>
+<span>CREATE</span> <span>DATABASE</span> <span>IF</span> <span>NOT</span> <span>EXISTS</span> zabbix_proxy <span>DEFAULT</span> <span>CHARACTER</span> <span>SET</span> utf8 <span>COLLATE</span> utf8_general_ci<span>;</span>
+QUIT
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br></div></div><h3 id="导入数据库"> 导入数据库</h3>
+<div><pre><code><span># cd /usr/share/doc/zabbix-proxy-mysql-3.0.3</span>
+zcat schema.sql.gz <span>|</span> mysql -uzabbix -pzabbix zabbix_proxy
+</code></pre>
+<div><span>1</span><br><span>2</span><br></div></div><h3 id="修改服务器配置文件"> 修改服务器配置文件</h3>
+<div><pre><code><span># vi /etc/zabbix/zabbix_proxy.conf</span>
+<span>Server</span><span>=</span><span>zabbix.server.url      # Zabbix Server 所在IP或者DNS Name</span>
+<span>Hostname</span><span>=</span><span>proxy.zabbix.name    # Zabbix Proxy 名字（对应Server里的Proxies名字）</span>
+<span>DBHost</span><span>=</span><span>localhost</span>
+<span>DBName</span><span>=</span><span>zabbix_proxy</span>
+<span>DBUser</span><span>=</span><span>zabbix</span>
+<span>DBPassword</span><span>=</span><span>zabbix</span>
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br></div></div><h3 id="打开zabbix-agent端口-默认入站端口10050"> 打开Zabbix Agent端口（默认入站端口10050）</h3>
+<h3 id="启动zabbix服务器"> 启动Zabbix服务器</h3>
+<div><pre><code>systemctl start zabbix-proxy
+</code></pre>
+<div><span>1</span><br></div></div><h3 id="zabbix-server-web-对应的设置"> Zabbix Server Web 对应的设置</h3>
+<ul>
+<li>添加代理：Administration -&gt; Proxies -&gt; Create proxy -&gt; Proxy name -&gt; proxy.zabbix.name</li>
+<li>添加代理下的主机：Configuration -&gt; Hosts -&gt; Create Host -&gt; Monitored by proxy -&gt; proxy.zabbix.name</li>
+</ul>
+<h3 id="注意事项"> 注意事项</h3>
+<ul>
+<li>Proxy只能使用proxy的数据库，不能使用Server的数据库</li>
+<li>注意Server端和Proxy端的IP/DNS名称、配置主机名称、Web端名称、各选项正确且一一对应</li>
+</ul>
+<h2 id="zabbix-snmp"> Zabbix SNMP</h2>
+<ul>
+<li>
+<p>Windows Server 2008 R2</p>
+<ul>
+<li>客户机端安装：SNMP Service</li>
+<li>客户机端设置：服务 -&gt; SNMP Service -&gt; 安全 -&gt; 接受的社区名称：public，只读 -&gt; 添加接受主机：Zabbix服务器</li>
+<li>客户机端防火墙：入站规则 -&gt; 默认端口161 -&gt; 协议UDP</li>
+<li>Zabbix Web端添加SNMP主机及端口号</li>
+</ul>
+</li>
+<li>
+<p>CentOS</p>
+<ul>
+<li>安装：<code>yum install net-snmp net-snmp-utils</code></li>
+<li>参见：<a href="https://blog.csdn.net/sinat_21302587/article/details/75099915" target="_blank" rel="noopener noreferrer">https://blog.csdn.net/sinat_21302587/article/details/75099915</a></li>
+</ul>
+</li>
+</ul>
 ]]></content:encoded>
     </item>
     <item>
@@ -5251,140 +5385,6 @@ you need to accept <span>add</span> key
 <p><img src="./webvirtcloud/instance.png" alt="instance" /></p>
 <h3 id="会话"> 会话</h3>
 <p><img src="./webvirtcloud/console.png" alt="console" /></p>
-]]></content:encoded>
-    </item>
-    <item>
-      <title>Zabbix安装笔记</title>
-      <link>https://blog.fangyueming.cn/blog/zabbix/</link>
-      <guid>https://blog.fangyueming.cn/blog/zabbix/</guid>
-      <source url="https://blog.fangyueming.cn/rss.xml">Zabbix安装笔记</source>
-      <pubDate>Fri, 11 Nov 2011 00:00:00 GMT</pubDate>
-      <content:encoded><![CDATA[<h1 id="zabbix安装笔记"> Zabbix安装笔记</h1>
-<p>详细安装步骤参见：<a href="https://www.zabbix.com/documentation/3.0/manual/installation/install_from_packages" target="_blank" rel="noopener noreferrer">官方安装手册</a></p>
-<h2 id="zabbix-server"> Zabbix Server</h2>
-<p><img src="./assets/zabbix-schema.jpg" alt="Zabbix部署示意图" /></p>
-<h3 id="安装数据库"> 安装数据库</h3>
-<div><pre><code><span># 安装 MariaDB 服务器和客户端</span>
-yum <span>install</span> mariadb-server mariadb
-systemctl start mariadb
-mysql -uroot -ppassword    <span># 进入MySQL命令行</span>
-</code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br></div></div><div><pre><code><span>-- MariaDB新建zabbix用户</span>
-<span>UPDATE</span> <span>user</span> <span>SET</span> password<span>=</span>PASSWORD<span>(</span><span>'zabbix'</span><span>)</span> <span>WHERE</span> <span>user</span><span>=</span><span>'zabbix'</span><span>;</span>
-<span>CREATE</span> <span>DATABASE</span> <span>IF</span> <span>NOT</span> <span>EXISTS</span> zabbix <span>DEFAULT</span> <span>CHARACTER</span> <span>SET</span> utf8 <span>COLLATE</span> utf8_general_ci<span>;</span>
-FLUSH <span>PRIVILEGES</span><span>;</span>
-QUIT
-</code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br></div></div><h3 id="安装服务端"> 安装服务端</h3>
-<div><pre><code><span>rpm</span> -ivh http://repo.zabbix.com/zabbix/3.0/rhel/7/x86_64/zabbix-release-3.0-1.el7.noarch.rpm
-yum <span>install</span> zabbix-server-mysql zabbix-web-mysql
-<span>cd</span> /usr/share/doc/zabbix-server-mysql-3.0.3
-zcat create.sql.gz <span>|</span> mysql -uzabbix -pzabbix zabbix
-</code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br></div></div><h3 id="修改服务器配置"> 修改服务器配置</h3>
-<div><pre><code><span>## vi /etc/zabbix/zabbix_server.conf</span>
-<span>DBHost</span><span>=</span><span>localhost</span>
-<span>DBName</span><span>=</span><span>zabbix</span>
-<span>DBUser</span><span>=</span><span>zabbix</span>
-<span>DBPassword</span><span>=</span><span>zabbix</span>
-</code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br></div></div><h3 id="修改web服务器配置文件"> 修改WEB服务器配置文件</h3>
-<div><pre><code><span>## vi /etc/httpd/conf.d/zabbix.conf</span>
-php_value data.timezone Asia/Shanghai
-</code></pre>
-<div><span>1</span><br><span>2</span><br></div></div><h3 id="启动zabbix服务器和web服务器"> 启动Zabbix服务器和WEB服务器</h3>
-<div><pre><code>systemctl start zabbix-server
-systemctl start httpd
-</code></pre>
-<div><span>1</span><br><span>2</span><br></div></div><h2 id="zabbix-agent"> Zabbix Agent</h2>
-<p><img src="./assets/zabbix-proxy.png" alt="Zabbix分布式部署示意图" /></p>
-<h3 id="centos"> CentOS</h3>
-<h4 id="安装"> 安装</h4>
-<div><pre><code>yum <span>install</span> zabbix-agent
-</code></pre>
-<div><span>1</span><br></div></div><h4 id="配置"> 配置</h4>
-<div><pre><code><span># vi /etc/zabbix/zabbix_agent.conf</span>
-<span>LogFile</span><span>=</span><span>/var/log/zabbix/zabbix_agentd.log   # 日志</span>
-<span>Server</span><span>=</span><span>127.0.0.1                            # Zabbix Server（直接连接）或者Zabbix Proxy（通过Proxy）</span>
-<span>Hostname</span><span>=</span><span>Zabbix Server                      # 对应zabbix web里面的host，不一定是os本机名称</span>
-<span>ServerActive</span><span>=</span><span>127.0.0.1                      # Zabbix Server或Zabbix Proxy</span>
-</code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br></div></div><h4 id="配置防火墙-打开zabbix-agent端口-默认入站端口10050"> 配置防火墙，打开Zabbix Agent端口（默认入站端口10050）</h4>
-<div><pre><code>systemctl start zabbix-agent
-</code></pre>
-<div><span>1</span><br></div></div><h3 id="windows"> Windows</h3>
-<h4 id="下载并解压到运行目录"> 下载并解压到运行目录</h4>
-<p><a href="http://www.zabbix.com/download.php" target="_blank" rel="noopener noreferrer">Zabbix pre-compiled agents for Windows</a></p>
-<h4 id="配置conf-conf-zabbix-agentd-win-conf"> 配置conf(conf\zabbix-agentd.win.conf)</h4>
-<div><pre><code><span>LogFile</span><span>=</span><span>c:\zabbix_agentd.log  # 日志</span>
-<span>Server</span><span>=</span><span>127.0.0.1              # Zabbix服务器</span>
-<span>Hostname</span><span>=</span><span>Windows Host         # 对应zabbix web里面的host，不一定是本机名称</span>
-<span>ServerActive</span><span>=</span><span>127.0.0.1        # Zabbix服务器</span>
-</code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br></div></div><ul>
-<li>注册为Windows服务：<code>bin\zabbix_agentd.exe -c \conf\zabbix_agentd.win.conf –i</code></li>
-<li>打开Zabbix Agent端口（默认入站端口10050）</li>
-<li>从Windows服务启动Zabbix Agent客户端</li>
-</ul>
-<h2 id="zabbix-proxy"> Zabbix Proxy</h2>
-<h3 id="安装服务器"> 安装服务器</h3>
-<div><pre><code><span>rpm</span> -ivh http://repo.zabbix.com/zabbix/3.0/rhel/7/x86_64/zabbix-release-3.0-1.el7.noarch.rpm
-yum <span>install</span> mariadb-server mariadb zabbix-proxy-mysql
-systemctl start mariadb
-mysql                       <span># 进入MySQL命令行</span>
-</code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br></div></div><h3 id="分配帐号、授权及建立数据库"> 分配帐号、授权及建立数据库</h3>
-<div><pre><code><span>UPDATE</span> <span>user</span> <span>SET</span> password<span>=</span>PASSWORD<span>(</span><span>'zabbix'</span><span>)</span> <span>WHERE</span> <span>user</span><span>=</span><span>'zabbix'</span><span>;</span>
-FLUSH <span>PRIVILEGES</span><span>;</span>
-<span>CREATE</span> <span>DATABASE</span> <span>IF</span> <span>NOT</span> <span>EXISTS</span> zabbix_proxy <span>DEFAULT</span> <span>CHARACTER</span> <span>SET</span> utf8 <span>COLLATE</span> utf8_general_ci<span>;</span>
-QUIT
-</code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br></div></div><h3 id="导入数据库"> 导入数据库</h3>
-<div><pre><code><span># cd /usr/share/doc/zabbix-proxy-mysql-3.0.3</span>
-zcat schema.sql.gz <span>|</span> mysql -uzabbix -pzabbix zabbix_proxy
-</code></pre>
-<div><span>1</span><br><span>2</span><br></div></div><h3 id="修改服务器配置文件"> 修改服务器配置文件</h3>
-<div><pre><code><span># vi /etc/zabbix/zabbix_proxy.conf</span>
-<span>Server</span><span>=</span><span>zabbix.server.url      # Zabbix Server 所在IP或者DNS Name</span>
-<span>Hostname</span><span>=</span><span>proxy.zabbix.name    # Zabbix Proxy 名字（对应Server里的Proxies名字）</span>
-<span>DBHost</span><span>=</span><span>localhost</span>
-<span>DBName</span><span>=</span><span>zabbix_proxy</span>
-<span>DBUser</span><span>=</span><span>zabbix</span>
-<span>DBPassword</span><span>=</span><span>zabbix</span>
-</code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br></div></div><h3 id="打开zabbix-agent端口-默认入站端口10050"> 打开Zabbix Agent端口（默认入站端口10050）</h3>
-<h3 id="启动zabbix服务器"> 启动Zabbix服务器</h3>
-<div><pre><code>systemctl start zabbix-proxy
-</code></pre>
-<div><span>1</span><br></div></div><h3 id="zabbix-server-web-对应的设置"> Zabbix Server Web 对应的设置</h3>
-<ul>
-<li>添加代理：Administration -&gt; Proxies -&gt; Create proxy -&gt; Proxy name -&gt; proxy.zabbix.name</li>
-<li>添加代理下的主机：Configuration -&gt; Hosts -&gt; Create Host -&gt; Monitored by proxy -&gt; proxy.zabbix.name</li>
-</ul>
-<h3 id="注意事项"> 注意事项</h3>
-<ul>
-<li>Proxy只能使用proxy的数据库，不能使用Server的数据库</li>
-<li>注意Server端和Proxy端的IP/DNS名称、配置主机名称、Web端名称、各选项正确且一一对应</li>
-</ul>
-<h2 id="zabbix-snmp"> Zabbix SNMP</h2>
-<ul>
-<li>
-<p>Windows Server 2008 R2</p>
-<ul>
-<li>客户机端安装：SNMP Service</li>
-<li>客户机端设置：服务 -&gt; SNMP Service -&gt; 安全 -&gt; 接受的社区名称：public，只读 -&gt; 添加接受主机：Zabbix服务器</li>
-<li>客户机端防火墙：入站规则 -&gt; 默认端口161 -&gt; 协议UDP</li>
-<li>Zabbix Web端添加SNMP主机及端口号</li>
-</ul>
-</li>
-<li>
-<p>CentOS</p>
-<ul>
-<li>安装：<code>yum install net-snmp net-snmp-utils</code></li>
-<li>参见：<a href="https://blog.csdn.net/sinat_21302587/article/details/75099915" target="_blank" rel="noopener noreferrer">https://blog.csdn.net/sinat_21302587/article/details/75099915</a></li>
-</ul>
-</li>
-</ul>
 ]]></content:encoded>
     </item>
   </channel>
