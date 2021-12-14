@@ -10,11 +10,11 @@ module.exports = config({
     // ['script', { src: '//cdn.jsdelivr.net/npm/vue/dist/vue.min.js' }],
     // ['script', { src: '//cdn.jsdelivr.net/npm/@babel/standalone/babel.min.js' }],
   ],
+  plugins: [
+    ['@vuepress/google-analytics', { 'ga': 'G-RKKX4QJ4PJ' }]
+  ],
   locales: {
-    "/": {
-      // 设置需要的语言
-      lang: "zh-CN",
-    },
+    '/': { lang: 'zh-CN' },
   },
   // comment: {
   //   type: 'waline',
