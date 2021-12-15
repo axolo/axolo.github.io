@@ -9,9 +9,8 @@ module.exports = config({
     // ['script', { src: '//cdn.jsdelivr.net/npm/react-dom/umd/react-dom.production.min.js' }],
     // ['script', { src: '//cdn.jsdelivr.net/npm/vue/dist/vue.min.js' }],
     // ['script', { src: '//cdn.jsdelivr.net/npm/@babel/standalone/babel.min.js' }],
-  ],
-  plugins: [
-    ['@vuepress/google-analytics', { 'ga': 'G-RKKX4QJ4PJ' }]
+    ['script', { src: 'https://www.googletagmanager.com/gtag/js?id=G-RKKX4QJ4PJ', async: true }],
+    ['script', { src: 'scripts/gtag.js' }],
   ],
   locales: {
     '/': { lang: 'zh-CN' },

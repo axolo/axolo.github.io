@@ -4,13 +4,12 @@
   "description": "方跃明的博客",
   "license": "MIT",
   "scripts": {
-    "dev": "cd blog && vuepress dev .",
-    "build": "cd blog && vuepress build .",
-    "clean": "cd blog && vuepress dev . --no-cache",
-    "eject": "cd blog && vuepress eject-hope ."
+    "dev": "vuepress dev blog",
+    "build": "vuepress build blog",
+    "clean": "vuepress dev blog --no-cache",
+    "eject": "vuepress eject-hope blog"
   },
   "devDependencies": {
-    "@vuepress/plugin-google-analytics": "^1.8.2",
     "vuepress": "^1.8.2",
     "vuepress-theme-hope": "^1.21.0"
   }
