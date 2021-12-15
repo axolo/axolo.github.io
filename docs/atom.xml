@@ -6,7 +6,7 @@
   <author>
     <name>方跃明</name>
   </author>
-  <updated>2021-12-14T13:18:48.491Z</updated>
+  <updated>2021-12-15T01:42:06.969Z</updated>
   <generator>@mr-hope/vuepress-plugin-feed</generator>
   <link rel="self" href="https://blog.fangyueming.cn/atom.xml"/>
   <link rel="alternate" href="https://blog.fangyueming.cn/"/>
@@ -153,6 +153,201 @@ yum <span>install</span> <span>git</span>
       <name>方跃明</name>
     </contributor>
     <published>2020-05-11T00:00:00.000Z</published>
+    <rights>Copyright by 方跃明</rights>
+  </entry>
+  <entry>
+    <title type="html">CentOS安装KVM</title>
+    <id>https://blog.fangyueming.cn/centos-kvm/</id>
+    <link href="https://blog.fangyueming.cn/centos-kvm/"/>
+    <updated>2021-12-12T12:29:55.000Z</updated>
+    <content type="html"><![CDATA[<h1 id="centos安装kvm"> CentOS安装KVM</h1>
+<p>很多人都使用Openstack，通过nova来管理KVM，对于KVM本身其实很陌生，本文理论联系实践，加深对KVM的认识。先弄清楚几个概念和关系：</p>
+<h2 id="openstack、kvm、qemu-kvm、libvirt的关系"> Openstack、kvm、qemu-kvm、libvirt的关系</h2>
+<ul>
+<li>KVM是最底层的hypervisor，它是用来模拟CPU的运行，它缺少了对network和周边I/O的支持，是没法直接用的。</li>
+<li>QEMU-KVM就是建基于KVM上面的，它提供了完整的网络和I/O支持。</li>
+<li>Openstack不直接控制qemu-kvm，它使用一个叫libvirt的库间接控制qemu-lvm。</li>
+<li>libvirt提供了跨VM平台的功能，除了QEMU的模拟器，还可以控制vmware、virtualbox、xen等。为了实现openstack的跨VM特性，openstack使用libvirt，而不直接用qemu-kvm。libvirt还提供了一些高级的功能，例如pool/vol管理。</li>
+</ul>
+<p><img src="./centos-kvm/openstack.png" alt="centos-kvm-openstack" /></p>
+<h2 id="虚拟机服务器和客户端的关系"> 虚拟机服务器和客户端的关系</h2>
+<table>
+<thead>
+<tr>
+<th>位置</th>
+<th style="text-align:center">组件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>服务端</td>
+<td style="text-align:center">kvm、qemu-kvm、libvirt、python-virtinst、virt-viewer</td>
+</tr>
+<tr>
+<td>客户端</td>
+<td style="text-align:center">virt-manager</td>
+</tr>
+</tbody>
+</table>
+<p>一般来说，服务器端尽可能的只安装必要的服务器组件，以避免性能问题、误操作和漏洞攻击等等，而管理服务器的客户端软件安装在客户端。当然，服务端和客户端在同一个操作系统的情况也是允许的，经常用在实验环境，但部署在生产环境应该极力避免。</p>
+<h2 id="部署kvm"> 部署KVM</h2>
+<h3 id="一、前提条件"> 一、前提条件</h3>
+<p>检查CPU虚拟化是否支持kvm；最小化安装CentOS；关闭SELinux、关闭iptables或者打开相应的防火墙端口。</p>
+<p>检查CPU是否支持虚拟化，用以下命令，其中vmx对应intel，svm对应amd，运行后如果有对应输出则支持虚拟化，无输出则表面不支持虚拟化。</p>
+<div><pre><code><span>cat</span> /proc/cpuinfo <span>|</span> <span>grep</span> -E <span>'(vmx|svm)'</span>
+</code></pre>
+<div><span>1</span><br></div></div><p>在/etc/sysconfig/selinux中设置参数selinux=0，关闭SELinux。</p>
+<h3 id="二、服务器端安装kvm服务"> 二、服务器端安装KVM服务</h3>
+<p>安装kvm服务端及相关组件，其中python-virtinst用于在创建虚拟机时编辑配置文件， virt-viewer用于客户端管理器管理虚拟机时开启图形控制台，防止黑屏。</p>
+<div><pre><code>yum <span>install</span> kvm qemu-kvm libvirt  python-virtinst  virt-viewer
+</code></pre>
+<div><span>1</span><br></div></div><p>启动libvirt服务</p>
+<div><pre><code>/etc/init.d/libvirtd start
+</code></pre>
+<div><span>1</span><br></div></div><p>查看kvm服务是否正常，目前没任何虚拟机，所以没有内容显示
+进入virsh后，可以使用virsh的相关指令。help为帮助，exit退出virsh。</p>
+<div><pre><code><span>virsh</span>
+list
+</code></pre>
+<div><span>1</span><br><span>2</span><br></div></div><h3 id="三、服务器端网络设置"> 三、服务器端网络设置</h3>
+<p>虚拟机接入网络常用有两种方式，一种是NAT一种是Brigde，一般采用Brigde方式。</p>
+<p><img src="./centos-kvm/network-brige.png" alt="network-brige" /></p>
+<p>桥接模式需要设置，首先，创建一个文件“/etc/sysconfig/network-scripts/ifcfg-br0”：</p>
+<div><pre><code><span># /etc/sysconfig/network-scripts/ifcfg-br0</span>
+<span>DEVICE</span><span>=</span><span>br0</span>
+<span>ONBOOT</span><span>=</span><span>yes</span>
+<span>TYPE</span><span>=</span><span>Bridge             #注意大小写</span>
+<span>BOOTPROTO</span><span>=</span><span>static</span>
+<span>IPADDR</span><span>=</span><span>192.168.255.180</span>
+<span>NETMASK</span><span>=</span><span>255.255.255.0</span>
+<span>GATEWAY</span><span>=</span><span>192.168.255.254</span>
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br></div></div><p>其次，修改“/etc/sysconfig/network-scripts/ifcfg-eth0”：</p>
+<div><pre><code><span># /etc/sysconfig/network-scripts/ifcfg-eth0</span>
+<span>DEVICE</span><span>=</span><span>eth0</span>
+<span>NM_CONTROLLED</span><span>=</span><span>no    #必须关闭NM_CONTROLLED</span>
+<span>BOOTPROTO</span><span>=</span><span>none      #由于是桥接，BOOTPROTO=none，不要配置IP等信息</span>
+<span>ONBOOT</span><span>=</span><span>yes          #启动时连接网卡</span>
+<span>BRIDGE</span><span>=</span><span>br0          #桥接到br0</span>
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br></div></div><p>重启网络服务</p>
+<div><pre><code>/etc/init.d/network restart
+</code></pre>
+<div><span>1</span><br></div></div><p>查看桥接网络</p>
+<div><pre><code>brctl show
+</code></pre>
+<div><span>1</span><br></div></div><table>
+<thead>
+<tr>
+<th>bridge name</th>
+<th>bridge id</th>
+<th>STP enabled</th>
+<th>interfaces</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>br0</td>
+<td>8000.00e081de016c</td>
+<td>no</td>
+<td>eth0</td>
+</tr>
+<tr>
+<td>virbr0</td>
+<td>8000.5254009219a2</td>
+<td>yes</td>
+<td>virbr0-nic</td>
+</tr>
+</tbody>
+</table>
+<p>四、kvm与virt-manager的关系**</p>
+<p>virt-manager图形化管理工具一般装在客户端桌面系统上，管理kvm host的虚拟网络、存储、网络接口，vm的创建、配置、删除、启动关机等。</p>
+<p><img src="./centos-kvm/virt-manager-client.png" alt="virt-manager客户端" /></p>
+<h3 id="五、客户端安装及使用virt-manager"> 五、客户端安装及使用virt-manager</h3>
+<ul>
+<li>客户端需要CentOS桌面系统。在“主菜单”→“系统”→“管理”→“添加/删除软件”中查找“virt-manager”，找到后，点击“应用”，进行安装。</li>
+<li>安装完成后，打开方式位于“主菜单”→“系统工具”→“虚拟系统管理器”。</li>
+</ul>
+<p><img src="./centos-kvm/virt-manager-install.png" alt="安装virt-manager" /></p>
+<p><img src="./centos-kvm/virt-manager-connection.png" alt="连接KVM服务器" /></p>
+<p><img src="./centos-kvm/vm.png" alt="虚拟机配置" /></p>
+<h3 id="六、vnc的使用"> 六、VNC的使用</h3>
+<p>对应KVM服务器一般采用OpenStack、CloudStack等等工具利用浏览器来进行管理，这些工具安装配置更加复杂。
+而virt-manager虽然简单，但目前为止还没有Windows版本。对于习惯Windows的用户，随时随地就能使用Linux桌面比较困难。因此需要VNC连接到Linux桌面客户端再利用virt-manager管理虚拟服务器。
+建议在装有virt-manager的Linux桌面上安装VNC服务器，并开启VNC服务，以便Windows用户使用VNC客户端进行控制。</p>
+<h3 id="七、需要进阶掌握的内容"> 七、需要进阶掌握的内容</h3>
+<ol>
+<li>libvirt命令行</li>
+<li>深入理解kvm相关概念</li>
+<li>linux相关概念、命令及shell编程</li>
+</ol>
+<blockquote>
+<p>方跃明
+2014-04-04</p>
+</blockquote>
+]]></content>
+    <author>
+      <name>方跃明</name>
+    </author>
+    <contributor>
+      <name>方跃明</name>
+    </contributor>
+    <published>2014-04-04T00:00:00.000Z</published>
+    <rights>Copyright by 方跃明</rights>
+  </entry>
+  <entry>
+    <title type="html">Chrome inspect开发钉钉应用</title>
+    <id>https://blog.fangyueming.cn/chrome-inspect-dingtalk/</id>
+    <link href="https://blog.fangyueming.cn/chrome-inspect-dingtalk/"/>
+    <updated>2021-12-12T12:29:55.000Z</updated>
+    <content type="html"><![CDATA[<h1 id="chrome-inspect开发钉钉应用"> Chrome inspect开发钉钉应用</h1>
+<p><code>Chrome inspect</code>是<code>Chrome</code>浏览器基于<code>webkit remote debug</code>的实现，支持<code>Andorid</code>模拟器和<code>Andorid</code>真实设备。</p>
+<p>但由于国情所致，国内<code>Android</code>大部分手机对于<code>Google Mobile Service</code>的支持甚是微弱，很多设备甚至完全阉割，且无法安装。</p>
+<p>因此，推荐使用未被阉割的<code>Android</code>模拟器进行开发。</p>
+<div><p>提示</p>
+<p>由于国情所致，下载和访问页面可能产生不可预期的错误，请自行解决。</p>
+</div>
+<h2 id="钉钉开发版"> 钉钉开发版</h2>
+<p>钉钉正式版不支持<code>Chrome nspect</code>，请在<a href="https://open-doc.dingtalk.com/microapp/kn6zg7" target="_blank" rel="noopener noreferrer">钉钉开发者工具</a>中下载钉钉开发版。</p>
+<h2 id="真机调试"> 真机调试</h2>
+<p>真机使用USB连接到电脑，打开开发者模式，允许调试，才能被<code>Chrome nspect</code>发现。</p>
+<p><img src="./chrome-inspect/android-develop.jpg" alt="开发者模式" /></p>
+<p><img src="./chrome-inspect/android-allow-debug.jpg" alt="允许调试" /></p>
+<h2 id="模拟器"> 模拟器</h2>
+<p>推荐<a href="https://www.genymotion.com/download" target="_blank" rel="noopener noreferrer">下载</a>对开发支持良好的<a href="https://www.genymotion.com" target="_blank" rel="noopener noreferrer">Genymotion</a>Android模拟器，若无<code>VirtualBox</code>环境请选择<code>with VirtualBox</code>的安装包。
+一般使用默认安装方式，安装时请注意选择<code>Personal Use</code>免费使用，土豪随意。</p>
+<div><p>友情提示</p>
+<p>请勿下载夜神、mumu之类的模拟器（<s>游戏机</s>）。</p>
+</div>
+<h2 id="虚拟机"> 虚拟机</h2>
+<p>打开<code>Genymotion</code>模拟器，请选择较高版本的虚拟设备模板，点击右侧菜单<code>INSTALL</code>，下载完成自动安装。</p>
+<p><img src="./chrome-inspect/vm-install.jpg" alt="安装虚拟机" /></p>
+<p>回到<code>Genymotion</code>模拟器，启动虚拟机，默认已经打开开发者模式。</p>
+<p>将钉钉开发版拖入虚拟机中，完成安装，打开钉钉应用，进入钉钉微应用。</p>
+<p><img src="./chrome-inspect/vm-run.jpg" alt="虚拟机启动" /></p>
+<div><p>离线下载</p>
+<p>若网络环境慢需要离线下载模板包，请打开<code>C:\Users\your-name\AppData\Local\Genymobile\genymotion.log</code>日志，查找<code>.ova</code>（<code>VirtualBox</code>模板格式）字符串。
+得到你想离线下载的文件链接，使用迅雷极速版等符合国情的下载工具下载，完成后双击导入<code>VirtualBox</code>。</p>
+</div>
+<p>若错误请根据错误提示解决问题，比如网络配置错误：</p>
+<p><img src="./chrome-inspect/vm-setting.jpg" alt="虚拟机网络配置" /></p>
+<h2 id="chrome-inspect"> Chrome inspect</h2>
+<p>使用<code>Chrome</code>浏览器打开<code>chrome://inspect/#devices</code>新标签页，将<code>Remote Target</code>下对应设备的对应页面<code>inspect</code>到桌面端的<code>Chrome</code>。</p>
+<p><img src="./chrome-inspect/inspect-device.jpg" alt="Chrome inspect" /></p>
+<p>正常情况进入调试页面。</p>
+<p><img src="./chrome-inspect/inspect-debug.jpg" alt="Chrome debug" /></p>
+<div><p>谨防受骗</p>
+<p>国情问题，很可能会弹出空白页面或者404错误页面（<code>HTTP/1.1 404 Not Found</code>）。
+据说有<code>Chrome inspect</code>对应的<code>WebView</code>离线工具解决，可能需要付费，请务必谨慎。</p>
+</div>
+]]></content>
+    <author>
+      <name>方跃明</name>
+    </author>
+    <contributor>
+      <name>方跃明</name>
+    </contributor>
+    <published>2019-04-07T00:00:00.000Z</published>
     <rights>Copyright by 方跃明</rights>
   </entry>
   <entry>
@@ -796,201 +991,6 @@ last                          <span># 查看用户登录日志</span>
     <rights>Copyright by 方跃明</rights>
   </entry>
   <entry>
-    <title type="html">CentOS安装KVM</title>
-    <id>https://blog.fangyueming.cn/centos-kvm/</id>
-    <link href="https://blog.fangyueming.cn/centos-kvm/"/>
-    <updated>2021-12-12T12:29:55.000Z</updated>
-    <content type="html"><![CDATA[<h1 id="centos安装kvm"> CentOS安装KVM</h1>
-<p>很多人都使用Openstack，通过nova来管理KVM，对于KVM本身其实很陌生，本文理论联系实践，加深对KVM的认识。先弄清楚几个概念和关系：</p>
-<h2 id="openstack、kvm、qemu-kvm、libvirt的关系"> Openstack、kvm、qemu-kvm、libvirt的关系</h2>
-<ul>
-<li>KVM是最底层的hypervisor，它是用来模拟CPU的运行，它缺少了对network和周边I/O的支持，是没法直接用的。</li>
-<li>QEMU-KVM就是建基于KVM上面的，它提供了完整的网络和I/O支持。</li>
-<li>Openstack不直接控制qemu-kvm，它使用一个叫libvirt的库间接控制qemu-lvm。</li>
-<li>libvirt提供了跨VM平台的功能，除了QEMU的模拟器，还可以控制vmware、virtualbox、xen等。为了实现openstack的跨VM特性，openstack使用libvirt，而不直接用qemu-kvm。libvirt还提供了一些高级的功能，例如pool/vol管理。</li>
-</ul>
-<p><img src="./centos-kvm/openstack.png" alt="centos-kvm-openstack" /></p>
-<h2 id="虚拟机服务器和客户端的关系"> 虚拟机服务器和客户端的关系</h2>
-<table>
-<thead>
-<tr>
-<th>位置</th>
-<th style="text-align:center">组件</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>服务端</td>
-<td style="text-align:center">kvm、qemu-kvm、libvirt、python-virtinst、virt-viewer</td>
-</tr>
-<tr>
-<td>客户端</td>
-<td style="text-align:center">virt-manager</td>
-</tr>
-</tbody>
-</table>
-<p>一般来说，服务器端尽可能的只安装必要的服务器组件，以避免性能问题、误操作和漏洞攻击等等，而管理服务器的客户端软件安装在客户端。当然，服务端和客户端在同一个操作系统的情况也是允许的，经常用在实验环境，但部署在生产环境应该极力避免。</p>
-<h2 id="部署kvm"> 部署KVM</h2>
-<h3 id="一、前提条件"> 一、前提条件</h3>
-<p>检查CPU虚拟化是否支持kvm；最小化安装CentOS；关闭SELinux、关闭iptables或者打开相应的防火墙端口。</p>
-<p>检查CPU是否支持虚拟化，用以下命令，其中vmx对应intel，svm对应amd，运行后如果有对应输出则支持虚拟化，无输出则表面不支持虚拟化。</p>
-<div><pre><code><span>cat</span> /proc/cpuinfo <span>|</span> <span>grep</span> -E <span>'(vmx|svm)'</span>
-</code></pre>
-<div><span>1</span><br></div></div><p>在/etc/sysconfig/selinux中设置参数selinux=0，关闭SELinux。</p>
-<h3 id="二、服务器端安装kvm服务"> 二、服务器端安装KVM服务</h3>
-<p>安装kvm服务端及相关组件，其中python-virtinst用于在创建虚拟机时编辑配置文件， virt-viewer用于客户端管理器管理虚拟机时开启图形控制台，防止黑屏。</p>
-<div><pre><code>yum <span>install</span> kvm qemu-kvm libvirt  python-virtinst  virt-viewer
-</code></pre>
-<div><span>1</span><br></div></div><p>启动libvirt服务</p>
-<div><pre><code>/etc/init.d/libvirtd start
-</code></pre>
-<div><span>1</span><br></div></div><p>查看kvm服务是否正常，目前没任何虚拟机，所以没有内容显示
-进入virsh后，可以使用virsh的相关指令。help为帮助，exit退出virsh。</p>
-<div><pre><code><span>virsh</span>
-list
-</code></pre>
-<div><span>1</span><br><span>2</span><br></div></div><h3 id="三、服务器端网络设置"> 三、服务器端网络设置</h3>
-<p>虚拟机接入网络常用有两种方式，一种是NAT一种是Brigde，一般采用Brigde方式。</p>
-<p><img src="./centos-kvm/network-brige.png" alt="network-brige" /></p>
-<p>桥接模式需要设置，首先，创建一个文件“/etc/sysconfig/network-scripts/ifcfg-br0”：</p>
-<div><pre><code><span># /etc/sysconfig/network-scripts/ifcfg-br0</span>
-<span>DEVICE</span><span>=</span><span>br0</span>
-<span>ONBOOT</span><span>=</span><span>yes</span>
-<span>TYPE</span><span>=</span><span>Bridge             #注意大小写</span>
-<span>BOOTPROTO</span><span>=</span><span>static</span>
-<span>IPADDR</span><span>=</span><span>192.168.255.180</span>
-<span>NETMASK</span><span>=</span><span>255.255.255.0</span>
-<span>GATEWAY</span><span>=</span><span>192.168.255.254</span>
-</code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br></div></div><p>其次，修改“/etc/sysconfig/network-scripts/ifcfg-eth0”：</p>
-<div><pre><code><span># /etc/sysconfig/network-scripts/ifcfg-eth0</span>
-<span>DEVICE</span><span>=</span><span>eth0</span>
-<span>NM_CONTROLLED</span><span>=</span><span>no    #必须关闭NM_CONTROLLED</span>
-<span>BOOTPROTO</span><span>=</span><span>none      #由于是桥接，BOOTPROTO=none，不要配置IP等信息</span>
-<span>ONBOOT</span><span>=</span><span>yes          #启动时连接网卡</span>
-<span>BRIDGE</span><span>=</span><span>br0          #桥接到br0</span>
-</code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br></div></div><p>重启网络服务</p>
-<div><pre><code>/etc/init.d/network restart
-</code></pre>
-<div><span>1</span><br></div></div><p>查看桥接网络</p>
-<div><pre><code>brctl show
-</code></pre>
-<div><span>1</span><br></div></div><table>
-<thead>
-<tr>
-<th>bridge name</th>
-<th>bridge id</th>
-<th>STP enabled</th>
-<th>interfaces</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>br0</td>
-<td>8000.00e081de016c</td>
-<td>no</td>
-<td>eth0</td>
-</tr>
-<tr>
-<td>virbr0</td>
-<td>8000.5254009219a2</td>
-<td>yes</td>
-<td>virbr0-nic</td>
-</tr>
-</tbody>
-</table>
-<p>四、kvm与virt-manager的关系**</p>
-<p>virt-manager图形化管理工具一般装在客户端桌面系统上，管理kvm host的虚拟网络、存储、网络接口，vm的创建、配置、删除、启动关机等。</p>
-<p><img src="./centos-kvm/virt-manager-client.png" alt="virt-manager客户端" /></p>
-<h3 id="五、客户端安装及使用virt-manager"> 五、客户端安装及使用virt-manager</h3>
-<ul>
-<li>客户端需要CentOS桌面系统。在“主菜单”→“系统”→“管理”→“添加/删除软件”中查找“virt-manager”，找到后，点击“应用”，进行安装。</li>
-<li>安装完成后，打开方式位于“主菜单”→“系统工具”→“虚拟系统管理器”。</li>
-</ul>
-<p><img src="./centos-kvm/virt-manager-install.png" alt="安装virt-manager" /></p>
-<p><img src="./centos-kvm/virt-manager-connection.png" alt="连接KVM服务器" /></p>
-<p><img src="./centos-kvm/vm.png" alt="虚拟机配置" /></p>
-<h3 id="六、vnc的使用"> 六、VNC的使用</h3>
-<p>对应KVM服务器一般采用OpenStack、CloudStack等等工具利用浏览器来进行管理，这些工具安装配置更加复杂。
-而virt-manager虽然简单，但目前为止还没有Windows版本。对于习惯Windows的用户，随时随地就能使用Linux桌面比较困难。因此需要VNC连接到Linux桌面客户端再利用virt-manager管理虚拟服务器。
-建议在装有virt-manager的Linux桌面上安装VNC服务器，并开启VNC服务，以便Windows用户使用VNC客户端进行控制。</p>
-<h3 id="七、需要进阶掌握的内容"> 七、需要进阶掌握的内容</h3>
-<ol>
-<li>libvirt命令行</li>
-<li>深入理解kvm相关概念</li>
-<li>linux相关概念、命令及shell编程</li>
-</ol>
-<blockquote>
-<p>方跃明
-2014-04-04</p>
-</blockquote>
-]]></content>
-    <author>
-      <name>方跃明</name>
-    </author>
-    <contributor>
-      <name>方跃明</name>
-    </contributor>
-    <published>2014-04-04T00:00:00.000Z</published>
-    <rights>Copyright by 方跃明</rights>
-  </entry>
-  <entry>
-    <title type="html">Chrome inspect开发钉钉应用</title>
-    <id>https://blog.fangyueming.cn/chrome-inspect-dingtalk/</id>
-    <link href="https://blog.fangyueming.cn/chrome-inspect-dingtalk/"/>
-    <updated>2021-12-12T12:29:55.000Z</updated>
-    <content type="html"><![CDATA[<h1 id="chrome-inspect开发钉钉应用"> Chrome inspect开发钉钉应用</h1>
-<p><code>Chrome inspect</code>是<code>Chrome</code>浏览器基于<code>webkit remote debug</code>的实现，支持<code>Andorid</code>模拟器和<code>Andorid</code>真实设备。</p>
-<p>但由于国情所致，国内<code>Android</code>大部分手机对于<code>Google Mobile Service</code>的支持甚是微弱，很多设备甚至完全阉割，且无法安装。</p>
-<p>因此，推荐使用未被阉割的<code>Android</code>模拟器进行开发。</p>
-<div><p>提示</p>
-<p>由于国情所致，下载和访问页面可能产生不可预期的错误，请自行解决。</p>
-</div>
-<h2 id="钉钉开发版"> 钉钉开发版</h2>
-<p>钉钉正式版不支持<code>Chrome nspect</code>，请在<a href="https://open-doc.dingtalk.com/microapp/kn6zg7" target="_blank" rel="noopener noreferrer">钉钉开发者工具</a>中下载钉钉开发版。</p>
-<h2 id="真机调试"> 真机调试</h2>
-<p>真机使用USB连接到电脑，打开开发者模式，允许调试，才能被<code>Chrome nspect</code>发现。</p>
-<p><img src="./chrome-inspect/android-develop.jpg" alt="开发者模式" /></p>
-<p><img src="./chrome-inspect/android-allow-debug.jpg" alt="允许调试" /></p>
-<h2 id="模拟器"> 模拟器</h2>
-<p>推荐<a href="https://www.genymotion.com/download" target="_blank" rel="noopener noreferrer">下载</a>对开发支持良好的<a href="https://www.genymotion.com" target="_blank" rel="noopener noreferrer">Genymotion</a>Android模拟器，若无<code>VirtualBox</code>环境请选择<code>with VirtualBox</code>的安装包。
-一般使用默认安装方式，安装时请注意选择<code>Personal Use</code>免费使用，土豪随意。</p>
-<div><p>友情提示</p>
-<p>请勿下载夜神、mumu之类的模拟器（<s>游戏机</s>）。</p>
-</div>
-<h2 id="虚拟机"> 虚拟机</h2>
-<p>打开<code>Genymotion</code>模拟器，请选择较高版本的虚拟设备模板，点击右侧菜单<code>INSTALL</code>，下载完成自动安装。</p>
-<p><img src="./chrome-inspect/vm-install.jpg" alt="安装虚拟机" /></p>
-<p>回到<code>Genymotion</code>模拟器，启动虚拟机，默认已经打开开发者模式。</p>
-<p>将钉钉开发版拖入虚拟机中，完成安装，打开钉钉应用，进入钉钉微应用。</p>
-<p><img src="./chrome-inspect/vm-run.jpg" alt="虚拟机启动" /></p>
-<div><p>离线下载</p>
-<p>若网络环境慢需要离线下载模板包，请打开<code>C:\Users\your-name\AppData\Local\Genymobile\genymotion.log</code>日志，查找<code>.ova</code>（<code>VirtualBox</code>模板格式）字符串。
-得到你想离线下载的文件链接，使用迅雷极速版等符合国情的下载工具下载，完成后双击导入<code>VirtualBox</code>。</p>
-</div>
-<p>若错误请根据错误提示解决问题，比如网络配置错误：</p>
-<p><img src="./chrome-inspect/vm-setting.jpg" alt="虚拟机网络配置" /></p>
-<h2 id="chrome-inspect"> Chrome inspect</h2>
-<p>使用<code>Chrome</code>浏览器打开<code>chrome://inspect/#devices</code>新标签页，将<code>Remote Target</code>下对应设备的对应页面<code>inspect</code>到桌面端的<code>Chrome</code>。</p>
-<p><img src="./chrome-inspect/inspect-device.jpg" alt="Chrome inspect" /></p>
-<p>正常情况进入调试页面。</p>
-<p><img src="./chrome-inspect/inspect-debug.jpg" alt="Chrome debug" /></p>
-<div><p>谨防受骗</p>
-<p>国情问题，很可能会弹出空白页面或者404错误页面（<code>HTTP/1.1 404 Not Found</code>）。
-据说有<code>Chrome inspect</code>对应的<code>WebView</code>离线工具解决，可能需要付费，请务必谨慎。</p>
-</div>
-]]></content>
-    <author>
-      <name>方跃明</name>
-    </author>
-    <contributor>
-      <name>方跃明</name>
-    </contributor>
-    <published>2019-04-07T00:00:00.000Z</published>
-    <rights>Copyright by 方跃明</rights>
-  </entry>
-  <entry>
     <title type="html">程序员常用工具</title>
     <id>https://blog.fangyueming.cn/developer-utils/</id>
     <link href="https://blog.fangyueming.cn/developer-utils/"/>
@@ -1146,52 +1146,6 @@ CONNECTION<span>=</span><span>'mysql://user:password@localhost:3306/appdb/dingta
     <rights>Copyright by 方跃明</rights>
   </entry>
   <entry>
-    <title type="html">图解Git常用操作</title>
-    <id>https://blog.fangyueming.cn/git/</id>
-    <link href="https://blog.fangyueming.cn/git/"/>
-    <updated>2021-12-12T09:21:02.000Z</updated>
-    <content type="html"><![CDATA[<h1 id="图解git常用操作"> 图解Git常用操作</h1>
-<h2 id="git"> git</h2>
-<p>你真的需要记住那么多Git操作吗？
-也许阮一峰老师的<a href="http://www.ruanyifeng.com/blog/2015/12/git-cheat-sheet.html" target="_blank" rel="noopener noreferrer">《常用Git命令清单》</a>就够了。
-<img src="./assets/git.png" alt="Git常见操作图解" /></p>
-<h2 id="git-subtree"> git subtree</h2>
-<p>项目包含子项目这么办？是时候让你出场了！show time！</p>
-<ul>
-<li><a href="https://segmentfault.com/a/1190000012002151" target="_blank" rel="noopener noreferrer">git subtree教程</a></li>
-<li><a href="https://segmentfault.com/a/1190000003969060" target="_blank" rel="noopener noreferrer">用 Git Subtree 在多个 Git 项目间双向同步子项目</a></li>
-</ul>
-<p><img src="./assets/git-subtree.png" alt="git subtree" /></p>
-<div><pre><code><span># 克隆主项目仓库到本地</span>
-<span>git</span> clone https://coding.net/axolo/lcoamaxy
-<span># 建立子项目，并从远程克隆子项目到本地对应目录</span>
-<span>git</span> subtree <span>add</span> --prefix<span>=</span>www origin coding-pages
-<span># 主项目正常提交</span>
-<span>git</span> <span>add</span> --all
-<span>git</span> commit -m <span>"use git subtree"</span>
-<span>git</span> push
-<span># 提交子项目的变更到远程仓库</span>
-<span>git</span> subtree push -P www/ origin coding-pages
-<span># 从远程获取子项目的变更</span>
-<span>git</span> subtree pull -P www/ origin coding-pages
-<span># 在子项目生成新分支hotfix-001</span>
-<span>git</span> subtree push -P www/ origin hotfix-001
-</code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br><span>9</span><br><span>10</span><br><span>11</span><br><span>12</span><br><span>13</span><br><span>14</span><br></div></div><blockquote>
-<p>方跃明
-2018-4-28</p>
-</blockquote>
-]]></content>
-    <author>
-      <name>方跃明</name>
-    </author>
-    <contributor>
-      <name>方跃明</name>
-    </contributor>
-    <published>2018-04-28T00:00:00.000Z</published>
-    <rights>Copyright by 方跃明</rights>
-  </entry>
-  <entry>
     <title type="html">Docker Mysql</title>
     <id>https://blog.fangyueming.cn/docker-mysql/</id>
     <link href="https://blog.fangyueming.cn/docker-mysql/"/>
@@ -1275,6 +1229,52 @@ docker <span>exec</span> mysql mysqldump --skip-opt --databases <span>${db}</spa
     <rights>Copyright by 方跃明</rights>
   </entry>
   <entry>
+    <title type="html">图解Git常用操作</title>
+    <id>https://blog.fangyueming.cn/git/</id>
+    <link href="https://blog.fangyueming.cn/git/"/>
+    <updated>2021-12-12T09:21:02.000Z</updated>
+    <content type="html"><![CDATA[<h1 id="图解git常用操作"> 图解Git常用操作</h1>
+<h2 id="git"> git</h2>
+<p>你真的需要记住那么多Git操作吗？
+也许阮一峰老师的<a href="http://www.ruanyifeng.com/blog/2015/12/git-cheat-sheet.html" target="_blank" rel="noopener noreferrer">《常用Git命令清单》</a>就够了。
+<img src="./assets/git.png" alt="Git常见操作图解" /></p>
+<h2 id="git-subtree"> git subtree</h2>
+<p>项目包含子项目这么办？是时候让你出场了！show time！</p>
+<ul>
+<li><a href="https://segmentfault.com/a/1190000012002151" target="_blank" rel="noopener noreferrer">git subtree教程</a></li>
+<li><a href="https://segmentfault.com/a/1190000003969060" target="_blank" rel="noopener noreferrer">用 Git Subtree 在多个 Git 项目间双向同步子项目</a></li>
+</ul>
+<p><img src="./assets/git-subtree.png" alt="git subtree" /></p>
+<div><pre><code><span># 克隆主项目仓库到本地</span>
+<span>git</span> clone https://coding.net/axolo/lcoamaxy
+<span># 建立子项目，并从远程克隆子项目到本地对应目录</span>
+<span>git</span> subtree <span>add</span> --prefix<span>=</span>www origin coding-pages
+<span># 主项目正常提交</span>
+<span>git</span> <span>add</span> --all
+<span>git</span> commit -m <span>"use git subtree"</span>
+<span>git</span> push
+<span># 提交子项目的变更到远程仓库</span>
+<span>git</span> subtree push -P www/ origin coding-pages
+<span># 从远程获取子项目的变更</span>
+<span>git</span> subtree pull -P www/ origin coding-pages
+<span># 在子项目生成新分支hotfix-001</span>
+<span>git</span> subtree push -P www/ origin hotfix-001
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br><span>9</span><br><span>10</span><br><span>11</span><br><span>12</span><br><span>13</span><br><span>14</span><br></div></div><blockquote>
+<p>方跃明
+2018-4-28</p>
+</blockquote>
+]]></content>
+    <author>
+      <name>方跃明</name>
+    </author>
+    <contributor>
+      <name>方跃明</name>
+    </contributor>
+    <published>2018-04-28T00:00:00.000Z</published>
+    <rights>Copyright by 方跃明</rights>
+  </entry>
+  <entry>
     <title type="html">CentOS 8 安装</title>
     <id>https://blog.fangyueming.cn/install-centos/</id>
     <link href="https://blog.fangyueming.cn/install-centos/"/>
@@ -1307,254 +1307,6 @@ docker <span>exec</span> mysql mysqldump --skip-opt --databases <span>${db}</spa
       <name>方跃明</name>
     </contributor>
     <published>2019-05-09T00:00:00.000Z</published>
-    <rights>Copyright by 方跃明</rights>
-  </entry>
-  <entry>
-    <title type="html">JavaScript思维导图</title>
-    <id>https://blog.fangyueming.cn/javascript-mind-map/</id>
-    <link href="https://blog.fangyueming.cn/javascript-mind-map/"/>
-    <updated>2021-12-12T12:29:55.000Z</updated>
-    <content type="html"><![CDATA[<h1 id="javascript思维导图"> JavaScript思维导图</h1>
-<h2 id="数据类型"> 数据类型</h2>
-<p><img src="./javascript/javascript-01-data-type.gif" alt="JavaScript数据类型" /></p>
-<h2 id="变量"> 变量</h2>
-<p><img src="./javascript/javascript-02-variable.gif" alt="JavaScript变量" /></p>
-<h2 id="数组"> 数组</h2>
-<p><img src="./javascript/javascript-03-array.gif" alt="JavaScript数组" /></p>
-<h2 id="运算符"> 运算符</h2>
-<p><img src="./javascript/javascript-04-operational-character.gif" alt="JavaScript运算符" /></p>
-<h2 id="函数"> 函数</h2>
-<p><img src="./javascript/javascript-05-function-base.gif" alt="JavaScript函数" /></p>
-<h2 id="流程"> 流程</h2>
-<p><img src="./javascript/javascript-06-process-statement.gif" alt="JavaScript流程" /></p>
-<h2 id="字符串函数"> 字符串函数</h2>
-<p><img src="./javascript/javascript-07-string-function.gif" alt="JavaScript字符串函数" /></p>
-<h2 id="正则表达式"> 正则表达式</h2>
-<p><img src="./javascript/javascript-08-regular-expressions.gif" alt="JavaScript正则表达式" /></p>
-<h2 id="windows对象"> Windows对象</h2>
-<p><img src="./javascript/javascript-09-windows-object.gif" alt="JavaScript Windows对象" /></p>
-<h2 id="dom操作"> DOM操作</h2>
-<p><img src="./javascript/javascript-10-dom-operation.gif" alt="JavaScript DOM操作" /></p>
-]]></content>
-    <author>
-      <name>方跃明</name>
-    </author>
-    <contributor>
-      <name>方跃明</name>
-    </contributor>
-    <published>2015-05-09T00:00:00.000Z</published>
-    <rights>Copyright by 方跃明</rights>
-  </entry>
-  <entry>
-    <title type="html">jQuery常用表格操作</title>
-    <id>https://blog.fangyueming.cn/jquery-table/</id>
-    <link href="https://blog.fangyueming.cn/jquery-table/"/>
-    <updated>2021-12-12T12:29:55.000Z</updated>
-    <content type="html"><![CDATA[<h1 id="jquery常用表格操作"> jQuery常用表格操作</h1>
-<div><pre><code><span><span>&lt;!</span><span>DOCTYPE</span> <span>html</span><span>></span></span>
-<span><span><span>&lt;</span>html</span> <span>lang</span><span><span>=</span><span>"</span>en<span>"</span></span><span>></span></span>
-<span><span><span>&lt;</span>head</span><span>></span></span>
-  <span><span><span>&lt;</span>meta</span> <span>charset</span><span><span>=</span><span>"</span>UTF-8<span>"</span></span><span>></span></span>
-  <span><span><span>&lt;</span>meta</span> <span>name</span><span><span>=</span><span>"</span>viewport<span>"</span></span> <span>content</span><span><span>=</span><span>"</span>width=device-width, initial-scale=1.0<span>"</span></span><span>></span></span>
-  <span><span><span>&lt;</span>meta</span> <span>http-equiv</span><span><span>=</span><span>"</span>X-UA-Compatible<span>"</span></span> <span>content</span><span><span>=</span><span>"</span>ie=edge<span>"</span></span><span>></span></span>
-  <span><span><span>&lt;</span>title</span><span>></span></span>常用表格操作<span><span><span>&lt;/</span>title</span><span>></span></span>
-  <span><span><span>&lt;</span>link</span> <span>rel</span><span><span>=</span><span>"</span>stylesheet<span>"</span></span> <span>href</span><span><span>=</span><span>"</span>http://cdn.bootcss.com/qtip2/3.0.3/jquery.qtip.min.css<span>"</span></span><span>></span></span>
-  <span><span><span>&lt;</span>style</span><span>></span></span><span><span>
-  <span>div</span> <span>{</span>
-    <span>margin-bottom</span><span>:</span> 10px<span>;</span>
-  <span>}</span>
-  <span>th span, td span</span> <span>{</span>
-    <span>padding</span><span>:</span> 3px<span>;</span>
-  <span>}</span>
-  <span>.zebra-false</span> <span>{</span>
-    <span>background-color</span><span>:</span> #ccc<span>;</span>
-  <span>}</span>
-  <span>.error</span> <span>{</span>
-    <span>background-color</span><span>:</span> #f99<span>;</span>
-  <span>}</span>
-  </span></span><span><span><span>&lt;/</span>style</span><span>></span></span>
-<span><span><span>&lt;/</span>head</span><span>></span></span>
-<span><span><span>&lt;</span>body</span><span>></span></span>
-  <span><span><span>&lt;</span>div</span> <span>id</span><span><span>=</span><span>"</span>title<span>"</span></span><span>></span></span>
-    <span><span><span>&lt;</span>button</span> <span>role</span><span><span>=</span><span>"</span>delete<span>"</span></span><span>></span></span>删<span><span><span>&lt;/</span>button</span><span>></span></span>
-    <span><span><span>&lt;</span>button</span> <span>role</span><span><span>=</span><span>"</span>insert<span>"</span></span><span>></span></span>增<span><span><span>&lt;/</span>button</span><span>></span></span>
-  <span><span><span>&lt;/</span>div</span><span>></span></span>
-  <span><span><span>&lt;</span>div</span> <span>id</span><span><span>=</span><span>"</span>data<span>"</span></span><span>></span></span><span><span><span>&lt;</span>script</span> <span>id</span><span><span>=</span><span>"</span>tmpl<span>"</span></span> <span>type</span><span><span>=</span><span>"</span>text/x-dot-template<span>"</span></span><span>></span></span><span><span>
-    <span>&lt;</span>table border<span>=</span><span>"1"</span><span>></span>
-      <span>&lt;</span>thead<span>></span>
-        <span>&lt;</span>tr<span>></span>
-          <span>&lt;</span>th role<span>=</span><span>"check"</span><span>></span><span>&lt;</span>span<span>></span><span>&lt;</span>input type<span>=</span><span>"checkbox"</span><span>></span><span>&lt;</span><span>/</span>span<span>></span><span>&lt;</span><span>/</span>th<span>></span>
-          <span>&lt;</span>th<span>></span><span>&lt;</span>span<span>></span>序号<span>&lt;</span><span>/</span>span<span>></span><span>&lt;</span><span>/</span>th<span>></span>
-          <span>&lt;</span>th<span>></span><span>&lt;</span>span<span>></span>网址<span>&lt;</span><span>/</span>span<span>></span><span>&lt;</span><span>/</span>th<span>></span>
-          <span>&lt;</span>th<span>></span><span>&lt;</span>span<span>></span>邮箱<span>&lt;</span><span>/</span>span<span>></span><span>&lt;</span><span>/</span>th<span>></span>
-          <span>&lt;</span>th<span>></span><span>&lt;</span>span<span>></span>时间<span>&lt;</span><span>/</span>span<span>></span><span>&lt;</span><span>/</span>th<span>></span>
-        <span>&lt;</span><span>/</span>tr<span>></span>
-      <span>&lt;</span><span>/</span>thead<span>></span>
-      <span>&lt;</span>tbody<span>></span><span>{</span><span>{</span><span>~</span>it<span>:</span>v<span>:</span>k<span>}</span><span>}</span>
-        <span>&lt;</span>tr<span>></span>
-          <span>&lt;</span>td role<span>=</span><span>"check"</span><span>></span><span>&lt;</span>span<span>></span><span>&lt;</span>input type<span>=</span><span>"checkbox"</span> value<span>=</span><span>"{{=v.id}}"</span><span>></span><span>&lt;</span><span>/</span>span<span>></span><span>&lt;</span><span>/</span>td<span>></span>
-          <span>&lt;</span>td role<span>=</span><span>"index"</span><span>></span><span>&lt;</span>span<span>></span><span>&lt;</span><span>/</span>span<span>></span><span>&lt;</span><span>/</span>td<span>></span>
-          <span>&lt;</span>td role<span>=</span><span>"url"</span><span>></span><span>&lt;</span>span<span>></span><span>{</span><span>{</span><span>=</span>v<span>.</span>url<span>}</span><span>}</span><span>&lt;</span><span>/</span>span<span>></span><span>&lt;</span><span>/</span>td<span>></span>
-          <span>&lt;</span>td role<span>=</span><span>"email"</span><span>></span><span>&lt;</span>span<span>></span><span>{</span><span>{</span><span>=</span>v<span>.</span>email<span>}</span><span>}</span><span>&lt;</span><span>/</span>span<span>></span><span>&lt;</span><span>/</span>td<span>></span>
-          <span>&lt;</span>td role<span>=</span><span>"date"</span><span>></span><span>&lt;</span>span<span>></span><span>{</span><span>{</span><span>=</span>v<span>.</span>date<span>}</span><span>}</span><span>&lt;</span><span>/</span>span<span>></span><span>&lt;</span><span>/</span>td<span>></span>
-        <span>&lt;</span><span>/</span>tr<span>></span><span>{</span><span>{</span><span>~</span><span>}</span><span>}</span>
-      <span>&lt;</span><span>/</span>tbody<span>></span>
-    <span>&lt;</span><span>/</span>table<span>></span></span></span><span><span><span>&lt;/</span>script</span><span>></span></span>
-  <span><span><span>&lt;/</span>div</span><span>></span></span>
-  <span><span><span>&lt;</span>script</span> <span>src</span><span><span>=</span><span>"</span>http://cdn.bootcss.com/jquery/3.2.0/jquery.min.js<span>"</span></span><span>></span></span><span></span><span><span><span>&lt;/</span>script</span><span>></span></span>
-  <span><span><span>&lt;</span>script</span> <span>src</span><span><span>=</span><span>"</span>http://cdn.bootcss.com/validator/7.0.0/validator.min.js<span>"</span></span><span>></span></span><span></span><span><span><span>&lt;/</span>script</span><span>></span></span>
-  <span><span><span>&lt;</span>script</span> <span>src</span><span><span>=</span><span>"</span>http://cdn.bootcss.com/qtip2/3.0.3/jquery.qtip.min.js<span>"</span></span><span>></span></span><span></span><span><span><span>&lt;/</span>script</span><span>></span></span>
-  <span><span><span>&lt;</span>script</span> <span>src</span><span><span>=</span><span>"</span>http://cdn.bootcss.com/dot/2.0.0-beta.0/doT.min.js<span>"</span></span><span>></span></span><span></span><span><span><span>&lt;/</span>script</span><span>></span></span>
-  <span><span><span>&lt;</span>script</span><span>></span></span><span><span>
-  <span>$</span><span>(</span>document<span>)</span><span>.</span><span>ready</span><span>(</span><span>function</span><span>(</span><span>)</span> <span>{</span>
-    <span>// 数据</span>
-    <span>var</span> data <span>=</span> <span>[</span>
-      <span>{</span><span>"id"</span><span>:</span> <span>"1"</span><span>,</span>  <span>"url"</span><span>:</span> <span>"163.com"</span><span>,</span>     <span>"email"</span><span>:</span> <span>"admin@163.com"</span><span>,</span>    <span>"date"</span><span>:</span> <span>"2016-09-01"</span><span>}</span><span>,</span>
-      <span>{</span><span>"id"</span><span>:</span> <span>"5"</span><span>,</span>  <span>"url"</span><span>:</span> <span>"163.com"</span><span>,</span>     <span>"email"</span><span>:</span> <span>"test@163.com"</span><span>,</span>     <span>"date"</span><span>:</span> <span>"2016-09-05"</span><span>}</span><span>,</span>
-      <span>{</span><span>"id"</span><span>:</span> <span>"6"</span><span>,</span>  <span>"url"</span><span>:</span> <span>"163.com"</span><span>,</span>     <span>"email"</span><span>:</span> <span>"user@163.com"</span><span>,</span>     <span>"date"</span><span>:</span> <span>"2016-09-10"</span><span>}</span><span>,</span>
-      <span>{</span><span>"id"</span><span>:</span> <span>"7"</span><span>,</span>  <span>"url"</span><span>:</span> <span>"google.com"</span><span>,</span>  <span>"email"</span><span>:</span> <span>"google@gmail.com"</span><span>,</span> <span>"date"</span><span>:</span> <span>"2004-06-06"</span><span>}</span><span>,</span>
-      <span>{</span><span>"id"</span><span>:</span> <span>"8"</span><span>,</span>  <span>"url"</span><span>:</span> <span>"google.com"</span><span>,</span>  <span>"email"</span><span>:</span> <span>"admin@gmail.com"</span><span>,</span>  <span>"date"</span><span>:</span> <span>"2004-01-01"</span><span>}</span><span>,</span>
-      <span>{</span><span>"id"</span><span>:</span> <span>"9"</span><span>,</span>  <span>"url"</span><span>:</span> <span>"google.com"</span><span>,</span>  <span>"email"</span><span>:</span> <span>"test@gmail.com"</span><span>,</span>   <span>"date"</span><span>:</span> <span>"2006-10-10"</span><span>}</span><span>,</span>
-      <span>{</span><span>"id"</span><span>:</span> <span>"11"</span><span>,</span> <span>"url"</span><span>:</span> <span>"qq.com"</span><span>,</span>      <span>"email"</span><span>:</span> <span>"admin@qq.com"</span><span>,</span>     <span>"date"</span><span>:</span> <span>"2005-12-23"</span><span>}</span><span>,</span>
-      <span>{</span><span>"id"</span><span>:</span> <span>"14"</span><span>,</span> <span>"url"</span><span>:</span> <span>"qq.com"</span><span>,</span>      <span>"email"</span><span>:</span> <span>"test@qq.com"</span><span>,</span>      <span>"date"</span><span>:</span> <span>"2008-09-01"</span><span>}</span><span>,</span>
-      <span>{</span><span>"id"</span><span>:</span> <span>"15"</span><span>,</span> <span>"url"</span><span>:</span> <span>"baidu.com"</span><span>,</span>   <span>"email"</span><span>:</span> <span>"admin@baidu.com"</span><span>,</span>  <span>"date"</span><span>:</span> <span>"2003-02-01"</span><span>}</span><span>,</span>
-      <span>{</span><span>"id"</span><span>:</span> <span>"16"</span><span>,</span> <span>"url"</span><span>:</span> <span>"baidu.com"</span><span>,</span>   <span>"email"</span><span>:</span> <span>"test@baidu.com"</span><span>,</span>   <span>"date"</span><span>:</span> <span>"2006-12-31"</span><span>}</span>
-    <span>]</span>
-    <span>// 模版</span>
-    <span>var</span> tmpl <span>=</span> doT<span>.</span><span>template</span><span>(</span><span>$</span><span>(</span><span>'#tmpl'</span><span>)</span><span>.</span><span>text</span><span>(</span><span>)</span><span>)</span>
-    <span>// 编译模版</span>
-    <span>$</span><span>(</span><span>'#data'</span><span>)</span><span>.</span><span>html</span><span>(</span><span>tmpl</span><span>(</span>data<span>)</span><span>)</span>
-    <span>// 斑马纹</span>
-    <span>var</span> zebra <span>=</span> <span>true</span>
-    <span>$</span><span>(</span><span>'table tbody tr'</span><span>)</span><span>.</span><span>each</span><span>(</span><span>function</span><span>(</span><span>e</span><span>)</span><span>{</span>
-      <span>$</span><span>(</span><span>this</span><span>)</span><span>.</span><span>addClass</span><span>(</span><span>'zebra-'</span> <span>+</span> zebra<span>)</span>
-      <span>if</span><span>(</span><span>$</span><span>(</span><span>this</span><span>)</span><span>.</span><span>children</span><span>(</span><span>'td[role="url"]'</span><span>)</span><span>.</span><span>find</span><span>(</span><span>'span'</span><span>)</span><span>.</span><span>text</span><span>(</span><span>)</span> <span>!=</span>
-         <span>$</span><span>(</span><span>this</span><span>)</span><span>.</span><span>next</span><span>(</span><span>)</span><span>.</span><span>children</span><span>(</span><span>'td[role="url"]'</span><span>)</span><span>.</span><span>find</span><span>(</span><span>'span'</span><span>)</span><span>.</span><span>text</span><span>(</span><span>)</span><span>)</span><span>{</span>
-        zebra <span>=</span> <span>!</span>zebra
-      <span>}</span>
-    <span>}</span><span>)</span>
-    <span>// 序号</span>
-    <span>var</span> index <span>=</span> <span>0</span>
-    <span>$</span><span>(</span><span>'table tbody tr'</span><span>)</span><span>.</span><span>each</span><span>(</span><span>function</span><span>(</span><span>)</span><span>{</span>
-      <span>$</span><span>(</span><span>this</span><span>)</span><span>.</span><span>children</span><span>(</span><span>'td[role="index"]'</span><span>)</span><span>.</span><span>children</span><span>(</span><span>'span'</span><span>)</span><span>.</span><span>text</span><span>(</span><span>++</span>index<span>)</span>
-    <span>}</span><span>)</span>
-    <span>// 表格编辑</span>
-    <span>var</span> typing <span>=</span> <span>false</span>                                                 <span>// 变量：可编辑</span>
-    <span>var</span> pretyping <span>=</span> <span>''</span>                                                 <span>// 变量：保存编辑前内容</span>
-    <span>// 进入编辑</span>
-    <span>$</span><span>(</span><span>'table'</span><span>)</span><span>.</span><span>on</span><span>(</span><span>'dblclick'</span><span>,</span> <span>'tbody tr'</span><span>,</span> <span>function</span><span>(</span><span>e</span><span>)</span><span>{</span>                 <span>// 响应编辑事件</span>
-      <span>if</span><span>(</span>typing<span>)</span> <span>{</span>                                                     <span>// 有编辑未完成</span>
-        <span>alert</span><span>(</span><span>"输入进行中"</span><span>)</span>
-      <span>}</span> <span>else</span> <span>{</span>
-        <span>var</span> el <span>=</span> <span>$</span><span>(</span><span>this</span><span>)</span>
-        pretyping <span>=</span> el<span>.</span><span>html</span><span>(</span><span>)</span>                                    <span>// 保存编辑前内容</span>
-        el<span>.</span><span>children</span><span>(</span><span>'td[role="check"]'</span><span>)</span><span>.</span><span>find</span><span>(</span><span>'span'</span><span>)</span><span>.</span><span>html</span><span>(</span><span>[</span>      <span>// 构建操作按钮</span>
-          <span>'&lt;button role="cancel">弃&lt;/button>'</span><span>,</span>
-          <span>'&lt;button role="save">存&lt;/button>'</span>
-        <span>]</span><span>.</span><span>join</span><span>(</span><span>'\n'</span><span>)</span><span>)</span>
-        <span>// 构建行内表单</span>
-        el<span>.</span><span>children</span><span>(</span><span>'td:not([role="check"],[role="index"])'</span><span>)</span><span>.</span><span>each</span><span>(</span><span>function</span><span>(</span><span>)</span><span>{</span>
-          <span>$</span><span>(</span><span>this</span><span>)</span><span>.</span><span>html</span><span>(</span><span>'&lt;input type="text" value="'</span> <span>+</span> <span>$</span><span>(</span><span>this</span><span>)</span><span>.</span><span>text</span><span>(</span><span>)</span> <span>+</span> <span>'">'</span><span>)</span>
-        <span>}</span><span>)</span>
-        typing <span>=</span> <span>true</span>      <span>// 正在编辑</span>
-      <span>}</span>
-    <span>}</span><span>)</span>
-    <span>// 取消编辑</span>
-    <span>$</span><span>(</span><span>'table'</span><span>)</span><span>.</span><span>on</span><span>(</span><span>'click'</span><span>,</span> <span>'td[role="check"] button[role="cancel"]'</span><span>,</span> <span>function</span><span>(</span><span>e</span><span>)</span><span>{</span>
-      <span>var</span> el <span>=</span> <span>$</span><span>(</span><span>this</span><span>)</span><span>.</span><span>parent</span><span>(</span><span>)</span><span>.</span><span>parent</span><span>(</span><span>)</span><span>.</span><span>parent</span><span>(</span><span>)</span>      <span>// 定位到tr</span>
-      el<span>.</span><span>html</span><span>(</span>pretyping<span>)</span>                               <span>// 恢复行原始数据</span>
-      typing <span>=</span> <span>false</span>                                   <span>// 可编辑</span>
-    <span>}</span><span>)</span>
-    <span>// 保存编辑</span>
-    <span>// TODO select, textarea, ...</span>
-    <span>$</span><span>(</span><span>'table'</span><span>)</span><span>.</span><span>on</span><span>(</span><span>'click'</span><span>,</span> <span>'td[role="check"] button[role="save"]'</span><span>,</span> <span>function</span><span>(</span><span>e</span><span>)</span><span>{</span>
-      <span>var</span> data <span>=</span> <span>[</span><span>]</span>                                    <span>// 预定义数据（名称、验证、类型）</span>
-      <span>var</span> eq <span>=</span> <span>0</span>                                       <span>// 目前使用eq，考虑统一进预定义数据</span>
-      <span>var</span> el <span>=</span> <span>$</span><span>(</span><span>this</span><span>)</span><span>.</span><span>parent</span><span>(</span><span>)</span><span>.</span><span>parent</span><span>(</span><span>)</span><span>.</span><span>parent</span><span>(</span><span>)</span>              <span>// 元素定位</span>
-      <span>var</span> isValid <span>=</span> <span>false</span>                                      <span>// 客户端验证</span>
-      el<span>.</span><span>children</span><span>(</span><span>'td'</span><span>)</span><span>.</span><span>each</span><span>(</span><span>function</span><span>(</span><span>)</span><span>{</span>                      <span>// 遍历单元格</span>
-        <span>var</span> val <span>=</span> <span>$</span><span>(</span><span>this</span><span>)</span><span>.</span><span>find</span><span>(</span><span>'input'</span><span>)</span><span>.</span><span>val</span><span>(</span><span>)</span>                 <span>// 取输入值</span>
-        <span>undefined</span> <span>!=</span> val <span>&amp;&amp;</span> data<span>.</span><span>push</span><span>(</span><span>{</span> eq<span>:</span> eq<span>,</span> val<span>:</span> val <span>}</span><span>)</span>   <span>// 按需保存</span>
-        eq<span>++</span>                                                  <span>// 递增索引</span>
-      <span>}</span><span>)</span>
-      isValid <span>=</span>                                              <span>// 统一验证</span>
-        validator<span>.</span><span>isURL</span><span>(</span>data<span>[</span><span>0</span><span>]</span><span>.</span>val<span>)</span> <span>&amp;&amp;</span>
-        validator<span>.</span><span>isEmail</span><span>(</span>data<span>[</span><span>1</span><span>]</span><span>.</span>val<span>)</span> <span>&amp;&amp;</span>
-        validator<span>.</span><span>isISO8601</span><span>(</span>data<span>[</span><span>2</span><span>]</span><span>.</span>val<span>)</span>
-      <span>if</span><span>(</span>isValid<span>)</span> <span>{</span>                                         <span>// 验证通过</span>
-        <span>// TODO 新增、更新分支</span>
-        <span>// TODO 服务端保存（AJAX回调）</span>
-        el<span>.</span><span>html</span><span>(</span>pretyping<span>)</span>                                  <span>// 复原原始内容</span>
-        <span>for</span><span>(</span>k <span>in</span> data<span>)</span> <span>{</span>                                    <span>// 遍历数据</span>
-          el<span>.</span><span>children</span><span>(</span><span>'td'</span><span>)</span><span>.</span><span>eq</span><span>(</span>data<span>[</span>k<span>]</span><span>.</span>eq<span>)</span><span>.</span><span>find</span><span>(</span><span>'span'</span><span>)</span><span>.</span><span>html</span><span>(</span>data<span>[</span>k<span>]</span><span>.</span>val<span>)</span> <span>// 按需填充</span>
-        <span>}</span>
-        typing <span>=</span> <span>false</span>                                      <span>// 恢复可编辑</span>
-      <span>}</span> <span>else</span> <span>{</span>
-        <span>// 验证失败</span>
-        <span>alert</span><span>(</span><span>'验证失败'</span><span>)</span>
-      <span>}</span>
-    <span>}</span><span>)</span>
-    <span>// 数据格式提醒</span>
-    <span>$</span><span>(</span><span>'table'</span><span>)</span><span>.</span><span>on</span><span>(</span><span>'blur'</span><span>,</span> <span>'input'</span><span>,</span> <span>function</span><span>(</span><span>e</span><span>)</span><span>{</span>
-      <span>var</span> el <span>=</span> <span>$</span><span>(</span><span>this</span><span>)</span><span>.</span><span>parent</span><span>(</span><span>)</span>
-      <span>var</span> role <span>=</span> el<span>.</span><span>attr</span><span>(</span><span>'role'</span><span>)</span>
-      <span>var</span> val <span>=</span> <span>$</span><span>(</span><span>this</span><span>)</span><span>.</span><span>val</span><span>(</span><span>)</span>
-      <span>switch</span><span>(</span>role<span>)</span> <span>{</span>
-        <span>case</span> <span>'url'</span><span>:</span>
-          validator<span>.</span><span>isURL</span><span>(</span>val<span>)</span> <span>||</span> <span>tip</span><span>(</span>el<span>,</span> <span>'网址格式错误'</span><span>)</span>
-        <span>break</span>
-        <span>case</span> <span>'email'</span><span>:</span>
-          validator<span>.</span><span>isEmail</span><span>(</span>val<span>)</span> <span>||</span> <span>tip</span><span>(</span>el<span>,</span> <span>'邮箱格式错误'</span><span>)</span>
-        <span>break</span>
-        <span>case</span> <span>'date'</span><span>:</span>
-          validator<span>.</span><span>isISO8601</span><span>(</span>val<span>)</span> <span>||</span> <span>tip</span><span>(</span>el<span>,</span> <span>'日期格式错误'</span><span>)</span>
-        <span>break</span>
-        <span>default</span><span>:</span>
-        <span>break</span>
-      <span>}</span>
-    <span>}</span><span>)</span>
-    <span>// 消除错误提示</span>
-    <span>$</span><span>(</span><span>'table'</span><span>)</span><span>.</span><span>on</span><span>(</span><span>'focus'</span><span>,</span> <span>'input'</span><span>,</span> <span>function</span><span>(</span><span>e</span><span>)</span><span>{</span>
-      <span>var</span> el <span>=</span> <span>$</span><span>(</span><span>this</span><span>)</span><span>.</span><span>parent</span><span>(</span><span>)</span>
-      el<span>.</span><span>qtip</span><span>(</span><span>'destroy'</span><span>)</span>
-      el<span>.</span><span>children</span><span>(</span><span>)</span><span>.</span><span>removeClass</span><span>(</span><span>'error'</span><span>)</span>
-    <span>}</span><span>)</span>
-    <span>// 出错提醒函数</span>
-    <span>var</span> <span>tip</span> <span>=</span> <span>function</span><span>(</span><span>el<span>,</span> text</span><span>)</span> <span>{</span>
-      el<span>.</span><span>children</span><span>(</span><span>)</span><span>.</span><span>addClass</span><span>(</span><span>'error'</span><span>)</span>
-      el<span>.</span><span>qtip</span><span>(</span><span>{</span>
-        content<span>:</span> <span>{</span> text<span>:</span> text <span>}</span><span>,</span>
-        position<span>:</span> <span>{</span> at<span>:</span> <span>'bottom center'</span> <span>}</span><span>,</span>
-        show<span>:</span> <span>{</span> ready<span>:</span> <span>true</span><span>,</span> solo<span>:</span> <span>true</span> <span>}</span>
-      <span>}</span><span>)</span>
-    <span>}</span>
-    <span>// 全选、不选</span>
-    <span>$</span><span>(</span><span>'table'</span><span>)</span><span>.</span><span>on</span><span>(</span><span>'click'</span><span>,</span> <span>'th[role="check"] input[type="checkbox"]'</span><span>,</span> <span>function</span><span>(</span><span>e</span><span>)</span><span>{</span>
-      <span>$</span><span>(</span><span>'td input:nth-child(1)'</span><span>)</span><span>.</span><span>prop</span><span>(</span><span>'checked'</span><span>,</span> <span>$</span><span>(</span><span>this</span><span>)</span><span>.</span><span>is</span><span>(</span><span>':checked'</span><span>)</span><span>)</span>
-    <span>}</span><span>)</span>
-    <span>// 删除选中</span>
-    <span>$</span><span>(</span><span>'#title'</span><span>)</span><span>.</span><span>on</span><span>(</span><span>'click'</span><span>,</span> <span>'button[role="delete"]'</span><span>,</span> <span>function</span><span>(</span><span>e</span><span>)</span><span>{</span>
-      <span>var</span> checked <span>=</span> <span>[</span><span>]</span>
-      <span>$</span><span>(</span><span>'#data tbody tr'</span><span>)</span><span>.</span><span>each</span><span>(</span><span>function</span><span>(</span><span>)</span><span>{</span>
-        <span>var</span> tr <span>=</span> <span>$</span><span>(</span><span>this</span><span>)</span>
-        <span>var</span> checkbox <span>=</span> tr<span>.</span><span>children</span><span>(</span><span>'td[role="check"]'</span><span>)</span><span>.</span><span>find</span><span>(</span><span>'input[type="checkbox"]'</span><span>)</span>
-        checkbox<span>.</span><span>is</span><span>(</span><span>':checked'</span><span>)</span> <span>&amp;&amp;</span> checked<span>.</span><span>push</span><span>(</span>checkbox<span>.</span><span>val</span><span>(</span><span>)</span><span>)</span>
-      <span>}</span><span>)</span>
-      <span>alert</span><span>(</span><span>JSON</span><span>.</span><span>stringify</span><span>(</span>checked<span>)</span><span>)</span>
-    <span>}</span><span>)</span>
-  <span>}</span><span>)</span>
-</span></span><span><span><span>&lt;/</span>script</span><span>></span></span>
-<span><span><span>&lt;/</span>body</span><span>></span></span>
-<span><span><span>&lt;/</span>html</span><span>></span></span>
-</code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br><span>9</span><br><span>10</span><br><span>11</span><br><span>12</span><br><span>13</span><br><span>14</span><br><span>15</span><br><span>16</span><br><span>17</span><br><span>18</span><br><span>19</span><br><span>20</span><br><span>21</span><br><span>22</span><br><span>23</span><br><span>24</span><br><span>25</span><br><span>26</span><br><span>27</span><br><span>28</span><br><span>29</span><br><span>30</span><br><span>31</span><br><span>32</span><br><span>33</span><br><span>34</span><br><span>35</span><br><span>36</span><br><span>37</span><br><span>38</span><br><span>39</span><br><span>40</span><br><span>41</span><br><span>42</span><br><span>43</span><br><span>44</span><br><span>45</span><br><span>46</span><br><span>47</span><br><span>48</span><br><span>49</span><br><span>50</span><br><span>51</span><br><span>52</span><br><span>53</span><br><span>54</span><br><span>55</span><br><span>56</span><br><span>57</span><br><span>58</span><br><span>59</span><br><span>60</span><br><span>61</span><br><span>62</span><br><span>63</span><br><span>64</span><br><span>65</span><br><span>66</span><br><span>67</span><br><span>68</span><br><span>69</span><br><span>70</span><br><span>71</span><br><span>72</span><br><span>73</span><br><span>74</span><br><span>75</span><br><span>76</span><br><span>77</span><br><span>78</span><br><span>79</span><br><span>80</span><br><span>81</span><br><span>82</span><br><span>83</span><br><span>84</span><br><span>85</span><br><span>86</span><br><span>87</span><br><span>88</span><br><span>89</span><br><span>90</span><br><span>91</span><br><span>92</span><br><span>93</span><br><span>94</span><br><span>95</span><br><span>96</span><br><span>97</span><br><span>98</span><br><span>99</span><br><span>100</span><br><span>101</span><br><span>102</span><br><span>103</span><br><span>104</span><br><span>105</span><br><span>106</span><br><span>107</span><br><span>108</span><br><span>109</span><br><span>110</span><br><span>111</span><br><span>112</span><br><span>113</span><br><span>114</span><br><span>115</span><br><span>116</span><br><span>117</span><br><span>118</span><br><span>119</span><br><span>120</span><br><span>121</span><br><span>122</span><br><span>123</span><br><span>124</span><br><span>125</span><br><span>126</span><br><span>127</span><br><span>128</span><br><span>129</span><br><span>130</span><br><span>131</span><br><span>132</span><br><span>133</span><br><span>134</span><br><span>135</span><br><span>136</span><br><span>137</span><br><span>138</span><br><span>139</span><br><span>140</span><br><span>141</span><br><span>142</span><br><span>143</span><br><span>144</span><br><span>145</span><br><span>146</span><br><span>147</span><br><span>148</span><br><span>149</span><br><span>150</span><br><span>151</span><br><span>152</span><br><span>153</span><br><span>154</span><br><span>155</span><br><span>156</span><br><span>157</span><br><span>158</span><br><span>159</span><br><span>160</span><br><span>161</span><br><span>162</span><br><span>163</span><br><span>164</span><br><span>165</span><br><span>166</span><br><span>167</span><br><span>168</span><br><span>169</span><br><span>170</span><br><span>171</span><br><span>172</span><br><span>173</span><br><span>174</span><br><span>175</span><br><span>176</span><br><span>177</span><br><span>178</span><br><span>179</span><br><span>180</span><br><span>181</span><br><span>182</span><br><span>183</span><br><span>184</span><br><span>185</span><br><span>186</span><br><span>187</span><br><span>188</span><br><span>189</span><br><span>190</span><br><span>191</span><br><span>192</span><br><span>193</span><br><span>194</span><br><span>195</span><br></div></div>]]></content>
-    <author>
-      <name>方跃明</name>
-    </author>
-    <contributor>
-      <name>方跃明</name>
-    </contributor>
-    <published>2016-10-30T00:00:00.000Z</published>
     <rights>Copyright by 方跃明</rights>
   </entry>
   <entry>
@@ -2054,6 +1806,254 @@ yo
     <rights>Copyright by 方跃明</rights>
   </entry>
   <entry>
+    <title type="html">JavaScript思维导图</title>
+    <id>https://blog.fangyueming.cn/javascript-mind-map/</id>
+    <link href="https://blog.fangyueming.cn/javascript-mind-map/"/>
+    <updated>2021-12-12T12:29:55.000Z</updated>
+    <content type="html"><![CDATA[<h1 id="javascript思维导图"> JavaScript思维导图</h1>
+<h2 id="数据类型"> 数据类型</h2>
+<p><img src="./javascript/javascript-01-data-type.gif" alt="JavaScript数据类型" /></p>
+<h2 id="变量"> 变量</h2>
+<p><img src="./javascript/javascript-02-variable.gif" alt="JavaScript变量" /></p>
+<h2 id="数组"> 数组</h2>
+<p><img src="./javascript/javascript-03-array.gif" alt="JavaScript数组" /></p>
+<h2 id="运算符"> 运算符</h2>
+<p><img src="./javascript/javascript-04-operational-character.gif" alt="JavaScript运算符" /></p>
+<h2 id="函数"> 函数</h2>
+<p><img src="./javascript/javascript-05-function-base.gif" alt="JavaScript函数" /></p>
+<h2 id="流程"> 流程</h2>
+<p><img src="./javascript/javascript-06-process-statement.gif" alt="JavaScript流程" /></p>
+<h2 id="字符串函数"> 字符串函数</h2>
+<p><img src="./javascript/javascript-07-string-function.gif" alt="JavaScript字符串函数" /></p>
+<h2 id="正则表达式"> 正则表达式</h2>
+<p><img src="./javascript/javascript-08-regular-expressions.gif" alt="JavaScript正则表达式" /></p>
+<h2 id="windows对象"> Windows对象</h2>
+<p><img src="./javascript/javascript-09-windows-object.gif" alt="JavaScript Windows对象" /></p>
+<h2 id="dom操作"> DOM操作</h2>
+<p><img src="./javascript/javascript-10-dom-operation.gif" alt="JavaScript DOM操作" /></p>
+]]></content>
+    <author>
+      <name>方跃明</name>
+    </author>
+    <contributor>
+      <name>方跃明</name>
+    </contributor>
+    <published>2015-05-09T00:00:00.000Z</published>
+    <rights>Copyright by 方跃明</rights>
+  </entry>
+  <entry>
+    <title type="html">jQuery常用表格操作</title>
+    <id>https://blog.fangyueming.cn/jquery-table/</id>
+    <link href="https://blog.fangyueming.cn/jquery-table/"/>
+    <updated>2021-12-12T12:29:55.000Z</updated>
+    <content type="html"><![CDATA[<h1 id="jquery常用表格操作"> jQuery常用表格操作</h1>
+<div><pre><code><span><span>&lt;!</span><span>DOCTYPE</span> <span>html</span><span>></span></span>
+<span><span><span>&lt;</span>html</span> <span>lang</span><span><span>=</span><span>"</span>en<span>"</span></span><span>></span></span>
+<span><span><span>&lt;</span>head</span><span>></span></span>
+  <span><span><span>&lt;</span>meta</span> <span>charset</span><span><span>=</span><span>"</span>UTF-8<span>"</span></span><span>></span></span>
+  <span><span><span>&lt;</span>meta</span> <span>name</span><span><span>=</span><span>"</span>viewport<span>"</span></span> <span>content</span><span><span>=</span><span>"</span>width=device-width, initial-scale=1.0<span>"</span></span><span>></span></span>
+  <span><span><span>&lt;</span>meta</span> <span>http-equiv</span><span><span>=</span><span>"</span>X-UA-Compatible<span>"</span></span> <span>content</span><span><span>=</span><span>"</span>ie=edge<span>"</span></span><span>></span></span>
+  <span><span><span>&lt;</span>title</span><span>></span></span>常用表格操作<span><span><span>&lt;/</span>title</span><span>></span></span>
+  <span><span><span>&lt;</span>link</span> <span>rel</span><span><span>=</span><span>"</span>stylesheet<span>"</span></span> <span>href</span><span><span>=</span><span>"</span>http://cdn.bootcss.com/qtip2/3.0.3/jquery.qtip.min.css<span>"</span></span><span>></span></span>
+  <span><span><span>&lt;</span>style</span><span>></span></span><span><span>
+  <span>div</span> <span>{</span>
+    <span>margin-bottom</span><span>:</span> 10px<span>;</span>
+  <span>}</span>
+  <span>th span, td span</span> <span>{</span>
+    <span>padding</span><span>:</span> 3px<span>;</span>
+  <span>}</span>
+  <span>.zebra-false</span> <span>{</span>
+    <span>background-color</span><span>:</span> #ccc<span>;</span>
+  <span>}</span>
+  <span>.error</span> <span>{</span>
+    <span>background-color</span><span>:</span> #f99<span>;</span>
+  <span>}</span>
+  </span></span><span><span><span>&lt;/</span>style</span><span>></span></span>
+<span><span><span>&lt;/</span>head</span><span>></span></span>
+<span><span><span>&lt;</span>body</span><span>></span></span>
+  <span><span><span>&lt;</span>div</span> <span>id</span><span><span>=</span><span>"</span>title<span>"</span></span><span>></span></span>
+    <span><span><span>&lt;</span>button</span> <span>role</span><span><span>=</span><span>"</span>delete<span>"</span></span><span>></span></span>删<span><span><span>&lt;/</span>button</span><span>></span></span>
+    <span><span><span>&lt;</span>button</span> <span>role</span><span><span>=</span><span>"</span>insert<span>"</span></span><span>></span></span>增<span><span><span>&lt;/</span>button</span><span>></span></span>
+  <span><span><span>&lt;/</span>div</span><span>></span></span>
+  <span><span><span>&lt;</span>div</span> <span>id</span><span><span>=</span><span>"</span>data<span>"</span></span><span>></span></span><span><span><span>&lt;</span>script</span> <span>id</span><span><span>=</span><span>"</span>tmpl<span>"</span></span> <span>type</span><span><span>=</span><span>"</span>text/x-dot-template<span>"</span></span><span>></span></span><span><span>
+    <span>&lt;</span>table border<span>=</span><span>"1"</span><span>></span>
+      <span>&lt;</span>thead<span>></span>
+        <span>&lt;</span>tr<span>></span>
+          <span>&lt;</span>th role<span>=</span><span>"check"</span><span>></span><span>&lt;</span>span<span>></span><span>&lt;</span>input type<span>=</span><span>"checkbox"</span><span>></span><span>&lt;</span><span>/</span>span<span>></span><span>&lt;</span><span>/</span>th<span>></span>
+          <span>&lt;</span>th<span>></span><span>&lt;</span>span<span>></span>序号<span>&lt;</span><span>/</span>span<span>></span><span>&lt;</span><span>/</span>th<span>></span>
+          <span>&lt;</span>th<span>></span><span>&lt;</span>span<span>></span>网址<span>&lt;</span><span>/</span>span<span>></span><span>&lt;</span><span>/</span>th<span>></span>
+          <span>&lt;</span>th<span>></span><span>&lt;</span>span<span>></span>邮箱<span>&lt;</span><span>/</span>span<span>></span><span>&lt;</span><span>/</span>th<span>></span>
+          <span>&lt;</span>th<span>></span><span>&lt;</span>span<span>></span>时间<span>&lt;</span><span>/</span>span<span>></span><span>&lt;</span><span>/</span>th<span>></span>
+        <span>&lt;</span><span>/</span>tr<span>></span>
+      <span>&lt;</span><span>/</span>thead<span>></span>
+      <span>&lt;</span>tbody<span>></span><span>{</span><span>{</span><span>~</span>it<span>:</span>v<span>:</span>k<span>}</span><span>}</span>
+        <span>&lt;</span>tr<span>></span>
+          <span>&lt;</span>td role<span>=</span><span>"check"</span><span>></span><span>&lt;</span>span<span>></span><span>&lt;</span>input type<span>=</span><span>"checkbox"</span> value<span>=</span><span>"{{=v.id}}"</span><span>></span><span>&lt;</span><span>/</span>span<span>></span><span>&lt;</span><span>/</span>td<span>></span>
+          <span>&lt;</span>td role<span>=</span><span>"index"</span><span>></span><span>&lt;</span>span<span>></span><span>&lt;</span><span>/</span>span<span>></span><span>&lt;</span><span>/</span>td<span>></span>
+          <span>&lt;</span>td role<span>=</span><span>"url"</span><span>></span><span>&lt;</span>span<span>></span><span>{</span><span>{</span><span>=</span>v<span>.</span>url<span>}</span><span>}</span><span>&lt;</span><span>/</span>span<span>></span><span>&lt;</span><span>/</span>td<span>></span>
+          <span>&lt;</span>td role<span>=</span><span>"email"</span><span>></span><span>&lt;</span>span<span>></span><span>{</span><span>{</span><span>=</span>v<span>.</span>email<span>}</span><span>}</span><span>&lt;</span><span>/</span>span<span>></span><span>&lt;</span><span>/</span>td<span>></span>
+          <span>&lt;</span>td role<span>=</span><span>"date"</span><span>></span><span>&lt;</span>span<span>></span><span>{</span><span>{</span><span>=</span>v<span>.</span>date<span>}</span><span>}</span><span>&lt;</span><span>/</span>span<span>></span><span>&lt;</span><span>/</span>td<span>></span>
+        <span>&lt;</span><span>/</span>tr<span>></span><span>{</span><span>{</span><span>~</span><span>}</span><span>}</span>
+      <span>&lt;</span><span>/</span>tbody<span>></span>
+    <span>&lt;</span><span>/</span>table<span>></span></span></span><span><span><span>&lt;/</span>script</span><span>></span></span>
+  <span><span><span>&lt;/</span>div</span><span>></span></span>
+  <span><span><span>&lt;</span>script</span> <span>src</span><span><span>=</span><span>"</span>http://cdn.bootcss.com/jquery/3.2.0/jquery.min.js<span>"</span></span><span>></span></span><span></span><span><span><span>&lt;/</span>script</span><span>></span></span>
+  <span><span><span>&lt;</span>script</span> <span>src</span><span><span>=</span><span>"</span>http://cdn.bootcss.com/validator/7.0.0/validator.min.js<span>"</span></span><span>></span></span><span></span><span><span><span>&lt;/</span>script</span><span>></span></span>
+  <span><span><span>&lt;</span>script</span> <span>src</span><span><span>=</span><span>"</span>http://cdn.bootcss.com/qtip2/3.0.3/jquery.qtip.min.js<span>"</span></span><span>></span></span><span></span><span><span><span>&lt;/</span>script</span><span>></span></span>
+  <span><span><span>&lt;</span>script</span> <span>src</span><span><span>=</span><span>"</span>http://cdn.bootcss.com/dot/2.0.0-beta.0/doT.min.js<span>"</span></span><span>></span></span><span></span><span><span><span>&lt;/</span>script</span><span>></span></span>
+  <span><span><span>&lt;</span>script</span><span>></span></span><span><span>
+  <span>$</span><span>(</span>document<span>)</span><span>.</span><span>ready</span><span>(</span><span>function</span><span>(</span><span>)</span> <span>{</span>
+    <span>// 数据</span>
+    <span>var</span> data <span>=</span> <span>[</span>
+      <span>{</span><span>"id"</span><span>:</span> <span>"1"</span><span>,</span>  <span>"url"</span><span>:</span> <span>"163.com"</span><span>,</span>     <span>"email"</span><span>:</span> <span>"admin@163.com"</span><span>,</span>    <span>"date"</span><span>:</span> <span>"2016-09-01"</span><span>}</span><span>,</span>
+      <span>{</span><span>"id"</span><span>:</span> <span>"5"</span><span>,</span>  <span>"url"</span><span>:</span> <span>"163.com"</span><span>,</span>     <span>"email"</span><span>:</span> <span>"test@163.com"</span><span>,</span>     <span>"date"</span><span>:</span> <span>"2016-09-05"</span><span>}</span><span>,</span>
+      <span>{</span><span>"id"</span><span>:</span> <span>"6"</span><span>,</span>  <span>"url"</span><span>:</span> <span>"163.com"</span><span>,</span>     <span>"email"</span><span>:</span> <span>"user@163.com"</span><span>,</span>     <span>"date"</span><span>:</span> <span>"2016-09-10"</span><span>}</span><span>,</span>
+      <span>{</span><span>"id"</span><span>:</span> <span>"7"</span><span>,</span>  <span>"url"</span><span>:</span> <span>"google.com"</span><span>,</span>  <span>"email"</span><span>:</span> <span>"google@gmail.com"</span><span>,</span> <span>"date"</span><span>:</span> <span>"2004-06-06"</span><span>}</span><span>,</span>
+      <span>{</span><span>"id"</span><span>:</span> <span>"8"</span><span>,</span>  <span>"url"</span><span>:</span> <span>"google.com"</span><span>,</span>  <span>"email"</span><span>:</span> <span>"admin@gmail.com"</span><span>,</span>  <span>"date"</span><span>:</span> <span>"2004-01-01"</span><span>}</span><span>,</span>
+      <span>{</span><span>"id"</span><span>:</span> <span>"9"</span><span>,</span>  <span>"url"</span><span>:</span> <span>"google.com"</span><span>,</span>  <span>"email"</span><span>:</span> <span>"test@gmail.com"</span><span>,</span>   <span>"date"</span><span>:</span> <span>"2006-10-10"</span><span>}</span><span>,</span>
+      <span>{</span><span>"id"</span><span>:</span> <span>"11"</span><span>,</span> <span>"url"</span><span>:</span> <span>"qq.com"</span><span>,</span>      <span>"email"</span><span>:</span> <span>"admin@qq.com"</span><span>,</span>     <span>"date"</span><span>:</span> <span>"2005-12-23"</span><span>}</span><span>,</span>
+      <span>{</span><span>"id"</span><span>:</span> <span>"14"</span><span>,</span> <span>"url"</span><span>:</span> <span>"qq.com"</span><span>,</span>      <span>"email"</span><span>:</span> <span>"test@qq.com"</span><span>,</span>      <span>"date"</span><span>:</span> <span>"2008-09-01"</span><span>}</span><span>,</span>
+      <span>{</span><span>"id"</span><span>:</span> <span>"15"</span><span>,</span> <span>"url"</span><span>:</span> <span>"baidu.com"</span><span>,</span>   <span>"email"</span><span>:</span> <span>"admin@baidu.com"</span><span>,</span>  <span>"date"</span><span>:</span> <span>"2003-02-01"</span><span>}</span><span>,</span>
+      <span>{</span><span>"id"</span><span>:</span> <span>"16"</span><span>,</span> <span>"url"</span><span>:</span> <span>"baidu.com"</span><span>,</span>   <span>"email"</span><span>:</span> <span>"test@baidu.com"</span><span>,</span>   <span>"date"</span><span>:</span> <span>"2006-12-31"</span><span>}</span>
+    <span>]</span>
+    <span>// 模版</span>
+    <span>var</span> tmpl <span>=</span> doT<span>.</span><span>template</span><span>(</span><span>$</span><span>(</span><span>'#tmpl'</span><span>)</span><span>.</span><span>text</span><span>(</span><span>)</span><span>)</span>
+    <span>// 编译模版</span>
+    <span>$</span><span>(</span><span>'#data'</span><span>)</span><span>.</span><span>html</span><span>(</span><span>tmpl</span><span>(</span>data<span>)</span><span>)</span>
+    <span>// 斑马纹</span>
+    <span>var</span> zebra <span>=</span> <span>true</span>
+    <span>$</span><span>(</span><span>'table tbody tr'</span><span>)</span><span>.</span><span>each</span><span>(</span><span>function</span><span>(</span><span>e</span><span>)</span><span>{</span>
+      <span>$</span><span>(</span><span>this</span><span>)</span><span>.</span><span>addClass</span><span>(</span><span>'zebra-'</span> <span>+</span> zebra<span>)</span>
+      <span>if</span><span>(</span><span>$</span><span>(</span><span>this</span><span>)</span><span>.</span><span>children</span><span>(</span><span>'td[role="url"]'</span><span>)</span><span>.</span><span>find</span><span>(</span><span>'span'</span><span>)</span><span>.</span><span>text</span><span>(</span><span>)</span> <span>!=</span>
+         <span>$</span><span>(</span><span>this</span><span>)</span><span>.</span><span>next</span><span>(</span><span>)</span><span>.</span><span>children</span><span>(</span><span>'td[role="url"]'</span><span>)</span><span>.</span><span>find</span><span>(</span><span>'span'</span><span>)</span><span>.</span><span>text</span><span>(</span><span>)</span><span>)</span><span>{</span>
+        zebra <span>=</span> <span>!</span>zebra
+      <span>}</span>
+    <span>}</span><span>)</span>
+    <span>// 序号</span>
+    <span>var</span> index <span>=</span> <span>0</span>
+    <span>$</span><span>(</span><span>'table tbody tr'</span><span>)</span><span>.</span><span>each</span><span>(</span><span>function</span><span>(</span><span>)</span><span>{</span>
+      <span>$</span><span>(</span><span>this</span><span>)</span><span>.</span><span>children</span><span>(</span><span>'td[role="index"]'</span><span>)</span><span>.</span><span>children</span><span>(</span><span>'span'</span><span>)</span><span>.</span><span>text</span><span>(</span><span>++</span>index<span>)</span>
+    <span>}</span><span>)</span>
+    <span>// 表格编辑</span>
+    <span>var</span> typing <span>=</span> <span>false</span>                                                 <span>// 变量：可编辑</span>
+    <span>var</span> pretyping <span>=</span> <span>''</span>                                                 <span>// 变量：保存编辑前内容</span>
+    <span>// 进入编辑</span>
+    <span>$</span><span>(</span><span>'table'</span><span>)</span><span>.</span><span>on</span><span>(</span><span>'dblclick'</span><span>,</span> <span>'tbody tr'</span><span>,</span> <span>function</span><span>(</span><span>e</span><span>)</span><span>{</span>                 <span>// 响应编辑事件</span>
+      <span>if</span><span>(</span>typing<span>)</span> <span>{</span>                                                     <span>// 有编辑未完成</span>
+        <span>alert</span><span>(</span><span>"输入进行中"</span><span>)</span>
+      <span>}</span> <span>else</span> <span>{</span>
+        <span>var</span> el <span>=</span> <span>$</span><span>(</span><span>this</span><span>)</span>
+        pretyping <span>=</span> el<span>.</span><span>html</span><span>(</span><span>)</span>                                    <span>// 保存编辑前内容</span>
+        el<span>.</span><span>children</span><span>(</span><span>'td[role="check"]'</span><span>)</span><span>.</span><span>find</span><span>(</span><span>'span'</span><span>)</span><span>.</span><span>html</span><span>(</span><span>[</span>      <span>// 构建操作按钮</span>
+          <span>'&lt;button role="cancel">弃&lt;/button>'</span><span>,</span>
+          <span>'&lt;button role="save">存&lt;/button>'</span>
+        <span>]</span><span>.</span><span>join</span><span>(</span><span>'\n'</span><span>)</span><span>)</span>
+        <span>// 构建行内表单</span>
+        el<span>.</span><span>children</span><span>(</span><span>'td:not([role="check"],[role="index"])'</span><span>)</span><span>.</span><span>each</span><span>(</span><span>function</span><span>(</span><span>)</span><span>{</span>
+          <span>$</span><span>(</span><span>this</span><span>)</span><span>.</span><span>html</span><span>(</span><span>'&lt;input type="text" value="'</span> <span>+</span> <span>$</span><span>(</span><span>this</span><span>)</span><span>.</span><span>text</span><span>(</span><span>)</span> <span>+</span> <span>'">'</span><span>)</span>
+        <span>}</span><span>)</span>
+        typing <span>=</span> <span>true</span>      <span>// 正在编辑</span>
+      <span>}</span>
+    <span>}</span><span>)</span>
+    <span>// 取消编辑</span>
+    <span>$</span><span>(</span><span>'table'</span><span>)</span><span>.</span><span>on</span><span>(</span><span>'click'</span><span>,</span> <span>'td[role="check"] button[role="cancel"]'</span><span>,</span> <span>function</span><span>(</span><span>e</span><span>)</span><span>{</span>
+      <span>var</span> el <span>=</span> <span>$</span><span>(</span><span>this</span><span>)</span><span>.</span><span>parent</span><span>(</span><span>)</span><span>.</span><span>parent</span><span>(</span><span>)</span><span>.</span><span>parent</span><span>(</span><span>)</span>      <span>// 定位到tr</span>
+      el<span>.</span><span>html</span><span>(</span>pretyping<span>)</span>                               <span>// 恢复行原始数据</span>
+      typing <span>=</span> <span>false</span>                                   <span>// 可编辑</span>
+    <span>}</span><span>)</span>
+    <span>// 保存编辑</span>
+    <span>// TODO select, textarea, ...</span>
+    <span>$</span><span>(</span><span>'table'</span><span>)</span><span>.</span><span>on</span><span>(</span><span>'click'</span><span>,</span> <span>'td[role="check"] button[role="save"]'</span><span>,</span> <span>function</span><span>(</span><span>e</span><span>)</span><span>{</span>
+      <span>var</span> data <span>=</span> <span>[</span><span>]</span>                                    <span>// 预定义数据（名称、验证、类型）</span>
+      <span>var</span> eq <span>=</span> <span>0</span>                                       <span>// 目前使用eq，考虑统一进预定义数据</span>
+      <span>var</span> el <span>=</span> <span>$</span><span>(</span><span>this</span><span>)</span><span>.</span><span>parent</span><span>(</span><span>)</span><span>.</span><span>parent</span><span>(</span><span>)</span><span>.</span><span>parent</span><span>(</span><span>)</span>              <span>// 元素定位</span>
+      <span>var</span> isValid <span>=</span> <span>false</span>                                      <span>// 客户端验证</span>
+      el<span>.</span><span>children</span><span>(</span><span>'td'</span><span>)</span><span>.</span><span>each</span><span>(</span><span>function</span><span>(</span><span>)</span><span>{</span>                      <span>// 遍历单元格</span>
+        <span>var</span> val <span>=</span> <span>$</span><span>(</span><span>this</span><span>)</span><span>.</span><span>find</span><span>(</span><span>'input'</span><span>)</span><span>.</span><span>val</span><span>(</span><span>)</span>                 <span>// 取输入值</span>
+        <span>undefined</span> <span>!=</span> val <span>&amp;&amp;</span> data<span>.</span><span>push</span><span>(</span><span>{</span> eq<span>:</span> eq<span>,</span> val<span>:</span> val <span>}</span><span>)</span>   <span>// 按需保存</span>
+        eq<span>++</span>                                                  <span>// 递增索引</span>
+      <span>}</span><span>)</span>
+      isValid <span>=</span>                                              <span>// 统一验证</span>
+        validator<span>.</span><span>isURL</span><span>(</span>data<span>[</span><span>0</span><span>]</span><span>.</span>val<span>)</span> <span>&amp;&amp;</span>
+        validator<span>.</span><span>isEmail</span><span>(</span>data<span>[</span><span>1</span><span>]</span><span>.</span>val<span>)</span> <span>&amp;&amp;</span>
+        validator<span>.</span><span>isISO8601</span><span>(</span>data<span>[</span><span>2</span><span>]</span><span>.</span>val<span>)</span>
+      <span>if</span><span>(</span>isValid<span>)</span> <span>{</span>                                         <span>// 验证通过</span>
+        <span>// TODO 新增、更新分支</span>
+        <span>// TODO 服务端保存（AJAX回调）</span>
+        el<span>.</span><span>html</span><span>(</span>pretyping<span>)</span>                                  <span>// 复原原始内容</span>
+        <span>for</span><span>(</span>k <span>in</span> data<span>)</span> <span>{</span>                                    <span>// 遍历数据</span>
+          el<span>.</span><span>children</span><span>(</span><span>'td'</span><span>)</span><span>.</span><span>eq</span><span>(</span>data<span>[</span>k<span>]</span><span>.</span>eq<span>)</span><span>.</span><span>find</span><span>(</span><span>'span'</span><span>)</span><span>.</span><span>html</span><span>(</span>data<span>[</span>k<span>]</span><span>.</span>val<span>)</span> <span>// 按需填充</span>
+        <span>}</span>
+        typing <span>=</span> <span>false</span>                                      <span>// 恢复可编辑</span>
+      <span>}</span> <span>else</span> <span>{</span>
+        <span>// 验证失败</span>
+        <span>alert</span><span>(</span><span>'验证失败'</span><span>)</span>
+      <span>}</span>
+    <span>}</span><span>)</span>
+    <span>// 数据格式提醒</span>
+    <span>$</span><span>(</span><span>'table'</span><span>)</span><span>.</span><span>on</span><span>(</span><span>'blur'</span><span>,</span> <span>'input'</span><span>,</span> <span>function</span><span>(</span><span>e</span><span>)</span><span>{</span>
+      <span>var</span> el <span>=</span> <span>$</span><span>(</span><span>this</span><span>)</span><span>.</span><span>parent</span><span>(</span><span>)</span>
+      <span>var</span> role <span>=</span> el<span>.</span><span>attr</span><span>(</span><span>'role'</span><span>)</span>
+      <span>var</span> val <span>=</span> <span>$</span><span>(</span><span>this</span><span>)</span><span>.</span><span>val</span><span>(</span><span>)</span>
+      <span>switch</span><span>(</span>role<span>)</span> <span>{</span>
+        <span>case</span> <span>'url'</span><span>:</span>
+          validator<span>.</span><span>isURL</span><span>(</span>val<span>)</span> <span>||</span> <span>tip</span><span>(</span>el<span>,</span> <span>'网址格式错误'</span><span>)</span>
+        <span>break</span>
+        <span>case</span> <span>'email'</span><span>:</span>
+          validator<span>.</span><span>isEmail</span><span>(</span>val<span>)</span> <span>||</span> <span>tip</span><span>(</span>el<span>,</span> <span>'邮箱格式错误'</span><span>)</span>
+        <span>break</span>
+        <span>case</span> <span>'date'</span><span>:</span>
+          validator<span>.</span><span>isISO8601</span><span>(</span>val<span>)</span> <span>||</span> <span>tip</span><span>(</span>el<span>,</span> <span>'日期格式错误'</span><span>)</span>
+        <span>break</span>
+        <span>default</span><span>:</span>
+        <span>break</span>
+      <span>}</span>
+    <span>}</span><span>)</span>
+    <span>// 消除错误提示</span>
+    <span>$</span><span>(</span><span>'table'</span><span>)</span><span>.</span><span>on</span><span>(</span><span>'focus'</span><span>,</span> <span>'input'</span><span>,</span> <span>function</span><span>(</span><span>e</span><span>)</span><span>{</span>
+      <span>var</span> el <span>=</span> <span>$</span><span>(</span><span>this</span><span>)</span><span>.</span><span>parent</span><span>(</span><span>)</span>
+      el<span>.</span><span>qtip</span><span>(</span><span>'destroy'</span><span>)</span>
+      el<span>.</span><span>children</span><span>(</span><span>)</span><span>.</span><span>removeClass</span><span>(</span><span>'error'</span><span>)</span>
+    <span>}</span><span>)</span>
+    <span>// 出错提醒函数</span>
+    <span>var</span> <span>tip</span> <span>=</span> <span>function</span><span>(</span><span>el<span>,</span> text</span><span>)</span> <span>{</span>
+      el<span>.</span><span>children</span><span>(</span><span>)</span><span>.</span><span>addClass</span><span>(</span><span>'error'</span><span>)</span>
+      el<span>.</span><span>qtip</span><span>(</span><span>{</span>
+        content<span>:</span> <span>{</span> text<span>:</span> text <span>}</span><span>,</span>
+        position<span>:</span> <span>{</span> at<span>:</span> <span>'bottom center'</span> <span>}</span><span>,</span>
+        show<span>:</span> <span>{</span> ready<span>:</span> <span>true</span><span>,</span> solo<span>:</span> <span>true</span> <span>}</span>
+      <span>}</span><span>)</span>
+    <span>}</span>
+    <span>// 全选、不选</span>
+    <span>$</span><span>(</span><span>'table'</span><span>)</span><span>.</span><span>on</span><span>(</span><span>'click'</span><span>,</span> <span>'th[role="check"] input[type="checkbox"]'</span><span>,</span> <span>function</span><span>(</span><span>e</span><span>)</span><span>{</span>
+      <span>$</span><span>(</span><span>'td input:nth-child(1)'</span><span>)</span><span>.</span><span>prop</span><span>(</span><span>'checked'</span><span>,</span> <span>$</span><span>(</span><span>this</span><span>)</span><span>.</span><span>is</span><span>(</span><span>':checked'</span><span>)</span><span>)</span>
+    <span>}</span><span>)</span>
+    <span>// 删除选中</span>
+    <span>$</span><span>(</span><span>'#title'</span><span>)</span><span>.</span><span>on</span><span>(</span><span>'click'</span><span>,</span> <span>'button[role="delete"]'</span><span>,</span> <span>function</span><span>(</span><span>e</span><span>)</span><span>{</span>
+      <span>var</span> checked <span>=</span> <span>[</span><span>]</span>
+      <span>$</span><span>(</span><span>'#data tbody tr'</span><span>)</span><span>.</span><span>each</span><span>(</span><span>function</span><span>(</span><span>)</span><span>{</span>
+        <span>var</span> tr <span>=</span> <span>$</span><span>(</span><span>this</span><span>)</span>
+        <span>var</span> checkbox <span>=</span> tr<span>.</span><span>children</span><span>(</span><span>'td[role="check"]'</span><span>)</span><span>.</span><span>find</span><span>(</span><span>'input[type="checkbox"]'</span><span>)</span>
+        checkbox<span>.</span><span>is</span><span>(</span><span>':checked'</span><span>)</span> <span>&amp;&amp;</span> checked<span>.</span><span>push</span><span>(</span>checkbox<span>.</span><span>val</span><span>(</span><span>)</span><span>)</span>
+      <span>}</span><span>)</span>
+      <span>alert</span><span>(</span><span>JSON</span><span>.</span><span>stringify</span><span>(</span>checked<span>)</span><span>)</span>
+    <span>}</span><span>)</span>
+  <span>}</span><span>)</span>
+</span></span><span><span><span>&lt;/</span>script</span><span>></span></span>
+<span><span><span>&lt;/</span>body</span><span>></span></span>
+<span><span><span>&lt;/</span>html</span><span>></span></span>
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br><span>9</span><br><span>10</span><br><span>11</span><br><span>12</span><br><span>13</span><br><span>14</span><br><span>15</span><br><span>16</span><br><span>17</span><br><span>18</span><br><span>19</span><br><span>20</span><br><span>21</span><br><span>22</span><br><span>23</span><br><span>24</span><br><span>25</span><br><span>26</span><br><span>27</span><br><span>28</span><br><span>29</span><br><span>30</span><br><span>31</span><br><span>32</span><br><span>33</span><br><span>34</span><br><span>35</span><br><span>36</span><br><span>37</span><br><span>38</span><br><span>39</span><br><span>40</span><br><span>41</span><br><span>42</span><br><span>43</span><br><span>44</span><br><span>45</span><br><span>46</span><br><span>47</span><br><span>48</span><br><span>49</span><br><span>50</span><br><span>51</span><br><span>52</span><br><span>53</span><br><span>54</span><br><span>55</span><br><span>56</span><br><span>57</span><br><span>58</span><br><span>59</span><br><span>60</span><br><span>61</span><br><span>62</span><br><span>63</span><br><span>64</span><br><span>65</span><br><span>66</span><br><span>67</span><br><span>68</span><br><span>69</span><br><span>70</span><br><span>71</span><br><span>72</span><br><span>73</span><br><span>74</span><br><span>75</span><br><span>76</span><br><span>77</span><br><span>78</span><br><span>79</span><br><span>80</span><br><span>81</span><br><span>82</span><br><span>83</span><br><span>84</span><br><span>85</span><br><span>86</span><br><span>87</span><br><span>88</span><br><span>89</span><br><span>90</span><br><span>91</span><br><span>92</span><br><span>93</span><br><span>94</span><br><span>95</span><br><span>96</span><br><span>97</span><br><span>98</span><br><span>99</span><br><span>100</span><br><span>101</span><br><span>102</span><br><span>103</span><br><span>104</span><br><span>105</span><br><span>106</span><br><span>107</span><br><span>108</span><br><span>109</span><br><span>110</span><br><span>111</span><br><span>112</span><br><span>113</span><br><span>114</span><br><span>115</span><br><span>116</span><br><span>117</span><br><span>118</span><br><span>119</span><br><span>120</span><br><span>121</span><br><span>122</span><br><span>123</span><br><span>124</span><br><span>125</span><br><span>126</span><br><span>127</span><br><span>128</span><br><span>129</span><br><span>130</span><br><span>131</span><br><span>132</span><br><span>133</span><br><span>134</span><br><span>135</span><br><span>136</span><br><span>137</span><br><span>138</span><br><span>139</span><br><span>140</span><br><span>141</span><br><span>142</span><br><span>143</span><br><span>144</span><br><span>145</span><br><span>146</span><br><span>147</span><br><span>148</span><br><span>149</span><br><span>150</span><br><span>151</span><br><span>152</span><br><span>153</span><br><span>154</span><br><span>155</span><br><span>156</span><br><span>157</span><br><span>158</span><br><span>159</span><br><span>160</span><br><span>161</span><br><span>162</span><br><span>163</span><br><span>164</span><br><span>165</span><br><span>166</span><br><span>167</span><br><span>168</span><br><span>169</span><br><span>170</span><br><span>171</span><br><span>172</span><br><span>173</span><br><span>174</span><br><span>175</span><br><span>176</span><br><span>177</span><br><span>178</span><br><span>179</span><br><span>180</span><br><span>181</span><br><span>182</span><br><span>183</span><br><span>184</span><br><span>185</span><br><span>186</span><br><span>187</span><br><span>188</span><br><span>189</span><br><span>190</span><br><span>191</span><br><span>192</span><br><span>193</span><br><span>194</span><br><span>195</span><br></div></div>]]></content>
+    <author>
+      <name>方跃明</name>
+    </author>
+    <contributor>
+      <name>方跃明</name>
+    </contributor>
+    <published>2016-10-30T00:00:00.000Z</published>
+    <rights>Copyright by 方跃明</rights>
+  </entry>
+  <entry>
     <title type="html">Docker、kubernetes和Apache Mesos之间的正确关系</title>
     <id>https://blog.fangyueming.cn/kubernetes-docker-mesos/</id>
     <link href="https://blog.fangyueming.cn/kubernetes-docker-mesos/"/>
@@ -2134,139 +2134,6 @@ yo
       <name>方跃明</name>
     </contributor>
     <published>2018-04-29T00:00:00.000Z</published>
-    <rights>Copyright by 方跃明</rights>
-  </entry>
-  <entry>
-    <title type="html">LeoVue打包发布npmjs折腾记</title>
-    <id>https://blog.fangyueming.cn/leovue-npmjs/</id>
-    <link href="https://blog.fangyueming.cn/leovue-npmjs/"/>
-    <updated>2021-12-12T12:29:55.000Z</updated>
-    <content type="html"><![CDATA[<h1 id="leovue打包发布npmjs折腾记"> LeoVue打包发布npmjs折腾记</h1>
-<h2 id="发布步骤"> 发布步骤</h2>
-<h3 id="建立项目并发布"> 建立项目并发布</h3>
-<div><pre><code><span>npm</span> <span>install</span> vue-cli -g          <span># 安装 vue 命令行工具</span>
-vue init webpack-simple leovue  <span># 生成 package.json，请按需填写</span>
-<span>cd</span> leovue                       <span># 配置webpack、编写并调试项目，各种折腾</span>
-<span>npm</span> build                       <span># 可能会遇到各种错误，请按提示解决</span>
-<span>npm</span> login                       <span># 按提示登录 npmjs.com，可能需要再次激活您的邮箱</span>
-<span>npm</span> publish                     <span># 按提示排错，比如包的命名问题等等，直至成功</span>
-</code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br></div></div><div><p>建议</p>
-<p>因为<code>npm</code>的传输问题、排错问题、稳定性问题等等，强烈建议用<code>yarn</code>来代替<code>npm</code>。</p>
-</div>
-<h3 id="package-json"> package.json</h3>
-<div><pre><code><span>{</span>
-  <span>"name"</span><span>:</span> <span>"@axolo/leovue"</span><span>,</span>
-  <span>"description"</span><span>:</span> <span>"LeoVue components lib"</span><span>,</span>
-  <span>"version"</span><span>:</span> <span>"0.0.8"</span><span>,</span>
-  <span>"author"</span><span>:</span> <span>"Yueming Fang"</span><span>,</span>
-  <span>"license"</span><span>:</span> <span>"MIT"</span><span>,</span>
-  <span>"homepage"</span><span>:</span> <span>"https://axolo.github.io/leovue"</span><span>,</span>
-  <span>"repository"</span><span>:</span> <span>{</span>
-    <span>"type"</span><span>:</span> <span>"git"</span><span>,</span>
-    <span>"url"</span><span>:</span> <span>"https://github.com/axolo/leovue.git"</span>
-  <span>}</span><span>,</span>
-  <span>"keywords"</span><span>:</span> <span>[</span><span>"vue"</span><span>,</span> <span>"html5"</span><span>]</span><span>,</span>
-  <span>"main"</span><span>:</span> <span>"./dist/leovue.js"</span><span>,</span>
-  <span>"scripts"</span><span>:</span> <span>{</span>
-    <span>"build"</span><span>:</span> <span>"cross-env NODE_ENV=production webpack --progress --hide-modules"</span>
-  <span>}</span><span>,</span>
-  <span>"dependencies"</span><span>:</span> <span>{</span>
-    <span>"vue"</span><span>:</span> <span>"^2.5.11"</span>
-  <span>}</span><span>,</span>
-  <span>"browserslist"</span><span>:</span> <span>[</span>
-    <span>"> 1%"</span><span>,</span>
-    <span>"last 2 versions"</span><span>,</span>
-    <span>"not ie &lt;= 8"</span>
-  <span>]</span><span>,</span>
-  <span>"devDependencies"</span><span>:</span> <span>{</span>
-    <span>"babel-core"</span><span>:</span> <span>"^6.26.0"</span><span>,</span>
-    <span>"babel-loader"</span><span>:</span> <span>"^7.1.2"</span><span>,</span>
-    <span>"babel-preset-env"</span><span>:</span> <span>"^1.6.0"</span><span>,</span>
-    <span>"babel-preset-stage-3"</span><span>:</span> <span>"^6.24.1"</span><span>,</span>
-    <span>"cross-env"</span><span>:</span> <span>"^5.0.5"</span><span>,</span>
-    <span>"css-loader"</span><span>:</span> <span>"^0.28.7"</span><span>,</span>
-    <span>"file-loader"</span><span>:</span> <span>"^1.1.4"</span><span>,</span>
-    <span>"vue-loader"</span><span>:</span> <span>"^13.0.5"</span><span>,</span>
-    <span>"vue-template-compiler"</span><span>:</span> <span>"^2.4.4"</span><span>,</span>
-    <span>"webpack"</span><span>:</span> <span>"^3.6.0"</span><span>,</span>
-    <span>"webpack-dev-server"</span><span>:</span> <span>"^2.9.1"</span>
-  <span>}</span>
-<span>}</span>
-</code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br><span>9</span><br><span>10</span><br><span>11</span><br><span>12</span><br><span>13</span><br><span>14</span><br><span>15</span><br><span>16</span><br><span>17</span><br><span>18</span><br><span>19</span><br><span>20</span><br><span>21</span><br><span>22</span><br><span>23</span><br><span>24</span><br><span>25</span><br><span>26</span><br><span>27</span><br><span>28</span><br><span>29</span><br><span>30</span><br><span>31</span><br><span>32</span><br><span>33</span><br><span>34</span><br><span>35</span><br><span>36</span><br><span>37</span><br><span>38</span><br></div></div><p><img src="./assets/leovue-npmjs.png" alt="npmjs" /></p>
-<p>上图是<code>package.json</code>跟<code>npmjs.com</code>内容关系图，<code>keywords</code>在项目主页底部，
-<code>README.md</code>内容显示在主页，<code>version</code>、<code>license</code>、<code>homepage</code>、<code>repository</code>信息在右侧。</p>
-<h2 id="需求实现"> 需求实现</h2>
-<h3 id="多组件"> 多组件</h3>
-<div><pre><code><span>// 入口文件：./src/index.js</span>
-<span>// 即webpack.config.js里的：entry: './src/index.js'</span>
-<span>import</span> LeoDialog <span>from</span> <span>'./components/LeoDialog'</span>
-<span>import</span> LeoLodop   <span>from</span> <span>'./components/LeoLodop'</span>
-
-<span>const</span> components <span>=</span> <span>[</span> LeoDialog<span>,</span> LeoLodop <span>]</span>
-<span>const</span> <span>install</span> <span>=</span> <span>function</span> <span>(</span><span>Vue<span>,</span> opts <span>=</span> <span>{</span><span>}</span></span><span>)</span> <span>{</span>
-  components<span>.</span><span>forEach</span><span>(</span><span>component</span> <span>=></span> <span>{</span>
-    Vue<span>.</span><span>component</span><span>(</span>component<span>.</span>name<span>,</span> component<span>)</span>
-  <span>}</span><span>)</span>
-<span>}</span>
-
-<span>if</span> <span>(</span><span>typeof</span> window <span>!==</span> <span>'undefined'</span> <span>&amp;&amp;</span> window<span>.</span>Vue<span>)</span> <span>{</span>
-  <span>install</span><span>(</span>window<span>.</span>Vue<span>)</span>
-<span>}</span>
-
-<span>export</span> <span>{</span> LeoDialog<span>,</span> LeoLodop <span>}</span>
-</code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br><span>9</span><br><span>10</span><br><span>11</span><br><span>12</span><br><span>13</span><br><span>14</span><br><span>15</span><br><span>16</span><br><span>17</span><br></div></div><h3 id="精简发布"> 精简发布</h3>
-<div><pre><code><span># 以下内容添加到.npmignore后</span>
-<span># 仅README.md和package.json和/dist目录被发布</span>
-/*
-!/dist/
-!README.md
-!package.json
-</code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br></div></div><h2 id="错误解决"> 错误解决</h2>
-<div><p>属性只读</p>
-<p>Uncaught TypeError: Cannot assign to read only property 'exports' of object '<code>#&lt;Object&gt;</code>'</p>
-</div>
-<p>翻译过来就是说，代码没毛病，在webpack打包的时候，可以在js文件中混用require和export。但是不能混用import以及module.exports 。
-因为webpack 2中不允许混用import和module.exports，解决办法就是统一改成ES6的方式编写即可。</p>
-<div><pre><code><span>import</span> <span>{</span> Component <span>}</span> <span>from</span> <span>'components'</span>
-<span>// moduler.exports = Component    // 混用可通过Webpack2编译，但使用错误</span>
-<span>export</span> <span>default</span> Component
-</code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br></div></div><div><p>标签未知</p>
-<p>Unknown custom element: <code>&lt;component&gt;</code> - did you register the component correctly?
-For recursive components, make sure to provide the &quot;name&quot; option.</p>
-</div>
-<p>一般情况下是组件未被正确加载，或者组件打包时命名错误。比如以<code>export default Component</code>打包，
-却以<code>import { Component } from 'components'</code>来引用，多了个花括号，反之亦然。</p>
-<div><p>渲染未知</p>
-<p>[Vue warn]: Failed to mount component: template or render function not defined.
-found in <code>&lt;Component&gt;</code></p>
-</div>
-<p>打包需要指定一种模块输出类型，可以是commonjs,AMD,script,UMD模式。
-在这里是写插件，要采用UMD模式，即libraryTarget: 'umd'。
-于是webpack.config.js出口文件配置修改为：</p>
-<div><pre><code> output<span>:</span> <span>{</span>
-  path<span>:</span> path<span>.</span><span>resolve</span><span>(</span>__dirname<span>,</span> <span>'./dist'</span><span>)</span><span>,</span>
-  publicPath<span>:</span> <span>'/dist/'</span><span>,</span>
-  filename<span>:</span> <span>'leovue.js'</span><span>,</span>
-  library<span>:</span> <span>'leovue'</span><span>,</span>
-  libraryTarget<span>:</span> <span>'umd'</span><span>,</span>
-  umdNamedDefine<span>:</span> <span>true</span>
- <span>}</span>
-</code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br></div></div><h2 id="参考"> 参考</h2>
-<p><a href="https://www.jb51.net/article/137725.htm" target="_blank" rel="noopener noreferrer">vue todo-list组件发布到npm上的方法</a></p>
-]]></content>
-    <author>
-      <name>方跃明</name>
-    </author>
-    <contributor>
-      <name>方跃明</name>
-    </contributor>
-    <published>2018-08-19T00:00:00.000Z</published>
     <rights>Copyright by 方跃明</rights>
   </entry>
   <entry>
@@ -2647,6 +2514,184 @@ systemctl start kubelet kube-proxy flanneld docker
       <name>方跃明</name>
     </contributor>
     <published>2016-12-01T00:00:00.000Z</published>
+    <rights>Copyright by 方跃明</rights>
+  </entry>
+  <entry>
+    <title type="html">LeoVue打包发布npmjs折腾记</title>
+    <id>https://blog.fangyueming.cn/leovue-npmjs/</id>
+    <link href="https://blog.fangyueming.cn/leovue-npmjs/"/>
+    <updated>2021-12-12T12:29:55.000Z</updated>
+    <content type="html"><![CDATA[<h1 id="leovue打包发布npmjs折腾记"> LeoVue打包发布npmjs折腾记</h1>
+<h2 id="发布步骤"> 发布步骤</h2>
+<h3 id="建立项目并发布"> 建立项目并发布</h3>
+<div><pre><code><span>npm</span> <span>install</span> vue-cli -g          <span># 安装 vue 命令行工具</span>
+vue init webpack-simple leovue  <span># 生成 package.json，请按需填写</span>
+<span>cd</span> leovue                       <span># 配置webpack、编写并调试项目，各种折腾</span>
+<span>npm</span> build                       <span># 可能会遇到各种错误，请按提示解决</span>
+<span>npm</span> login                       <span># 按提示登录 npmjs.com，可能需要再次激活您的邮箱</span>
+<span>npm</span> publish                     <span># 按提示排错，比如包的命名问题等等，直至成功</span>
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br></div></div><div><p>建议</p>
+<p>因为<code>npm</code>的传输问题、排错问题、稳定性问题等等，强烈建议用<code>yarn</code>来代替<code>npm</code>。</p>
+</div>
+<h3 id="package-json"> package.json</h3>
+<div><pre><code><span>{</span>
+  <span>"name"</span><span>:</span> <span>"@axolo/leovue"</span><span>,</span>
+  <span>"description"</span><span>:</span> <span>"LeoVue components lib"</span><span>,</span>
+  <span>"version"</span><span>:</span> <span>"0.0.8"</span><span>,</span>
+  <span>"author"</span><span>:</span> <span>"Yueming Fang"</span><span>,</span>
+  <span>"license"</span><span>:</span> <span>"MIT"</span><span>,</span>
+  <span>"homepage"</span><span>:</span> <span>"https://axolo.github.io/leovue"</span><span>,</span>
+  <span>"repository"</span><span>:</span> <span>{</span>
+    <span>"type"</span><span>:</span> <span>"git"</span><span>,</span>
+    <span>"url"</span><span>:</span> <span>"https://github.com/axolo/leovue.git"</span>
+  <span>}</span><span>,</span>
+  <span>"keywords"</span><span>:</span> <span>[</span><span>"vue"</span><span>,</span> <span>"html5"</span><span>]</span><span>,</span>
+  <span>"main"</span><span>:</span> <span>"./dist/leovue.js"</span><span>,</span>
+  <span>"scripts"</span><span>:</span> <span>{</span>
+    <span>"build"</span><span>:</span> <span>"cross-env NODE_ENV=production webpack --progress --hide-modules"</span>
+  <span>}</span><span>,</span>
+  <span>"dependencies"</span><span>:</span> <span>{</span>
+    <span>"vue"</span><span>:</span> <span>"^2.5.11"</span>
+  <span>}</span><span>,</span>
+  <span>"browserslist"</span><span>:</span> <span>[</span>
+    <span>"> 1%"</span><span>,</span>
+    <span>"last 2 versions"</span><span>,</span>
+    <span>"not ie &lt;= 8"</span>
+  <span>]</span><span>,</span>
+  <span>"devDependencies"</span><span>:</span> <span>{</span>
+    <span>"babel-core"</span><span>:</span> <span>"^6.26.0"</span><span>,</span>
+    <span>"babel-loader"</span><span>:</span> <span>"^7.1.2"</span><span>,</span>
+    <span>"babel-preset-env"</span><span>:</span> <span>"^1.6.0"</span><span>,</span>
+    <span>"babel-preset-stage-3"</span><span>:</span> <span>"^6.24.1"</span><span>,</span>
+    <span>"cross-env"</span><span>:</span> <span>"^5.0.5"</span><span>,</span>
+    <span>"css-loader"</span><span>:</span> <span>"^0.28.7"</span><span>,</span>
+    <span>"file-loader"</span><span>:</span> <span>"^1.1.4"</span><span>,</span>
+    <span>"vue-loader"</span><span>:</span> <span>"^13.0.5"</span><span>,</span>
+    <span>"vue-template-compiler"</span><span>:</span> <span>"^2.4.4"</span><span>,</span>
+    <span>"webpack"</span><span>:</span> <span>"^3.6.0"</span><span>,</span>
+    <span>"webpack-dev-server"</span><span>:</span> <span>"^2.9.1"</span>
+  <span>}</span>
+<span>}</span>
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br><span>9</span><br><span>10</span><br><span>11</span><br><span>12</span><br><span>13</span><br><span>14</span><br><span>15</span><br><span>16</span><br><span>17</span><br><span>18</span><br><span>19</span><br><span>20</span><br><span>21</span><br><span>22</span><br><span>23</span><br><span>24</span><br><span>25</span><br><span>26</span><br><span>27</span><br><span>28</span><br><span>29</span><br><span>30</span><br><span>31</span><br><span>32</span><br><span>33</span><br><span>34</span><br><span>35</span><br><span>36</span><br><span>37</span><br><span>38</span><br></div></div><p><img src="./assets/leovue-npmjs.png" alt="npmjs" /></p>
+<p>上图是<code>package.json</code>跟<code>npmjs.com</code>内容关系图，<code>keywords</code>在项目主页底部，
+<code>README.md</code>内容显示在主页，<code>version</code>、<code>license</code>、<code>homepage</code>、<code>repository</code>信息在右侧。</p>
+<h2 id="需求实现"> 需求实现</h2>
+<h3 id="多组件"> 多组件</h3>
+<div><pre><code><span>// 入口文件：./src/index.js</span>
+<span>// 即webpack.config.js里的：entry: './src/index.js'</span>
+<span>import</span> LeoDialog <span>from</span> <span>'./components/LeoDialog'</span>
+<span>import</span> LeoLodop   <span>from</span> <span>'./components/LeoLodop'</span>
+
+<span>const</span> components <span>=</span> <span>[</span> LeoDialog<span>,</span> LeoLodop <span>]</span>
+<span>const</span> <span>install</span> <span>=</span> <span>function</span> <span>(</span><span>Vue<span>,</span> opts <span>=</span> <span>{</span><span>}</span></span><span>)</span> <span>{</span>
+  components<span>.</span><span>forEach</span><span>(</span><span>component</span> <span>=></span> <span>{</span>
+    Vue<span>.</span><span>component</span><span>(</span>component<span>.</span>name<span>,</span> component<span>)</span>
+  <span>}</span><span>)</span>
+<span>}</span>
+
+<span>if</span> <span>(</span><span>typeof</span> window <span>!==</span> <span>'undefined'</span> <span>&amp;&amp;</span> window<span>.</span>Vue<span>)</span> <span>{</span>
+  <span>install</span><span>(</span>window<span>.</span>Vue<span>)</span>
+<span>}</span>
+
+<span>export</span> <span>{</span> LeoDialog<span>,</span> LeoLodop <span>}</span>
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br><span>9</span><br><span>10</span><br><span>11</span><br><span>12</span><br><span>13</span><br><span>14</span><br><span>15</span><br><span>16</span><br><span>17</span><br></div></div><h3 id="精简发布"> 精简发布</h3>
+<div><pre><code><span># 以下内容添加到.npmignore后</span>
+<span># 仅README.md和package.json和/dist目录被发布</span>
+/*
+!/dist/
+!README.md
+!package.json
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br></div></div><h2 id="错误解决"> 错误解决</h2>
+<div><p>属性只读</p>
+<p>Uncaught TypeError: Cannot assign to read only property 'exports' of object '<code>#&lt;Object&gt;</code>'</p>
+</div>
+<p>翻译过来就是说，代码没毛病，在webpack打包的时候，可以在js文件中混用require和export。但是不能混用import以及module.exports 。
+因为webpack 2中不允许混用import和module.exports，解决办法就是统一改成ES6的方式编写即可。</p>
+<div><pre><code><span>import</span> <span>{</span> Component <span>}</span> <span>from</span> <span>'components'</span>
+<span>// moduler.exports = Component    // 混用可通过Webpack2编译，但使用错误</span>
+<span>export</span> <span>default</span> Component
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br></div></div><div><p>标签未知</p>
+<p>Unknown custom element: <code>&lt;component&gt;</code> - did you register the component correctly?
+For recursive components, make sure to provide the &quot;name&quot; option.</p>
+</div>
+<p>一般情况下是组件未被正确加载，或者组件打包时命名错误。比如以<code>export default Component</code>打包，
+却以<code>import { Component } from 'components'</code>来引用，多了个花括号，反之亦然。</p>
+<div><p>渲染未知</p>
+<p>[Vue warn]: Failed to mount component: template or render function not defined.
+found in <code>&lt;Component&gt;</code></p>
+</div>
+<p>打包需要指定一种模块输出类型，可以是commonjs,AMD,script,UMD模式。
+在这里是写插件，要采用UMD模式，即libraryTarget: 'umd'。
+于是webpack.config.js出口文件配置修改为：</p>
+<div><pre><code> output<span>:</span> <span>{</span>
+  path<span>:</span> path<span>.</span><span>resolve</span><span>(</span>__dirname<span>,</span> <span>'./dist'</span><span>)</span><span>,</span>
+  publicPath<span>:</span> <span>'/dist/'</span><span>,</span>
+  filename<span>:</span> <span>'leovue.js'</span><span>,</span>
+  library<span>:</span> <span>'leovue'</span><span>,</span>
+  libraryTarget<span>:</span> <span>'umd'</span><span>,</span>
+  umdNamedDefine<span>:</span> <span>true</span>
+ <span>}</span>
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br></div></div><h2 id="参考"> 参考</h2>
+<p><a href="https://www.jb51.net/article/137725.htm" target="_blank" rel="noopener noreferrer">vue todo-list组件发布到npm上的方法</a></p>
+]]></content>
+    <author>
+      <name>方跃明</name>
+    </author>
+    <contributor>
+      <name>方跃明</name>
+    </contributor>
+    <published>2018-08-19T00:00:00.000Z</published>
+    <rights>Copyright by 方跃明</rights>
+  </entry>
+  <entry>
+    <title type="html">LeoVue的由来</title>
+    <id>https://blog.fangyueming.cn/leovue-why/</id>
+    <link href="https://blog.fangyueming.cn/leovue-why/"/>
+    <updated>2021-12-12T12:29:55.000Z</updated>
+    <content type="html"><![CDATA[<h1 id="leovue的由来"> LeoVue的由来</h1>
+<p>几十年来传统软件服务商店大欺客的现状，于信者毋庸多言，于疑者多说无益。
+以至于业界流传有民谣，叫做“<strong>一流的公关，二流的营销，三流的技术，四流的服务</strong>”。
+往往一个毛坯交付上线，客户如若后续没有二次开发的需求，可以借此多多进账，
+服务商此后便想着撒手不管，丢给售后服务部门提供日常的电话支持，每年却收着不菲的服务年费。
+甚至于连起码的基本服务都敷衍应付，所谓文档寥寥几页纸，全要所谓技术工程师口传心授。
+因为系统大多封闭，大多数无章法可循，无从入口，定是缺他不可的，往往十分跋扈，
+及时响应是不太可能的，不看人脸色就谢天谢地了。</p>
+<p>服务商的软件系统很多是十多年的老技术，框架陈旧，屡次迭代都要考虑兼容性，于是乎能将就就将就。
+漏洞百出，甚至千疮百孔，都是十分常见的。日常用起来都要小心翼翼如履薄冰，仿佛穷人家穿了十多年的破纱衣，一不小心就能洞穿。</p>
+<p>由于预算问题，这些系统大多都是毛坯交付，所谓标准功能，往往不能满足企业真正需求，需要二次开发。而这就是一个无底洞，
+明明几年前给其他客户做的有现成的方案，也要调研需求，评估工时，搞得复杂上天，尽其忽悠之能事，其目的就为了可以多多进账。
+<strong>上线十来万，二开几百万的项目比比皆是</strong>，这也成了软件服务商赚钱的法宝，所谓城市套路深，不过如此，企业一旦陷入就难以自拔。
+这种情况更多见于国内的传统软件服务商，对企业来说苦不堪言，搞到后来争执不休，废弃不用的甚至对簿公堂的也不在少数。</p>
+<p>因此稍微有点远见有点实力的企业，深苦于此，<strong>不愿被掣肘，定要自己弄出一个量身定做的系统来</strong>。
+但网络上开源的各种插件、各种库、各种框架，针对企业的本就不多，一旦投入开发，光框架、插件、库的选择上就足够抓耳挠腮了。
+加之自备的开发人员良莠不齐，技术水平天差地别，有的甚至仅仅只会当年的“网页三剑客”。
+开发力量薄弱，如何折衷选择让所有力量都有所发挥，这是个问题。</p>
+<p><a href="https://cn.vuejs.org" target="_blank" rel="noopener noreferrer">Vue.js</a>横空出世，其先进的设计理念，大大减低了前端开发的艰难程度，围绕<code>Vue.js</code>的生态系统雨后春笋般日渐丰富。
+<code>Vue.js</code>可以用组件封装最晦涩难懂的部分，暴露出最简单的接口供调用，一个简单的自定义<code>HTML</code>标签就能搞定原先复杂到令人痛不欲生的难题，
+非常类似于基于<code>API</code>开发，真正可以开箱即用。普通开发人员根本不用关心组件内实现，使得企业自行开发难度，一下子从天上拉到了凡间。
+也许自备开发人员真的只会“三剑客”，可能只需稍加学习也能胜任部分简单开发，对普通企业来说自己研发量身定制系统已不再是高山险阻。</p>
+<p><a href="https://axolo.github.io/leovue" target="_blank" rel="noopener noreferrer">LeoVue</a>就是针对企业开发而创建的组件库，力求简单明了，力求开箱即用，完善<code>80%</code>，丢弃<code>20%</code>。
+纯前端实现 <strong>从Excel导入数据</strong>，<strong>导出到Excel文件</strong>、<strong>选择不同模板打印输出</strong> 等必备组件已经上线，
+更多组件后续慢慢丰富。</p>
+<p>由于作者才疏学浅，错漏难免，欢迎大家批评指正，不吝赐教。</p>
+<div><p>声明</p>
+<p>以上言论，一家之言，有则改之，无则加勉，切勿对号入座。
+—— 方跃明2018年8月19日于杭州</p>
+</div>
+]]></content>
+    <author>
+      <name>方跃明</name>
+    </author>
+    <contributor>
+      <name>方跃明</name>
+    </contributor>
+    <published>2018-08-19T00:00:00.000Z</published>
     <rights>Copyright by 方跃明</rights>
   </entry>
   <entry>
@@ -3077,113 +3122,6 @@ array_name<span>[</span><span>0</span><span>]</span><span>=</span>value0        
     <rights>Copyright by 方跃明</rights>
   </entry>
   <entry>
-    <title type="html">LeoVue的由来</title>
-    <id>https://blog.fangyueming.cn/leovue-why/</id>
-    <link href="https://blog.fangyueming.cn/leovue-why/"/>
-    <updated>2021-12-12T12:29:55.000Z</updated>
-    <content type="html"><![CDATA[<h1 id="leovue的由来"> LeoVue的由来</h1>
-<p>几十年来传统软件服务商店大欺客的现状，于信者毋庸多言，于疑者多说无益。
-以至于业界流传有民谣，叫做“<strong>一流的公关，二流的营销，三流的技术，四流的服务</strong>”。
-往往一个毛坯交付上线，客户如若后续没有二次开发的需求，可以借此多多进账，
-服务商此后便想着撒手不管，丢给售后服务部门提供日常的电话支持，每年却收着不菲的服务年费。
-甚至于连起码的基本服务都敷衍应付，所谓文档寥寥几页纸，全要所谓技术工程师口传心授。
-因为系统大多封闭，大多数无章法可循，无从入口，定是缺他不可的，往往十分跋扈，
-及时响应是不太可能的，不看人脸色就谢天谢地了。</p>
-<p>服务商的软件系统很多是十多年的老技术，框架陈旧，屡次迭代都要考虑兼容性，于是乎能将就就将就。
-漏洞百出，甚至千疮百孔，都是十分常见的。日常用起来都要小心翼翼如履薄冰，仿佛穷人家穿了十多年的破纱衣，一不小心就能洞穿。</p>
-<p>由于预算问题，这些系统大多都是毛坯交付，所谓标准功能，往往不能满足企业真正需求，需要二次开发。而这就是一个无底洞，
-明明几年前给其他客户做的有现成的方案，也要调研需求，评估工时，搞得复杂上天，尽其忽悠之能事，其目的就为了可以多多进账。
-<strong>上线十来万，二开几百万的项目比比皆是</strong>，这也成了软件服务商赚钱的法宝，所谓城市套路深，不过如此，企业一旦陷入就难以自拔。
-这种情况更多见于国内的传统软件服务商，对企业来说苦不堪言，搞到后来争执不休，废弃不用的甚至对簿公堂的也不在少数。</p>
-<p>因此稍微有点远见有点实力的企业，深苦于此，<strong>不愿被掣肘，定要自己弄出一个量身定做的系统来</strong>。
-但网络上开源的各种插件、各种库、各种框架，针对企业的本就不多，一旦投入开发，光框架、插件、库的选择上就足够抓耳挠腮了。
-加之自备的开发人员良莠不齐，技术水平天差地别，有的甚至仅仅只会当年的“网页三剑客”。
-开发力量薄弱，如何折衷选择让所有力量都有所发挥，这是个问题。</p>
-<p><a href="https://cn.vuejs.org" target="_blank" rel="noopener noreferrer">Vue.js</a>横空出世，其先进的设计理念，大大减低了前端开发的艰难程度，围绕<code>Vue.js</code>的生态系统雨后春笋般日渐丰富。
-<code>Vue.js</code>可以用组件封装最晦涩难懂的部分，暴露出最简单的接口供调用，一个简单的自定义<code>HTML</code>标签就能搞定原先复杂到令人痛不欲生的难题，
-非常类似于基于<code>API</code>开发，真正可以开箱即用。普通开发人员根本不用关心组件内实现，使得企业自行开发难度，一下子从天上拉到了凡间。
-也许自备开发人员真的只会“三剑客”，可能只需稍加学习也能胜任部分简单开发，对普通企业来说自己研发量身定制系统已不再是高山险阻。</p>
-<p><a href="https://axolo.github.io/leovue" target="_blank" rel="noopener noreferrer">LeoVue</a>就是针对企业开发而创建的组件库，力求简单明了，力求开箱即用，完善<code>80%</code>，丢弃<code>20%</code>。
-纯前端实现 <strong>从Excel导入数据</strong>，<strong>导出到Excel文件</strong>、<strong>选择不同模板打印输出</strong> 等必备组件已经上线，
-更多组件后续慢慢丰富。</p>
-<p>由于作者才疏学浅，错漏难免，欢迎大家批评指正，不吝赐教。</p>
-<div><p>声明</p>
-<p>以上言论，一家之言，有则改之，无则加勉，切勿对号入座。
-—— 方跃明2018年8月19日于杭州</p>
-</div>
-]]></content>
-    <author>
-      <name>方跃明</name>
-    </author>
-    <contributor>
-      <name>方跃明</name>
-    </contributor>
-    <published>2018-08-19T00:00:00.000Z</published>
-    <rights>Copyright by 方跃明</rights>
-  </entry>
-  <entry>
-    <title type="html">MySQL自动备份</title>
-    <id>https://blog.fangyueming.cn/mysql-backup/</id>
-    <link href="https://blog.fangyueming.cn/mysql-backup/"/>
-    <updated>2021-12-12T12:13:19.000Z</updated>
-    <content type="html"><![CDATA[<h1 id="mysql自动备份"> MySQL自动备份</h1>
-<h2 id="相关软件"> 相关软件</h2>
-<ul>
-<li><a href="https://dev.mysql.com/doc/refman/8.0/en/mysqldump.html" target="_blank" rel="noopener noreferrer">mysqldump</a></li>
-<li><a href="http://www.gzip.org" target="_blank" rel="noopener noreferrer">gzip</a></li>
-</ul>
-<p>Windows下需要用到gzip压缩软件，当然也可用zip、7z、rar等软件代替。
-gzip安装完成后，方便起见，请将gzip加入Windows的PATH环境变量。</p>
-<h2 id="windows"> Windows</h2>
-<h3 id="编写mysql-backup-bat"> 编写mysql-backup.bat</h3>
-<div><pre><code>rem 删除一周前的备份
-forfiles /p &quot;D:\Backup\databasename&quot; /d -7 /c &quot;cmd /c del /f @path&quot;
-rem 按日期命名备份并压缩
-mysqldump -hhostname -uusername -ppassword --databases databasename | gzip &gt; D:\Backup\databasename\databasename-%date:~0,10%.sql.gz
-</code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br></div></div><h3 id="将mysql-backup-bat加入计划任务"> 将mysql-backup.bat加入计划任务</h3>
-<h2 id="linux"> Linux</h2>
-<h3 id="修改mysql配置"> 修改MySQL配置</h3>
-<div><pre><code><span>vi</span> /etc/my.cnf
-</code></pre>
-<div><span>1</span><br></div></div><div><pre><code><span># 加入 mysqldump 相关配置</span>
-<span><span>[</span><span>mysqldump</span><span>]</span></span>
-<span>user</span><span>=</span><span>user</span>
-<span>password</span><span>=</span><span>password</span>
-</code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br></div></div><h3 id="编写备份脚本"> 编写备份脚本</h3>
-<div><pre><code><span>#!/bin/bash</span>
-<span># 定义目录</span>
-<span>dir</span><span>=</span>/path/to/backup/mysql/yourdatabase
-<span># 删除一周前的备份</span>
-<span>find</span> <span>${dir}</span> -ctime +7 -type f <span>|</span> <span>xargs</span> <span>rm</span> -rf
-<span># 每日备份</span>
-<span>rq</span><span>=</span><span><span>`</span><span>date</span> +%Y%m%d<span>`</span></span>
-mysqldump --databases yourdatabase <span>|</span> <span>gzip</span> <span>></span> <span>${dir}</span>/yourdatabase-<span>${rq}</span>.sql.gz
-</code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br></div></div><h3 id="修改文件属性为可执行"> 修改文件属性为可执行</h3>
-<div><pre><code><span>chmod</span> +x /path/to/backmysql.sh
-</code></pre>
-<div><span>1</span><br></div></div><h3 id="添加到crontab"> 添加到<code>crontab</code></h3>
-<div><pre><code># mysql-backup.cron
-# 每天3点钟执行备份
-0 3 * * * bash /path/to/backmysql.sh
-</code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br></div></div><div><pre><code><span>crontab</span> mysql-backup.cron
-<span>crontab</span> -l
-<span># 0 3 * * * bash /path/to/backmysql.sh</span>
-</code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br></div></div>]]></content>
-    <author>
-      <name>方跃明</name>
-    </author>
-    <contributor>
-      <name>方跃明</name>
-    </contributor>
-    <published>2019-05-11T00:00:00.000Z</published>
-    <rights>Copyright by 方跃明</rights>
-  </entry>
-  <entry>
     <title type="html">CentOS 安装 MySQL 8</title>
     <id>https://blog.fangyueming.cn/mysql-8-install/</id>
     <link href="https://blog.fangyueming.cn/mysql-8-install/"/>
@@ -3267,56 +3205,65 @@ mysqldump -B sys -uroot -ppassword <span>|</span> <span>gzip</span> <span>></spa
     <rights>Copyright by 方跃明</rights>
   </entry>
   <entry>
-    <title type="html">NGiNX反向代理实现https</title>
-    <id>https://blog.fangyueming.cn/nginx-https/</id>
-    <link href="https://blog.fangyueming.cn/nginx-https/"/>
-    <updated>2021-12-12T12:29:55.000Z</updated>
-    <content type="html"><![CDATA[<h1 id="nginx反向代理实现https"> NGiNX反向代理实现https</h1>
-<p>越来越多的应用需要https支持，因此支持https是大势所趋，也是必须的。
-比如微信小程序的第三方数据接口必须是https协议的，Google将所有http协议默认为不安全协议。
-所以开发上也需要对https进行测试，而https的前提就是需要SSL证书，哪怕是自建的。</p>
-<p>参见：<a href="https://blog.csdn.net/pz0605/article/details/51954876" target="_blank" rel="noopener noreferrer">自建证书配置HTTPS服务器</a></p>
-<div><pre><code><span># 生成私钥</span>
-openssl genrsa -out private.key <span>2048</span>
-<span># 生成证书请求</span>
-openssl req -new -key private.key -out server.csr
-<span># 生成服务器的私钥，去除密钥口令</span>
-openssl rsa -in private.key -out server.key
-<span># 使用私钥为证书请求签名，生成给服务器签署的证书，格式是x509的PEM格式</span>
-openssl x509 -req -in server.csr -out server.crt -signkey server.key -days <span>3650</span>
+    <title type="html">MySQL自动备份</title>
+    <id>https://blog.fangyueming.cn/mysql-backup/</id>
+    <link href="https://blog.fangyueming.cn/mysql-backup/"/>
+    <updated>2021-12-12T12:13:19.000Z</updated>
+    <content type="html"><![CDATA[<h1 id="mysql自动备份"> MySQL自动备份</h1>
+<h2 id="相关软件"> 相关软件</h2>
+<ul>
+<li><a href="https://dev.mysql.com/doc/refman/8.0/en/mysqldump.html" target="_blank" rel="noopener noreferrer">mysqldump</a></li>
+<li><a href="http://www.gzip.org" target="_blank" rel="noopener noreferrer">gzip</a></li>
+</ul>
+<p>Windows下需要用到gzip压缩软件，当然也可用zip、7z、rar等软件代替。
+gzip安装完成后，方便起见，请将gzip加入Windows的PATH环境变量。</p>
+<h2 id="windows"> Windows</h2>
+<h3 id="编写mysql-backup-bat"> 编写mysql-backup.bat</h3>
+<div><pre><code>rem 删除一周前的备份
+forfiles /p &quot;D:\Backup\databasename&quot; /d -7 /c &quot;cmd /c del /f @path&quot;
+rem 按日期命名备份并压缩
+mysqldump -hhostname -uusername -ppassword --databases databasename | gzip &gt; D:\Backup\databasename\databasename-%date:~0,10%.sql.gz
 </code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br></div></div><p>经过以上步骤得到server.crt和server.key，拷贝到nginx的certs目录。
-由于证书是自建的，一般情况下浏览器会给出不安全提示，仅供开发环境测试使用。</p>
-<div><pre><code><span># nginx/conf/nginx.conf</span>
-server {
-  <span># 开启SSL</span>
-  listen       443 ssl;
-  server_name  localhost;                   # 外网域名
-  <span># 加载证书，可用openssl自建证书</span>
-  ssl_certificate      ../certs/server.crt;
-  ssl_certificate_key  ../certs/server.key;
-  ssl_session_cache    shared:SSL:1m;
-  ssl_session_timeout  5m;
-  ssl_ciphers  HIGH:!aNULL:!MD5;
-  ssl_prefer_server_ciphers  on;
-  <span># 反向代理</span>
-  location / {
-    proxy_pass        http://localhost:7001;  # 内网应用网址
-  }
-}
+<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br></div></div><h3 id="将mysql-backup-bat加入计划任务"> 将mysql-backup.bat加入计划任务</h3>
+<h2 id="linux"> Linux</h2>
+<h3 id="修改mysql配置"> 修改MySQL配置</h3>
+<div><pre><code><span>vi</span> /etc/my.cnf
 </code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br><span>9</span><br><span>10</span><br><span>11</span><br><span>12</span><br><span>13</span><br><span>14</span><br><span>15</span><br><span>16</span><br><span>17</span><br></div></div><p>虽然<a href="https://github.com/eggjs/egg-cluster" target="_blank" rel="noopener noreferrer">egg-cluster</a>内置参数支持https，
-但这终究不是API该做的事情，就跟OAuth不应该由API来做一样。
-能者多劳就是个谬论，往往是无能者的无奈之举和推脱之辞。
-https、cluster、负载均衡、反向代理这样的事，注定WEB服务器来做，是诸如NGiNX、Apache、IIS之类的天职。</p>
-]]></content>
+<div><span>1</span><br></div></div><div><pre><code><span># 加入 mysqldump 相关配置</span>
+<span><span>[</span><span>mysqldump</span><span>]</span></span>
+<span>user</span><span>=</span><span>user</span>
+<span>password</span><span>=</span><span>password</span>
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br></div></div><h3 id="编写备份脚本"> 编写备份脚本</h3>
+<div><pre><code><span>#!/bin/bash</span>
+<span># 定义目录</span>
+<span>dir</span><span>=</span>/path/to/backup/mysql/yourdatabase
+<span># 删除一周前的备份</span>
+<span>find</span> <span>${dir}</span> -ctime +7 -type f <span>|</span> <span>xargs</span> <span>rm</span> -rf
+<span># 每日备份</span>
+<span>rq</span><span>=</span><span><span>`</span><span>date</span> +%Y%m%d<span>`</span></span>
+mysqldump --databases yourdatabase <span>|</span> <span>gzip</span> <span>></span> <span>${dir}</span>/yourdatabase-<span>${rq}</span>.sql.gz
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br></div></div><h3 id="修改文件属性为可执行"> 修改文件属性为可执行</h3>
+<div><pre><code><span>chmod</span> +x /path/to/backmysql.sh
+</code></pre>
+<div><span>1</span><br></div></div><h3 id="添加到crontab"> 添加到<code>crontab</code></h3>
+<div><pre><code># mysql-backup.cron
+# 每天3点钟执行备份
+0 3 * * * bash /path/to/backmysql.sh
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br></div></div><div><pre><code><span>crontab</span> mysql-backup.cron
+<span>crontab</span> -l
+<span># 0 3 * * * bash /path/to/backmysql.sh</span>
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br></div></div>]]></content>
     <author>
       <name>方跃明</name>
     </author>
     <contributor>
       <name>方跃明</name>
     </contributor>
-    <published>2018-11-11T00:00:00.000Z</published>
+    <published>2019-05-11T00:00:00.000Z</published>
     <rights>Copyright by 方跃明</rights>
   </entry>
   <entry>
@@ -3412,6 +3359,59 @@ yum -y <span>install</span> <span>make</span> gcc-c++ cmake bison-devel ncurses 
       <name>方跃明</name>
     </contributor>
     <published>2019-05-12T00:00:00.000Z</published>
+    <rights>Copyright by 方跃明</rights>
+  </entry>
+  <entry>
+    <title type="html">NGiNX反向代理实现https</title>
+    <id>https://blog.fangyueming.cn/nginx-https/</id>
+    <link href="https://blog.fangyueming.cn/nginx-https/"/>
+    <updated>2021-12-12T12:29:55.000Z</updated>
+    <content type="html"><![CDATA[<h1 id="nginx反向代理实现https"> NGiNX反向代理实现https</h1>
+<p>越来越多的应用需要https支持，因此支持https是大势所趋，也是必须的。
+比如微信小程序的第三方数据接口必须是https协议的，Google将所有http协议默认为不安全协议。
+所以开发上也需要对https进行测试，而https的前提就是需要SSL证书，哪怕是自建的。</p>
+<p>参见：<a href="https://blog.csdn.net/pz0605/article/details/51954876" target="_blank" rel="noopener noreferrer">自建证书配置HTTPS服务器</a></p>
+<div><pre><code><span># 生成私钥</span>
+openssl genrsa -out private.key <span>2048</span>
+<span># 生成证书请求</span>
+openssl req -new -key private.key -out server.csr
+<span># 生成服务器的私钥，去除密钥口令</span>
+openssl rsa -in private.key -out server.key
+<span># 使用私钥为证书请求签名，生成给服务器签署的证书，格式是x509的PEM格式</span>
+openssl x509 -req -in server.csr -out server.crt -signkey server.key -days <span>3650</span>
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br></div></div><p>经过以上步骤得到server.crt和server.key，拷贝到nginx的certs目录。
+由于证书是自建的，一般情况下浏览器会给出不安全提示，仅供开发环境测试使用。</p>
+<div><pre><code><span># nginx/conf/nginx.conf</span>
+server {
+  <span># 开启SSL</span>
+  listen       443 ssl;
+  server_name  localhost;                   # 外网域名
+  <span># 加载证书，可用openssl自建证书</span>
+  ssl_certificate      ../certs/server.crt;
+  ssl_certificate_key  ../certs/server.key;
+  ssl_session_cache    shared:SSL:1m;
+  ssl_session_timeout  5m;
+  ssl_ciphers  HIGH:!aNULL:!MD5;
+  ssl_prefer_server_ciphers  on;
+  <span># 反向代理</span>
+  location / {
+    proxy_pass        http://localhost:7001;  # 内网应用网址
+  }
+}
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br><span>9</span><br><span>10</span><br><span>11</span><br><span>12</span><br><span>13</span><br><span>14</span><br><span>15</span><br><span>16</span><br><span>17</span><br></div></div><p>虽然<a href="https://github.com/eggjs/egg-cluster" target="_blank" rel="noopener noreferrer">egg-cluster</a>内置参数支持https，
+但这终究不是API该做的事情，就跟OAuth不应该由API来做一样。
+能者多劳就是个谬论，往往是无能者的无奈之举和推脱之辞。
+https、cluster、负载均衡、反向代理这样的事，注定WEB服务器来做，是诸如NGiNX、Apache、IIS之类的天职。</p>
+]]></content>
+    <author>
+      <name>方跃明</name>
+    </author>
+    <contributor>
+      <name>方跃明</name>
+    </contributor>
+    <published>2018-11-11T00:00:00.000Z</published>
     <rights>Copyright by 方跃明</rights>
   </entry>
   <entry>
@@ -3834,28 +3834,6 @@ Zend_Acl 提供了一个树结构，它可以添加多个 resources (或者叫�
       <name>方跃明</name>
     </contributor>
     <published>2009-09-09T00:00:00.000Z</published>
-    <rights>Copyright by 方跃明</rights>
-  </entry>
-  <entry>
-    <title type="html">图解SQL JOINS</title>
-    <id>https://blog.fangyueming.cn/sql-joins/</id>
-    <link href="https://blog.fangyueming.cn/sql-joins/"/>
-    <updated>2021-12-12T12:13:19.000Z</updated>
-    <content type="html"><![CDATA[<h1 id="图解sql-joins"> 图解SQL JOINS</h1>
-<p>左连接、右连接、内连接、外连接……傻傻分不清</p>
-<p><img src="./assets/sql-joins.jpg" alt="SQL JOINS" /></p>
-<blockquote>
-<p>方跃明
-2018-4-28</p>
-</blockquote>
-]]></content>
-    <author>
-      <name>方跃明</name>
-    </author>
-    <contributor>
-      <name>方跃明</name>
-    </contributor>
-    <published>2018-04-28T00:00:00.000Z</published>
     <rights>Copyright by 方跃明</rights>
   </entry>
   <entry>
@@ -4887,6 +4865,28 @@ Zend_Acl 提供了一个树结构，它可以添加多个 resources (或者叫�
       <name>方跃明</name>
     </contributor>
     <published>2018-05-31T00:00:00.000Z</published>
+    <rights>Copyright by 方跃明</rights>
+  </entry>
+  <entry>
+    <title type="html">图解SQL JOINS</title>
+    <id>https://blog.fangyueming.cn/sql-joins/</id>
+    <link href="https://blog.fangyueming.cn/sql-joins/"/>
+    <updated>2021-12-12T12:13:19.000Z</updated>
+    <content type="html"><![CDATA[<h1 id="图解sql-joins"> 图解SQL JOINS</h1>
+<p>左连接、右连接、内连接、外连接……傻傻分不清</p>
+<p><img src="./assets/sql-joins.jpg" alt="SQL JOINS" /></p>
+<blockquote>
+<p>方跃明
+2018-4-28</p>
+</blockquote>
+]]></content>
+    <author>
+      <name>方跃明</name>
+    </author>
+    <contributor>
+      <name>方跃明</name>
+    </contributor>
+    <published>2018-04-28T00:00:00.000Z</published>
     <rights>Copyright by 方跃明</rights>
   </entry>
   <entry>
