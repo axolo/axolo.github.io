@@ -26,7 +26,7 @@ module.exports = config({
     repo: 'https://github.com/axolo/axolo.github.io',
     nav: [
       { text: '首页', link: '/', icon: 'home' },
-      { text: '码云', link: 'https://gitee.com/axolo', icon: 'gitee' },
+      { text: 'LeoVue', link: 'https://axolo.github.io/leovue', icon: 'vue' },
     ],
     prevLinks: true,
     nextLinks: true,
