@@ -337,7 +337,7 @@ open http://serverip
 
 ### 基础架构
 
-![compute](./webvirtcloud/compute.png)
+![compute](compute.png)
 
 ### 存储池
 
@@ -351,16 +351,16 @@ chmod 755 -R /home/webvirtmgr
 `-- iso             # 光盘镜像
 ```
 
-![storage](./webvirtcloud/storage.png)
+![storage](storage.png)
 
 ### 网络
 
-![network](./webvirtcloud/network.png)
+![network](network.png)
 
 ### 实例
 
-![instance](./webvirtcloud/instance.png)
+![instance](instance.png)
 
 ### 会话
 
-![console](./webvirtcloud/console.png)
+![console](console.png)

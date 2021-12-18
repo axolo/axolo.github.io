@@ -10,4 +10,4 @@ tags:
 
 # Internet技术概览
 
-![Internet技术概览](./assets/web-internet.jpg)
+![Internet技术概览](web-internet.jpg)

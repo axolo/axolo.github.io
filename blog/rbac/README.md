@@ -65,11 +65,11 @@ Zend_Acl 也支持基于 resources 的权限（例如："create", "read", "updat
 
 很多RBAC笼统的把ACL和AUTH结合在一起了，所以比较混杂，搞不清楚。下面的草图简要说明ACL和AUTH的结合。
 
-![流程图](./rbac/rbac-flowchart.jpg)
+![流程图](rbac-flowchart.jpg)
 
 ## 三、数据模型分析与设计
 
-![模型ER](./rbac/rbac-er.png)
+![模型ER](rbac-er.png)
 这个就不多说了，直接贴MySQL代码。
 
 ```sql
@@ -124,13 +124,13 @@ CREATE TABLE leo_access (
 
 ## 四、应用分析与实现
 
-![活动图](./rbac/rbac-active.png)
+![活动图](rbac-active.png)
 
 以下是按上面的思路做的应用，两张权限分配图是之前没有考虑多层资源结构时设计应用时的截图，供参考：
 
-![应用截图01](./rbac/rbac-app01.gif)
+![应用截图01](rbac-app01.gif)
 
-![应用截图02](./rbac/rbac-app02.gif)
+![应用截图02](rbac-app02.gif)
 
 ## 五、后记
 

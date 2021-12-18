@@ -12,7 +12,7 @@ categories:
   - 前端
 ---
 
-# LeoVue打包发布npmjs折腾记
+# LeoVue打包发布NPM折腾记
 
 ## 发布步骤
 
@@ -74,7 +74,7 @@ npm publish                     # 按提示排错，比如包的命名问题等�
 }
 ```
 
-![npmjs](./assets/leovue-npmjs.png)
+![npmjs](leovue-npm.png)
 
 上图是`package.json`跟`npmjs.com`内容关系图，`keywords`在项目主页底部，
 `README.md`内容显示在主页，`version`、`license`、`homepage`、`repository`信息在右侧。

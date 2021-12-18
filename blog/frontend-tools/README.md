@@ -8,7 +8,7 @@ tags:
   - Node.js
 ---
 
-# 程序员常用工具
+# 前端常用工具
 
 ## 模拟API
 
@@ -55,4 +55,4 @@ tags:
   - [node-linux](https://github.com/coreybutler/node-linux)
   - [node-mac](https://github.com/coreybutler/node-mac)
 
-![nodejs-daemon-nssm](./assets/nodejs-daemon-nssm.png)
+![nodejs-daemon-nssm](nodejs-daemon-nssm.png)

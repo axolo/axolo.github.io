@@ -44,7 +44,7 @@ tags:
 * Docker cloud
 * Docker datacenter
 
-![Docker结构](./kubernetes/docker-architecture.png)
+![Docker结构](docker-architecture.png)
 
 ​Docker让开发者可以打包他们的应用以及依赖包到一个可移植的容器中的特性，使其成为软件行业的游戏规则改变者;这有点类似mp3格式帮助重塑了音乐产业。Docker文件格式成为行业标准，并且领导容器技术供应商(包括Docker、Pivotal, Mesosphere以及其他许多)成立CNCF和OCI。今天，CNCF和OCI的目标就是确保跨容器技术的互操作性和标准化接口，并确保使用任何工具构建的Docker容器，都可以在任何runtime或基础设施上运行。
 
@@ -58,7 +58,7 @@ tags:
 
 截至2016年3月，谷歌向CNCF捐赠了kubernetes，至今谷歌仍是该项目的主要贡献者(其次是Redhat、CoreOS等)。
 
-![kubernetes结构](./kubernetes/architecture-2.png)
+![kubernetes结构](architecture.png)
 
 kubernetes对应用程序开发人员非常有吸引力，因为它减少了对基础设施和操作团队的依赖。供应商也非常喜欢kubernetes，因为它提供了一种简单的方式来让他们拥抱容器运动，并为他们运行自己的kubernetes部署提供一个商业化解决方案。kubernetes之所以很有吸引力，因为它是CNCF下的开源项目，与Docker集群相比，后者虽然是开源的，但却受到Docker Inc .的严格控制。
 
@@ -80,7 +80,7 @@ Mesos的独特之处还在于，可以单独管理各种不同的工作负载—
 
 Mesos Master资源管理器，提供这些底层基础设施的框架部分，同时保持隔离。这种方法允许每个工作负载有自己专用的应用程序调度器，它了解其对部署、缩放和升级的具体操作需求。应用程序调度程序也独立地被开发、管理和更新，这让Mesos保持高度可扩展性，支持新的工作负载，或者随着时间的推移增加更多的操作能力。
 
-![Mesos结构](./kubernetes/mesos.png)
+![Mesos结构](mesos.png)
 
 以一个团队如何管理升级为例。无状态应用程序可以从“蓝/绿”部署方法中获益;当旧的应用程序还在使用的时候，另一个完整版本的应用程序已经spun up，当旧的应用程序被销毁时，流量切换到新的应用程序。但是，升级像HDFS或Cassandra这样的数据工作负载需要一次脱机，维护本地数据量以避免数据丢失，执行特定序列的升级，并在升级之前和之后对每个节点类型执行特殊检查和命令。这些步骤中的所有环节针对特定的应用程序或服务，甚至是特定版本进行的。这使得用常规容器编排调度器管理数据服务变得非常困难。
 

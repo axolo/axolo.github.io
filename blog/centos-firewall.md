@@ -23,11 +23,11 @@ firewall-cmd --zone=public --add-masquerade --permanent
 firewall-cmd --reload
 ```
 
-   参数           |              解释
-------------------| -------------------------------
---zone            | 作用域，public = 公共区域
---add-port=80/tcp | 添加端口，格式为：端口/通讯协议
---permanent       | 永久生效，没有此参数重启后失效
+|       参数        |              解释               |
+| ----------------- | ------------------------------- |
+| --zone            | 作用域，public = 公共区域       |
+| --add-port=80/tcp | 添加端口，格式为：端口/通讯协议 |
+| --permanent       | 永久生效，没有此参数重启后失效  |
 
 ## 服务
 
@@ -48,6 +48,8 @@ firewall-cmd --help                               # 查看帮助
 firewall-cmd --state                              # 状态
 firewall-cmd --reload                             # 更新防火墙规则
 firewall-cmd --complete-reload                    # 更新防火墙规则（断开连接）
+firewall-cmd --list-all                           # 列出所有规则
+firewall-cmd --list-port                          # 列出所有放行端口
 firewall-cmd --panic-on                           # 拒绝所有包
 firewall-cmd --panic-off                          # 取消拒绝状态
 firewall-cmd --query-panic                        # 查看是否拒绝

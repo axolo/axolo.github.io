@@ -17,7 +17,7 @@ tags:
 
 ## 一、原著封面
 
-![封面](./assets/sql-antipatterns.jpg)
+![封面](sql-antipatterns.jpg)
 
 ## 二、乱穿马路
 

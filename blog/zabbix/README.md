@@ -10,11 +10,11 @@ tags:
 
 # Zabbix安装笔记
 
-详细安装步骤参见：[官方安装手册](https://www.zabbix.com/documentation/3.0/manual/installation/install_from_packages)
+详细安装步骤参见：[官方安装手册]
 
 ## Zabbix Server
 
-![Zabbix部署示意图](./assets/zabbix-schema.jpg)
+![Zabbix部署示意图](zabbix-schema.jpg)
 
 ### 安装数据库
 
@@ -68,7 +68,7 @@ systemctl start httpd
 
 ## Zabbix Agent
 
-![Zabbix分布式部署示意图](./assets/zabbix-proxy.png)
+![Zabbix分布式部署示意图](zabbix-proxy.png)
 
 ### CentOS
 
@@ -181,3 +181,5 @@ systemctl start zabbix-proxy
 - CentOS
   - 安装：`yum install net-snmp net-snmp-utils`
   - 参见：<https://blog.csdn.net/sinat_21302587/article/details/75099915>
+
+[官方安装手册]: https://www.zabbix.com/documentation/3.0/manual/installation/install_from_packages

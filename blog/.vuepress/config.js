@@ -28,6 +28,8 @@ module.exports = config({
       { text: '首页', link: '/', icon: 'home' },
       { text: '码云', link: 'https://gitee.com/axolo', icon: 'gitee' },
     ],
+    prevLinks: true,
+    nextLinks: true,
     blog: {
       // intro: '/intro/',
       sidebarDisplay: 'mobile',

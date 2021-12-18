@@ -40,7 +40,7 @@ mysql -uroot -p
 
 ```bash
 # https://github.com/nodesource/distributions#rpm
-curl -sL https://rpm.nodesource.com/setup_11.x | bash -
+curl -sL https://rpm.nodesource.com/setup_16.x | bash -
 ```
 
 ## Yarn
@@ -73,12 +73,5 @@ gpgcheck=0
 enabled=1
 ```
 
-## Python
-
-## Java
-
-## Oracle
-
-## Apache
-
-## PHP
+> 方跃明
+> 2020-05-11
