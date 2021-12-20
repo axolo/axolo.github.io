@@ -7,5 +7,5 @@ bgImage: /hero.svg
 heroImage: /logo.svg
 heroText: 方跃明的博客
 heroFullScreen: false
-tagline: 分享WEB应用开发技术
+tagline: WEB应用开发技术笔记
 ---

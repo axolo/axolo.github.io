@@ -2,7 +2,7 @@ const { config } = require('vuepress-theme-hope');
 
 module.exports = config({
   title: '方跃明的博客',
-  description: '分享WEB应用开发技术',
+  description: 'WEB应用开发技术笔记',
   dest: 'docs',
   head: [
     // ['script', { src: '//cdn.jsdelivr.net/npm/react/umd/react.production.min.js' }],
