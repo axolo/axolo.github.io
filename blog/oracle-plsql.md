@@ -3,9 +3,11 @@ time: 2018-05-12
 tags:
   - Oracle
   - SQL
+  - 数据库
 categories:
   - Oracle
   - SQL
+  - 数据库
 ---
 
 # 配置Oracle PL/SQL Developer
