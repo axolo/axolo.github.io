@@ -1,11 +1,9 @@
 ---
 time: 2017-08-09
 tags:
-  - CentOS
   - Linux
   - Shell
 categories:
-  - CentOS
   - Linux
   - Shell
 ---
@@ -128,3 +126,17 @@ ${#array_name[@]}     # 整个数组长度
 ## 运算符
 
 ## 控制语句
+
+## 思维导图
+
+![基础知识](linux-shell-01.jpg)
+![文件目录](linux-shell-02.jpg)
+![文本处理](linux-shell-03.jpg)
+![Shell脚本1](linux-shell-04.jpg)
+![Shell脚本2](linux-shell-05.jpg)
+![Shell脚本3](linux-shell-06.jpg)
+
+> 未完待续……
+
+> 方跃明
+> 2017-08-09
