@@ -4,6 +4,10 @@ logs
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+<<<<<<< HEAD
+=======
+yarn.lock
+>>>>>>> c6c38498c68136d9f47b4fecd687ee1c94f0d431
 
 # Runtime data
 pids
@@ -20,7 +24,11 @@ coverage
 # nyc test coverage
 .nyc_output
 
+<<<<<<< HEAD
 # Grunt intermediate storage (https://gruntjs.com/creating-plugins#storing-task-files)
+=======
+# Grunt intermediate storage (http://gruntjs.com/creating-plugins#storing-task-files)
+>>>>>>> c6c38498c68136d9f47b4fecd687ee1c94f0d431
 .grunt
 
 # Bower dependency directory (https://bower.io/)
@@ -29,14 +37,22 @@ bower_components
 # node-waf configuration
 .lock-wscript
 
+<<<<<<< HEAD
 # Compiled binary addons (https://nodejs.org/api/addons.html)
+=======
+# Compiled binary addons (http://nodejs.org/api/addons.html)
+>>>>>>> c6c38498c68136d9f47b4fecd687ee1c94f0d431
 build/Release
 
 # Dependency directories
 node_modules/
 jspm_packages/
 
+<<<<<<< HEAD
 # TypeScript v1 declaration files
+=======
+# Typescript v1 declaration files
+>>>>>>> c6c38498c68136d9f47b4fecd687ee1c94f0d431
 typings/
 
 # Optional npm cache directory
@@ -56,6 +72,7 @@ typings/
 
 # dotenv environment variables file
 .env
+<<<<<<< HEAD
 .env.test
 
 # parcel-bundler cache (https://parceljs.org/)
@@ -78,3 +95,5 @@ typings/
 
 # DynamoDB Local files
 .dynamodb/
+=======
+>>>>>>> c6c38498c68136d9f47b4fecd687ee1c94f0d431

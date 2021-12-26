@@ -1,0 +1,16 @@
+{
+  "name": "fangyueming-blog",
+  "version": "0.2.0",
+  "description": "方跃明的博客",
+  "license": "MIT",
+  "scripts": {
+    "dev": "vuepress dev .",
+    "build": "vuepress build .",
+    "clean": "vuepress dev . --no-cache",
+    "eject": "vuepress eject-hope ."
+  },
+  "devDependencies": {
+    "vuepress": "^1.8.2",
+    "vuepress-theme-hope": "^1.21.0"
+  }
+}
