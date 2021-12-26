@@ -14,7 +14,7 @@ categories:
 
 # Chrome inspect开发钉钉应用
 
-`Chrome inspect`是`Chrome`浏览器基于`webkit remote debug`的实现，支持`Andorid`模拟器和`Andorid`真实设备。
+`Chrome inspect`是`Chrome`浏览器基于`webkit remote debug`的实现，支持`Android`模拟器和`Android`真实设备。
 
 但由于国情所致，国内`Android`大部分手机对于`Google Mobile Service`的支持甚是微弱，很多设备甚至完全阉割，且无法安装。
 
@@ -26,11 +26,11 @@ categories:
 
 ## 钉钉开发版
 
-钉钉正式版不支持`Chrome nspect`，请在[钉钉开发者工具][dingtalk-dev]中下载钉钉开发版。
+钉钉正式版不支持`Chrome inspect`，请在[钉钉开发者工具][dingtalk-dev]中下载钉钉开发版。
 
 ## 真机调试
 
-真机使用USB连接到电脑，打开开发者模式，允许调试，才能被`Chrome nspect`发现。
+真机使用USB连接到电脑，打开开发者模式，允许调试，才能被`Chrome inspect`发现。
 
 ![开发者模式](android-develop.jpg)
 
@@ -38,8 +38,8 @@ categories:
 
 ## 模拟器
 
-推荐[下载][genymotion-download]对开发支持良好的[Genymotion]Android模拟器，若无`VirtualBox`环境请选择`with VirtualBox`的安装包。
-一般使用默认安装方式，安装时请注意选择`Personal Use`免费使用，土豪随意。
+推荐[下载][genymotion-download]对开发支持良好的 [Genymotion] Android模拟器，若无`VirtualBox`环境请选择`with VirtualBox`的安装包。
+一般使用默认安装方式，安装时请注意选择`Personal User`免费使用，土豪随意。
 
 :::warning 友情提示
 请勿下载夜神、mumu之类的模拟器（~~游戏机~~）。
