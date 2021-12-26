@@ -3,9 +3,11 @@ time: 2018-05-12
 tags:
   - Oracle
   - SQL
+  - 数据库
 categories:
   - Oracle
   - SQL
+  - 数据库
 ---
 
 # 配置Oracle PL/SQL Developer
@@ -71,3 +73,9 @@ categories:
   我下载的instant client版本为10.2.0.2.0, 测试了联接到oracle 9.2.0.4和oracle 10.2.0.1.
 
   Instant Client中不包含tnsping, exp/imp, rman, netca等工具. 如果需要这些工具则需要安装oracle client
+
+## Oracle备份
+
+```dos
+exp newsoft/econage@ptime file=E:\Backup\%date:~0,10%exp.dmp log=E:\Backup\%date:~0,10exp.log owner=newsoft
+```
