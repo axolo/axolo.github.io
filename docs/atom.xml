@@ -6,7 +6,7 @@
   <author>
     <name>方跃明</name>
   </author>
-  <updated>2021-12-26T07:12:58.738Z</updated>
+  <updated>2021-12-27T12:35:41.524Z</updated>
   <generator>@mr-hope/vuepress-plugin-feed</generator>
   <link rel="self" href="https://blog.fangyueming.cn/atom.xml"/>
   <link rel="alternate" href="https://blog.fangyueming.cn/"/>
@@ -26,69 +26,6 @@
       <name>方跃明</name>
     </contributor>
     <published>2021-12-14T13:18:38.000Z</published>
-    <rights>Copyright by 方跃明</rights>
-  </entry>
-  <entry>
-    <title type="html">CentOS 快速安装常用开发工具</title>
-    <id>https://blog.fangyueming.cn/centos-develop/</id>
-    <link href="https://blog.fangyueming.cn/centos-develop/"/>
-    <updated>2021-12-18T11:04:14.000Z</updated>
-    <content type="html"><![CDATA[<h1 id="centos-快速安装常用开发工具"> CentOS 快速安装常用开发工具</h1>
-<h2 id="docker"> Docker</h2>
-<div><pre><code><span># https://docs.docker.com/engine/install/centos/</span>
-yum <span>install</span> -y yum-utils
-yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
-yum <span>install</span> docker-ce docker-ce-cli containerd.io
-</code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br></div></div><h2 id="mysql-8-x"> MySQL 8.x</h2>
-<div><pre><code><span># 安装官方仓库</span>
-yum localinstall https://repo.mysql.com/mysql80-community-release-el7-1.noarch.rpm
-<span># 安装 MySQL Server</span>
-yum <span>install</span> mysql-community-server
-<span># 启动MySQL</span>
-systemctl start mysqld
-<span># 检查服务状态</span>
-systemctl status mysqld
-<span># 查看初始密码</span>
-<span>grep</span> <span>'temporary password'</span> /var/log/mysqld.log
-mysql -uroot -p
-<span># 输入密码进入mysql命令行</span>
-</code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br><span>9</span><br><span>10</span><br><span>11</span><br><span>12</span><br></div></div><h2 id="node-js"> Node.js</h2>
-<div><pre><code><span># https://github.com/nodesource/distributions#rpm</span>
-<span>curl</span> -sL https://rpm.nodesource.com/setup_16.x <span>|</span> <span>bash</span> -
-</code></pre>
-<div><span>1</span><br><span>2</span><br></div></div><h2 id="yarn"> Yarn</h2>
-<div><pre><code><span># https://yarn.bootcss.com/docs/install/#centos-stable</span>
-<span>curl</span> --silent --location https://dl.yarnpkg.com/rpm/yarn.repo <span>|</span> <span>sudo</span> <span>tee</span> /etc/yum.repos.d/yarn.repo
-</code></pre>
-<div><span>1</span><br><span>2</span><br></div></div><h2 id="git"> Git</h2>
-<div><pre><code><span># https://stackoverflow.com/questions/21820715/how-to-install-latest-version-of-git-on-centos-7-x-6-x</span>
-yum <span>install</span> http://opensource.wandisco.com/centos/7/git/x86_64/wandisco-git-release-7-2.noarch.rpm
-yum <span>install</span> <span>git</span>
-</code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br></div></div><h2 id="nginx"> NGiNX</h2>
-<div><pre><code><span># https://www.nginx.com/resources/wiki/start/topics/tutorials/install/</span>
-<span>vim</span> /etc/yum.repos.d/nginx.repo
-</code></pre>
-<div><span>1</span><br><span>2</span><br></div></div><div><pre><code><span><span>[</span><span>nginx</span><span>]</span></span>
-<span>name</span><span>=</span><span>nginx repo</span>
-<span>baseurl</span><span>=</span><span>https://nginx.org/packages/centos/$releasever/$basearch/</span>
-<span>gpgcheck</span><span>=</span><span>0</span>
-<span>enabled</span><span>=</span><span>1</span>
-</code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br></div></div><blockquote>
-<p>方跃明
-2020-05-11</p>
-</blockquote>
-]]></content>
-    <author>
-      <name>方跃明</name>
-    </author>
-    <contributor>
-      <name>方跃明</name>
-    </contributor>
-    <published>2020-05-11T00:00:00.000Z</published>
     <rights>Copyright by 方跃明</rights>
   </entry>
   <entry>
@@ -168,6 +105,69 @@ firewall-cmd --zone<span>=</span>work --remove-service<span>=</span>smtp    <spa
       <name>方跃明</name>
     </contributor>
     <published>2019-12-25T00:00:00.000Z</published>
+    <rights>Copyright by 方跃明</rights>
+  </entry>
+  <entry>
+    <title type="html">CentOS 快速安装常用开发工具</title>
+    <id>https://blog.fangyueming.cn/centos-develop/</id>
+    <link href="https://blog.fangyueming.cn/centos-develop/"/>
+    <updated>2021-12-18T11:04:14.000Z</updated>
+    <content type="html"><![CDATA[<h1 id="centos-快速安装常用开发工具"> CentOS 快速安装常用开发工具</h1>
+<h2 id="docker"> Docker</h2>
+<div><pre><code><span># https://docs.docker.com/engine/install/centos/</span>
+yum <span>install</span> -y yum-utils
+yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+yum <span>install</span> docker-ce docker-ce-cli containerd.io
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br></div></div><h2 id="mysql-8-x"> MySQL 8.x</h2>
+<div><pre><code><span># 安装官方仓库</span>
+yum localinstall https://repo.mysql.com/mysql80-community-release-el7-1.noarch.rpm
+<span># 安装 MySQL Server</span>
+yum <span>install</span> mysql-community-server
+<span># 启动MySQL</span>
+systemctl start mysqld
+<span># 检查服务状态</span>
+systemctl status mysqld
+<span># 查看初始密码</span>
+<span>grep</span> <span>'temporary password'</span> /var/log/mysqld.log
+mysql -uroot -p
+<span># 输入密码进入mysql命令行</span>
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br><span>9</span><br><span>10</span><br><span>11</span><br><span>12</span><br></div></div><h2 id="node-js"> Node.js</h2>
+<div><pre><code><span># https://github.com/nodesource/distributions#rpm</span>
+<span>curl</span> -sL https://rpm.nodesource.com/setup_16.x <span>|</span> <span>bash</span> -
+</code></pre>
+<div><span>1</span><br><span>2</span><br></div></div><h2 id="yarn"> Yarn</h2>
+<div><pre><code><span># https://yarn.bootcss.com/docs/install/#centos-stable</span>
+<span>curl</span> --silent --location https://dl.yarnpkg.com/rpm/yarn.repo <span>|</span> <span>sudo</span> <span>tee</span> /etc/yum.repos.d/yarn.repo
+</code></pre>
+<div><span>1</span><br><span>2</span><br></div></div><h2 id="git"> Git</h2>
+<div><pre><code><span># https://stackoverflow.com/questions/21820715/how-to-install-latest-version-of-git-on-centos-7-x-6-x</span>
+yum <span>install</span> http://opensource.wandisco.com/centos/7/git/x86_64/wandisco-git-release-7-2.noarch.rpm
+yum <span>install</span> <span>git</span>
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br></div></div><h2 id="nginx"> NGiNX</h2>
+<div><pre><code><span># https://www.nginx.com/resources/wiki/start/topics/tutorials/install/</span>
+<span>vim</span> /etc/yum.repos.d/nginx.repo
+</code></pre>
+<div><span>1</span><br><span>2</span><br></div></div><div><pre><code><span><span>[</span><span>nginx</span><span>]</span></span>
+<span>name</span><span>=</span><span>nginx repo</span>
+<span>baseurl</span><span>=</span><span>https://nginx.org/packages/centos/$releasever/$basearch/</span>
+<span>gpgcheck</span><span>=</span><span>0</span>
+<span>enabled</span><span>=</span><span>1</span>
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br></div></div><blockquote>
+<p>方跃明
+2020-05-11</p>
+</blockquote>
+]]></content>
+    <author>
+      <name>方跃明</name>
+    </author>
+    <contributor>
+      <name>方跃明</name>
+    </contributor>
+    <published>2020-05-11T00:00:00.000Z</published>
     <rights>Copyright by 方跃明</rights>
   </entry>
   <entry>
@@ -1519,71 +1519,6 @@ docker start portainer-container-id <span># 启动容器</span>
     <rights>Copyright by 方跃明</rights>
   </entry>
   <entry>
-    <title type="html">Git排除忽略子目录</title>
-    <id>https://blog.fangyueming.cn/git-ignore-exclude/</id>
-    <link href="https://blog.fangyueming.cn/git-ignore-exclude/"/>
-    <updated>2021-12-18T11:04:14.000Z</updated>
-    <content type="html"><![CDATA[<h1 id="git排除忽略子目录"> Git排除忽略子目录</h1>
-<p>想忽略某个目录，但又不想忽略这个目录下的某个子目录？</p>
-<p>排除此目录，改为忽略*，然后忽略子目录。</p>
-<div><pre><code># exclude ignore cn
-!app/
-
-app/*
-!app/locale/
-
-app/locale/*
-!app/locale/cn/
-</code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br></div></div><h2 id="示例"> 示例</h2>
-<p>uni-app项目忽略unpackage下但排除h5和res</p>
-<div><pre><code>unpackage
-|-- cache
-|-- dist
-|   |-- build
-|   |   |-- .automator
-|   |   |-- app-plus
-|   |   `-- h5              # 排除
-|   |       `-- static
-|   |           |-- js
-|   |           |-- pages
-|   |           `-- styles
-|   `-- dev
-|-- release
-|   `-- apk
-`-- res                     # 排除
-    `-- icons
-</code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br><span>9</span><br><span>10</span><br><span>11</span><br><span>12</span><br><span>13</span><br><span>14</span><br><span>15</span><br><span>16</span><br></div></div><div><pre><code># uni-app dist
-!unpackage/
-unpackage/*
-!unpackage/res
-
-!unpackage/dist
-unpackage/dist/*
-
-!unpackage/dist/build
-unpackage/dist/build/*
-
-!unpackage/dist/build/h5
-!unpackage/dist/build/README.md
-!unpackage/dist/build/.gitignore
-</code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br><span>9</span><br><span>10</span><br><span>11</span><br><span>12</span><br><span>13</span><br><span>14</span><br></div></div><blockquote>
-<p>方跃明
-2019-09-09</p>
-</blockquote>
-]]></content>
-    <author>
-      <name>方跃明</name>
-    </author>
-    <contributor>
-      <name>方跃明</name>
-    </contributor>
-    <published>2019-09-09T00:00:00.000Z</published>
-    <rights>Copyright by 方跃明</rights>
-  </entry>
-  <entry>
     <title type="html">frp内网穿透</title>
     <id>https://blog.fangyueming.cn/frp/</id>
     <link href="https://blog.fangyueming.cn/frp/"/>
@@ -1714,6 +1649,230 @@ systemctl start frps
       <name>方跃明</name>
     </contributor>
     <published>2020-06-18T00:00:00.000Z</published>
+    <rights>Copyright by 方跃明</rights>
+  </entry>
+  <entry>
+    <title type="html">家用宽带联机开发环境部署</title>
+    <id>https://blog.fangyueming.cn/frp-ddns/</id>
+    <link href="https://blog.fangyueming.cn/frp-ddns/"/>
+    <updated>2021-12-27T12:35:25.000Z</updated>
+    <content type="html"><![CDATA[<h1 id="家用宽带联机开发环境部署"> 家用宽带联机开发环境部署</h1>
+<p>利用家庭宽带低成本、低功耗部署联机开发环境。
+当然，若有阿里云等公网环境，路由服务器合一，略改即可支持。</p>
+<div><pre><code>                  +-----------+
+                  | frpc      |
+                  | developer |
+                  +-----------+
+                       |
+                     ddns
+                       |
++--------+        +--------+          +--------+
+| dns    |        | frps   |          | web    |
+| domain |&lt;- ns -&gt;| router |&lt;- http -&gt;| client |
++--------+        +--------+          +--------+
+                       |
+                     cname
+                       |
+                 +-----------+
+                 | frpc      |
+                 | server    |
+                 +-----------+
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br><span>9</span><br><span>10</span><br><span>11</span><br><span>12</span><br><span>13</span><br><span>14</span><br><span>15</span><br><span>16</span><br><span>17</span><br><span>18</span><br></div></div><h2 id="条件"> 条件</h2>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>推荐</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>家用宽带</td>
+<td>电信宽带</td>
+<td>要求ISP开通光猫桥接模式（或破解光猫）必须暴露公网IP</td>
+</tr>
+<tr>
+<td>动态域名</td>
+<td>花生壳</td>
+<td>通过DDNS客户端动态绑定IP实现域名访问</td>
+</tr>
+<tr>
+<td>服务器</td>
+<td>工控机</td>
+<td>x86服务器，建议使用低功耗被动散热低噪音迷你机</td>
+</tr>
+<tr>
+<td>路由器</td>
+<td>OpenWRT</td>
+<td>可选，内置或支持安装或刷机后可安装frp的家庭路由器</td>
+</tr>
+<tr>
+<td>页面服务</td>
+<td>GitHub Pages</td>
+<td>可选，静态页面托管，直接支持80端口访问</td>
+</tr>
+<tr>
+<td>开发机</td>
+<td>个人电脑</td>
+<td>可选，移动办公即时接入、随时随地为客户提供即时演示</td>
+</tr>
+</tbody>
+</table>
+<h2 id="思路"> 思路</h2>
+<ul>
+<li>frp将本地端口映射到远程服务器端口（请求转发到本地开发环境便于调试）</li>
+<li>Ngrok接管远程服务器端口普通端口转换为80、443等端口（微信开发需要）</li>
+</ul>
+<h2 id="frps"> frps</h2>
+<div><pre><code><span><span>[</span><span>common</span><span>]</span></span>
+<span>bind_port</span> <span>=</span> <span>7000</span>
+<span>dashboard_port</span> <span>=</span> <span>7500</span>
+<span>dashboard_user</span> <span>=</span> <span>admin</span>
+<span>dashboard_pwd</span> <span>=</span> <span>admin</span>
+<span>vhost_http_port</span> <span>=</span> <span>8080</span>
+<span>token</span> <span>=</span> <span>your-token</span>
+<span>subdomain_host</span> <span>=</span> <span>your.domain</span>
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br></div></div><h2 id="frpc-server"> frpc server</h2>
+<p>服务器端配置，建议安装为服务</p>
+<div><pre><code><span><span>[</span><span>common</span><span>]</span></span>
+<span>server_addr</span> <span>=</span> <span>frps-server-host</span>
+<span>server_port</span> <span>=</span> <span>7000</span>
+<span>token</span> <span>=</span> <span>your-token</span>
+
+<span><span>[</span><span>ssh</span><span>]</span></span>
+<span>type</span> <span>=</span> <span>tcp</span>
+<span>local_ip</span> <span>=</span> <span>127.0.0.1</span>
+<span>local_port</span> <span>=</span> <span>22</span>
+<span>remote_port</span> <span>=</span> <span>22</span>
+
+<span><span>[</span><span>msyql</span><span>]</span></span>
+<span>type</span> <span>=</span> <span>tcp</span>
+<span>local_ip</span> <span>=</span> <span>127.0.0.1</span>
+<span>local_port</span> <span>=</span> <span>3306</span>
+<span>remote_port</span> <span>=</span> <span>3306</span>
+
+<span><span>[</span><span>api</span><span>]</span></span>
+<span>type</span> <span>=</span> <span>http</span>
+<span>subdomain</span> <span>=</span> <span>api # http://api.your.domain:8080</span>
+<span>local_port</span> <span>=</span> <span>80</span>
+<span>proxy_protocol_version</span> <span>=</span> <span>v2</span>
+
+<span><span>[</span><span>web</span><span>]</span></span>
+<span>type</span> <span>=</span> <span>http</span>
+<span>subdomain</span> <span>=</span> <span>web # http://web.your.domain:8080</span>
+<span>local_port</span> <span>=</span> <span>80</span>
+<span>proxy_protocol_version</span> <span>=</span> <span>v2</span>
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br><span>9</span><br><span>10</span><br><span>11</span><br><span>12</span><br><span>13</span><br><span>14</span><br><span>15</span><br><span>16</span><br><span>17</span><br><span>18</span><br><span>19</span><br><span>20</span><br><span>21</span><br><span>22</span><br><span>23</span><br><span>24</span><br><span>25</span><br><span>26</span><br><span>27</span><br><span>28</span><br></div></div><h2 id="frpc-developer"> frpc developer</h2>
+<p>开发机端配置，建议命令行运行</p>
+<div><pre><code><span><span>[</span><span>common</span><span>]</span></span>
+<span>server_addr</span> <span>=</span> <span>frps-server-host</span>
+<span>server_port</span> <span>=</span> <span>7000</span>
+<span>token</span> <span>=</span> <span>your-token</span>
+
+<span><span>[</span><span>dev-api</span><span>]</span></span>
+<span>type</span> <span>=</span> <span>http</span>
+<span>local_ip</span> <span>=</span> <span>127.0.0.1</span>
+<span>local_port</span> <span>=</span> <span>7001</span>
+<span>custom_domains</span> <span>=</span> <span>api.ddns.domain # http://api.ddns.domain:8080</span>
+<span>proxy_protocol_version</span> <span>=</span> <span>v2</span>
+
+<span><span>[</span><span>dev-web</span><span>]</span></span>
+<span>type</span> <span>=</span> <span>http</span>
+<span>local_ip</span> <span>=</span> <span>127.0.0.1</span>
+<span>local_port</span> <span>=</span> <span>3000</span>
+<span>custom_domains</span> <span>=</span> <span>web.ddns.domain # http://web.ddns.domain:8080</span>
+<span>proxy_protocol_version</span> <span>=</span> <span>v2</span>
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br><span>9</span><br><span>10</span><br><span>11</span><br><span>12</span><br><span>13</span><br><span>14</span><br><span>15</span><br><span>16</span><br><span>17</span><br><span>18</span><br></div></div><h2 id="端口映射"> 端口映射</h2>
+<p>在路由器上配置端口映射开放外网访问。</p>
+<h2 id="客户托管"> 客户托管</h2>
+<h3 id="开发版"> 开发版</h3>
+<p>客户域名解析添加<code>CNAME</code>到服务器端相应的域名，并使用<code>nginx</code>反向代理。</p>
+<h3 id="静态页"> 静态页</h3>
+<p>使用<code>Pages</code>服务，可支持<code>HTTPS</code>（涉及跨域谨慎使用）。</p>
+<h2 id="ngrok"> Ngrok</h2>
+<p><a href="https://baike.baidu.com/item/ngrok/13986278" target="_blank" rel="noopener noreferrer">Ngrok</a> 释义</p>
+<blockquote>
+<p>方跃明
+2020-05-18</p>
+</blockquote>
+]]></content>
+    <author>
+      <name>方跃明</name>
+    </author>
+    <contributor>
+      <name>方跃明</name>
+    </contributor>
+    <published>2020-05-18T00:00:00.000Z</published>
+    <rights>Copyright by 方跃明</rights>
+  </entry>
+  <entry>
+    <title type="html">Git排除忽略子目录</title>
+    <id>https://blog.fangyueming.cn/git-ignore-exclude/</id>
+    <link href="https://blog.fangyueming.cn/git-ignore-exclude/"/>
+    <updated>2021-12-18T11:04:14.000Z</updated>
+    <content type="html"><![CDATA[<h1 id="git排除忽略子目录"> Git排除忽略子目录</h1>
+<p>想忽略某个目录，但又不想忽略这个目录下的某个子目录？</p>
+<p>排除此目录，改为忽略*，然后忽略子目录。</p>
+<div><pre><code># exclude ignore cn
+!app/
+
+app/*
+!app/locale/
+
+app/locale/*
+!app/locale/cn/
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br></div></div><h2 id="示例"> 示例</h2>
+<p>uni-app项目忽略unpackage下但排除h5和res</p>
+<div><pre><code>unpackage
+|-- cache
+|-- dist
+|   |-- build
+|   |   |-- .automator
+|   |   |-- app-plus
+|   |   `-- h5              # 排除
+|   |       `-- static
+|   |           |-- js
+|   |           |-- pages
+|   |           `-- styles
+|   `-- dev
+|-- release
+|   `-- apk
+`-- res                     # 排除
+    `-- icons
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br><span>9</span><br><span>10</span><br><span>11</span><br><span>12</span><br><span>13</span><br><span>14</span><br><span>15</span><br><span>16</span><br></div></div><div><pre><code># uni-app dist
+!unpackage/
+unpackage/*
+!unpackage/res
+
+!unpackage/dist
+unpackage/dist/*
+
+!unpackage/dist/build
+unpackage/dist/build/*
+
+!unpackage/dist/build/h5
+!unpackage/dist/build/README.md
+!unpackage/dist/build/.gitignore
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br><span>9</span><br><span>10</span><br><span>11</span><br><span>12</span><br><span>13</span><br><span>14</span><br></div></div><blockquote>
+<p>方跃明
+2019-09-09</p>
+</blockquote>
+]]></content>
+    <author>
+      <name>方跃明</name>
+    </author>
+    <contributor>
+      <name>方跃明</name>
+    </contributor>
+    <published>2019-09-09T00:00:00.000Z</published>
     <rights>Copyright by 方跃明</rights>
   </entry>
   <entry>
@@ -2098,6 +2257,160 @@ systemctl start frps
     <rights>Copyright by 方跃明</rights>
   </entry>
   <entry>
+    <title type="html">kubernetes安装指南</title>
+    <id>https://blog.fangyueming.cn/kubernetes-install/</id>
+    <link href="https://blog.fangyueming.cn/kubernetes-install/"/>
+    <updated>2021-12-18T11:04:14.000Z</updated>
+    <content type="html"><![CDATA[<h1 id="kubernetes安装指南"> kubernetes安装指南</h1>
+<p><img src="./container.jpg" alt="容器生态圈" /></p>
+<h2 id="简介"> 简介</h2>
+<h3 id="kubernetes"> kubernetes</h3>
+<p>kubernetes（简称k8s）是Google开源的容器集群管理系统。它构建Ddocker技术之上，为容器化的应用提供资源调度、部署运行、服务发现、扩容缩容等整一套功能，本质上可看作是基于容器技术的mini-PaaS平台。</p>
+<p><img src="./architecture.png" alt="kubernetes" /></p>
+<h3 id="kubernetes-master"> kubernetes-master</h3>
+<ul>
+<li>kube-apiserver：k8s的管理接口</li>
+<li>kube-scheduer：k8s调度器，容器的启动、迁移、扩容缩减时候，选择哪个node，就看它了。</li>
+<li>kube-controller-manager：k8s对node的控制行为，比如怎么去调用node启动一个容器。</li>
+</ul>
+<h3 id="kubernetes-node"> kubernetes-node</h3>
+<ul>
+<li>kubelet：负责node的管理，基本所有操作都靠它。</li>
+<li>kube-proxy：每个node里的container都在一个私有网络中，kube-proxy的作用就是做一个反向代理，让访问者访问这个node的时候，可以转发到内部对应的container。</li>
+</ul>
+<h3 id="flannel"> flannel</h3>
+<p>flannel可以为容器提供网络服务。其模型为全部的容器使用一个network，然后在每个host上从network中划分一个子网subnet。为host上的容器创建网络时，从subnet中划分一个ip给容器。其采用目前比较流行的no server的方式，即不存在所谓的控制节点，而是每个host上的flanneld从一个etcd中获取相关数据，然后声明自己的子网网段，并记录在etcd中。其他的host对数据转发时，从etcd中查询到该子网所在的host的ip，然后将数据发往对应host上的flanneld，交由其进行转发。根据kubernetes的模型，即为每个pod提供一个ip。flannel的模型正好与之契合。因此flannel是最简单易用的kubernetes集群网络方案。</p>
+<p><img src="./cluster.png" alt="flannel" /></p>
+<h3 id="etcd"> etcd</h3>
+<p>在分布式系统中，如何管理节点间的状态一直是一个难题，etcd像是专门为集群环境的服务发现和注册而设计，它提供了数据TTL失效、数据改变监视、多值、目录监听、分布式锁原子操作等功能，可以方便的跟踪并管理集群节点的状态。etcd的特性如下：</p>
+<ul>
+<li>简单: curl可访问的用户的API（HTTP+JSON）</li>
+<li>安全: 可选的SSL客户端证书认证</li>
+<li>快速: 单实例每秒 1000 次写操作</li>
+<li>可靠: 使用Raft保证一致性</li>
+</ul>
+<p>etcd是CoreOS的核心组件，负责节点间的服务发现和配置共享，运行在CoreOS中的应用可以通过etcd读取或者写入数据。虽然etcd是为CoreOS而设计，但其可以运行在多个平台上，包括 OS X、Linux、BSD。角色功能如下：</p>
+<ul>
+<li>作为kubernetes的数据库，存储了k8s自身的信息、以及各种业务容器信息等。</li>
+<li>存储flannel网络配置信息，供各节点协调。</li>
+</ul>
+<p><img src="./etcd.png" alt="etcd" /></p>
+<h3 id="docker"> docker</h3>
+<p>Docker 是一个开源的应用容器引擎，让开发者可以打包他们的应用以及依赖包到一个可移植的容器中，然后发布到任何流行的Linux机器上，也可以实现虚拟化，容器是完全使用沙箱机制，相互之间不会有任何接口。一个完整的Docker有以下几个部分组成：</p>
+<ul>
+<li>Client：客户端</li>
+<li>Daemon：守护进程</li>
+<li>Container：容器</li>
+<li>Image：镜像</li>
+</ul>
+<p><img src="./docker.png" alt="docker" /></p>
+<h2 id="规划"> 规划</h2>
+<p>本例虽然均用IP进行操作，但是建议部署的时候，建议用hosts或者DNS取代IP。</p>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>组件</th>
+<th style="text-align:center">数量</th>
+<th>IP</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Master</td>
+<td>kubernetes-master etcd</td>
+<td style="text-align:center">1</td>
+<td>192.168.20.25</td>
+</tr>
+<tr>
+<td>Node</td>
+<td>kubernetes-node docker flannel</td>
+<td style="text-align:center">2</td>
+<td>192.168.20.22 192.168.20.26</td>
+</tr>
+</tbody>
+</table>
+<p><img src="./flannel.png" alt="kubernetes with Flannel" /></p>
+<h3 id="前提"> 前提</h3>
+<ul>
+<li>SELinux关闭</li>
+<li>firewalld开放8080、2379端口</li>
+</ul>
+<h2 id="配置"> 配置</h2>
+<h3 id="etcd配置"> etcd配置</h3>
+<div><pre><code><span># 安装</span>
+yum <span>install</span> etcd
+</code></pre>
+<div><span>1</span><br><span>2</span><br></div></div><div><pre><code><span># 配置 /etc/etcd/etcd.conf</span>
+<span>ETCD_NAME</span><span>=</span><span>default</span>
+<span>ETCD_DATA_DIR</span><span>=</span><span>"<span>/var/lib/etcd/default.etcd</span>"</span>
+<span>ETCD_LISTEN_CLIENT_URLS</span><span>=</span><span>"<span>http://0.0.0.0:2379</span>"</span>
+<span>ETCD_ADVERTISE_CLIENT_URLS</span><span>=</span><span>"<span>http://192.168.20.25:2379</span>"</span>
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br></div></div><div><pre><code><span># 启动</span>
+systemctl <span>enable</span> etcd
+systemctl start etcd
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br></div></div><div><pre><code>etcdctl <span>set</span> /coreos.com/network/config <span>'{ "Network": "10.1.0.0/16" }'</span>
+</code></pre>
+<div><span>1</span><br></div></div><h4 id="master"> master</h4>
+<div><pre><code><span># 安装</span>
+yum <span>install</span> kubernetes-master
+</code></pre>
+<div><span>1</span><br><span>2</span><br></div></div><div><pre><code><span># 配置 /etc/kubernetes/apiserver</span>
+<span>KUBE_API_ADDRESS</span><span>=</span><span>"<span>--address=0.0.0.0</span>"</span>
+<span>KUBE_ETCD_SERVERS</span><span>=</span><span>"<span>--etcd_servers=http://192.168.20.25:2379</span>"</span>
+<span>KUBE_SERVICE_ADDRESSES</span><span>=</span><span>"<span>--service-cluster-ip-range=10.254.0.0/16</span>"</span>
+<span>KUBE_ADMISSION_CONTROL</span><span>=</span><span>"<span>--admission_control=NamespaceLifecycle,NamespaceExists,LimitRanger,SecurityContextDeny,ResourceQuota</span>"</span>
+<span>KUBE_API_ARGS</span><span>=</span><span>""</span>
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br></div></div><div><pre><code><span># 配置 /etc/kubernetes/controller-manager</span>
+<span>KUBE_CONTROLLER_MANAGER_ARGS</span><span>=</span><span>"<span>--node-monitor-grace-period=10s --pod-eviction-timeout=10s</span>"</span>
+</code></pre>
+<div><span>1</span><br><span>2</span><br></div></div><div><pre><code><span># 配置 /etc/kubernetes/config</span>
+<span>KUBE_LOGTOSTDERR</span><span>=</span><span>"<span>--logtostderr=true</span>"</span>
+<span>KUBE_LOG_LEVEL</span><span>=</span><span>"<span>--v=0</span>"</span>
+<span>KUBE_ALLOW_PRIV</span><span>=</span><span>"<span>--allow_privileged=false</span>"</span>
+<span>KUBE_MASTER</span><span>=</span><span>"<span>--master=http://192.168.20.25:8080</span>"</span>
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br></div></div><div><pre><code><span># 启动服务</span>
+systemctl <span>enable</span> kube-apiserver kube-scheduler kube-controller-manager
+systemctl start kube-apiserver kube-scheduler kube-controller-manager
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br></div></div><h3 id="node"> node</h3>
+<div><pre><code><span># 安装</span>
+yum <span>install</span> kubernetes-node flannel docker
+</code></pre>
+<div><span>1</span><br><span>2</span><br></div></div><div><pre><code><span># 配置 /etc/kubernetes/config</span>
+<span>KUBE_LOGTOSTDERR</span><span>=</span><span>"<span>--logtostderr=true</span>"</span>
+<span>KUBE_LOG_LEVEL</span><span>=</span><span>"<span>--v=0</span>"</span>
+<span>KUBE_ALLOW_PRIV</span><span>=</span><span>"<span>--allow_privileged=false</span>"</span>
+<span>KUBE_MASTER</span><span>=</span><span>"<span>--master=http://192.168.20.25:8080</span>"</span>
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br></div></div><div><pre><code><span># 配置 /etc/kubernetes/kubelet</span>
+<span>KUBELET_ADDRESS</span><span>=</span><span>"<span>--address=127.0.0.1</span>"</span>
+<span>KUBELET_HOSTNAME</span><span>=</span><span>"<span>--hostname_override=192.168.20.22</span>"</span>
+<span>KUBELET_API_SERVER</span><span>=</span><span>"<span>--api_servers=http://192.168.20.25:8080</span>"</span>
+<span>KUBELET_ARGS</span><span>=</span><span>"<span>--pod-infra-container-image=kubernetes/pause</span>"</span>
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br></div></div><div><pre><code><span># 配置 /etc/sysconfig/flanneld</span>
+<span>FLANNEL_ETCD</span><span>=</span><span>"<span>http://192.168.20.25:2379</span>"</span>
+<span>FLANNEL_ETCD_KEY</span><span>=</span><span>"<span>/coreos.com/network</span>"</span>
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br></div></div><div><pre><code>systemctl <span>enable</span> kubelet kube-proxy flanenld docker
+systemctl start kubelet kube-proxy flanneld docker
+</code></pre>
+<div><span>1</span><br><span>2</span><br></div></div>]]></content>
+    <author>
+      <name>方跃明</name>
+    </author>
+    <contributor>
+      <name>方跃明</name>
+    </contributor>
+    <published>2018-04-29T00:00:00.000Z</published>
+    <rights>Copyright by 方跃明</rights>
+  </entry>
+  <entry>
     <title type="html">LeoPHP Framework</title>
     <id>https://blog.fangyueming.cn/leophp/</id>
     <link href="https://blog.fangyueming.cn/leophp/"/>
@@ -2322,160 +2635,6 @@ systemctl start frps
       <name>方跃明</name>
     </contributor>
     <published>2016-12-01T00:00:00.000Z</published>
-    <rights>Copyright by 方跃明</rights>
-  </entry>
-  <entry>
-    <title type="html">kubernetes安装指南</title>
-    <id>https://blog.fangyueming.cn/kubernetes-install/</id>
-    <link href="https://blog.fangyueming.cn/kubernetes-install/"/>
-    <updated>2021-12-18T11:04:14.000Z</updated>
-    <content type="html"><![CDATA[<h1 id="kubernetes安装指南"> kubernetes安装指南</h1>
-<p><img src="./container.jpg" alt="容器生态圈" /></p>
-<h2 id="简介"> 简介</h2>
-<h3 id="kubernetes"> kubernetes</h3>
-<p>kubernetes（简称k8s）是Google开源的容器集群管理系统。它构建Ddocker技术之上，为容器化的应用提供资源调度、部署运行、服务发现、扩容缩容等整一套功能，本质上可看作是基于容器技术的mini-PaaS平台。</p>
-<p><img src="./architecture.png" alt="kubernetes" /></p>
-<h3 id="kubernetes-master"> kubernetes-master</h3>
-<ul>
-<li>kube-apiserver：k8s的管理接口</li>
-<li>kube-scheduer：k8s调度器，容器的启动、迁移、扩容缩减时候，选择哪个node，就看它了。</li>
-<li>kube-controller-manager：k8s对node的控制行为，比如怎么去调用node启动一个容器。</li>
-</ul>
-<h3 id="kubernetes-node"> kubernetes-node</h3>
-<ul>
-<li>kubelet：负责node的管理，基本所有操作都靠它。</li>
-<li>kube-proxy：每个node里的container都在一个私有网络中，kube-proxy的作用就是做一个反向代理，让访问者访问这个node的时候，可以转发到内部对应的container。</li>
-</ul>
-<h3 id="flannel"> flannel</h3>
-<p>flannel可以为容器提供网络服务。其模型为全部的容器使用一个network，然后在每个host上从network中划分一个子网subnet。为host上的容器创建网络时，从subnet中划分一个ip给容器。其采用目前比较流行的no server的方式，即不存在所谓的控制节点，而是每个host上的flanneld从一个etcd中获取相关数据，然后声明自己的子网网段，并记录在etcd中。其他的host对数据转发时，从etcd中查询到该子网所在的host的ip，然后将数据发往对应host上的flanneld，交由其进行转发。根据kubernetes的模型，即为每个pod提供一个ip。flannel的模型正好与之契合。因此flannel是最简单易用的kubernetes集群网络方案。</p>
-<p><img src="./cluster.png" alt="flannel" /></p>
-<h3 id="etcd"> etcd</h3>
-<p>在分布式系统中，如何管理节点间的状态一直是一个难题，etcd像是专门为集群环境的服务发现和注册而设计，它提供了数据TTL失效、数据改变监视、多值、目录监听、分布式锁原子操作等功能，可以方便的跟踪并管理集群节点的状态。etcd的特性如下：</p>
-<ul>
-<li>简单: curl可访问的用户的API（HTTP+JSON）</li>
-<li>安全: 可选的SSL客户端证书认证</li>
-<li>快速: 单实例每秒 1000 次写操作</li>
-<li>可靠: 使用Raft保证一致性</li>
-</ul>
-<p>etcd是CoreOS的核心组件，负责节点间的服务发现和配置共享，运行在CoreOS中的应用可以通过etcd读取或者写入数据。虽然etcd是为CoreOS而设计，但其可以运行在多个平台上，包括 OS X、Linux、BSD。角色功能如下：</p>
-<ul>
-<li>作为kubernetes的数据库，存储了k8s自身的信息、以及各种业务容器信息等。</li>
-<li>存储flannel网络配置信息，供各节点协调。</li>
-</ul>
-<p><img src="./etcd.png" alt="etcd" /></p>
-<h3 id="docker"> docker</h3>
-<p>Docker 是一个开源的应用容器引擎，让开发者可以打包他们的应用以及依赖包到一个可移植的容器中，然后发布到任何流行的Linux机器上，也可以实现虚拟化，容器是完全使用沙箱机制，相互之间不会有任何接口。一个完整的Docker有以下几个部分组成：</p>
-<ul>
-<li>Client：客户端</li>
-<li>Daemon：守护进程</li>
-<li>Container：容器</li>
-<li>Image：镜像</li>
-</ul>
-<p><img src="./docker.png" alt="docker" /></p>
-<h2 id="规划"> 规划</h2>
-<p>本例虽然均用IP进行操作，但是建议部署的时候，建议用hosts或者DNS取代IP。</p>
-<table>
-<thead>
-<tr>
-<th>类型</th>
-<th>组件</th>
-<th style="text-align:center">数量</th>
-<th>IP</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Master</td>
-<td>kubernetes-master etcd</td>
-<td style="text-align:center">1</td>
-<td>192.168.20.25</td>
-</tr>
-<tr>
-<td>Node</td>
-<td>kubernetes-node docker flannel</td>
-<td style="text-align:center">2</td>
-<td>192.168.20.22 192.168.20.26</td>
-</tr>
-</tbody>
-</table>
-<p><img src="./flannel.png" alt="kubernetes with Flannel" /></p>
-<h3 id="前提"> 前提</h3>
-<ul>
-<li>SELinux关闭</li>
-<li>firewalld开放8080、2379端口</li>
-</ul>
-<h2 id="配置"> 配置</h2>
-<h3 id="etcd配置"> etcd配置</h3>
-<div><pre><code><span># 安装</span>
-yum <span>install</span> etcd
-</code></pre>
-<div><span>1</span><br><span>2</span><br></div></div><div><pre><code><span># 配置 /etc/etcd/etcd.conf</span>
-<span>ETCD_NAME</span><span>=</span><span>default</span>
-<span>ETCD_DATA_DIR</span><span>=</span><span>"<span>/var/lib/etcd/default.etcd</span>"</span>
-<span>ETCD_LISTEN_CLIENT_URLS</span><span>=</span><span>"<span>http://0.0.0.0:2379</span>"</span>
-<span>ETCD_ADVERTISE_CLIENT_URLS</span><span>=</span><span>"<span>http://192.168.20.25:2379</span>"</span>
-</code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br></div></div><div><pre><code><span># 启动</span>
-systemctl <span>enable</span> etcd
-systemctl start etcd
-</code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br></div></div><div><pre><code>etcdctl <span>set</span> /coreos.com/network/config <span>'{ "Network": "10.1.0.0/16" }'</span>
-</code></pre>
-<div><span>1</span><br></div></div><h4 id="master"> master</h4>
-<div><pre><code><span># 安装</span>
-yum <span>install</span> kubernetes-master
-</code></pre>
-<div><span>1</span><br><span>2</span><br></div></div><div><pre><code><span># 配置 /etc/kubernetes/apiserver</span>
-<span>KUBE_API_ADDRESS</span><span>=</span><span>"<span>--address=0.0.0.0</span>"</span>
-<span>KUBE_ETCD_SERVERS</span><span>=</span><span>"<span>--etcd_servers=http://192.168.20.25:2379</span>"</span>
-<span>KUBE_SERVICE_ADDRESSES</span><span>=</span><span>"<span>--service-cluster-ip-range=10.254.0.0/16</span>"</span>
-<span>KUBE_ADMISSION_CONTROL</span><span>=</span><span>"<span>--admission_control=NamespaceLifecycle,NamespaceExists,LimitRanger,SecurityContextDeny,ResourceQuota</span>"</span>
-<span>KUBE_API_ARGS</span><span>=</span><span>""</span>
-</code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br></div></div><div><pre><code><span># 配置 /etc/kubernetes/controller-manager</span>
-<span>KUBE_CONTROLLER_MANAGER_ARGS</span><span>=</span><span>"<span>--node-monitor-grace-period=10s --pod-eviction-timeout=10s</span>"</span>
-</code></pre>
-<div><span>1</span><br><span>2</span><br></div></div><div><pre><code><span># 配置 /etc/kubernetes/config</span>
-<span>KUBE_LOGTOSTDERR</span><span>=</span><span>"<span>--logtostderr=true</span>"</span>
-<span>KUBE_LOG_LEVEL</span><span>=</span><span>"<span>--v=0</span>"</span>
-<span>KUBE_ALLOW_PRIV</span><span>=</span><span>"<span>--allow_privileged=false</span>"</span>
-<span>KUBE_MASTER</span><span>=</span><span>"<span>--master=http://192.168.20.25:8080</span>"</span>
-</code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br></div></div><div><pre><code><span># 启动服务</span>
-systemctl <span>enable</span> kube-apiserver kube-scheduler kube-controller-manager
-systemctl start kube-apiserver kube-scheduler kube-controller-manager
-</code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br></div></div><h3 id="node"> node</h3>
-<div><pre><code><span># 安装</span>
-yum <span>install</span> kubernetes-node flannel docker
-</code></pre>
-<div><span>1</span><br><span>2</span><br></div></div><div><pre><code><span># 配置 /etc/kubernetes/config</span>
-<span>KUBE_LOGTOSTDERR</span><span>=</span><span>"<span>--logtostderr=true</span>"</span>
-<span>KUBE_LOG_LEVEL</span><span>=</span><span>"<span>--v=0</span>"</span>
-<span>KUBE_ALLOW_PRIV</span><span>=</span><span>"<span>--allow_privileged=false</span>"</span>
-<span>KUBE_MASTER</span><span>=</span><span>"<span>--master=http://192.168.20.25:8080</span>"</span>
-</code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br></div></div><div><pre><code><span># 配置 /etc/kubernetes/kubelet</span>
-<span>KUBELET_ADDRESS</span><span>=</span><span>"<span>--address=127.0.0.1</span>"</span>
-<span>KUBELET_HOSTNAME</span><span>=</span><span>"<span>--hostname_override=192.168.20.22</span>"</span>
-<span>KUBELET_API_SERVER</span><span>=</span><span>"<span>--api_servers=http://192.168.20.25:8080</span>"</span>
-<span>KUBELET_ARGS</span><span>=</span><span>"<span>--pod-infra-container-image=kubernetes/pause</span>"</span>
-</code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br></div></div><div><pre><code><span># 配置 /etc/sysconfig/flanneld</span>
-<span>FLANNEL_ETCD</span><span>=</span><span>"<span>http://192.168.20.25:2379</span>"</span>
-<span>FLANNEL_ETCD_KEY</span><span>=</span><span>"<span>/coreos.com/network</span>"</span>
-</code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br></div></div><div><pre><code>systemctl <span>enable</span> kubelet kube-proxy flanenld docker
-systemctl start kubelet kube-proxy flanneld docker
-</code></pre>
-<div><span>1</span><br><span>2</span><br></div></div>]]></content>
-    <author>
-      <name>方跃明</name>
-    </author>
-    <contributor>
-      <name>方跃明</name>
-    </contributor>
-    <published>2018-04-29T00:00:00.000Z</published>
     <rights>Copyright by 方跃明</rights>
   </entry>
   <entry>
