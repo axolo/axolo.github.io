@@ -18,20 +18,20 @@ categories:
                   | frpc      |
                   | developer |
                   +-----------+
-                        |
-                      ddns
-                        |
-+--------+         +--------+           +--------+
-| dns    |         | frps   |           | web    |
-| domain |<- ns -> | router |<- http -> | client |
-+--------+         +--------+           +--------+
-                        |
-                      cname
-                        |
-                  +-----------+
-                  | frpc      |
-                  | server    |
-                  +-----------+
+                       |
+                     ddns
+                       |
++--------+        +--------+          +--------+
+| dns    |        | frps   |          | web    |
+| domain |<- ns ->| router |<- http ->| client |
++--------+        +--------+          +--------+
+                       |
+                     cname
+                       |
+                 +-----------+
+                 | frpc      |
+                 | server    |
+                 +-----------+
 ```
 
 ## 条件
