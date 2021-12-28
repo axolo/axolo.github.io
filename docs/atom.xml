@@ -6,7 +6,7 @@
   <author>
     <name>方跃明</name>
   </author>
-  <updated>2021-12-27T12:35:41.524Z</updated>
+  <updated>2021-12-28T06:36:18.887Z</updated>
   <generator>@mr-hope/vuepress-plugin-feed</generator>
   <link rel="self" href="https://blog.fangyueming.cn/atom.xml"/>
   <link rel="alternate" href="https://blog.fangyueming.cn/"/>
@@ -1519,139 +1519,6 @@ docker start portainer-container-id <span># 启动容器</span>
     <rights>Copyright by 方跃明</rights>
   </entry>
   <entry>
-    <title type="html">frp内网穿透</title>
-    <id>https://blog.fangyueming.cn/frp/</id>
-    <link href="https://blog.fangyueming.cn/frp/"/>
-    <updated>2021-12-25T03:51:27.000Z</updated>
-    <content type="html"><![CDATA[<h1 id="frp内网穿透"> frp内网穿透</h1>
-<p>内网穿透利器，官网：<a href="https://github.com/fatedier/frp" target="_blank" rel="noopener noreferrer">https://github.com/fatedier/frp</a></p>
-<h2 id="frps"> frps</h2>
-<p>frp服务端</p>
-<div><pre><code>frps -c frps.ini
-</code></pre>
-<div><span>1</span><br></div></div><h3 id="配置"> 配置</h3>
-<div><pre><code><span><span>[</span><span>common</span><span>]</span></span>
-<span>bind_port</span> <span>=</span> <span>7000</span>
-<span>dashboard_port</span> <span>=</span> <span>7500</span>
-<span>vhost_http_port</span> <span>=</span> <span>8080</span>
-<span>token</span> <span>=</span> <span>frps-token</span>
-<span>subdomain_host</span> <span>=</span> <span>your.domain</span>
-<span># dashboard 用户名密码，默认都为 admin</span>
-<span>dashboard_user</span> <span>=</span> <span>admin</span>
-<span>dashboard_pwd</span> <span>=</span> <span>admin</span>
-</code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br><span>9</span><br></div></div><h3 id="端口"> 端口</h3>
-<p>frps所在系统的防火墙需放行以下端口</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:right">端口</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:right">7000</td>
-<td>frps server</td>
-</tr>
-<tr>
-<td style="text-align:right">7500</td>
-<td>frps dashboard</td>
-</tr>
-<tr>
-<td style="text-align:right">8080</td>
-<td>frps vhost http</td>
-</tr>
-<tr>
-<td style="text-align:right">*</td>
-<td>frpc remote port</td>
-</tr>
-</tbody>
-</table>
-<div><pre><code><span>## 防火墙放行端口</span>
-firewall-cmd --zone<span>=</span>public --add-port<span>=</span><span>7000</span>/tcp --permanent  <span># success</span>
-firewall-cmd --zone<span>=</span>public --add-port<span>=</span><span>3306</span>/tcp --permanent  <span># success</span>
-firewall-cmd --reload
-</code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br></div></div><h3 id="服务"> 服务</h3>
-<div><pre><code><span><span>[</span><span>Unit</span><span>]</span></span>
-<span>Description</span><span>=</span><span>Frp Server Service</span>
-<span>After</span><span>=</span><span>network.target</span>
-
-<span><span>[</span><span>Service</span><span>]</span></span>
-<span>Type</span><span>=</span><span>simple</span>
-<span>User</span><span>=</span><span>nobody</span>
-<span>Restart</span><span>=</span><span>on-failure</span>
-<span>RestartSec</span><span>=</span><span>5s</span>
-<span>ExecStart</span><span>=</span><span>/usr/bin/frps -c /etc/frp/frps.ini</span>
-<span># 创建软链接</span>
-<span># ln -s /etc/frp/frps /usr/bin/frps</span>
-<span># ln -s /etc/frp/frpc /usr/bin/frpc</span>
-<span># 或，修改以下内容指向正确位置</span>
-<span># ExecStart=/etc/frp/frps -c /etc/frp/frps.ini</span>
-
-<span><span>[</span><span>Install</span><span>]</span></span>
-<span>WantedBy</span><span>=</span><span>multi-user.target</span>
-</code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br><span>9</span><br><span>10</span><br><span>11</span><br><span>12</span><br><span>13</span><br><span>14</span><br><span>15</span><br><span>16</span><br><span>17</span><br><span>18</span><br></div></div><div><pre><code><span># 创建软链接，设置为自动启动，并启动frpc</span>
-<span>ln</span> -s /etc/frp/systemd/frps.service /etc/systemd/system/frps.service
-systemctl <span>enable</span> frps
-systemctl start frps
-</code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br></div></div><h2 id="frpc"> frpc</h2>
-<p>frp客户端</p>
-<div><pre><code>frpc -c frpc.ini
-</code></pre>
-<div><span>1</span><br></div></div><h3 id="配置-2"> 配置</h3>
-<p>通常，除了http外，需在frps所在系统的防火墙和路由器放行客户端配置的端口</p>
-<p><strong>注意：</strong> 客户端无需放行端口，这就是“内网穿透”</p>
-<div><pre><code><span><span>[</span><span>common</span><span>]</span></span>
-<span>server_addr</span> <span>=</span> <span>frps-server</span>
-<span>server_port</span> <span>=</span> <span>7000</span>
-<span>token</span> <span>=</span> <span>frps-token</span>
-
-<span><span>[</span><span>ssh</span><span>]</span></span>
-<span>type</span> <span>=</span> <span>tcp</span>
-<span>local_ip</span> <span>=</span> <span>127.0.0.1</span>
-<span>local_port</span> <span>=</span> <span>22</span>
-<span>remote_port</span> <span>=</span> <span>22</span>
-
-<span><span>[</span><span>msyql</span><span>]</span></span>
-<span>type</span> <span>=</span> <span>tcp</span>
-<span>local_ip</span> <span>=</span> <span>127.0.0.1</span>
-<span>local_port</span> <span>=</span> <span>3306</span>
-<span>remote_port</span> <span>=</span> <span>3306</span>
-
-<span><span>[</span><span>dev</span><span>]</span></span>
-<span>type</span> <span>=</span> <span>http</span>
-<span>subdomain</span> <span>=</span> <span>dev</span>
-<span>local_port</span> <span>=</span> <span>80</span>
-<span>proxy_protocol_version</span> <span>=</span> <span>v2</span>
-
-<span><span>[</span><span>egg</span><span>]</span></span>
-<span>type</span> <span>=</span> <span>tcp</span>
-<span>local_ip</span> <span>=</span> <span>127.0.0.1</span>
-<span>local_port</span> <span>=</span> <span>7001</span>
-<span>remote_port</span> <span>=</span> <span>7001</span>
-<span>proxy_protocol_version</span> <span>=</span> <span>v2</span>
-</code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br><span>9</span><br><span>10</span><br><span>11</span><br><span>12</span><br><span>13</span><br><span>14</span><br><span>15</span><br><span>16</span><br><span>17</span><br><span>18</span><br><span>19</span><br><span>20</span><br><span>21</span><br><span>22</span><br><span>23</span><br><span>24</span><br><span>25</span><br><span>26</span><br><span>27</span><br><span>28</span><br><span>29</span><br></div></div><h3 id="服务-2"> 服务</h3>
-<p>类似frps</p>
-<blockquote>
-<p>方跃明
-2020-06-18</p>
-</blockquote>
-]]></content>
-    <author>
-      <name>方跃明</name>
-    </author>
-    <contributor>
-      <name>方跃明</name>
-    </contributor>
-    <published>2020-06-18T00:00:00.000Z</published>
-    <rights>Copyright by 方跃明</rights>
-  </entry>
-  <entry>
     <title type="html">家用宽带联机开发环境部署</title>
     <id>https://blog.fangyueming.cn/frp-ddns/</id>
     <link href="https://blog.fangyueming.cn/frp-ddns/"/>
@@ -1811,6 +1678,139 @@ systemctl start frps
     <rights>Copyright by 方跃明</rights>
   </entry>
   <entry>
+    <title type="html">frp内网穿透</title>
+    <id>https://blog.fangyueming.cn/frp/</id>
+    <link href="https://blog.fangyueming.cn/frp/"/>
+    <updated>2021-12-25T03:51:27.000Z</updated>
+    <content type="html"><![CDATA[<h1 id="frp内网穿透"> frp内网穿透</h1>
+<p>内网穿透利器，官网：<a href="https://github.com/fatedier/frp" target="_blank" rel="noopener noreferrer">https://github.com/fatedier/frp</a></p>
+<h2 id="frps"> frps</h2>
+<p>frp服务端</p>
+<div><pre><code>frps -c frps.ini
+</code></pre>
+<div><span>1</span><br></div></div><h3 id="配置"> 配置</h3>
+<div><pre><code><span><span>[</span><span>common</span><span>]</span></span>
+<span>bind_port</span> <span>=</span> <span>7000</span>
+<span>dashboard_port</span> <span>=</span> <span>7500</span>
+<span>vhost_http_port</span> <span>=</span> <span>8080</span>
+<span>token</span> <span>=</span> <span>frps-token</span>
+<span>subdomain_host</span> <span>=</span> <span>your.domain</span>
+<span># dashboard 用户名密码，默认都为 admin</span>
+<span>dashboard_user</span> <span>=</span> <span>admin</span>
+<span>dashboard_pwd</span> <span>=</span> <span>admin</span>
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br><span>9</span><br></div></div><h3 id="端口"> 端口</h3>
+<p>frps所在系统的防火墙需放行以下端口</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:right">端口</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right">7000</td>
+<td>frps server</td>
+</tr>
+<tr>
+<td style="text-align:right">7500</td>
+<td>frps dashboard</td>
+</tr>
+<tr>
+<td style="text-align:right">8080</td>
+<td>frps vhost http</td>
+</tr>
+<tr>
+<td style="text-align:right">*</td>
+<td>frpc remote port</td>
+</tr>
+</tbody>
+</table>
+<div><pre><code><span>## 防火墙放行端口</span>
+firewall-cmd --zone<span>=</span>public --add-port<span>=</span><span>7000</span>/tcp --permanent  <span># success</span>
+firewall-cmd --zone<span>=</span>public --add-port<span>=</span><span>3306</span>/tcp --permanent  <span># success</span>
+firewall-cmd --reload
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br></div></div><h3 id="服务"> 服务</h3>
+<div><pre><code><span><span>[</span><span>Unit</span><span>]</span></span>
+<span>Description</span><span>=</span><span>Frp Server Service</span>
+<span>After</span><span>=</span><span>network.target</span>
+
+<span><span>[</span><span>Service</span><span>]</span></span>
+<span>Type</span><span>=</span><span>simple</span>
+<span>User</span><span>=</span><span>nobody</span>
+<span>Restart</span><span>=</span><span>on-failure</span>
+<span>RestartSec</span><span>=</span><span>5s</span>
+<span>ExecStart</span><span>=</span><span>/usr/bin/frps -c /etc/frp/frps.ini</span>
+<span># 创建软链接</span>
+<span># ln -s /etc/frp/frps /usr/bin/frps</span>
+<span># ln -s /etc/frp/frpc /usr/bin/frpc</span>
+<span># 或，修改以下内容指向正确位置</span>
+<span># ExecStart=/etc/frp/frps -c /etc/frp/frps.ini</span>
+
+<span><span>[</span><span>Install</span><span>]</span></span>
+<span>WantedBy</span><span>=</span><span>multi-user.target</span>
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br><span>9</span><br><span>10</span><br><span>11</span><br><span>12</span><br><span>13</span><br><span>14</span><br><span>15</span><br><span>16</span><br><span>17</span><br><span>18</span><br></div></div><div><pre><code><span># 创建软链接，设置为自动启动，并启动frpc</span>
+<span>ln</span> -s /etc/frp/systemd/frps.service /etc/systemd/system/frps.service
+systemctl <span>enable</span> frps
+systemctl start frps
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br></div></div><h2 id="frpc"> frpc</h2>
+<p>frp客户端</p>
+<div><pre><code>frpc -c frpc.ini
+</code></pre>
+<div><span>1</span><br></div></div><h3 id="配置-2"> 配置</h3>
+<p>通常，除了http外，需在frps所在系统的防火墙和路由器放行客户端配置的端口</p>
+<p><strong>注意：</strong> 客户端无需放行端口，这就是“内网穿透”</p>
+<div><pre><code><span><span>[</span><span>common</span><span>]</span></span>
+<span>server_addr</span> <span>=</span> <span>frps-server</span>
+<span>server_port</span> <span>=</span> <span>7000</span>
+<span>token</span> <span>=</span> <span>frps-token</span>
+
+<span><span>[</span><span>ssh</span><span>]</span></span>
+<span>type</span> <span>=</span> <span>tcp</span>
+<span>local_ip</span> <span>=</span> <span>127.0.0.1</span>
+<span>local_port</span> <span>=</span> <span>22</span>
+<span>remote_port</span> <span>=</span> <span>22</span>
+
+<span><span>[</span><span>msyql</span><span>]</span></span>
+<span>type</span> <span>=</span> <span>tcp</span>
+<span>local_ip</span> <span>=</span> <span>127.0.0.1</span>
+<span>local_port</span> <span>=</span> <span>3306</span>
+<span>remote_port</span> <span>=</span> <span>3306</span>
+
+<span><span>[</span><span>dev</span><span>]</span></span>
+<span>type</span> <span>=</span> <span>http</span>
+<span>subdomain</span> <span>=</span> <span>dev</span>
+<span>local_port</span> <span>=</span> <span>80</span>
+<span>proxy_protocol_version</span> <span>=</span> <span>v2</span>
+
+<span><span>[</span><span>egg</span><span>]</span></span>
+<span>type</span> <span>=</span> <span>tcp</span>
+<span>local_ip</span> <span>=</span> <span>127.0.0.1</span>
+<span>local_port</span> <span>=</span> <span>7001</span>
+<span>remote_port</span> <span>=</span> <span>7001</span>
+<span>proxy_protocol_version</span> <span>=</span> <span>v2</span>
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br><span>9</span><br><span>10</span><br><span>11</span><br><span>12</span><br><span>13</span><br><span>14</span><br><span>15</span><br><span>16</span><br><span>17</span><br><span>18</span><br><span>19</span><br><span>20</span><br><span>21</span><br><span>22</span><br><span>23</span><br><span>24</span><br><span>25</span><br><span>26</span><br><span>27</span><br><span>28</span><br><span>29</span><br></div></div><h3 id="服务-2"> 服务</h3>
+<p>类似frps</p>
+<blockquote>
+<p>方跃明
+2020-06-18</p>
+</blockquote>
+]]></content>
+    <author>
+      <name>方跃明</name>
+    </author>
+    <contributor>
+      <name>方跃明</name>
+    </contributor>
+    <published>2020-06-18T00:00:00.000Z</published>
+    <rights>Copyright by 方跃明</rights>
+  </entry>
+  <entry>
     <title type="html">Git排除忽略子目录</title>
     <id>https://blog.fangyueming.cn/git-ignore-exclude/</id>
     <link href="https://blog.fangyueming.cn/git-ignore-exclude/"/>
@@ -1919,6 +1919,44 @@ unpackage/dist/build/*
       <name>方跃明</name>
     </contributor>
     <published>2018-04-28T00:00:00.000Z</published>
+    <rights>Copyright by 方跃明</rights>
+  </entry>
+  <entry>
+    <title type="html">iOS开发环境搭建</title>
+    <id>https://blog.fangyueming.cn/ios-develop/</id>
+    <link href="https://blog.fangyueming.cn/ios-develop/"/>
+    <updated>2021-12-28T00:44:16.000Z</updated>
+    <content type="html"><![CDATA[<h1 id="ios开发环境搭建"> iOS开发环境搭建</h1>
+<h2 id="全局"> 全局</h2>
+<div><pre><code>xcode-select --install <span># 安装xcode开发依赖</span>
+gcc --version <span># 出现版本号表示成功</span>
+<span>sudo</span> gem <span>install</span> cocoapods <span># 安装依赖管理工具</span>
+pod --version <span># 出现版本号表示成功</span>
+pod setup <span># 设置pod</span>
+<span># 安装brew，此处使用国内源，参见：https://brew.sh</span>
+/bin/zsh -c <span>"<span><span>$(</span><span>curl</span> -fsSL https://gitee.com/cunkai/HomebrewCN/raw/master/Homebrew.sh<span>)</span></span>"</span>
+brew --version <span># 出现版本号表示成功</span>
+brew <span>install</span> <span>git</span> <span># 安装git</span>
+<span>git</span> --version <span># 出现版本号表示成功</span>
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br><span>9</span><br><span>10</span><br></div></div><h2 id="项目"> 项目</h2>
+<div><pre><code><span>cd</span> ~/Projects/your-project
+<span># 建议将Podfile的源更换为国内源后执行安装</span>
+<span># source 'https://mirrors.tuna.tsinghua.edu.cn/git/CocoaPods/Specs.git'</span>
+pod <span>install</span>
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br></div></div><blockquote>
+<p>方跃明
+2020-01-01</p>
+</blockquote>
+]]></content>
+    <author>
+      <name>方跃明</name>
+    </author>
+    <contributor>
+      <name>方跃明</name>
+    </contributor>
+    <published>2020-01-01T00:00:00.000Z</published>
     <rights>Copyright by 方跃明</rights>
   </entry>
   <entry>
@@ -2771,51 +2809,6 @@ found in <code>&lt;Component&gt;</code></p>
     <rights>Copyright by 方跃明</rights>
   </entry>
   <entry>
-    <title type="html">LeoVue的由来</title>
-    <id>https://blog.fangyueming.cn/leovue-why/</id>
-    <link href="https://blog.fangyueming.cn/leovue-why/"/>
-    <updated>2021-12-12T12:29:55.000Z</updated>
-    <content type="html"><![CDATA[<h1 id="leovue的由来"> LeoVue的由来</h1>
-<p>几十年来传统软件服务商店大欺客的现状，于信者毋庸多言，于疑者多说无益。
-以至于业界流传有民谣，叫做“<strong>一流的公关，二流的营销，三流的技术，四流的服务</strong>”。
-往往一个毛坯交付上线，客户如若后续没有二次开发的需求，可以借此多多进账，
-服务商此后便想着撒手不管，丢给售后服务部门提供日常的电话支持，每年却收着不菲的服务年费。
-甚至于连起码的基本服务都敷衍应付，所谓文档寥寥几页纸，全要所谓技术工程师口传心授。
-因为系统大多封闭，大多数无章法可循，无从入口，定是缺他不可的，往往十分跋扈，
-及时响应是不太可能的，不看人脸色就谢天谢地了。</p>
-<p>服务商的软件系统很多是十多年的老技术，框架陈旧，屡次迭代都要考虑兼容性，于是乎能将就就将就。
-漏洞百出，甚至千疮百孔，都是十分常见的。日常用起来都要小心翼翼如履薄冰，仿佛穷人家穿了十多年的破纱衣，一不小心就能洞穿。</p>
-<p>由于预算问题，这些系统大多都是毛坯交付，所谓标准功能，往往不能满足企业真正需求，需要二次开发。而这就是一个无底洞，
-明明几年前给其他客户做的有现成的方案，也要调研需求，评估工时，搞得复杂上天，尽其忽悠之能事，其目的就为了可以多多进账。
-<strong>上线十来万，二开几百万的项目比比皆是</strong>，这也成了软件服务商赚钱的法宝，所谓城市套路深，不过如此，企业一旦陷入就难以自拔。
-这种情况更多见于国内的传统软件服务商，对企业来说苦不堪言，搞到后来争执不休，废弃不用的甚至对簿公堂的也不在少数。</p>
-<p>因此稍微有点远见有点实力的企业，深苦于此，<strong>不愿被掣肘，定要自己弄出一个量身定做的系统来</strong>。
-但网络上开源的各种插件、各种库、各种框架，针对企业的本就不多，一旦投入开发，光框架、插件、库的选择上就足够抓耳挠腮了。
-加之自备的开发人员良莠不齐，技术水平天差地别，有的甚至仅仅只会当年的“网页三剑客”。
-开发力量薄弱，如何折衷选择让所有力量都有所发挥，这是个问题。</p>
-<p><a href="https://cn.vuejs.org" target="_blank" rel="noopener noreferrer">Vue.js</a>横空出世，其先进的设计理念，大大减低了前端开发的艰难程度，围绕<code>Vue.js</code>的生态系统雨后春笋般日渐丰富。
-<code>Vue.js</code>可以用组件封装最晦涩难懂的部分，暴露出最简单的接口供调用，一个简单的自定义<code>HTML</code>标签就能搞定原先复杂到令人痛不欲生的难题，
-非常类似于基于<code>API</code>开发，真正可以开箱即用。普通开发人员根本不用关心组件内实现，使得企业自行开发难度，一下子从天上拉到了凡间。
-也许自备开发人员真的只会“三剑客”，可能只需稍加学习也能胜任部分简单开发，对普通企业来说自己研发量身定制系统已不再是高山险阻。</p>
-<p><a href="https://axolo.github.io/leovue" target="_blank" rel="noopener noreferrer">LeoVue</a>就是针对企业开发而创建的组件库，力求简单明了，力求开箱即用，完善<code>80%</code>，丢弃<code>20%</code>。
-纯前端实现 <strong>从Excel导入数据</strong>，<strong>导出到Excel文件</strong>、<strong>选择不同模板打印输出</strong> 等必备组件已经上线，
-更多组件后续慢慢丰富。</p>
-<p>由于作者才疏学浅，错漏难免，欢迎大家批评指正，不吝赐教。</p>
-<div><p>声明</p>
-<p>以上言论，一家之言，有则改之，无则加勉，切勿对号入座。
-—— 方跃明2018年8月19日于杭州</p>
-</div>
-]]></content>
-    <author>
-      <name>方跃明</name>
-    </author>
-    <contributor>
-      <name>方跃明</name>
-    </contributor>
-    <published>2018-08-19T00:00:00.000Z</published>
-    <rights>Copyright by 方跃明</rights>
-  </entry>
-  <entry>
     <title type="html">Linux目录结构</title>
     <id>https://blog.fangyueming.cn/linux-directory/</id>
     <link href="https://blog.fangyueming.cn/linux-directory/"/>
@@ -2886,6 +2879,51 @@ found in <code>&lt;Component&gt;</code></p>
       <name>方跃明</name>
     </contributor>
     <published>2021-12-19T00:00:00.000Z</published>
+    <rights>Copyright by 方跃明</rights>
+  </entry>
+  <entry>
+    <title type="html">LeoVue的由来</title>
+    <id>https://blog.fangyueming.cn/leovue-why/</id>
+    <link href="https://blog.fangyueming.cn/leovue-why/"/>
+    <updated>2021-12-12T12:29:55.000Z</updated>
+    <content type="html"><![CDATA[<h1 id="leovue的由来"> LeoVue的由来</h1>
+<p>几十年来传统软件服务商店大欺客的现状，于信者毋庸多言，于疑者多说无益。
+以至于业界流传有民谣，叫做“<strong>一流的公关，二流的营销，三流的技术，四流的服务</strong>”。
+往往一个毛坯交付上线，客户如若后续没有二次开发的需求，可以借此多多进账，
+服务商此后便想着撒手不管，丢给售后服务部门提供日常的电话支持，每年却收着不菲的服务年费。
+甚至于连起码的基本服务都敷衍应付，所谓文档寥寥几页纸，全要所谓技术工程师口传心授。
+因为系统大多封闭，大多数无章法可循，无从入口，定是缺他不可的，往往十分跋扈，
+及时响应是不太可能的，不看人脸色就谢天谢地了。</p>
+<p>服务商的软件系统很多是十多年的老技术，框架陈旧，屡次迭代都要考虑兼容性，于是乎能将就就将就。
+漏洞百出，甚至千疮百孔，都是十分常见的。日常用起来都要小心翼翼如履薄冰，仿佛穷人家穿了十多年的破纱衣，一不小心就能洞穿。</p>
+<p>由于预算问题，这些系统大多都是毛坯交付，所谓标准功能，往往不能满足企业真正需求，需要二次开发。而这就是一个无底洞，
+明明几年前给其他客户做的有现成的方案，也要调研需求，评估工时，搞得复杂上天，尽其忽悠之能事，其目的就为了可以多多进账。
+<strong>上线十来万，二开几百万的项目比比皆是</strong>，这也成了软件服务商赚钱的法宝，所谓城市套路深，不过如此，企业一旦陷入就难以自拔。
+这种情况更多见于国内的传统软件服务商，对企业来说苦不堪言，搞到后来争执不休，废弃不用的甚至对簿公堂的也不在少数。</p>
+<p>因此稍微有点远见有点实力的企业，深苦于此，<strong>不愿被掣肘，定要自己弄出一个量身定做的系统来</strong>。
+但网络上开源的各种插件、各种库、各种框架，针对企业的本就不多，一旦投入开发，光框架、插件、库的选择上就足够抓耳挠腮了。
+加之自备的开发人员良莠不齐，技术水平天差地别，有的甚至仅仅只会当年的“网页三剑客”。
+开发力量薄弱，如何折衷选择让所有力量都有所发挥，这是个问题。</p>
+<p><a href="https://cn.vuejs.org" target="_blank" rel="noopener noreferrer">Vue.js</a>横空出世，其先进的设计理念，大大减低了前端开发的艰难程度，围绕<code>Vue.js</code>的生态系统雨后春笋般日渐丰富。
+<code>Vue.js</code>可以用组件封装最晦涩难懂的部分，暴露出最简单的接口供调用，一个简单的自定义<code>HTML</code>标签就能搞定原先复杂到令人痛不欲生的难题，
+非常类似于基于<code>API</code>开发，真正可以开箱即用。普通开发人员根本不用关心组件内实现，使得企业自行开发难度，一下子从天上拉到了凡间。
+也许自备开发人员真的只会“三剑客”，可能只需稍加学习也能胜任部分简单开发，对普通企业来说自己研发量身定制系统已不再是高山险阻。</p>
+<p><a href="https://axolo.github.io/leovue" target="_blank" rel="noopener noreferrer">LeoVue</a>就是针对企业开发而创建的组件库，力求简单明了，力求开箱即用，完善<code>80%</code>，丢弃<code>20%</code>。
+纯前端实现 <strong>从Excel导入数据</strong>，<strong>导出到Excel文件</strong>、<strong>选择不同模板打印输出</strong> 等必备组件已经上线，
+更多组件后续慢慢丰富。</p>
+<p>由于作者才疏学浅，错漏难免，欢迎大家批评指正，不吝赐教。</p>
+<div><p>声明</p>
+<p>以上言论，一家之言，有则改之，无则加勉，切勿对号入座。
+—— 方跃明2018年8月19日于杭州</p>
+</div>
+]]></content>
+    <author>
+      <name>方跃明</name>
+    </author>
+    <contributor>
+      <name>方跃明</name>
+    </contributor>
+    <published>2018-08-19T00:00:00.000Z</published>
     <rights>Copyright by 方跃明</rights>
   </entry>
   <entry>
@@ -4182,127 +4220,6 @@ NLS_TERRITORY</p>
     <rights>Copyright by 方跃明</rights>
   </entry>
   <entry>
-    <title type="html">RBAC之我见</title>
-    <id>https://blog.fangyueming.cn/rbac/</id>
-    <link href="https://blog.fangyueming.cn/rbac/"/>
-    <updated>2021-12-18T11:04:14.000Z</updated>
-    <content type="html"><![CDATA[<h1 id="rbac之我见"> RBAC之我见</h1>
-<blockquote>
-<p>原帖见：<a href="http://user.qzone.qq.com/61077523/blog/1374910701" target="_blank" rel="noopener noreferrer">http://user.qzone.qq.com/61077523/blog/1374910701</a></p>
-</blockquote>
-<p>最近又开始折腾权限精细控制，发现多年前发的文章，还挺有思路的。摘录如下：</p>
-<ul>
-<li><a href="http://bbs.phpchina.com/forum.php?mod=redirect&amp;goto=findpost&amp;ptid=105577&amp;pid=877890&amp;fromuid=8531" target="_blank" rel="noopener noreferrer">http://bbs.phpchina.com/forum.php?mod=redirect&amp;goto=findpost&amp;ptid=105577&amp;pid=877890&amp;fromuid=8531</a></li>
-<li><a href="http://bbs.phpchina.com/forum.php?mod=viewthread&amp;tid=151874&amp;fromuid=8531" target="_blank" rel="noopener noreferrer">http://bbs.phpchina.com/forum.php?mod=viewthread&amp;tid=151874&amp;fromuid=8531</a></li>
-</ul>
-<h2 id="一、缘起-zend-acl"> 一、缘起 Zend_Acl</h2>
-<h3 id="_1-简介"> 1. 简介</h3>
-<p>Zend_Acl 为权限管理提供轻量并灵活的访问控制列表 (ACL,access control list) 的实现。一般地，应用软件可以利用这样的功能限制某些特定对象来访问特定保护的对象。
-在本文档中：</p>
-<ul>
-<li>resource （资源）是一个限制访问的对象。</li>
-<li>role （角色）是一个可以发出请求去访问Resource的对象。</li>
-</ul>
-<p>简单地说就是：roles 请求访问 resources。例如，如果停车服务员要进入汽车，那么，这个停车服务员就是发出请求的 role，而这辆汽车就是 resource，因为不是所有人都有权进入汽车。
-通过规范和访问控制列表（ACL）的使用，应用软件可以控制角色（roles）如何来访问资源（resources）。</p>
-<h3 id="_2-关于资源-resource"> 2. 关于资源(Resource)</h3>
-<p>在 Zend_Acl 中，创建一个 resource 非常简单。Zend_Acl 提供了 resource 接口<code>Zend_Acl_Resource_Interface</code> 使开发者在程序中创建 resources 非常容易。为了使Zend_Acl把某个对象当作一个resource，一个类只需要实现这个只包含了一个方法 getResourceId() 的接口。</p>
-<p>另外，Zend_Acl_Resource是一个包含在 Zend_Acl 里作为一个基本的 resource 实现的类，开发者可以任意扩展它。
-Zend_Acl 提供了一个树结构，它可以添加多个 resources (或者叫“访问控制下的区域”）。因为 resources 被存储在这样一个树结构， 所以它们可以被组织成从一般（树根）到特殊（树叶）。基于特殊resource的查询将自动从resource的等级结构中搜索分配给祖先rResources的规则， 它允许简单的规则继承。</p>
-<p>例如，要把一个缺省的规则应用到一个城市的每个建筑物，就简单地把这个规则分配给这个城市， 而不是把规则分配给每个建筑物。然而，有些建筑物也许要求例外的规则，在Zend_Acl里，很容易地通过分配例外规则给每个有这样要求的建筑物来实现。 一个 resource 可以从唯一的一个父 resource 继承，而这个父 resource 也有它自己的父 resource，等等。</p>
-<p>Zend_Acl 也支持基于 resources 的权限（例如：&quot;create&quot;, &quot;read&quot;, &quot;update&quot;, &quot;delete&quot;）， 所以开发者可以根据 resource 分配影响全部或者特殊权限的规则到一个或多个资源。</p>
-<h3 id="_3-关于角色-role"> 3. 关于角色(Role)</h3>
-<p>象 Resources 一样，创建一个 role 也非常简单。 Zend_Acl 提供了 <code>Zend_Acl_Role_Interface</code> 使开发者创建 roles 非常容易。 为了使Zend_Acl把某个对象当作一个 role，一个类只需要实现这个只包含了一个方法 getRoleId() 的接口。</p>
-<p>另外，Zend_Acl_Role是一个包含在Zend_Acl里作为一个基本的 role 实现的类，开发者可以任意扩展它。
-在 Zend_Acl, 一个 role 可以从一个或多个 role 继承，这就是在 role 中支持规则的继承。</p>
-<p>例如，一个用户 role，如 “sally”， 可以属于一个或多个 role，如：“editor”和“administrator”。开发者可以分别给“editor”和“administrator”分配规则， 而“sally”将从它们俩继承规则，不需要直接给“sally”分配规则。
-虽然从多重角色继承的能力非常有用，但是多重继承也带来了一定程度的复杂性。</p>
-<p>下面的例子来示例含糊情形和Zend_Acl如何解决它。</p>
-<h2 id="二、分析"> 二、分析</h2>
-<p>按ZendFramework的做法ACL（访问控制列表）与Auth（认证）是分开的，我用五张表来实现。</p>
-<ul>
-<li>用于ACL的有：role、resource、access</li>
-<li>用于AUTH的有：user</li>
-<li>AUTH和ACL结合的表是：group</li>
-</ul>
-<p>很多RBAC笼统的把ACL和AUTH结合在一起了，所以比较混杂，搞不清楚。下面的草图简要说明ACL和AUTH的结合。</p>
-<p><img src="./rbac-flowchart.jpg" alt="流程图" /></p>
-<h2 id="三、数据模型分析与设计"> 三、数据模型分析与设计</h2>
-<p><img src="./rbac-er.png" alt="模型ER" />
-这个就不多说了，直接贴MySQL代码。</p>
-<div><pre><code><span>-- database leogb</span>
-<span>DROP</span> <span>DATABASE</span> <span>IF</span> <span>EXISTS</span> hent_leogb<span>;</span>
-<span>CREATE</span> <span>DATABASE</span> hent_leogb <span>DEFAULT</span> <span>CHARACTER</span> <span>SET</span> <span>=</span> <span>'utf8'</span><span>;</span>
-<span>USE</span> hent_leogb<span>;</span>
-<span>-- for first import</span>
-<span>-- table user</span>
-<span>CREATE</span> <span>TABLE</span> leo_user <span>(</span>
-    id <span>int</span><span>(</span><span>11</span><span>)</span> <span>NOT</span> <span>NULL</span> <span>AUTO_INCREMENT</span> <span>PRIMARY</span> <span>KEY</span><span>,</span>
-    name <span>char</span><span>(</span><span>40</span><span>)</span> <span>NOT</span> <span>NULL</span> <span>UNIQUE</span> <span>KEY</span><span>,</span>
-    password <span>char</span><span>(</span><span>32</span><span>)</span> <span>NOT</span> <span>NULL</span><span>,</span>
-    <span>time</span> <span>datetime</span> <span>NOT</span> <span>NULL</span><span>,</span>
-    <span>status</span> <span>int</span><span>(</span><span>4</span><span>)</span> <span>NOT</span> <span>NULL</span>
-<span>)</span> <span>DEFAULT</span> <span>CHARACTER</span> <span>SET</span> <span>=</span> <span>'utf8'</span> <span>TYPE</span> <span>=</span> <span>'InnoDB'</span><span>;</span>
-<span>-- table role</span>
-<span>CREATE</span> <span>TABLE</span> leo_role <span>(</span>
-    id <span>int</span><span>(</span><span>11</span><span>)</span> <span>NOT</span> <span>NULL</span> <span>AUTO_INCREMENT</span> <span>PRIMARY</span> <span>KEY</span><span>,</span>
-    role_id <span>int</span><span>(</span><span>11</span><span>)</span> <span>NOT</span> <span>NULL</span><span>,</span>
-    <span>FOREIGN</span> <span>KEY</span> <span>(</span>role_id<span>)</span> <span>REFERENCES</span> leo_role<span>(</span>id<span>)</span> <span>ON</span> <span>UPDATE</span> <span>CASCADE</span> <span>ON</span> <span>DELETE</span> <span>RESTRICT</span><span>,</span>
-    name <span>char</span><span>(</span><span>30</span><span>)</span> <span>NOT</span> <span>NULL</span> <span>UNIQUE</span> <span>KEY</span><span>,</span>
-    <span>status</span> <span>int</span><span>(</span><span>4</span><span>)</span> <span>NOT</span> <span>NULL</span><span>,</span>
-    <span>comment</span> <span>char</span><span>(</span><span>30</span><span>)</span> <span>NOT</span> <span>NULL</span>
-<span>)</span> <span>DEFAULT</span> <span>CHARACTER</span> <span>SET</span> <span>=</span> <span>'utf8'</span> <span>TYPE</span> <span>=</span> <span>'InnoDB'</span><span>;</span>
-<span>-- table resource</span>
-<span>CREATE</span> <span>TABLE</span> leo_resource <span>(</span>
-    id <span>int</span><span>(</span><span>11</span><span>)</span> <span>NOT</span> <span>NULL</span> <span>AUTO_INCREMENT</span> <span>PRIMARY</span> <span>KEY</span><span>,</span>
-    resource_id <span>int</span><span>(</span><span>11</span><span>)</span> <span>NOT</span> <span>NULL</span><span>,</span>
-    <span>FOREIGN</span> <span>KEY</span> <span>(</span>resource_id<span>)</span> <span>REFERENCES</span> leo_resource<span>(</span>id<span>)</span> <span>ON</span> <span>UPDATE</span> <span>CASCADE</span> <span>ON</span> <span>DELETE</span> <span>RESTRICT</span><span>,</span>
-    name <span>char</span><span>(</span><span>30</span><span>)</span> <span>NOT</span> <span>NULL</span> <span>UNIQUE</span> <span>KEY</span><span>,</span>
-    <span>status</span> <span>int</span><span>(</span><span>4</span><span>)</span> <span>NOT</span> <span>NULL</span><span>,</span>
-    <span>comment</span> <span>char</span><span>(</span><span>30</span><span>)</span> <span>NOT</span> <span>NULL</span>
-<span>)</span> <span>DEFAULT</span> <span>CHARACTER</span> <span>SET</span> <span>=</span> <span>'utf8'</span> <span>TYPE</span> <span>=</span> <span>'InnoDB'</span><span>;</span>
-<span>-- table group</span>
-<span>CREATE</span> <span>TABLE</span> leo_group <span>(</span>
-    user_id <span>int</span><span>(</span><span>11</span><span>)</span> <span>NOT</span> <span>NULL</span><span>,</span>
-    <span>FOREIGN</span> <span>KEY</span> <span>(</span>user_id<span>)</span> <span>REFERENCES</span> leo_user<span>(</span>id<span>)</span> <span>ON</span> <span>UPDATE</span> <span>CASCADE</span> <span>ON</span> <span>DELETE</span> <span>CASCADE</span><span>,</span>
-    role_id <span>int</span><span>(</span><span>11</span><span>)</span> <span>NOT</span> <span>NULL</span><span>,</span>
-    <span>FOREIGN</span> <span>KEY</span> <span>(</span>role_id<span>)</span> <span>REFERENCES</span> leo_role<span>(</span>id<span>)</span> <span>ON</span> <span>UPDATE</span> <span>CASCADE</span> <span>ON</span> <span>DELETE</span> <span>CASCADE</span><span>,</span>
-    <span>UNIQUE</span> <span>KEY</span> <span>(</span>user_id<span>,</span> role_id<span>)</span>
-<span>)</span> <span>DEFAULT</span> <span>CHARACTER</span> <span>SET</span> <span>=</span> <span>'utf8'</span> <span>TYPE</span> <span>=</span> <span>'InnoDB'</span><span>;</span>
-<span>-- table access</span>
-<span>CREATE</span> <span>TABLE</span> leo_access <span>(</span>
-    role_id <span>int</span><span>(</span><span>11</span><span>)</span> <span>NOT</span> <span>NULL</span><span>,</span>
-    <span>FOREIGN</span> <span>KEY</span> <span>(</span>role_id<span>)</span> <span>REFERENCES</span> leo_role<span>(</span>id<span>)</span> <span>ON</span> <span>UPDATE</span> <span>CASCADE</span> <span>ON</span> <span>DELETE</span> <span>CASCADE</span><span>,</span>
-    resource_id <span>int</span><span>(</span><span>11</span><span>)</span> <span>NOT</span> <span>NULL</span><span>,</span>
-    <span>FOREIGN</span> <span>KEY</span> <span>(</span>resource_id<span>)</span> <span>REFERENCES</span> leo_resource<span>(</span>id<span>)</span> <span>ON</span> <span>UPDATE</span> <span>CASCADE</span> <span>ON</span> <span>DELETE</span> <span>CASCADE</span><span>,</span>
-    <span>UNIQUE</span> <span>KEY</span> <span>(</span>role_id<span>,</span> resource_id<span>)</span>
-<span>)</span> <span>DEFAULT</span> <span>CHARACTER</span> <span>SET</span> <span>=</span> <span>'utf8'</span> <span>TYPE</span> <span>=</span> <span>'InnoDB'</span><span>;</span>
-</code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br><span>9</span><br><span>10</span><br><span>11</span><br><span>12</span><br><span>13</span><br><span>14</span><br><span>15</span><br><span>16</span><br><span>17</span><br><span>18</span><br><span>19</span><br><span>20</span><br><span>21</span><br><span>22</span><br><span>23</span><br><span>24</span><br><span>25</span><br><span>26</span><br><span>27</span><br><span>28</span><br><span>29</span><br><span>30</span><br><span>31</span><br><span>32</span><br><span>33</span><br><span>34</span><br><span>35</span><br><span>36</span><br><span>37</span><br><span>38</span><br><span>39</span><br><span>40</span><br><span>41</span><br><span>42</span><br><span>43</span><br><span>44</span><br><span>45</span><br><span>46</span><br><span>47</span><br></div></div><h2 id="四、应用分析与实现"> 四、应用分析与实现</h2>
-<p><img src="./rbac-active.png" alt="活动图" /></p>
-<p>以下是按上面的思路做的应用，两张权限分配图是之前没有考虑多层资源结构时设计应用时的截图，供参考：</p>
-<p><img src="./rbac-app01.gif" alt="应用截图01" /></p>
-<p><img src="./rbac-app02.gif" alt="应用截图02" /></p>
-<h2 id="五、后记"> 五、后记</h2>
-<p>当年的思路还是局限于MVC设计中，一堆的Controller和Action，看上去很壮观。
-算是有点过设计了，不过，思路还算清晰吧。
-现在要我来做多半是要REST，估计是一堆的properties或者一堆的json，代码方面要简单很多，设计方面却要费很多脑子。
-前端是APP设计风格MVC，后端是API设计风格REST，两头都得折腾。</p>
-<blockquote>
-<p>方跃明
-发表于 2009-9-9</p>
-</blockquote>
-]]></content>
-    <author>
-      <name>方跃明</name>
-    </author>
-    <contributor>
-      <name>方跃明</name>
-    </contributor>
-    <published>2009-09-09T00:00:00.000Z</published>
-    <rights>Copyright by 方跃明</rights>
-  </entry>
-  <entry>
     <title type="html">读《SQL反模式》</title>
     <id>https://blog.fangyueming.cn/sql-antipatterns/</id>
     <link href="https://blog.fangyueming.cn/sql-antipatterns/"/>
@@ -5331,6 +5248,127 @@ Zend_Acl 提供了一个树结构，它可以添加多个 resources (或者叫�
       <name>方跃明</name>
     </contributor>
     <published>2018-05-31T00:00:00.000Z</published>
+    <rights>Copyright by 方跃明</rights>
+  </entry>
+  <entry>
+    <title type="html">RBAC之我见</title>
+    <id>https://blog.fangyueming.cn/rbac/</id>
+    <link href="https://blog.fangyueming.cn/rbac/"/>
+    <updated>2021-12-18T11:04:14.000Z</updated>
+    <content type="html"><![CDATA[<h1 id="rbac之我见"> RBAC之我见</h1>
+<blockquote>
+<p>原帖见：<a href="http://user.qzone.qq.com/61077523/blog/1374910701" target="_blank" rel="noopener noreferrer">http://user.qzone.qq.com/61077523/blog/1374910701</a></p>
+</blockquote>
+<p>最近又开始折腾权限精细控制，发现多年前发的文章，还挺有思路的。摘录如下：</p>
+<ul>
+<li><a href="http://bbs.phpchina.com/forum.php?mod=redirect&amp;goto=findpost&amp;ptid=105577&amp;pid=877890&amp;fromuid=8531" target="_blank" rel="noopener noreferrer">http://bbs.phpchina.com/forum.php?mod=redirect&amp;goto=findpost&amp;ptid=105577&amp;pid=877890&amp;fromuid=8531</a></li>
+<li><a href="http://bbs.phpchina.com/forum.php?mod=viewthread&amp;tid=151874&amp;fromuid=8531" target="_blank" rel="noopener noreferrer">http://bbs.phpchina.com/forum.php?mod=viewthread&amp;tid=151874&amp;fromuid=8531</a></li>
+</ul>
+<h2 id="一、缘起-zend-acl"> 一、缘起 Zend_Acl</h2>
+<h3 id="_1-简介"> 1. 简介</h3>
+<p>Zend_Acl 为权限管理提供轻量并灵活的访问控制列表 (ACL,access control list) 的实现。一般地，应用软件可以利用这样的功能限制某些特定对象来访问特定保护的对象。
+在本文档中：</p>
+<ul>
+<li>resource （资源）是一个限制访问的对象。</li>
+<li>role （角色）是一个可以发出请求去访问Resource的对象。</li>
+</ul>
+<p>简单地说就是：roles 请求访问 resources。例如，如果停车服务员要进入汽车，那么，这个停车服务员就是发出请求的 role，而这辆汽车就是 resource，因为不是所有人都有权进入汽车。
+通过规范和访问控制列表（ACL）的使用，应用软件可以控制角色（roles）如何来访问资源（resources）。</p>
+<h3 id="_2-关于资源-resource"> 2. 关于资源(Resource)</h3>
+<p>在 Zend_Acl 中，创建一个 resource 非常简单。Zend_Acl 提供了 resource 接口<code>Zend_Acl_Resource_Interface</code> 使开发者在程序中创建 resources 非常容易。为了使Zend_Acl把某个对象当作一个resource，一个类只需要实现这个只包含了一个方法 getResourceId() 的接口。</p>
+<p>另外，Zend_Acl_Resource是一个包含在 Zend_Acl 里作为一个基本的 resource 实现的类，开发者可以任意扩展它。
+Zend_Acl 提供了一个树结构，它可以添加多个 resources (或者叫“访问控制下的区域”）。因为 resources 被存储在这样一个树结构， 所以它们可以被组织成从一般（树根）到特殊（树叶）。基于特殊resource的查询将自动从resource的等级结构中搜索分配给祖先rResources的规则， 它允许简单的规则继承。</p>
+<p>例如，要把一个缺省的规则应用到一个城市的每个建筑物，就简单地把这个规则分配给这个城市， 而不是把规则分配给每个建筑物。然而，有些建筑物也许要求例外的规则，在Zend_Acl里，很容易地通过分配例外规则给每个有这样要求的建筑物来实现。 一个 resource 可以从唯一的一个父 resource 继承，而这个父 resource 也有它自己的父 resource，等等。</p>
+<p>Zend_Acl 也支持基于 resources 的权限（例如：&quot;create&quot;, &quot;read&quot;, &quot;update&quot;, &quot;delete&quot;）， 所以开发者可以根据 resource 分配影响全部或者特殊权限的规则到一个或多个资源。</p>
+<h3 id="_3-关于角色-role"> 3. 关于角色(Role)</h3>
+<p>象 Resources 一样，创建一个 role 也非常简单。 Zend_Acl 提供了 <code>Zend_Acl_Role_Interface</code> 使开发者创建 roles 非常容易。 为了使Zend_Acl把某个对象当作一个 role，一个类只需要实现这个只包含了一个方法 getRoleId() 的接口。</p>
+<p>另外，Zend_Acl_Role是一个包含在Zend_Acl里作为一个基本的 role 实现的类，开发者可以任意扩展它。
+在 Zend_Acl, 一个 role 可以从一个或多个 role 继承，这就是在 role 中支持规则的继承。</p>
+<p>例如，一个用户 role，如 “sally”， 可以属于一个或多个 role，如：“editor”和“administrator”。开发者可以分别给“editor”和“administrator”分配规则， 而“sally”将从它们俩继承规则，不需要直接给“sally”分配规则。
+虽然从多重角色继承的能力非常有用，但是多重继承也带来了一定程度的复杂性。</p>
+<p>下面的例子来示例含糊情形和Zend_Acl如何解决它。</p>
+<h2 id="二、分析"> 二、分析</h2>
+<p>按ZendFramework的做法ACL（访问控制列表）与Auth（认证）是分开的，我用五张表来实现。</p>
+<ul>
+<li>用于ACL的有：role、resource、access</li>
+<li>用于AUTH的有：user</li>
+<li>AUTH和ACL结合的表是：group</li>
+</ul>
+<p>很多RBAC笼统的把ACL和AUTH结合在一起了，所以比较混杂，搞不清楚。下面的草图简要说明ACL和AUTH的结合。</p>
+<p><img src="./rbac-flowchart.jpg" alt="流程图" /></p>
+<h2 id="三、数据模型分析与设计"> 三、数据模型分析与设计</h2>
+<p><img src="./rbac-er.png" alt="模型ER" />
+这个就不多说了，直接贴MySQL代码。</p>
+<div><pre><code><span>-- database leogb</span>
+<span>DROP</span> <span>DATABASE</span> <span>IF</span> <span>EXISTS</span> hent_leogb<span>;</span>
+<span>CREATE</span> <span>DATABASE</span> hent_leogb <span>DEFAULT</span> <span>CHARACTER</span> <span>SET</span> <span>=</span> <span>'utf8'</span><span>;</span>
+<span>USE</span> hent_leogb<span>;</span>
+<span>-- for first import</span>
+<span>-- table user</span>
+<span>CREATE</span> <span>TABLE</span> leo_user <span>(</span>
+    id <span>int</span><span>(</span><span>11</span><span>)</span> <span>NOT</span> <span>NULL</span> <span>AUTO_INCREMENT</span> <span>PRIMARY</span> <span>KEY</span><span>,</span>
+    name <span>char</span><span>(</span><span>40</span><span>)</span> <span>NOT</span> <span>NULL</span> <span>UNIQUE</span> <span>KEY</span><span>,</span>
+    password <span>char</span><span>(</span><span>32</span><span>)</span> <span>NOT</span> <span>NULL</span><span>,</span>
+    <span>time</span> <span>datetime</span> <span>NOT</span> <span>NULL</span><span>,</span>
+    <span>status</span> <span>int</span><span>(</span><span>4</span><span>)</span> <span>NOT</span> <span>NULL</span>
+<span>)</span> <span>DEFAULT</span> <span>CHARACTER</span> <span>SET</span> <span>=</span> <span>'utf8'</span> <span>TYPE</span> <span>=</span> <span>'InnoDB'</span><span>;</span>
+<span>-- table role</span>
+<span>CREATE</span> <span>TABLE</span> leo_role <span>(</span>
+    id <span>int</span><span>(</span><span>11</span><span>)</span> <span>NOT</span> <span>NULL</span> <span>AUTO_INCREMENT</span> <span>PRIMARY</span> <span>KEY</span><span>,</span>
+    role_id <span>int</span><span>(</span><span>11</span><span>)</span> <span>NOT</span> <span>NULL</span><span>,</span>
+    <span>FOREIGN</span> <span>KEY</span> <span>(</span>role_id<span>)</span> <span>REFERENCES</span> leo_role<span>(</span>id<span>)</span> <span>ON</span> <span>UPDATE</span> <span>CASCADE</span> <span>ON</span> <span>DELETE</span> <span>RESTRICT</span><span>,</span>
+    name <span>char</span><span>(</span><span>30</span><span>)</span> <span>NOT</span> <span>NULL</span> <span>UNIQUE</span> <span>KEY</span><span>,</span>
+    <span>status</span> <span>int</span><span>(</span><span>4</span><span>)</span> <span>NOT</span> <span>NULL</span><span>,</span>
+    <span>comment</span> <span>char</span><span>(</span><span>30</span><span>)</span> <span>NOT</span> <span>NULL</span>
+<span>)</span> <span>DEFAULT</span> <span>CHARACTER</span> <span>SET</span> <span>=</span> <span>'utf8'</span> <span>TYPE</span> <span>=</span> <span>'InnoDB'</span><span>;</span>
+<span>-- table resource</span>
+<span>CREATE</span> <span>TABLE</span> leo_resource <span>(</span>
+    id <span>int</span><span>(</span><span>11</span><span>)</span> <span>NOT</span> <span>NULL</span> <span>AUTO_INCREMENT</span> <span>PRIMARY</span> <span>KEY</span><span>,</span>
+    resource_id <span>int</span><span>(</span><span>11</span><span>)</span> <span>NOT</span> <span>NULL</span><span>,</span>
+    <span>FOREIGN</span> <span>KEY</span> <span>(</span>resource_id<span>)</span> <span>REFERENCES</span> leo_resource<span>(</span>id<span>)</span> <span>ON</span> <span>UPDATE</span> <span>CASCADE</span> <span>ON</span> <span>DELETE</span> <span>RESTRICT</span><span>,</span>
+    name <span>char</span><span>(</span><span>30</span><span>)</span> <span>NOT</span> <span>NULL</span> <span>UNIQUE</span> <span>KEY</span><span>,</span>
+    <span>status</span> <span>int</span><span>(</span><span>4</span><span>)</span> <span>NOT</span> <span>NULL</span><span>,</span>
+    <span>comment</span> <span>char</span><span>(</span><span>30</span><span>)</span> <span>NOT</span> <span>NULL</span>
+<span>)</span> <span>DEFAULT</span> <span>CHARACTER</span> <span>SET</span> <span>=</span> <span>'utf8'</span> <span>TYPE</span> <span>=</span> <span>'InnoDB'</span><span>;</span>
+<span>-- table group</span>
+<span>CREATE</span> <span>TABLE</span> leo_group <span>(</span>
+    user_id <span>int</span><span>(</span><span>11</span><span>)</span> <span>NOT</span> <span>NULL</span><span>,</span>
+    <span>FOREIGN</span> <span>KEY</span> <span>(</span>user_id<span>)</span> <span>REFERENCES</span> leo_user<span>(</span>id<span>)</span> <span>ON</span> <span>UPDATE</span> <span>CASCADE</span> <span>ON</span> <span>DELETE</span> <span>CASCADE</span><span>,</span>
+    role_id <span>int</span><span>(</span><span>11</span><span>)</span> <span>NOT</span> <span>NULL</span><span>,</span>
+    <span>FOREIGN</span> <span>KEY</span> <span>(</span>role_id<span>)</span> <span>REFERENCES</span> leo_role<span>(</span>id<span>)</span> <span>ON</span> <span>UPDATE</span> <span>CASCADE</span> <span>ON</span> <span>DELETE</span> <span>CASCADE</span><span>,</span>
+    <span>UNIQUE</span> <span>KEY</span> <span>(</span>user_id<span>,</span> role_id<span>)</span>
+<span>)</span> <span>DEFAULT</span> <span>CHARACTER</span> <span>SET</span> <span>=</span> <span>'utf8'</span> <span>TYPE</span> <span>=</span> <span>'InnoDB'</span><span>;</span>
+<span>-- table access</span>
+<span>CREATE</span> <span>TABLE</span> leo_access <span>(</span>
+    role_id <span>int</span><span>(</span><span>11</span><span>)</span> <span>NOT</span> <span>NULL</span><span>,</span>
+    <span>FOREIGN</span> <span>KEY</span> <span>(</span>role_id<span>)</span> <span>REFERENCES</span> leo_role<span>(</span>id<span>)</span> <span>ON</span> <span>UPDATE</span> <span>CASCADE</span> <span>ON</span> <span>DELETE</span> <span>CASCADE</span><span>,</span>
+    resource_id <span>int</span><span>(</span><span>11</span><span>)</span> <span>NOT</span> <span>NULL</span><span>,</span>
+    <span>FOREIGN</span> <span>KEY</span> <span>(</span>resource_id<span>)</span> <span>REFERENCES</span> leo_resource<span>(</span>id<span>)</span> <span>ON</span> <span>UPDATE</span> <span>CASCADE</span> <span>ON</span> <span>DELETE</span> <span>CASCADE</span><span>,</span>
+    <span>UNIQUE</span> <span>KEY</span> <span>(</span>role_id<span>,</span> resource_id<span>)</span>
+<span>)</span> <span>DEFAULT</span> <span>CHARACTER</span> <span>SET</span> <span>=</span> <span>'utf8'</span> <span>TYPE</span> <span>=</span> <span>'InnoDB'</span><span>;</span>
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br><span>9</span><br><span>10</span><br><span>11</span><br><span>12</span><br><span>13</span><br><span>14</span><br><span>15</span><br><span>16</span><br><span>17</span><br><span>18</span><br><span>19</span><br><span>20</span><br><span>21</span><br><span>22</span><br><span>23</span><br><span>24</span><br><span>25</span><br><span>26</span><br><span>27</span><br><span>28</span><br><span>29</span><br><span>30</span><br><span>31</span><br><span>32</span><br><span>33</span><br><span>34</span><br><span>35</span><br><span>36</span><br><span>37</span><br><span>38</span><br><span>39</span><br><span>40</span><br><span>41</span><br><span>42</span><br><span>43</span><br><span>44</span><br><span>45</span><br><span>46</span><br><span>47</span><br></div></div><h2 id="四、应用分析与实现"> 四、应用分析与实现</h2>
+<p><img src="./rbac-active.png" alt="活动图" /></p>
+<p>以下是按上面的思路做的应用，两张权限分配图是之前没有考虑多层资源结构时设计应用时的截图，供参考：</p>
+<p><img src="./rbac-app01.gif" alt="应用截图01" /></p>
+<p><img src="./rbac-app02.gif" alt="应用截图02" /></p>
+<h2 id="五、后记"> 五、后记</h2>
+<p>当年的思路还是局限于MVC设计中，一堆的Controller和Action，看上去很壮观。
+算是有点过设计了，不过，思路还算清晰吧。
+现在要我来做多半是要REST，估计是一堆的properties或者一堆的json，代码方面要简单很多，设计方面却要费很多脑子。
+前端是APP设计风格MVC，后端是API设计风格REST，两头都得折腾。</p>
+<blockquote>
+<p>方跃明
+发表于 2009-9-9</p>
+</blockquote>
+]]></content>
+    <author>
+      <name>方跃明</name>
+    </author>
+    <contributor>
+      <name>方跃明</name>
+    </contributor>
+    <published>2009-09-09T00:00:00.000Z</published>
     <rights>Copyright by 方跃明</rights>
   </entry>
   <entry>
