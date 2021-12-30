@@ -16,7 +16,7 @@ categories:
 
 - Instant Client
 
-  先到Oracle网站下载[Instant Client](http://www.oracle.com/technology/global/cn/software/tech/oci/instantclient/index.html)。
+  先到Oracle网站下载[Instant Client]。
   根据你的操作系统选择不同的Instant Client版本。解压之后放在你喜欢的目录即可.例如:D:/instantclient_11_2。
 
 - 在D:/instantclient_11_2目录下新建目录network，在network目录下再新建admin目录，在admin目录下新建文件tnsnames.ora，使用文本编辑器打开写入如下内容:
@@ -56,8 +56,7 @@ categories:
 
 - 补充Instant Client 说明
 
-  Oracle Instant client 是oracle提供的简便客户端, 支持多种平台。可从oracle网站下载, 下载地址为：
-  <http://www.oracle.com/technetwork/database/features/instant-client/index-097480.html>
+  Oracle Instant client 是oracle提供的简便客户端, 支持多种平台。可从oracle网站下载, 下载地址为：[Instant Client]
 
   包括如下内容:
 
@@ -79,3 +78,9 @@ categories:
 ```dos
 exp newsoft/econage@ptime file=E:\Backup\%date:~0,10%exp.dmp log=E:\Backup\%date:~0,10exp.log owner=newsoft
 ```
+
+[Instant Client]: http://www.oracle.com/technetwork/database/features/instant-client/index-097480.html
+
+
+> 方跃明
+> 2018-05-12
