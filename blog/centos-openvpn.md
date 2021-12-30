@@ -3,11 +3,11 @@ time: 2020-01-29
 tags:
   - CentOS
   - Linux
-  - VPN
+  - OpenVPN
 categories:
   - CentOS
   - Linux
-  - VPN
+  - OpenVPN
 ---
 
 # CentOS安装配置OpenVPN
