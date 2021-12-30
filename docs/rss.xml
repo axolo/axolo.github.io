@@ -6,8 +6,8 @@
     <link>https://blog.fangyueming.cn/</link>
     <description>WEB应用开发技术笔记</description>
     <language>zh-CN</language>
-    <pubDate>Thu, 30 Dec 2021 01:02:44 GMT</pubDate>
-    <lastBuildDate>Thu, 30 Dec 2021 01:02:44 GMT</lastBuildDate>
+    <pubDate>Thu, 30 Dec 2021 01:14:48 GMT</pubDate>
+    <lastBuildDate>Thu, 30 Dec 2021 01:14:48 GMT</lastBuildDate>
     <generator>@mr-hope/vuepress-plugin-feed</generator>
     <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
     <copyright>Copyright by 方跃明</copyright>
@@ -3758,40 +3758,6 @@ found in <code>&lt;Component&gt;</code></p>
 ]]></content:encoded>
     </item>
     <item>
-      <title>Linux个人目录规划</title>
-      <link>https://blog.fangyueming.cn/linux-home/</link>
-      <guid>https://blog.fangyueming.cn/linux-home/</guid>
-      <source url="https://blog.fangyueming.cn/rss.xml">Linux个人目录规划</source>
-      <pubDate>Thu, 03 Apr 2014 00:00:00 GMT</pubDate>
-      <content:encoded><![CDATA[<h1 id="linux个人目录规划"> Linux个人目录规划</h1>
-<div><pre><code>~
-|-- .bashrc                                 # 启动配置文件
-|-- bin                                     # 可执行脚本
-|   |-- mysql-back.sh                       #   MySQL备份
-|   `-- mysql57.sh                          #   MySQL 5.7 相关
-|-- usr                                     # 应用目录
-|   |-- mysql-5.7                           #   MySQL 5.7
-|   |-- nginx                               #   NGiNX
-|   |-- node                                #   Node.js
-|   `-- redis                               #   Redis
-|-- backup                                  # 备份目录
-|   |-- mysql                               #   MySQL
-|   |-- crontab                             #   自动任务
-|   `-- certs                               #   证书
-|-- projects                                # 项目
-|   |-- github                              #   GitHUB
-|   `-- coding                              #   Coding.net
-|-- downloads                               # 下载
-|   |-- git-2.9.5.tar                       #   Git
-|   |-- node-v9.11.2-linux-x86.tar.gz       #   Node.js
-|   |-- yarn-v1.12.3.tar.gz                 #   Yarn
-|   `-- nginx-5.7.tar.gz                    #   NGiNX
-|-- logs                                    # 日志
-`-- tmp                                     # 临时文件
-</code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br><span>9</span><br><span>10</span><br><span>11</span><br><span>12</span><br><span>13</span><br><span>14</span><br><span>15</span><br><span>16</span><br><span>17</span><br><span>18</span><br><span>19</span><br><span>20</span><br><span>21</span><br><span>22</span><br><span>23</span><br><span>24</span><br></div></div>]]></content:encoded>
-    </item>
-    <item>
       <title>Linux编译安装命令configure、make、install的意义</title>
       <link>https://blog.fangyueming.cn/linux-make-install/</link>
       <guid>https://blog.fangyueming.cn/linux-make-install/</guid>
@@ -3983,6 +3949,40 @@ creating ./config. status
 2008-08-08</p>
 </blockquote>
 ]]></content:encoded>
+    </item>
+    <item>
+      <title>Linux个人目录规划</title>
+      <link>https://blog.fangyueming.cn/linux-home/</link>
+      <guid>https://blog.fangyueming.cn/linux-home/</guid>
+      <source url="https://blog.fangyueming.cn/rss.xml">Linux个人目录规划</source>
+      <pubDate>Thu, 03 Apr 2014 00:00:00 GMT</pubDate>
+      <content:encoded><![CDATA[<h1 id="linux个人目录规划"> Linux个人目录规划</h1>
+<div><pre><code>~
+|-- .bashrc                                 # 启动配置文件
+|-- bin                                     # 可执行脚本
+|   |-- mysql-back.sh                       #   MySQL备份
+|   `-- mysql57.sh                          #   MySQL 5.7 相关
+|-- usr                                     # 应用目录
+|   |-- mysql-5.7                           #   MySQL 5.7
+|   |-- nginx                               #   NGiNX
+|   |-- node                                #   Node.js
+|   `-- redis                               #   Redis
+|-- backup                                  # 备份目录
+|   |-- mysql                               #   MySQL
+|   |-- crontab                             #   自动任务
+|   `-- certs                               #   证书
+|-- projects                                # 项目
+|   |-- github                              #   GitHUB
+|   `-- coding                              #   Coding.net
+|-- downloads                               # 下载
+|   |-- git-2.9.5.tar                       #   Git
+|   |-- node-v9.11.2-linux-x86.tar.gz       #   Node.js
+|   |-- yarn-v1.12.3.tar.gz                 #   Yarn
+|   `-- nginx-5.7.tar.gz                    #   NGiNX
+|-- logs                                    # 日志
+`-- tmp                                     # 临时文件
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br><span>9</span><br><span>10</span><br><span>11</span><br><span>12</span><br><span>13</span><br><span>14</span><br><span>15</span><br><span>16</span><br><span>17</span><br><span>18</span><br><span>19</span><br><span>20</span><br><span>21</span><br><span>22</span><br><span>23</span><br><span>24</span><br></div></div>]]></content:encoded>
     </item>
     <item>
       <title>Linux Shell 入门</title>
@@ -4769,6 +4769,59 @@ NLS_TERRITORY</p>
 <div><span>1</span><br></div></div>]]></content:encoded>
     </item>
     <item>
+      <title>php_imagick安装配置</title>
+      <link>https://blog.fangyueming.cn/php-imagick-windows/</link>
+      <guid>https://blog.fangyueming.cn/php-imagick-windows/</guid>
+      <source url="https://blog.fangyueming.cn/rss.xml">php_imagick安装配置</source>
+      <pubDate>Mon, 02 Aug 2010 00:00:00 GMT</pubDate>
+      <content:encoded><![CDATA[<h1 id="php-imagick安装配置"> php_imagick安装配置</h1>
+<p>php_imagick是强大的图片处理PHP插件。</p>
+<ul>
+<li>参见
+<ul>
+<li><a href="http://www.cnblogs.com/wangqishu/p/5609950.html" target="_blank" rel="noopener noreferrer">http://www.cnblogs.com/wangqishu/p/5609950.html</a></li>
+</ul>
+</li>
+<li>版本对应
+<ul>
+<li>PHP Version: 7.0.9</li>
+<li>Compiler: MSVC14 (Visual C++ 2015)</li>
+<li>Architecture: x86</li>
+<li>Thread Safety: enabled</li>
+<li>imagick module version: 3.4.2</li>
+<li>Imagick compiled with ImageMagick version: ImageMagick 6.9.3-7 Q16 x86</li>
+<li>Imagick using ImageMagick library version: ImageMagick 6.9.3-7 Q16 x86</li>
+<li>ImageMagick number of supported formats: 240 (必须有数量)</li>
+</ul>
+</li>
+<li>安装文件及设置
+<ul>
+<li>安装程序: ImageMagick-6.9.6-8-Q16-x86-dll.exe</li>
+<li>环境变量: MAGICK_HOME = C:\Program Files (x86)\ImageMagick-6.9.6-Q16\modules\coders</li>
+<li>扩展文件：php_imagick-3.4.2-7.0-ts-vc14-x86.zip (对应x86, vc14, ts)</li>
+<li>php: CORE_RL_-.dll</li>
+<li>php/ext: php_imagick.dll</li>
+<li>php.ini: extension=php_imagick.dll</li>
+</ul>
+</li>
+<li>对应插件
+<ul>
+<li><a href="https://packagist.org/packages/intervention/image" target="_blank" rel="noopener noreferrer">https://packagist.org/packages/intervention/image</a></li>
+<li><a href="http://image.intervention.io" target="_blank" rel="noopener noreferrer">http://image.intervention.io</a></li>
+</ul>
+</li>
+<li>排错
+<ul>
+<li><code>php_imagick.dll - %1 不是有效的 Win32 应用程序</code>：则说明版本不相符合。需要检查imagick软件本身( 如x86 )、php本身( x86 ts (thread safe) )、php扩展php_imagick.dllts）三方版本 要一致。</li>
+<li><code>php.exe - 系统错误 ，无法启动此程序因为计算机丢失CORE_RL_wand_.dll</code>：说明你没有将php_imagick-3.4.2-7.0-ts-vc14-x86.zip扩展包中的“CORE_-.dll”放到你的php.exe同级目录下。</li>
+<li><code>ImageMagick number of supported formats: 0</code>：支持的图片格式数量为0，检查环境变量MAGICK_HOME设置。</li>
+<li><code>NoDecodeDelegateForThisImageFormat</code>：php_imagick.dll的版本并不支持或并不匹配ImageMagick软件版本，需要更换对应的ImageMagick软件版本。</li>
+</ul>
+</li>
+</ul>
+]]></content:encoded>
+    </item>
+    <item>
       <title>有感于“论PHP的倒掉”</title>
       <link>https://blog.fangyueming.cn/php-fall/</link>
       <guid>https://blog.fangyueming.cn/php-fall/</guid>
@@ -4885,59 +4938,6 @@ NLS_TERRITORY</p>
 <p>方跃明
 2009-11-23</p>
 </blockquote>
-]]></content:encoded>
-    </item>
-    <item>
-      <title>php_imagick安装配置</title>
-      <link>https://blog.fangyueming.cn/php-imagick-windows/</link>
-      <guid>https://blog.fangyueming.cn/php-imagick-windows/</guid>
-      <source url="https://blog.fangyueming.cn/rss.xml">php_imagick安装配置</source>
-      <pubDate>Mon, 02 Aug 2010 00:00:00 GMT</pubDate>
-      <content:encoded><![CDATA[<h1 id="php-imagick安装配置"> php_imagick安装配置</h1>
-<p>php_imagick是强大的图片处理PHP插件。</p>
-<ul>
-<li>参见
-<ul>
-<li><a href="http://www.cnblogs.com/wangqishu/p/5609950.html" target="_blank" rel="noopener noreferrer">http://www.cnblogs.com/wangqishu/p/5609950.html</a></li>
-</ul>
-</li>
-<li>版本对应
-<ul>
-<li>PHP Version: 7.0.9</li>
-<li>Compiler: MSVC14 (Visual C++ 2015)</li>
-<li>Architecture: x86</li>
-<li>Thread Safety: enabled</li>
-<li>imagick module version: 3.4.2</li>
-<li>Imagick compiled with ImageMagick version: ImageMagick 6.9.3-7 Q16 x86</li>
-<li>Imagick using ImageMagick library version: ImageMagick 6.9.3-7 Q16 x86</li>
-<li>ImageMagick number of supported formats: 240 (必须有数量)</li>
-</ul>
-</li>
-<li>安装文件及设置
-<ul>
-<li>安装程序: ImageMagick-6.9.6-8-Q16-x86-dll.exe</li>
-<li>环境变量: MAGICK_HOME = C:\Program Files (x86)\ImageMagick-6.9.6-Q16\modules\coders</li>
-<li>扩展文件：php_imagick-3.4.2-7.0-ts-vc14-x86.zip (对应x86, vc14, ts)</li>
-<li>php: CORE_RL_-.dll</li>
-<li>php/ext: php_imagick.dll</li>
-<li>php.ini: extension=php_imagick.dll</li>
-</ul>
-</li>
-<li>对应插件
-<ul>
-<li><a href="https://packagist.org/packages/intervention/image" target="_blank" rel="noopener noreferrer">https://packagist.org/packages/intervention/image</a></li>
-<li><a href="http://image.intervention.io" target="_blank" rel="noopener noreferrer">http://image.intervention.io</a></li>
-</ul>
-</li>
-<li>排错
-<ul>
-<li><code>php_imagick.dll - %1 不是有效的 Win32 应用程序</code>：则说明版本不相符合。需要检查imagick软件本身( 如x86 )、php本身( x86 ts (thread safe) )、php扩展php_imagick.dllts）三方版本 要一致。</li>
-<li><code>php.exe - 系统错误 ，无法启动此程序因为计算机丢失CORE_RL_wand_.dll</code>：说明你没有将php_imagick-3.4.2-7.0-ts-vc14-x86.zip扩展包中的“CORE_-.dll”放到你的php.exe同级目录下。</li>
-<li><code>ImageMagick number of supported formats: 0</code>：支持的图片格式数量为0，检查环境变量MAGICK_HOME设置。</li>
-<li><code>NoDecodeDelegateForThisImageFormat</code>：php_imagick.dll的版本并不支持或并不匹配ImageMagick软件版本，需要更换对应的ImageMagick软件版本。</li>
-</ul>
-</li>
-</ul>
 ]]></content:encoded>
     </item>
     <item>
@@ -5077,6 +5077,21 @@ Zend_Acl 提供了一个树结构，它可以添加多个 resources (或者叫�
 <blockquote>
 <p>方跃明
 发表于 2009-9-9</p>
+</blockquote>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>图解SQL JOINS</title>
+      <link>https://blog.fangyueming.cn/sql-join/</link>
+      <guid>https://blog.fangyueming.cn/sql-join/</guid>
+      <source url="https://blog.fangyueming.cn/rss.xml">图解SQL JOINS</source>
+      <pubDate>Sat, 28 Apr 2018 00:00:00 GMT</pubDate>
+      <content:encoded><![CDATA[<h1 id="图解sql-joins"> 图解SQL JOINS</h1>
+<p>左连接、右连接、内连接、外连接……傻傻分不清</p>
+<p><img src="./sql-join.jpg" alt="SQL JOINS" /></p>
+<blockquote>
+<p>方跃明
+2018-4-28</p>
 </blockquote>
 ]]></content:encoded>
     </item>
@@ -6105,21 +6120,6 @@ Zend_Acl 提供了一个树结构，它可以添加多个 resources (或者叫�
 ]]></content:encoded>
     </item>
     <item>
-      <title>图解SQL JOINS</title>
-      <link>https://blog.fangyueming.cn/sql-join/</link>
-      <guid>https://blog.fangyueming.cn/sql-join/</guid>
-      <source url="https://blog.fangyueming.cn/rss.xml">图解SQL JOINS</source>
-      <pubDate>Sat, 28 Apr 2018 00:00:00 GMT</pubDate>
-      <content:encoded><![CDATA[<h1 id="图解sql-joins"> 图解SQL JOINS</h1>
-<p>左连接、右连接、内连接、外连接……傻傻分不清</p>
-<p><img src="./sql-join.jpg" alt="SQL JOINS" /></p>
-<blockquote>
-<p>方跃明
-2018-4-28</p>
-</blockquote>
-]]></content:encoded>
-    </item>
-    <item>
       <title>UmiJS之我见</title>
       <link>https://blog.fangyueming.cn/umijs-ux/</link>
       <guid>https://blog.fangyueming.cn/umijs-ux/</guid>
@@ -6394,16 +6394,6 @@ vi是“visual interface”的缩写，vim是vi IMproved(增强版的vi)。
 ]]></content:encoded>
     </item>
     <item>
-      <title>Internet技术概览</title>
-      <link>https://blog.fangyueming.cn/web-internet/</link>
-      <guid>https://blog.fangyueming.cn/web-internet/</guid>
-      <source url="https://blog.fangyueming.cn/rss.xml">Internet技术概览</source>
-      <pubDate>Tue, 20 Dec 2016 00:00:00 GMT</pubDate>
-      <content:encoded><![CDATA[<h1 id="internet技术概览"> Internet技术概览</h1>
-<p><img src="./web-internet.jpg" alt="Internet技术概览" /></p>
-]]></content:encoded>
-    </item>
-    <item>
       <title>Vue父子组件通信</title>
       <link>https://blog.fangyueming.cn/vue-props/</link>
       <guid>https://blog.fangyueming.cn/vue-props/</guid>
@@ -6496,56 +6486,6 @@ vi是“visual interface”的缩写，vim是vi IMproved(增强版的vi)。
 </span></span><span><span><span>&lt;/</span>script</span><span>></span></span>
 </code></pre>
 <div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br><span>9</span><br><span>10</span><br><span>11</span><br><span>12</span><br><span>13</span><br><span>14</span><br><span>15</span><br><span>16</span><br><span>17</span><br><span>18</span><br><span>19</span><br><span>20</span><br><span>21</span><br><span>22</span><br><span>23</span><br><span>24</span><br><span>25</span><br><span>26</span><br><span>27</span><br></div></div>]]></content:encoded>
-    </item>
-    <item>
-      <title>Webpack编译移除控制台输出</title>
-      <link>https://blog.fangyueming.cn/webpack-drop-console/</link>
-      <guid>https://blog.fangyueming.cn/webpack-drop-console/</guid>
-      <source url="https://blog.fangyueming.cn/rss.xml">Webpack编译移除控制台输出</source>
-      <pubDate>Tue, 14 Dec 2021 00:00:00 GMT</pubDate>
-      <content:encoded><![CDATA[<h1 id="webpack编译移除控制台输出"> Webpack编译移除控制台输出</h1>
-<p>前端程序员在开发的时候经常会使用<code>console.log</code>来调试。
-然而，出于安全渗透和代码审计需要，生产环境往往需要移除控制台（<code>console</code>系列函数）输出。
-一个个去删除难免漏网之鱼，而且有时候开发环境仍需要用到。
-此时使用 <a href="https://webpack.js.org/plugins/terser-webpack-plugin/" target="_blank" rel="noopener noreferrer">terser-webpack-plugin</a> 不失为一个好办法。</p>
-<p>本文以 <a href="https://cli.vuejs.org/zh/" target="_blank" rel="noopener noreferrer">Vue CLI</a> 为例来实现，当前 <a href="https://cli.vuejs.org/zh/" target="_blank" rel="noopener noreferrer">Vue CLI</a> 对应适配的 <a href="https://webpack.js.org/plugins/terser-webpack-plugin/" target="_blank" rel="noopener noreferrer">terser-webpack-plugin</a> 版本为：<code>4.2.3</code>。</p>
-<h2 id="安装"> 安装</h2>
-<div><pre><code><span>yarn</span> <span>add</span> terser-webpack-plugin@4.2.3
-</code></pre>
-<div><span>1</span><br></div></div><h2 id="配置"> 配置</h2>
-<div><pre><code><span>// vue.config.js</span>
-<span>const</span> TerserPlugin <span>=</span> <span>require</span><span>(</span><span>'terser-webpack-plugin'</span><span>)</span>
-
-module<span>.</span>exports <span>=</span> <span>{</span>
- configureWebpack<span>:</span> <span>{</span>
-   optimization<span>:</span> <span>{</span>
-     minimizer<span>:</span> <span>[</span>
-       <span>new</span> <span>TerserPlugin</span><span>(</span><span>{</span>
-         terserOptions<span>:</span> <span>{</span>
-           ecma<span>:</span> <span>undefined</span><span>,</span>
-           warnings<span>:</span> <span>false</span><span>,</span>
-           parse<span>:</span> <span>{</span><span>}</span><span>,</span>
-           compress<span>:</span> <span>{</span>
-             drop_console<span>:</span> <span>true</span><span>,</span>
-             drop_debugger<span>:</span> <span>false</span><span>,</span>
-             <span>// pure_funcs: ['console.log'], // 移除console</span>
-           <span>}</span>
-         <span>}</span>
-       <span>}</span><span>)</span>
-     <span>]</span>
-   <span>}</span>
- <span>}</span>
-<span>}</span>
-</code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br><span>9</span><br><span>10</span><br><span>11</span><br><span>12</span><br><span>13</span><br><span>14</span><br><span>15</span><br><span>16</span><br><span>17</span><br><span>18</span><br><span>19</span><br><span>20</span><br><span>21</span><br><span>22</span><br><span>23</span><br></div></div><h2 id="编译"> 编译</h2>
-<div><pre><code><span>yarn</span> build
-</code></pre>
-<div><span>1</span><br></div></div><p>至此，<code>console</code>系列函数已不会在编译后的代码里从控制台输出了。</p>
-<blockquote>
-<p>方跃明
-2021-12-14</p>
-</blockquote>
-]]></content:encoded>
     </item>
     <item>
       <title>WEB前端编码变迁记</title>
@@ -6725,6 +6665,66 @@ ReactDOM<span>.</span><span>render</span><span>(</span>
 <div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br><span>9</span><br><span>10</span><br><span>11</span><br><span>12</span><br><span>13</span><br><span>14</span><br><span>15</span><br><span>16</span><br><span>17</span><br><span>18</span><br><span>19</span><br><span>20</span><br><span>21</span><br></div></div><blockquote>
 <p>方跃明
 2016-12-19</p>
+</blockquote>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>Internet技术概览</title>
+      <link>https://blog.fangyueming.cn/web-internet/</link>
+      <guid>https://blog.fangyueming.cn/web-internet/</guid>
+      <source url="https://blog.fangyueming.cn/rss.xml">Internet技术概览</source>
+      <pubDate>Tue, 20 Dec 2016 00:00:00 GMT</pubDate>
+      <content:encoded><![CDATA[<h1 id="internet技术概览"> Internet技术概览</h1>
+<p><img src="./web-internet.jpg" alt="Internet技术概览" /></p>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>Webpack编译移除控制台输出</title>
+      <link>https://blog.fangyueming.cn/webpack-drop-console/</link>
+      <guid>https://blog.fangyueming.cn/webpack-drop-console/</guid>
+      <source url="https://blog.fangyueming.cn/rss.xml">Webpack编译移除控制台输出</source>
+      <pubDate>Tue, 14 Dec 2021 00:00:00 GMT</pubDate>
+      <content:encoded><![CDATA[<h1 id="webpack编译移除控制台输出"> Webpack编译移除控制台输出</h1>
+<p>前端程序员在开发的时候经常会使用<code>console.log</code>来调试。
+然而，出于安全渗透和代码审计需要，生产环境往往需要移除控制台（<code>console</code>系列函数）输出。
+一个个去删除难免漏网之鱼，而且有时候开发环境仍需要用到。
+此时使用 <a href="https://webpack.js.org/plugins/terser-webpack-plugin/" target="_blank" rel="noopener noreferrer">terser-webpack-plugin</a> 不失为一个好办法。</p>
+<p>本文以 <a href="https://cli.vuejs.org/zh/" target="_blank" rel="noopener noreferrer">Vue CLI</a> 为例来实现，当前 <a href="https://cli.vuejs.org/zh/" target="_blank" rel="noopener noreferrer">Vue CLI</a> 对应适配的 <a href="https://webpack.js.org/plugins/terser-webpack-plugin/" target="_blank" rel="noopener noreferrer">terser-webpack-plugin</a> 版本为：<code>4.2.3</code>。</p>
+<h2 id="安装"> 安装</h2>
+<div><pre><code><span>yarn</span> <span>add</span> terser-webpack-plugin@4.2.3
+</code></pre>
+<div><span>1</span><br></div></div><h2 id="配置"> 配置</h2>
+<div><pre><code><span>// vue.config.js</span>
+<span>const</span> TerserPlugin <span>=</span> <span>require</span><span>(</span><span>'terser-webpack-plugin'</span><span>)</span>
+
+module<span>.</span>exports <span>=</span> <span>{</span>
+ configureWebpack<span>:</span> <span>{</span>
+   optimization<span>:</span> <span>{</span>
+     minimizer<span>:</span> <span>[</span>
+       <span>new</span> <span>TerserPlugin</span><span>(</span><span>{</span>
+         terserOptions<span>:</span> <span>{</span>
+           ecma<span>:</span> <span>undefined</span><span>,</span>
+           warnings<span>:</span> <span>false</span><span>,</span>
+           parse<span>:</span> <span>{</span><span>}</span><span>,</span>
+           compress<span>:</span> <span>{</span>
+             drop_console<span>:</span> <span>true</span><span>,</span>
+             drop_debugger<span>:</span> <span>false</span><span>,</span>
+             <span>// pure_funcs: ['console.log'], // 移除console</span>
+           <span>}</span>
+         <span>}</span>
+       <span>}</span><span>)</span>
+     <span>]</span>
+   <span>}</span>
+ <span>}</span>
+<span>}</span>
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br><span>9</span><br><span>10</span><br><span>11</span><br><span>12</span><br><span>13</span><br><span>14</span><br><span>15</span><br><span>16</span><br><span>17</span><br><span>18</span><br><span>19</span><br><span>20</span><br><span>21</span><br><span>22</span><br><span>23</span><br></div></div><h2 id="编译"> 编译</h2>
+<div><pre><code><span>yarn</span> build
+</code></pre>
+<div><span>1</span><br></div></div><p>至此，<code>console</code>系列函数已不会在编译后的代码里从控制台输出了。</p>
+<blockquote>
+<p>方跃明
+2021-12-14</p>
 </blockquote>
 ]]></content:encoded>
     </item>
