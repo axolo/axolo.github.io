@@ -11,6 +11,11 @@ module.exports = config({
     ['script', { src: '//cdn.jsdelivr.net/npm/@babel/standalone/babel.min.js' }],
     ['script', { src: 'https://www.googletagmanager.com/gtag/js?id=G-RKKX4QJ4PJ', async: true }],
     ['script', { src: 'scripts/gtag.js' }],
+    ['script', {
+      src: 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js',
+      async: true,
+      'data-ad-client': 'ca-pub-4521521675997745'
+    }],
   ],
   locales: {
     '/': { lang: 'zh-CN' },
@@ -58,5 +63,8 @@ module.exports = config({
         plugins: ['highlight', 'math', 'search', 'notes', 'zoom', 'anything', 'audio', 'chalkboard'],
       },
     },
+    custom: {
+      contentTop: './components/ad.vue',
+    }
   },
 });
