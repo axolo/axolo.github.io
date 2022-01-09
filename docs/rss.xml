@@ -6,8 +6,8 @@
     <link>https://blog.fangyueming.cn/</link>
     <description>WEB应用开发技术笔记</description>
     <language>zh-CN</language>
-    <pubDate>Fri, 07 Jan 2022 00:23:56 GMT</pubDate>
-    <lastBuildDate>Fri, 07 Jan 2022 00:23:56 GMT</lastBuildDate>
+    <pubDate>Sun, 09 Jan 2022 02:14:14 GMT</pubDate>
+    <lastBuildDate>Sun, 09 Jan 2022 02:14:14 GMT</lastBuildDate>
     <generator>@mr-hope/vuepress-plugin-feed</generator>
     <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
     <copyright>Copyright by 方跃明</copyright>
@@ -17,6 +17,62 @@
       <guid>https://blog.fangyueming.cn/</guid>
       <source url="https://blog.fangyueming.cn/rss.xml">博客主页</source>
       <pubDate>Tue, 14 Dec 2021 13:18:38 GMT</pubDate>
+    </item>
+    <item>
+      <title>CentOS 查看各种信息</title>
+      <link>https://blog.fangyueming.cn/centos-info/</link>
+      <guid>https://blog.fangyueming.cn/centos-info/</guid>
+      <source url="https://blog.fangyueming.cn/rss.xml">CentOS 查看各种信息</source>
+      <pubDate>Tue, 03 Apr 2012 00:00:00 GMT</pubDate>
+      <content:encoded><![CDATA[<h1 id="centos-查看各种信息"> CentOS 查看各种信息</h1>
+<div><pre><code><span>rpm</span> -ql nginx                 <span># 查看nginx软件包的安装位置</span>
+<span>rpm</span> -qa                       <span># 查看所有安装的软件包</span>
+<span>uname</span> -a                      <span># 查看内核/操作系统/CPU信息的linux系统信息命令</span>
+<span>head</span> -n <span>1</span> /etc/issue          <span># 查看操作系统版本，是数字1不是字母L</span>
+<span>cat</span> /proc/cpuinfo             <span># 查看CPU信息的linux系统信息命令</span>
+<span>hostname</span>                      <span># 查看计算机名的linux系统信息命令</span>
+lspci -tv                     <span># 列出所有PCI设备</span>
+lsusb -tv                     <span># 列出所有USB设备的linux系统信息命令</span>
+lsmod                         <span># 列出加载的内核模块</span>
+<span>env</span>                           <span># 查看环境变量资源</span>
+<span>free</span> -m                       <span># 查看内存使用量和交换区使用量</span>
+<span>df</span> -h                         <span># 查看各分区使用情况</span>
+<span>du</span> -sh                        <span># 查看指定目录的大小</span>
+<span>grep</span> MemTotal /proc/meminfo   <span># 查看内存总量</span>
+<span>grep</span> MemFree /proc/meminfo    <span># 查看空闲内存量</span>
+<span>uptime</span>                        <span># 查看系统运行时间、用户数、负载</span>
+<span>cat</span> /proc/loadavg             <span># 查看系统负载磁盘和分区</span>
+<span>mount</span> <span>|</span> <span>column</span> -t             <span># 查看挂接的分区状态</span>
+<span>fdisk</span> -l                      <span># 查看所有分区</span>
+<span>swapon</span> -s                     <span># 查看所有交换分区</span>
+hdparm -i /dev/hda            <span># 查看磁盘参数(仅适用于IDE设备)</span>
+<span>dmesg</span> <span>|</span> <span>grep</span> IDE              <span># 查看启动时IDE设备检测状况网络</span>
+<span>ifconfig</span>                      <span># 查看所有网络接口的属性</span>
+iptables -L                   <span># 查看防火墙设置</span>
+route -n                      <span># 查看路由表</span>
+<span>netstat</span> -lntp                 <span># 查看所有监听端口</span>
+<span>netstat</span> -antp                 <span># 查看所有已经建立的连接</span>
+<span>netstat</span> -s                    <span># 查看网络统计信息进程</span>
+<span>ps</span> -ef                        <span># 查看所有进程</span>
+<span>top</span>                           <span># 实时显示进程状态用户</span>
+w                             <span># 查看活动用户</span>
+<span>id</span>                            <span># 查看指定用户信息</span>
+last                          <span># 查看用户登录日志</span>
+<span>cut</span> -d: -f1 /etc/passwd       <span># 查看系统所有用户</span>
+<span>cut</span> -d: -f1 /etc/group        <span># 查看系统所有组</span>
+<span>crontab</span> -l                    <span># 查看当前用户的计划任务服务</span>
+<span>chkconfig</span> –list               <span># 列出所有系统服务</span>
+<span>chkconfig</span> –list <span>|</span> <span>grep</span> on     <span># 列出所有启动的系统服务程序</span>
+<span>cat</span> /proc/cpuinfo             <span># 查看CPU相关参数的linux系统命令</span>
+<span>cat</span> /proc/partitions          <span># 查看linux硬盘和分区信息的系统信息命令</span>
+<span>cat</span> /proc/meminfo             <span># 查看linux系统内存信息的linux系统命令</span>
+<span>cat</span> /proc/version             <span># 查看版本，类似uname -r</span>
+<span>cat</span> /proc/ioports             <span># 查看设备io端口</span>
+<span>cat</span> /proc/interrupts          <span># 查看中断</span>
+<span>cat</span> /proc/pci                 <span># 查看pci设备的信息</span>
+<span>cat</span> /proc/swaps               <span># 查看所有swap分区的信息</span>
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br><span>9</span><br><span>10</span><br><span>11</span><br><span>12</span><br><span>13</span><br><span>14</span><br><span>15</span><br><span>16</span><br><span>17</span><br><span>18</span><br><span>19</span><br><span>20</span><br><span>21</span><br><span>22</span><br><span>23</span><br><span>24</span><br><span>25</span><br><span>26</span><br><span>27</span><br><span>28</span><br><span>29</span><br><span>30</span><br><span>31</span><br><span>32</span><br><span>33</span><br><span>34</span><br><span>35</span><br><span>36</span><br><span>37</span><br><span>38</span><br><span>39</span><br><span>40</span><br><span>41</span><br><span>42</span><br><span>43</span><br><span>44</span><br><span>45</span><br><span>46</span><br></div></div>]]></content:encoded>
     </item>
     <item>
       <title>CentOS防火墙</title>
@@ -89,195 +145,6 @@ firewall-cmd --zone<span>=</span>work --remove-service<span>=</span>smtp    <spa
 2019-12-25</p>
 </blockquote>
 ]]></content:encoded>
-    </item>
-    <item>
-      <title>CentOS安装KVM</title>
-      <link>https://blog.fangyueming.cn/centos-kvm/</link>
-      <guid>https://blog.fangyueming.cn/centos-kvm/</guid>
-      <source url="https://blog.fangyueming.cn/rss.xml">CentOS安装KVM</source>
-      <pubDate>Fri, 04 Apr 2014 00:00:00 GMT</pubDate>
-      <content:encoded><![CDATA[<h1 id="centos安装kvm"> CentOS安装KVM</h1>
-<p>很多人都使用Openstack，通过nova来管理KVM，对于KVM本身其实很陌生，本文理论联系实践，加深对KVM的认识。先弄清楚几个概念和关系：</p>
-<h2 id="openstack、kvm、qemu-kvm、libvirt的关系"> Openstack、kvm、qemu-kvm、libvirt的关系</h2>
-<ul>
-<li>KVM是最底层的hypervisor，它是用来模拟CPU的运行，它缺少了对network和周边I/O的支持，是没法直接用的。</li>
-<li>QEMU-KVM就是建基于KVM上面的，它提供了完整的网络和I/O支持。</li>
-<li>Openstack不直接控制qemu-kvm，它使用一个叫libvirt的库间接控制qemu-lvm。</li>
-<li>libvirt提供了跨VM平台的功能，除了QEMU的模拟器，还可以控制vmware、virtualbox、xen等。为了实现openstack的跨VM特性，openstack使用libvirt，而不直接用qemu-kvm。libvirt还提供了一些高级的功能，例如pool/vol管理。</li>
-</ul>
-<p><img src="./openstack.png" alt="centos-kvm-openstack" /></p>
-<h2 id="虚拟机服务器和客户端的关系"> 虚拟机服务器和客户端的关系</h2>
-<table>
-<thead>
-<tr>
-<th>位置</th>
-<th style="text-align:center">组件</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>服务端</td>
-<td style="text-align:center">kvm、qemu-kvm、libvirt、python-virtinst、virt-viewer</td>
-</tr>
-<tr>
-<td>客户端</td>
-<td style="text-align:center">virt-manager</td>
-</tr>
-</tbody>
-</table>
-<p>一般来说，服务器端尽可能的只安装必要的服务器组件，以避免性能问题、误操作和漏洞攻击等等，而管理服务器的客户端软件安装在客户端。当然，服务端和客户端在同一个操作系统的情况也是允许的，经常用在实验环境，但部署在生产环境应该极力避免。</p>
-<h2 id="部署kvm"> 部署KVM</h2>
-<h3 id="一、前提条件"> 一、前提条件</h3>
-<p>检查CPU虚拟化是否支持kvm；最小化安装CentOS；关闭SELinux、关闭iptables或者打开相应的防火墙端口。</p>
-<p>检查CPU是否支持虚拟化，用以下命令，其中vmx对应intel，svm对应amd，运行后如果有对应输出则支持虚拟化，无输出则表面不支持虚拟化。</p>
-<div><pre><code><span>cat</span> /proc/cpuinfo <span>|</span> <span>grep</span> -E <span>'(vmx|svm)'</span>
-</code></pre>
-<div><span>1</span><br></div></div><p>在/etc/sysconfig/selinux中设置参数selinux=0，关闭SELinux。</p>
-<h3 id="二、服务器端安装kvm服务"> 二、服务器端安装KVM服务</h3>
-<p>安装kvm服务端及相关组件，其中python-virtinst用于在创建虚拟机时编辑配置文件， virt-viewer用于客户端管理器管理虚拟机时开启图形控制台，防止黑屏。</p>
-<div><pre><code>yum <span>install</span> kvm qemu-kvm libvirt  python-virtinst  virt-viewer
-</code></pre>
-<div><span>1</span><br></div></div><p>启动libvirt服务</p>
-<div><pre><code>/etc/init.d/libvirtd start
-</code></pre>
-<div><span>1</span><br></div></div><p>查看kvm服务是否正常，目前没任何虚拟机，所以没有内容显示
-进入virsh后，可以使用virsh的相关指令。help为帮助，exit退出virsh。</p>
-<div><pre><code><span>virsh</span>
-list
-</code></pre>
-<div><span>1</span><br><span>2</span><br></div></div><h3 id="三、服务器端网络设置"> 三、服务器端网络设置</h3>
-<p>虚拟机接入网络常用有两种方式，一种是NAT一种是Brigde，一般采用Brigde方式。</p>
-<p><img src="./network-brige.png" alt="network-brige" /></p>
-<p>桥接模式需要设置，首先，创建一个文件“/etc/sysconfig/network-scripts/ifcfg-br0”：</p>
-<div><pre><code><span># /etc/sysconfig/network-scripts/ifcfg-br0</span>
-<span>DEVICE</span><span>=</span><span>br0</span>
-<span>ONBOOT</span><span>=</span><span>yes</span>
-<span>TYPE</span><span>=</span><span>Bridge             #注意大小写</span>
-<span>BOOTPROTO</span><span>=</span><span>static</span>
-<span>IPADDR</span><span>=</span><span>192.168.255.180</span>
-<span>NETMASK</span><span>=</span><span>255.255.255.0</span>
-<span>GATEWAY</span><span>=</span><span>192.168.255.254</span>
-</code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br></div></div><p>其次，修改“/etc/sysconfig/network-scripts/ifcfg-eth0”：</p>
-<div><pre><code><span># /etc/sysconfig/network-scripts/ifcfg-eth0</span>
-<span>DEVICE</span><span>=</span><span>eth0</span>
-<span>NM_CONTROLLED</span><span>=</span><span>no    #必须关闭NM_CONTROLLED</span>
-<span>BOOTPROTO</span><span>=</span><span>none      #由于是桥接，BOOTPROTO=none，不要配置IP等信息</span>
-<span>ONBOOT</span><span>=</span><span>yes          #启动时连接网卡</span>
-<span>BRIDGE</span><span>=</span><span>br0          #桥接到br0</span>
-</code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br></div></div><p>重启网络服务</p>
-<div><pre><code>/etc/init.d/network restart
-</code></pre>
-<div><span>1</span><br></div></div><p>查看桥接网络</p>
-<div><pre><code>brctl show
-</code></pre>
-<div><span>1</span><br></div></div><table>
-<thead>
-<tr>
-<th>bridge name</th>
-<th>bridge id</th>
-<th>STP enabled</th>
-<th>interfaces</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>br0</td>
-<td>8000.00e081de016c</td>
-<td>no</td>
-<td>eth0</td>
-</tr>
-<tr>
-<td>virbr0</td>
-<td>8000.5254009219a2</td>
-<td>yes</td>
-<td>virbr0-nic</td>
-</tr>
-</tbody>
-</table>
-<p>四、kvm与virt-manager的关系**</p>
-<p>virt-manager图形化管理工具一般装在客户端桌面系统上，管理kvm host的虚拟网络、存储、网络接口，vm的创建、配置、删除、启动关机等。</p>
-<p><img src="./virt-manager-client.png" alt="virt-manager客户端" /></p>
-<h3 id="五、客户端安装及使用virt-manager"> 五、客户端安装及使用virt-manager</h3>
-<ul>
-<li>客户端需要CentOS桌面系统。在“主菜单”→“系统”→“管理”→“添加/删除软件”中查找“virt-manager”，找到后，点击“应用”，进行安装。</li>
-<li>安装完成后，打开方式位于“主菜单”→“系统工具”→“虚拟系统管理器”。</li>
-</ul>
-<p><img src="./virt-manager-install.png" alt="安装virt-manager" /></p>
-<p><img src="./virt-manager-connection.png" alt="连接KVM服务器" /></p>
-<p><img src="./vm.png" alt="虚拟机配置" /></p>
-<h3 id="六、vnc的使用"> 六、VNC的使用</h3>
-<p>对应KVM服务器一般采用OpenStack、CloudStack等等工具利用浏览器来进行管理，这些工具安装配置更加复杂。
-而virt-manager虽然简单，但目前为止还没有Windows版本。对于习惯Windows的用户，随时随地就能使用Linux桌面比较困难。因此需要VNC连接到Linux桌面客户端再利用virt-manager管理虚拟服务器。
-建议在装有virt-manager的Linux桌面上安装VNC服务器，并开启VNC服务，以便Windows用户使用VNC客户端进行控制。</p>
-<h3 id="七、需要进阶掌握的内容"> 七、需要进阶掌握的内容</h3>
-<ol>
-<li>libvirt命令行</li>
-<li>深入理解kvm相关概念</li>
-<li>linux相关概念、命令及shell编程</li>
-</ol>
-<blockquote>
-<p>方跃明
-2014-04-04</p>
-</blockquote>
-]]></content:encoded>
-    </item>
-    <item>
-      <title>CentOS 查看各种信息</title>
-      <link>https://blog.fangyueming.cn/centos-info/</link>
-      <guid>https://blog.fangyueming.cn/centos-info/</guid>
-      <source url="https://blog.fangyueming.cn/rss.xml">CentOS 查看各种信息</source>
-      <pubDate>Tue, 03 Apr 2012 00:00:00 GMT</pubDate>
-      <content:encoded><![CDATA[<h1 id="centos-查看各种信息"> CentOS 查看各种信息</h1>
-<div><pre><code><span>rpm</span> -ql nginx                 <span># 查看nginx软件包的安装位置</span>
-<span>rpm</span> -qa                       <span># 查看所有安装的软件包</span>
-<span>uname</span> -a                      <span># 查看内核/操作系统/CPU信息的linux系统信息命令</span>
-<span>head</span> -n <span>1</span> /etc/issue          <span># 查看操作系统版本，是数字1不是字母L</span>
-<span>cat</span> /proc/cpuinfo             <span># 查看CPU信息的linux系统信息命令</span>
-<span>hostname</span>                      <span># 查看计算机名的linux系统信息命令</span>
-lspci -tv                     <span># 列出所有PCI设备</span>
-lsusb -tv                     <span># 列出所有USB设备的linux系统信息命令</span>
-lsmod                         <span># 列出加载的内核模块</span>
-<span>env</span>                           <span># 查看环境变量资源</span>
-<span>free</span> -m                       <span># 查看内存使用量和交换区使用量</span>
-<span>df</span> -h                         <span># 查看各分区使用情况</span>
-<span>du</span> -sh                        <span># 查看指定目录的大小</span>
-<span>grep</span> MemTotal /proc/meminfo   <span># 查看内存总量</span>
-<span>grep</span> MemFree /proc/meminfo    <span># 查看空闲内存量</span>
-<span>uptime</span>                        <span># 查看系统运行时间、用户数、负载</span>
-<span>cat</span> /proc/loadavg             <span># 查看系统负载磁盘和分区</span>
-<span>mount</span> <span>|</span> <span>column</span> -t             <span># 查看挂接的分区状态</span>
-<span>fdisk</span> -l                      <span># 查看所有分区</span>
-<span>swapon</span> -s                     <span># 查看所有交换分区</span>
-hdparm -i /dev/hda            <span># 查看磁盘参数(仅适用于IDE设备)</span>
-<span>dmesg</span> <span>|</span> <span>grep</span> IDE              <span># 查看启动时IDE设备检测状况网络</span>
-<span>ifconfig</span>                      <span># 查看所有网络接口的属性</span>
-iptables -L                   <span># 查看防火墙设置</span>
-route -n                      <span># 查看路由表</span>
-<span>netstat</span> -lntp                 <span># 查看所有监听端口</span>
-<span>netstat</span> -antp                 <span># 查看所有已经建立的连接</span>
-<span>netstat</span> -s                    <span># 查看网络统计信息进程</span>
-<span>ps</span> -ef                        <span># 查看所有进程</span>
-<span>top</span>                           <span># 实时显示进程状态用户</span>
-w                             <span># 查看活动用户</span>
-<span>id</span>                            <span># 查看指定用户信息</span>
-last                          <span># 查看用户登录日志</span>
-<span>cut</span> -d: -f1 /etc/passwd       <span># 查看系统所有用户</span>
-<span>cut</span> -d: -f1 /etc/group        <span># 查看系统所有组</span>
-<span>crontab</span> -l                    <span># 查看当前用户的计划任务服务</span>
-<span>chkconfig</span> –list               <span># 列出所有系统服务</span>
-<span>chkconfig</span> –list <span>|</span> <span>grep</span> on     <span># 列出所有启动的系统服务程序</span>
-<span>cat</span> /proc/cpuinfo             <span># 查看CPU相关参数的linux系统命令</span>
-<span>cat</span> /proc/partitions          <span># 查看linux硬盘和分区信息的系统信息命令</span>
-<span>cat</span> /proc/meminfo             <span># 查看linux系统内存信息的linux系统命令</span>
-<span>cat</span> /proc/version             <span># 查看版本，类似uname -r</span>
-<span>cat</span> /proc/ioports             <span># 查看设备io端口</span>
-<span>cat</span> /proc/interrupts          <span># 查看中断</span>
-<span>cat</span> /proc/pci                 <span># 查看pci设备的信息</span>
-<span>cat</span> /proc/swaps               <span># 查看所有swap分区的信息</span>
-</code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br><span>9</span><br><span>10</span><br><span>11</span><br><span>12</span><br><span>13</span><br><span>14</span><br><span>15</span><br><span>16</span><br><span>17</span><br><span>18</span><br><span>19</span><br><span>20</span><br><span>21</span><br><span>22</span><br><span>23</span><br><span>24</span><br><span>25</span><br><span>26</span><br><span>27</span><br><span>28</span><br><span>29</span><br><span>30</span><br><span>31</span><br><span>32</span><br><span>33</span><br><span>34</span><br><span>35</span><br><span>36</span><br><span>37</span><br><span>38</span><br><span>39</span><br><span>40</span><br><span>41</span><br><span>42</span><br><span>43</span><br><span>44</span><br><span>45</span><br><span>46</span><br></div></div>]]></content:encoded>
     </item>
     <item>
       <title>CentOS 快速安装常用开发工具</title>
@@ -477,6 +344,319 @@ nameserver 8.8.8.8
 2019-12-25</p>
 </blockquote>
 ]]></content:encoded>
+    </item>
+    <item>
+      <title>Chrome inspect开发钉钉应用</title>
+      <link>https://blog.fangyueming.cn/chrome-inspect/</link>
+      <guid>https://blog.fangyueming.cn/chrome-inspect/</guid>
+      <source url="https://blog.fangyueming.cn/rss.xml">Chrome inspect开发钉钉应用</source>
+      <pubDate>Sun, 07 Apr 2019 00:00:00 GMT</pubDate>
+      <content:encoded><![CDATA[<h1 id="chrome-inspect开发钉钉应用"> Chrome inspect开发钉钉应用</h1>
+<p><code>Chrome inspect</code>是<code>Chrome</code>浏览器基于<code>webkit remote debug</code>的实现，支持<code>Android</code>模拟器和<code>Android</code>真实设备。</p>
+<p>但由于国情所致，国内<code>Android</code>大部分手机对于<code>Google Mobile Service</code>的支持甚是微弱，很多设备甚至完全阉割，且无法安装。</p>
+<p>因此，推荐使用未被阉割的<code>Android</code>模拟器进行开发。</p>
+<div><p>提示</p>
+<p>由于国情所致，下载和访问页面可能产生不可预期的错误，请自行解决。</p>
+</div>
+<h2 id="钉钉开发版"> 钉钉开发版</h2>
+<p>钉钉正式版不支持<code>Chrome inspect</code>，请在<a href="https://open-doc.dingtalk.com/microapp/kn6zg7" target="_blank" rel="noopener noreferrer">钉钉开发者工具</a>中下载钉钉开发版。</p>
+<h2 id="真机调试"> 真机调试</h2>
+<p>真机使用USB连接到电脑，打开开发者模式，允许调试，才能被<code>Chrome inspect</code>发现。</p>
+<p><img src="./android-develop.jpg" alt="开发者模式" /></p>
+<p><img src="./android-allow-debug.jpg" alt="允许调试" /></p>
+<h2 id="模拟器"> 模拟器</h2>
+<p>推荐<a href="https://www.genymotion.com/download" target="_blank" rel="noopener noreferrer">下载</a>对开发支持良好的 <a href="https://www.genymotion.com" target="_blank" rel="noopener noreferrer">Genymotion</a> Android模拟器，若无<code>VirtualBox</code>环境请选择<code>with VirtualBox</code>的安装包。
+一般使用默认安装方式，安装时请注意选择<code>Personal User</code>免费使用，土豪随意。</p>
+<div><p>友情提示</p>
+<p>请勿下载夜神、mumu之类的模拟器（<s>游戏机</s>）。</p>
+</div>
+<h2 id="虚拟机"> 虚拟机</h2>
+<p>打开<code>Genymotion</code>模拟器，请选择较高版本的虚拟设备模板，点击右侧菜单<code>INSTALL</code>，下载完成自动安装。</p>
+<p><img src="./vm-install.jpg" alt="安装虚拟机" /></p>
+<p>回到<code>Genymotion</code>模拟器，启动虚拟机，默认已经打开开发者模式。</p>
+<p>将钉钉开发版拖入虚拟机中，完成安装，打开钉钉应用，进入钉钉微应用。</p>
+<p><img src="./vm-run.jpg" alt="虚拟机启动" /></p>
+<div><p>离线下载</p>
+<p>若网络环境慢需要离线下载模板包，请打开<code>C:\Users\your-name\AppData\Local\Genymobile\genymotion.log</code>日志，查找<code>.ova</code>（<code>VirtualBox</code>模板格式）字符串。
+得到你想离线下载的文件链接，使用迅雷极速版等符合国情的下载工具下载，完成后双击导入<code>VirtualBox</code>。</p>
+</div>
+<p>若错误请根据错误提示解决问题，比如网络配置错误：</p>
+<p><img src="./vm-setting.jpg" alt="虚拟机网络配置" /></p>
+<h2 id="chrome-inspect"> Chrome inspect</h2>
+<p>使用<code>Chrome</code>浏览器打开<code>chrome://inspect/#devices</code>新标签页，将<code>Remote Target</code>下对应设备的对应页面<code>inspect</code>到桌面端的<code>Chrome</code>。</p>
+<p><img src="./inspect-device.jpg" alt="Chrome inspect" /></p>
+<p>正常情况进入调试页面。</p>
+<p><img src="./inspect-debug.jpg" alt="Chrome debug" /></p>
+<div><p>谨防受骗</p>
+<p>国情问题，很可能会弹出空白页面或者404错误页面（<code>HTTP/1.1 404 Not Found</code>）。
+据说有<code>Chrome inspect</code>对应的<code>WebView</code>离线工具解决，可能需要付费，请务必谨慎。</p>
+</div>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>CentOS安装KVM</title>
+      <link>https://blog.fangyueming.cn/centos-kvm/</link>
+      <guid>https://blog.fangyueming.cn/centos-kvm/</guid>
+      <source url="https://blog.fangyueming.cn/rss.xml">CentOS安装KVM</source>
+      <pubDate>Fri, 04 Apr 2014 00:00:00 GMT</pubDate>
+      <content:encoded><![CDATA[<h1 id="centos安装kvm"> CentOS安装KVM</h1>
+<p>很多人都使用Openstack，通过nova来管理KVM，对于KVM本身其实很陌生，本文理论联系实践，加深对KVM的认识。先弄清楚几个概念和关系：</p>
+<h2 id="openstack、kvm、qemu-kvm、libvirt的关系"> Openstack、kvm、qemu-kvm、libvirt的关系</h2>
+<ul>
+<li>KVM是最底层的hypervisor，它是用来模拟CPU的运行，它缺少了对network和周边I/O的支持，是没法直接用的。</li>
+<li>QEMU-KVM就是建基于KVM上面的，它提供了完整的网络和I/O支持。</li>
+<li>Openstack不直接控制qemu-kvm，它使用一个叫libvirt的库间接控制qemu-lvm。</li>
+<li>libvirt提供了跨VM平台的功能，除了QEMU的模拟器，还可以控制vmware、virtualbox、xen等。为了实现openstack的跨VM特性，openstack使用libvirt，而不直接用qemu-kvm。libvirt还提供了一些高级的功能，例如pool/vol管理。</li>
+</ul>
+<p><img src="./openstack.png" alt="centos-kvm-openstack" /></p>
+<h2 id="虚拟机服务器和客户端的关系"> 虚拟机服务器和客户端的关系</h2>
+<table>
+<thead>
+<tr>
+<th>位置</th>
+<th style="text-align:center">组件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>服务端</td>
+<td style="text-align:center">kvm、qemu-kvm、libvirt、python-virtinst、virt-viewer</td>
+</tr>
+<tr>
+<td>客户端</td>
+<td style="text-align:center">virt-manager</td>
+</tr>
+</tbody>
+</table>
+<p>一般来说，服务器端尽可能的只安装必要的服务器组件，以避免性能问题、误操作和漏洞攻击等等，而管理服务器的客户端软件安装在客户端。当然，服务端和客户端在同一个操作系统的情况也是允许的，经常用在实验环境，但部署在生产环境应该极力避免。</p>
+<h2 id="部署kvm"> 部署KVM</h2>
+<h3 id="一、前提条件"> 一、前提条件</h3>
+<p>检查CPU虚拟化是否支持kvm；最小化安装CentOS；关闭SELinux、关闭iptables或者打开相应的防火墙端口。</p>
+<p>检查CPU是否支持虚拟化，用以下命令，其中vmx对应intel，svm对应amd，运行后如果有对应输出则支持虚拟化，无输出则表面不支持虚拟化。</p>
+<div><pre><code><span>cat</span> /proc/cpuinfo <span>|</span> <span>grep</span> -E <span>'(vmx|svm)'</span>
+</code></pre>
+<div><span>1</span><br></div></div><p>在/etc/sysconfig/selinux中设置参数selinux=0，关闭SELinux。</p>
+<h3 id="二、服务器端安装kvm服务"> 二、服务器端安装KVM服务</h3>
+<p>安装kvm服务端及相关组件，其中python-virtinst用于在创建虚拟机时编辑配置文件， virt-viewer用于客户端管理器管理虚拟机时开启图形控制台，防止黑屏。</p>
+<div><pre><code>yum <span>install</span> kvm qemu-kvm libvirt  python-virtinst  virt-viewer
+</code></pre>
+<div><span>1</span><br></div></div><p>启动libvirt服务</p>
+<div><pre><code>/etc/init.d/libvirtd start
+</code></pre>
+<div><span>1</span><br></div></div><p>查看kvm服务是否正常，目前没任何虚拟机，所以没有内容显示
+进入virsh后，可以使用virsh的相关指令。help为帮助，exit退出virsh。</p>
+<div><pre><code><span>virsh</span>
+list
+</code></pre>
+<div><span>1</span><br><span>2</span><br></div></div><h3 id="三、服务器端网络设置"> 三、服务器端网络设置</h3>
+<p>虚拟机接入网络常用有两种方式，一种是NAT一种是Brigde，一般采用Brigde方式。</p>
+<p><img src="./network-brige.png" alt="network-brige" /></p>
+<p>桥接模式需要设置，首先，创建一个文件“/etc/sysconfig/network-scripts/ifcfg-br0”：</p>
+<div><pre><code><span># /etc/sysconfig/network-scripts/ifcfg-br0</span>
+<span>DEVICE</span><span>=</span><span>br0</span>
+<span>ONBOOT</span><span>=</span><span>yes</span>
+<span>TYPE</span><span>=</span><span>Bridge             #注意大小写</span>
+<span>BOOTPROTO</span><span>=</span><span>static</span>
+<span>IPADDR</span><span>=</span><span>192.168.255.180</span>
+<span>NETMASK</span><span>=</span><span>255.255.255.0</span>
+<span>GATEWAY</span><span>=</span><span>192.168.255.254</span>
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br></div></div><p>其次，修改“/etc/sysconfig/network-scripts/ifcfg-eth0”：</p>
+<div><pre><code><span># /etc/sysconfig/network-scripts/ifcfg-eth0</span>
+<span>DEVICE</span><span>=</span><span>eth0</span>
+<span>NM_CONTROLLED</span><span>=</span><span>no    #必须关闭NM_CONTROLLED</span>
+<span>BOOTPROTO</span><span>=</span><span>none      #由于是桥接，BOOTPROTO=none，不要配置IP等信息</span>
+<span>ONBOOT</span><span>=</span><span>yes          #启动时连接网卡</span>
+<span>BRIDGE</span><span>=</span><span>br0          #桥接到br0</span>
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br></div></div><p>重启网络服务</p>
+<div><pre><code>/etc/init.d/network restart
+</code></pre>
+<div><span>1</span><br></div></div><p>查看桥接网络</p>
+<div><pre><code>brctl show
+</code></pre>
+<div><span>1</span><br></div></div><table>
+<thead>
+<tr>
+<th>bridge name</th>
+<th>bridge id</th>
+<th>STP enabled</th>
+<th>interfaces</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>br0</td>
+<td>8000.00e081de016c</td>
+<td>no</td>
+<td>eth0</td>
+</tr>
+<tr>
+<td>virbr0</td>
+<td>8000.5254009219a2</td>
+<td>yes</td>
+<td>virbr0-nic</td>
+</tr>
+</tbody>
+</table>
+<p>四、kvm与virt-manager的关系**</p>
+<p>virt-manager图形化管理工具一般装在客户端桌面系统上，管理kvm host的虚拟网络、存储、网络接口，vm的创建、配置、删除、启动关机等。</p>
+<p><img src="./virt-manager-client.png" alt="virt-manager客户端" /></p>
+<h3 id="五、客户端安装及使用virt-manager"> 五、客户端安装及使用virt-manager</h3>
+<ul>
+<li>客户端需要CentOS桌面系统。在“主菜单”→“系统”→“管理”→“添加/删除软件”中查找“virt-manager”，找到后，点击“应用”，进行安装。</li>
+<li>安装完成后，打开方式位于“主菜单”→“系统工具”→“虚拟系统管理器”。</li>
+</ul>
+<p><img src="./virt-manager-install.png" alt="安装virt-manager" /></p>
+<p><img src="./virt-manager-connection.png" alt="连接KVM服务器" /></p>
+<p><img src="./vm.png" alt="虚拟机配置" /></p>
+<h3 id="六、vnc的使用"> 六、VNC的使用</h3>
+<p>对应KVM服务器一般采用OpenStack、CloudStack等等工具利用浏览器来进行管理，这些工具安装配置更加复杂。
+而virt-manager虽然简单，但目前为止还没有Windows版本。对于习惯Windows的用户，随时随地就能使用Linux桌面比较困难。因此需要VNC连接到Linux桌面客户端再利用virt-manager管理虚拟服务器。
+建议在装有virt-manager的Linux桌面上安装VNC服务器，并开启VNC服务，以便Windows用户使用VNC客户端进行控制。</p>
+<h3 id="七、需要进阶掌握的内容"> 七、需要进阶掌握的内容</h3>
+<ol>
+<li>libvirt命令行</li>
+<li>深入理解kvm相关概念</li>
+<li>linux相关概念、命令及shell编程</li>
+</ol>
+<blockquote>
+<p>方跃明
+2014-04-04</p>
+</blockquote>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>DELETE方法传递参数</title>
+      <link>https://blog.fangyueming.cn/delete-with-body/</link>
+      <guid>https://blog.fangyueming.cn/delete-with-body/</guid>
+      <source url="https://blog.fangyueming.cn/rss.xml">DELETE方法传递参数</source>
+      <pubDate>Tue, 01 Oct 2019 00:00:00 GMT</pubDate>
+      <content:encoded><![CDATA[<h1 id="delete方法传递参数"> DELETE方法传递参数</h1>
+<div><p>注意</p>
+<p><a href="https://tools.ietf.org/html/rfc2616" target="_blank" rel="noopener noreferrer">RFC2616</a>不建议DELETE方法甚至是GET方法body携带参数。</p>
+</div>
+<h2 id="约束"> 约束</h2>
+<p>尽管如此，实际业务中还是有可能不可回避的遇到，具体实现有以下约束：</p>
+<ul>
+<li>参数必须被<code>data</code>包裹才能正确传递，请务必遵循。</li>
+<li>请求头的<code>Content-Type</code>必须是<code>application/json</code></li>
+</ul>
+<h2 id="请求"> 请求</h2>
+<div><pre><code><span>curl</span> -X DELETE <span>'/car/:id'</span>
+-H <span>'Content-Type: application/json'</span> <span>\</span>
+-d <span>'{ "data": { "deletedBy": "测试删除车辆17" } }'</span>
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br></div></div><table>
+<thead>
+<tr>
+<th>参数</th>
+<th style="text-align:center">必须</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>headers</td>
+<td style="text-align:center">是</td>
+<td>Content-Type: application/json</td>
+</tr>
+<tr>
+<td>:id</td>
+<td style="text-align:center">是</td>
+<td>车辆id</td>
+</tr>
+<tr>
+<td>deletedBy</td>
+<td style="text-align:center"></td>
+<td>停用原因</td>
+</tr>
+</tbody>
+</table>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>钉钉云推送自建RDS最佳实践</title>
+      <link>https://blog.fangyueming.cn/ding-cloud-push/</link>
+      <guid>https://blog.fangyueming.cn/ding-cloud-push/</guid>
+      <source url="https://blog.fangyueming.cn/rss.xml">钉钉云推送自建RDS最佳实践</source>
+      <pubDate>Mon, 08 Apr 2019 00:00:00 GMT</pubDate>
+      <content:encoded><![CDATA[<h1 id="钉钉云推送自建rds最佳实践"> 钉钉云推送自建RDS最佳实践</h1>
+<p>钉钉云推送常规建设方法请参见<a href="https://open-doc.dingtalk.com/microapp/ln6dmh/ib4xrf" target="_blank" rel="noopener noreferrer">钉钉云推送自建RDS官方文档</a>。</p>
+<p>缺陷如下：</p>
+<ol>
+<li><code>MySQL</code>版本必须为5.6或5.7，若应用使用同一数据库引擎，则无法使用<code>MySQL 8.x</code>的<code>CTE</code>等新特性；</li>
+<li>跨服务器触发应用数据库操作很困难，需要应用使用轮询来处理推送数据，浪费资源，时效性差。</li>
+</ol>
+<p>最佳实践：</p>
+<ol>
+<li>钉钉云推送数据表使用<code>FEDERATED</code>引擎连接应用数据库对应表；</li>
+<li>应用数据库的云推送数据表上建立触发器，同步钉钉云推送数据变更操作。</li>
+</ol>
+<p>流程如下：</p>
+<div><pre><code>+------------+    +-----------------+    +---------------------+    +-------------+
+|  DingTalk  |    | Dingtalk RDS    |    | App Database        |    | Data Sync   |
+|  Cloud     | =&gt; | [FEDERATED]     | =&gt; | [TABLE]             | =&gt; | [TRIGGER]   |
+|  Push      |    | ding_cloud_push |    | dingtalk_cloud_push |    | other table |
++------------+    +-----------------+    +---------------------+    +-------------+
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br></div></div><h2 id="应用数据库"> 应用数据库</h2>
+<h3 id="安装mysql8-x"> 安装MySQL8.x</h3>
+<p>参见<a href="./mysql-8-install.html">安装MySQL 8.x</a></p>
+<h3 id="创建钉钉云推送数据表"> 创建钉钉云推送数据表</h3>
+<p>根据钉钉自建RDS文档格式创建钉钉云推送数据表，请留意表可以不同名，不兼容部分有细微改动。</p>
+<div><pre><code><span>CREATE</span> <span>TABLE</span> <span>`</span>dingtalk_cloud_push<span>`</span> <span>(</span>
+  <span>`</span>id<span>`</span> <span>bigint</span><span>(</span><span>20</span><span>)</span> <span>NOT</span> <span>NULL</span> <span>AUTO_INCREMENT</span> <span>COMMENT</span> <span>'ID'</span><span>,</span>
+  <span>`</span>gmt_create<span>`</span> <span>datetime</span> <span>NOT</span> <span>NULL</span> <span>COMMENT</span> <span>'创建时间'</span><span>,</span>
+  <span>`</span>gmt_modified<span>`</span> <span>datetime</span> <span>NOT</span> <span>NULL</span> <span>COMMENT</span> <span>'更新时间'</span><span>,</span>
+  <span>`</span>subscribe_id<span>`</span> <span>varchar</span><span>(</span><span>64</span><span>)</span> <span>NOT</span> <span>NULL</span> <span>COMMENT</span> <span>'订阅方ID'</span><span>,</span>
+  <span>`</span>corp_id<span>`</span> <span>varchar</span><span>(</span><span>64</span><span>)</span> <span>NOT</span> <span>NULL</span> <span>COMMENT</span> <span>'企业ID'</span><span>,</span>
+  <span>`</span>biz_id<span>`</span> <span>varchar</span><span>(</span><span>128</span><span>)</span> <span>NOT</span> <span>NULL</span> <span>COMMENT</span> <span>'业务ID'</span><span>,</span>
+  <span>`</span>biz_type<span>`</span> <span>int</span><span>(</span><span>11</span><span>)</span> <span>NOT</span> <span>NULL</span> <span>COMMENT</span> <span>'业务类型'</span><span>,</span>
+  <span>`</span>biz_data<span>`</span> <span>text</span> <span>NOT</span> <span>NULL</span> <span>COMMENT</span> <span>'业务数据'</span><span>,</span>
+  <span>`</span>open_cursor<span>`</span> <span>bigint</span><span>(</span><span>20</span><span>)</span> <span>NOT</span> <span>NULL</span> <span>COMMENT</span> <span>'对账游标'</span><span>,</span>
+  <span>`</span><span>status</span><span>`</span> <span>int</span><span>(</span><span>11</span><span>)</span> <span>NOT</span> <span>NULL</span> <span>COMMENT</span> <span>'处理状态0为未处理。其他状态开发者自行定义'</span><span>,</span>
+  <span>PRIMARY</span> <span>KEY</span> <span>(</span><span>`</span>id<span>`</span><span>)</span><span>,</span>
+  <span>UNIQUE</span> <span>KEY</span> <span>`</span>uk_subscribe_corp_biz<span>`</span> <span>(</span><span>`</span>subscribe_id<span>`</span><span>,</span><span>`</span>corp_id<span>`</span><span>,</span><span>`</span>biz_id<span>`</span><span>,</span><span>`</span>biz_type<span>`</span><span>)</span>
+<span>)</span> <span>AUTO_INCREMENT</span><span>=</span><span>0</span> <span>DEFAULT</span> <span>CHARSET</span><span>=</span>utf8mb4 <span>COMMENT</span><span>=</span><span>'钉钉云推送高优先级数据'</span><span>;</span>
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br><span>9</span><br><span>10</span><br><span>11</span><br><span>12</span><br><span>13</span><br><span>14</span><br></div></div><h3 id="创建触发器"> 创建触发器</h3>
+<p>触发器根据具体需求改为应用需要的内容，此处仅为示例。</p>
+<div><pre><code><span>DELIMITER</span> $$
+<span>CREATE</span> <span>TRIGGER</span> dingtalk_cloud_push_update
+BEFORE <span>INSERT</span> <span>ON</span> dingtalk_cloud_push <span>FOR EACH ROW</span>
+<span>BEGIN</span>
+  <span>INSERT</span> <span>INTO</span> test <span>(</span>method<span>,</span> <span>data</span><span>)</span> <span>values</span> <span>(</span><span>'insert'</span><span>,</span> new<span>.</span>biz_data<span>)</span><span>;</span>
+<span>END</span>$$
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br></div></div><h2 id="钉钉云推送数据库"> 钉钉云推送数据库</h2>
+<h3 id="安装mysql5-7"> 安装MySQL5.7</h3>
+<p>参见<a href="./mysql-second.html">MySQL多版本共存</a></p>
+<h3 id="启用federated"> 启用FEDERATED</h3>
+<p>修改<code>MySQL</code>配置文件<code>my.cnf</code>启用<code>FEDERATED</code>引擎后重启<code>MySQL</code>服务。</p>
+<div><pre><code><span><span>[</span><span>mysqld</span><span>]</span></span>
+federated
+</code></pre>
+<div><span>1</span><br><span>2</span><br></div></div><h3 id="创建federated表"> 创建FEDERATED表</h3>
+<p>此表被钉钉云推送RDS直接访问，其数据库名称、表名称、字符集、表结构符合钉钉云推送相关格式。</p>
+<div><pre><code><span>CREATE</span> <span>DATABASE</span> ding_cloud_push <span>DEFAULT</span> <span>CHARACTER</span> <span>SET</span> utf8mb4 <span>COLLATE</span> utf8mb4_general_ci<span>;</span>
+<span>CREATE</span> <span>TABLE</span> <span>`</span>open_sync_biz_data<span>`</span> <span>(</span>
+  <span>`</span>id<span>`</span> <span>bigint</span><span>(</span><span>20</span><span>)</span> <span>NOT</span> <span>NULL</span> <span>AUTO_INCREMENT</span> <span>COMMENT</span> <span>'ID'</span><span>,</span>
+  <span>`</span>gmt_create<span>`</span> <span>datetime</span> <span>NOT</span> <span>NULL</span> <span>COMMENT</span> <span>'创建时间'</span><span>,</span>
+  <span>`</span>gmt_modified<span>`</span> <span>datetime</span> <span>NOT</span> <span>NULL</span> <span>COMMENT</span> <span>'更新时间'</span><span>,</span>
+  <span>`</span>subscribe_id<span>`</span> <span>varchar</span><span>(</span><span>64</span><span>)</span> <span>NOT</span> <span>NULL</span> <span>COMMENT</span> <span>'订阅方ID'</span><span>,</span>
+  <span>`</span>corp_id<span>`</span> <span>varchar</span><span>(</span><span>64</span><span>)</span> <span>NOT</span> <span>NULL</span> <span>COMMENT</span> <span>'企业ID'</span><span>,</span>
+  <span>`</span>biz_id<span>`</span> <span>varchar</span><span>(</span><span>128</span><span>)</span> <span>NOT</span> <span>NULL</span> <span>COMMENT</span> <span>'业务ID'</span><span>,</span>
+  <span>`</span>biz_type<span>`</span> <span>int</span><span>(</span><span>11</span><span>)</span> <span>NOT</span> <span>NULL</span> <span>COMMENT</span> <span>'业务类型'</span><span>,</span>
+  <span>`</span>biz_data<span>`</span> <span>text</span> <span>NOT</span> <span>NULL</span> <span>COMMENT</span> <span>'业务数据'</span><span>,</span>
+  <span>`</span>open_cursor<span>`</span> <span>bigint</span><span>(</span><span>20</span><span>)</span> <span>NOT</span> <span>NULL</span> <span>COMMENT</span> <span>'对账游标'</span><span>,</span>
+  <span>`</span><span>status</span><span>`</span> <span>int</span><span>(</span><span>11</span><span>)</span> <span>NOT</span> <span>NULL</span> <span>COMMENT</span> <span>'处理状态0为未处理。其他状态开发者自行定义'</span><span>,</span>
+  <span>PRIMARY</span> <span>KEY</span> <span>(</span><span>`</span>id<span>`</span><span>)</span><span>,</span>
+  <span>UNIQUE</span> <span>KEY</span> <span>`</span>uk_subscribe_corp_biz<span>`</span> <span>(</span><span>`</span>subscribe_id<span>`</span><span>,</span><span>`</span>corp_id<span>`</span><span>,</span><span>`</span>biz_id<span>`</span><span>,</span><span>`</span>biz_type<span>`</span><span>)</span>
+<span>)</span> <span>ENGINE</span><span>=</span>FEDERATED <span>AUTO_INCREMENT</span><span>=</span><span>0</span> <span>DEFAULT</span> <span>CHARSET</span><span>=</span>utf8mb4 <span>COMMENT</span><span>=</span><span>'高优先级数据'</span>
+CONNECTION<span>=</span><span>'mysql://user:password@localhost:3306/appdb/dingtalk_cloud_push'</span><span>;</span>
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br><span>9</span><br><span>10</span><br><span>11</span><br><span>12</span><br><span>13</span><br><span>14</span><br><span>15</span><br><span>16</span><br></div></div>]]></content:encoded>
     </item>
     <item>
       <title>CentOS入坑指南</title>
@@ -870,100 +1050,59 @@ last                          <span># 查看用户登录日志</span>
 <div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br><span>9</span><br><span>10</span><br><span>11</span><br><span>12</span><br><span>13</span><br><span>14</span><br><span>15</span><br><span>16</span><br><span>17</span><br><span>18</span><br><span>19</span><br><span>20</span><br><span>21</span><br><span>22</span><br><span>23</span><br><span>24</span><br><span>25</span><br><span>26</span><br><span>27</span><br><span>28</span><br><span>29</span><br><span>30</span><br><span>31</span><br><span>32</span><br><span>33</span><br><span>34</span><br><span>35</span><br><span>36</span><br><span>37</span><br><span>38</span><br><span>39</span><br><span>40</span><br><span>41</span><br><span>42</span><br><span>43</span><br><span>44</span><br><span>45</span><br><span>46</span><br></div></div>]]></content:encoded>
     </item>
     <item>
-      <title>DELETE方法传递参数</title>
-      <link>https://blog.fangyueming.cn/delete-with-body/</link>
-      <guid>https://blog.fangyueming.cn/delete-with-body/</guid>
-      <source url="https://blog.fangyueming.cn/rss.xml">DELETE方法传递参数</source>
-      <pubDate>Tue, 01 Oct 2019 00:00:00 GMT</pubDate>
-      <content:encoded><![CDATA[<h1 id="delete方法传递参数"> DELETE方法传递参数</h1>
-<div><p>注意</p>
-<p><a href="https://tools.ietf.org/html/rfc2616" target="_blank" rel="noopener noreferrer">RFC2616</a>不建议DELETE方法甚至是GET方法body携带参数。</p>
-</div>
-<h2 id="约束"> 约束</h2>
-<p>尽管如此，实际业务中还是有可能不可回避的遇到，具体实现有以下约束：</p>
-<ul>
-<li>参数必须被<code>data</code>包裹才能正确传递，请务必遵循。</li>
-<li>请求头的<code>Content-Type</code>必须是<code>application/json</code></li>
-</ul>
-<h2 id="请求"> 请求</h2>
-<div><pre><code><span>curl</span> -X DELETE <span>'/car/:id'</span>
--H <span>'Content-Type: application/json'</span> <span>\</span>
--d <span>'{ "data": { "deletedBy": "测试删除车辆17" } }'</span>
+      <title>Docker Portianer</title>
+      <link>https://blog.fangyueming.cn/docker-portianer/</link>
+      <guid>https://blog.fangyueming.cn/docker-portianer/</guid>
+      <source url="https://blog.fangyueming.cn/rss.xml">Docker Portianer</source>
+      <pubDate>Thu, 18 Jun 2020 00:00:00 GMT</pubDate>
+      <content:encoded><![CDATA[<h1 id="docker-portianer"> Docker Portianer</h1>
+<h2 id="安装"> 安装</h2>
+<div><pre><code><span>#!/bin/bash</span>
+<span>#Author: Yueming Fang</span>
+
+docker volume create portainer_data
+
+docker run -d -p <span>9000</span>:9000 --name<span>=</span>portainer --restart<span>=</span>always <span>\</span>
+-v /var/run/docker.sock:/var/run/docker.sock <span>\</span>
+-v portainer_data:/data <span>\</span>
+portainer/portainer-ce
 </code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br></div></div><table>
-<thead>
-<tr>
-<th>参数</th>
-<th style="text-align:center">必须</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>headers</td>
-<td style="text-align:center">是</td>
-<td>Content-Type: application/json</td>
-</tr>
-<tr>
-<td>:id</td>
-<td style="text-align:center">是</td>
-<td>车辆id</td>
-</tr>
-<tr>
-<td>deletedBy</td>
-<td style="text-align:center"></td>
-<td>停用原因</td>
-</tr>
-</tbody>
-</table>
-]]></content:encoded>
-    </item>
-    <item>
-      <title>Chrome inspect开发钉钉应用</title>
-      <link>https://blog.fangyueming.cn/chrome-inspect/</link>
-      <guid>https://blog.fangyueming.cn/chrome-inspect/</guid>
-      <source url="https://blog.fangyueming.cn/rss.xml">Chrome inspect开发钉钉应用</source>
-      <pubDate>Sun, 07 Apr 2019 00:00:00 GMT</pubDate>
-      <content:encoded><![CDATA[<h1 id="chrome-inspect开发钉钉应用"> Chrome inspect开发钉钉应用</h1>
-<p><code>Chrome inspect</code>是<code>Chrome</code>浏览器基于<code>webkit remote debug</code>的实现，支持<code>Android</code>模拟器和<code>Android</code>真实设备。</p>
-<p>但由于国情所致，国内<code>Android</code>大部分手机对于<code>Google Mobile Service</code>的支持甚是微弱，很多设备甚至完全阉割，且无法安装。</p>
-<p>因此，推荐使用未被阉割的<code>Android</code>模拟器进行开发。</p>
-<div><p>提示</p>
-<p>由于国情所致，下载和访问页面可能产生不可预期的错误，请自行解决。</p>
-</div>
-<h2 id="钉钉开发版"> 钉钉开发版</h2>
-<p>钉钉正式版不支持<code>Chrome inspect</code>，请在<a href="https://open-doc.dingtalk.com/microapp/kn6zg7" target="_blank" rel="noopener noreferrer">钉钉开发者工具</a>中下载钉钉开发版。</p>
-<h2 id="真机调试"> 真机调试</h2>
-<p>真机使用USB连接到电脑，打开开发者模式，允许调试，才能被<code>Chrome inspect</code>发现。</p>
-<p><img src="./android-develop.jpg" alt="开发者模式" /></p>
-<p><img src="./android-allow-debug.jpg" alt="允许调试" /></p>
-<h2 id="模拟器"> 模拟器</h2>
-<p>推荐<a href="https://www.genymotion.com/download" target="_blank" rel="noopener noreferrer">下载</a>对开发支持良好的 <a href="https://www.genymotion.com" target="_blank" rel="noopener noreferrer">Genymotion</a> Android模拟器，若无<code>VirtualBox</code>环境请选择<code>with VirtualBox</code>的安装包。
-一般使用默认安装方式，安装时请注意选择<code>Personal User</code>免费使用，土豪随意。</p>
-<div><p>友情提示</p>
-<p>请勿下载夜神、mumu之类的模拟器（<s>游戏机</s>）。</p>
-</div>
-<h2 id="虚拟机"> 虚拟机</h2>
-<p>打开<code>Genymotion</code>模拟器，请选择较高版本的虚拟设备模板，点击右侧菜单<code>INSTALL</code>，下载完成自动安装。</p>
-<p><img src="./vm-install.jpg" alt="安装虚拟机" /></p>
-<p>回到<code>Genymotion</code>模拟器，启动虚拟机，默认已经打开开发者模式。</p>
-<p>将钉钉开发版拖入虚拟机中，完成安装，打开钉钉应用，进入钉钉微应用。</p>
-<p><img src="./vm-run.jpg" alt="虚拟机启动" /></p>
-<div><p>离线下载</p>
-<p>若网络环境慢需要离线下载模板包，请打开<code>C:\Users\your-name\AppData\Local\Genymobile\genymotion.log</code>日志，查找<code>.ova</code>（<code>VirtualBox</code>模板格式）字符串。
-得到你想离线下载的文件链接，使用迅雷极速版等符合国情的下载工具下载，完成后双击导入<code>VirtualBox</code>。</p>
-</div>
-<p>若错误请根据错误提示解决问题，比如网络配置错误：</p>
-<p><img src="./vm-setting.jpg" alt="虚拟机网络配置" /></p>
-<h2 id="chrome-inspect"> Chrome inspect</h2>
-<p>使用<code>Chrome</code>浏览器打开<code>chrome://inspect/#devices</code>新标签页，将<code>Remote Target</code>下对应设备的对应页面<code>inspect</code>到桌面端的<code>Chrome</code>。</p>
-<p><img src="./inspect-device.jpg" alt="Chrome inspect" /></p>
-<p>正常情况进入调试页面。</p>
-<p><img src="./inspect-debug.jpg" alt="Chrome debug" /></p>
-<div><p>谨防受骗</p>
-<p>国情问题，很可能会弹出空白页面或者404错误页面（<code>HTTP/1.1 404 Not Found</code>）。
-据说有<code>Chrome inspect</code>对应的<code>WebView</code>离线工具解决，可能需要付费，请务必谨慎。</p>
-</div>
+<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br><span>9</span><br></div></div><h2 id="更新"> 更新</h2>
+<div><pre><code>docker container update protainer
+</code></pre>
+<div><span>1</span><br></div></div><h2 id="修改端口"> 修改端口</h2>
+<p>请避开常用端口，比如如Apache的FastCGI使用9000端口，若被占用，请指定参数重新安装。
+或修改配置：</p>
+<div><pre><code>docker stop portainer-container-id <span># 停止容器</span>
+systemctl stop docker <span># 停止Docker服务</span>
+<span>vim</span> /var/lib/docker/containers/portainer-container-id/hostconfig.json <span># 修改并保存</span>
+<span>vim</span> /var/lib/docker/containers/portainer-container-id/config.v2.json <span># 修改并保存</span>
+systemctl start docker <span># 启动Docker服务</span>
+docker start portainer-container-id <span># 启动容器</span>
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br></div></div><p>比如：<code>HostPort</code>从<code>9000</code>改为<code>9900</code></p>
+<h3 id="hostconfig-json"> hostconfig.json</h3>
+<div><pre><code><span>{</span>
+  <span>"PortBindings"</span><span>:</span>  <span>{</span>
+    <span>"9000/tcp"</span><span>:</span><span>[</span><span>{</span>
+      <span>"HostIp"</span><span>:</span><span>""</span><span>,</span>
+      <span>"HostPort"</span><span>:</span><span>"9900"</span>
+    <span>}</span><span>]</span>
+  <span>}</span>
+<span>}</span>
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br></div></div><h3 id="config-v2-json"> config.v2.json</h3>
+<div><pre><code><span>{</span>
+  <span>"Ports"</span><span>:</span> <span>{</span>
+    <span>"9000/tcp"</span><span>:</span> <span>[</span><span>{</span>
+      <span>"HostIp"</span><span>:</span> <span>"0.0.0.0"</span><span>,</span>
+      <span>"HostPort"</span><span>:</span> <span>"9900"</span>
+    <span>}</span><span>]</span>
+  <span>}</span>
+<span>}</span>
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br></div></div><h2 id="后记"> 后记</h2>
+<p>鉴于 <a href="https://www.portainer.io/" target="_blank" rel="noopener noreferrer">portainer</a> 更新频率相当高，欢迎访问官网，获得正确打开方式。</p>
 ]]></content:encoded>
     </item>
     <item>
@@ -1041,145 +1180,6 @@ docker <span>exec</span> mysql mysqldump --skip-opt --databases <span>${db}</spa
 <div><pre><code>docker <span>exec</span> -it mysql <span>bash</span>
 </code></pre>
 <div><span>1</span><br></div></div>]]></content:encoded>
-    </item>
-    <item>
-      <title>钉钉云推送自建RDS最佳实践</title>
-      <link>https://blog.fangyueming.cn/ding-cloud-push/</link>
-      <guid>https://blog.fangyueming.cn/ding-cloud-push/</guid>
-      <source url="https://blog.fangyueming.cn/rss.xml">钉钉云推送自建RDS最佳实践</source>
-      <pubDate>Mon, 08 Apr 2019 00:00:00 GMT</pubDate>
-      <content:encoded><![CDATA[<h1 id="钉钉云推送自建rds最佳实践"> 钉钉云推送自建RDS最佳实践</h1>
-<p>钉钉云推送常规建设方法请参见<a href="https://open-doc.dingtalk.com/microapp/ln6dmh/ib4xrf" target="_blank" rel="noopener noreferrer">钉钉云推送自建RDS官方文档</a>。</p>
-<p>缺陷如下：</p>
-<ol>
-<li><code>MySQL</code>版本必须为5.6或5.7，若应用使用同一数据库引擎，则无法使用<code>MySQL 8.x</code>的<code>CTE</code>等新特性；</li>
-<li>跨服务器触发应用数据库操作很困难，需要应用使用轮询来处理推送数据，浪费资源，时效性差。</li>
-</ol>
-<p>最佳实践：</p>
-<ol>
-<li>钉钉云推送数据表使用<code>FEDERATED</code>引擎连接应用数据库对应表；</li>
-<li>应用数据库的云推送数据表上建立触发器，同步钉钉云推送数据变更操作。</li>
-</ol>
-<p>流程如下：</p>
-<div><pre><code>+------------+    +-----------------+    +---------------------+    +-------------+
-|  DingTalk  |    | Dingtalk RDS    |    | App Database        |    | Data Sync   |
-|  Cloud     | =&gt; | [FEDERATED]     | =&gt; | [TABLE]             | =&gt; | [TRIGGER]   |
-|  Push      |    | ding_cloud_push |    | dingtalk_cloud_push |    | other table |
-+------------+    +-----------------+    +---------------------+    +-------------+
-</code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br></div></div><h2 id="应用数据库"> 应用数据库</h2>
-<h3 id="安装mysql8-x"> 安装MySQL8.x</h3>
-<p>参见<a href="./mysql-8-install.html">安装MySQL 8.x</a></p>
-<h3 id="创建钉钉云推送数据表"> 创建钉钉云推送数据表</h3>
-<p>根据钉钉自建RDS文档格式创建钉钉云推送数据表，请留意表可以不同名，不兼容部分有细微改动。</p>
-<div><pre><code><span>CREATE</span> <span>TABLE</span> <span>`</span>dingtalk_cloud_push<span>`</span> <span>(</span>
-  <span>`</span>id<span>`</span> <span>bigint</span><span>(</span><span>20</span><span>)</span> <span>NOT</span> <span>NULL</span> <span>AUTO_INCREMENT</span> <span>COMMENT</span> <span>'ID'</span><span>,</span>
-  <span>`</span>gmt_create<span>`</span> <span>datetime</span> <span>NOT</span> <span>NULL</span> <span>COMMENT</span> <span>'创建时间'</span><span>,</span>
-  <span>`</span>gmt_modified<span>`</span> <span>datetime</span> <span>NOT</span> <span>NULL</span> <span>COMMENT</span> <span>'更新时间'</span><span>,</span>
-  <span>`</span>subscribe_id<span>`</span> <span>varchar</span><span>(</span><span>64</span><span>)</span> <span>NOT</span> <span>NULL</span> <span>COMMENT</span> <span>'订阅方ID'</span><span>,</span>
-  <span>`</span>corp_id<span>`</span> <span>varchar</span><span>(</span><span>64</span><span>)</span> <span>NOT</span> <span>NULL</span> <span>COMMENT</span> <span>'企业ID'</span><span>,</span>
-  <span>`</span>biz_id<span>`</span> <span>varchar</span><span>(</span><span>128</span><span>)</span> <span>NOT</span> <span>NULL</span> <span>COMMENT</span> <span>'业务ID'</span><span>,</span>
-  <span>`</span>biz_type<span>`</span> <span>int</span><span>(</span><span>11</span><span>)</span> <span>NOT</span> <span>NULL</span> <span>COMMENT</span> <span>'业务类型'</span><span>,</span>
-  <span>`</span>biz_data<span>`</span> <span>text</span> <span>NOT</span> <span>NULL</span> <span>COMMENT</span> <span>'业务数据'</span><span>,</span>
-  <span>`</span>open_cursor<span>`</span> <span>bigint</span><span>(</span><span>20</span><span>)</span> <span>NOT</span> <span>NULL</span> <span>COMMENT</span> <span>'对账游标'</span><span>,</span>
-  <span>`</span><span>status</span><span>`</span> <span>int</span><span>(</span><span>11</span><span>)</span> <span>NOT</span> <span>NULL</span> <span>COMMENT</span> <span>'处理状态0为未处理。其他状态开发者自行定义'</span><span>,</span>
-  <span>PRIMARY</span> <span>KEY</span> <span>(</span><span>`</span>id<span>`</span><span>)</span><span>,</span>
-  <span>UNIQUE</span> <span>KEY</span> <span>`</span>uk_subscribe_corp_biz<span>`</span> <span>(</span><span>`</span>subscribe_id<span>`</span><span>,</span><span>`</span>corp_id<span>`</span><span>,</span><span>`</span>biz_id<span>`</span><span>,</span><span>`</span>biz_type<span>`</span><span>)</span>
-<span>)</span> <span>AUTO_INCREMENT</span><span>=</span><span>0</span> <span>DEFAULT</span> <span>CHARSET</span><span>=</span>utf8mb4 <span>COMMENT</span><span>=</span><span>'钉钉云推送高优先级数据'</span><span>;</span>
-</code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br><span>9</span><br><span>10</span><br><span>11</span><br><span>12</span><br><span>13</span><br><span>14</span><br></div></div><h3 id="创建触发器"> 创建触发器</h3>
-<p>触发器根据具体需求改为应用需要的内容，此处仅为示例。</p>
-<div><pre><code><span>DELIMITER</span> $$
-<span>CREATE</span> <span>TRIGGER</span> dingtalk_cloud_push_update
-BEFORE <span>INSERT</span> <span>ON</span> dingtalk_cloud_push <span>FOR EACH ROW</span>
-<span>BEGIN</span>
-  <span>INSERT</span> <span>INTO</span> test <span>(</span>method<span>,</span> <span>data</span><span>)</span> <span>values</span> <span>(</span><span>'insert'</span><span>,</span> new<span>.</span>biz_data<span>)</span><span>;</span>
-<span>END</span>$$
-</code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br></div></div><h2 id="钉钉云推送数据库"> 钉钉云推送数据库</h2>
-<h3 id="安装mysql5-7"> 安装MySQL5.7</h3>
-<p>参见<a href="./mysql-second.html">MySQL多版本共存</a></p>
-<h3 id="启用federated"> 启用FEDERATED</h3>
-<p>修改<code>MySQL</code>配置文件<code>my.cnf</code>启用<code>FEDERATED</code>引擎后重启<code>MySQL</code>服务。</p>
-<div><pre><code><span><span>[</span><span>mysqld</span><span>]</span></span>
-federated
-</code></pre>
-<div><span>1</span><br><span>2</span><br></div></div><h3 id="创建federated表"> 创建FEDERATED表</h3>
-<p>此表被钉钉云推送RDS直接访问，其数据库名称、表名称、字符集、表结构符合钉钉云推送相关格式。</p>
-<div><pre><code><span>CREATE</span> <span>DATABASE</span> ding_cloud_push <span>DEFAULT</span> <span>CHARACTER</span> <span>SET</span> utf8mb4 <span>COLLATE</span> utf8mb4_general_ci<span>;</span>
-<span>CREATE</span> <span>TABLE</span> <span>`</span>open_sync_biz_data<span>`</span> <span>(</span>
-  <span>`</span>id<span>`</span> <span>bigint</span><span>(</span><span>20</span><span>)</span> <span>NOT</span> <span>NULL</span> <span>AUTO_INCREMENT</span> <span>COMMENT</span> <span>'ID'</span><span>,</span>
-  <span>`</span>gmt_create<span>`</span> <span>datetime</span> <span>NOT</span> <span>NULL</span> <span>COMMENT</span> <span>'创建时间'</span><span>,</span>
-  <span>`</span>gmt_modified<span>`</span> <span>datetime</span> <span>NOT</span> <span>NULL</span> <span>COMMENT</span> <span>'更新时间'</span><span>,</span>
-  <span>`</span>subscribe_id<span>`</span> <span>varchar</span><span>(</span><span>64</span><span>)</span> <span>NOT</span> <span>NULL</span> <span>COMMENT</span> <span>'订阅方ID'</span><span>,</span>
-  <span>`</span>corp_id<span>`</span> <span>varchar</span><span>(</span><span>64</span><span>)</span> <span>NOT</span> <span>NULL</span> <span>COMMENT</span> <span>'企业ID'</span><span>,</span>
-  <span>`</span>biz_id<span>`</span> <span>varchar</span><span>(</span><span>128</span><span>)</span> <span>NOT</span> <span>NULL</span> <span>COMMENT</span> <span>'业务ID'</span><span>,</span>
-  <span>`</span>biz_type<span>`</span> <span>int</span><span>(</span><span>11</span><span>)</span> <span>NOT</span> <span>NULL</span> <span>COMMENT</span> <span>'业务类型'</span><span>,</span>
-  <span>`</span>biz_data<span>`</span> <span>text</span> <span>NOT</span> <span>NULL</span> <span>COMMENT</span> <span>'业务数据'</span><span>,</span>
-  <span>`</span>open_cursor<span>`</span> <span>bigint</span><span>(</span><span>20</span><span>)</span> <span>NOT</span> <span>NULL</span> <span>COMMENT</span> <span>'对账游标'</span><span>,</span>
-  <span>`</span><span>status</span><span>`</span> <span>int</span><span>(</span><span>11</span><span>)</span> <span>NOT</span> <span>NULL</span> <span>COMMENT</span> <span>'处理状态0为未处理。其他状态开发者自行定义'</span><span>,</span>
-  <span>PRIMARY</span> <span>KEY</span> <span>(</span><span>`</span>id<span>`</span><span>)</span><span>,</span>
-  <span>UNIQUE</span> <span>KEY</span> <span>`</span>uk_subscribe_corp_biz<span>`</span> <span>(</span><span>`</span>subscribe_id<span>`</span><span>,</span><span>`</span>corp_id<span>`</span><span>,</span><span>`</span>biz_id<span>`</span><span>,</span><span>`</span>biz_type<span>`</span><span>)</span>
-<span>)</span> <span>ENGINE</span><span>=</span>FEDERATED <span>AUTO_INCREMENT</span><span>=</span><span>0</span> <span>DEFAULT</span> <span>CHARSET</span><span>=</span>utf8mb4 <span>COMMENT</span><span>=</span><span>'高优先级数据'</span>
-CONNECTION<span>=</span><span>'mysql://user:password@localhost:3306/appdb/dingtalk_cloud_push'</span><span>;</span>
-</code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br><span>9</span><br><span>10</span><br><span>11</span><br><span>12</span><br><span>13</span><br><span>14</span><br><span>15</span><br><span>16</span><br></div></div>]]></content:encoded>
-    </item>
-    <item>
-      <title>Docker Portianer</title>
-      <link>https://blog.fangyueming.cn/docker-portianer/</link>
-      <guid>https://blog.fangyueming.cn/docker-portianer/</guid>
-      <source url="https://blog.fangyueming.cn/rss.xml">Docker Portianer</source>
-      <pubDate>Thu, 18 Jun 2020 00:00:00 GMT</pubDate>
-      <content:encoded><![CDATA[<h1 id="docker-portianer"> Docker Portianer</h1>
-<h2 id="安装"> 安装</h2>
-<div><pre><code><span>#!/bin/bash</span>
-<span>#Author: Yueming Fang</span>
-
-docker volume create portainer_data
-
-docker run -d -p <span>9000</span>:9000 --name<span>=</span>portainer --restart<span>=</span>always <span>\</span>
--v /var/run/docker.sock:/var/run/docker.sock <span>\</span>
--v portainer_data:/data <span>\</span>
-portainer/portainer-ce
-</code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br><span>9</span><br></div></div><h2 id="更新"> 更新</h2>
-<div><pre><code>docker container update protainer
-</code></pre>
-<div><span>1</span><br></div></div><h2 id="修改端口"> 修改端口</h2>
-<p>请避开常用端口，比如如Apache的FastCGI使用9000端口，若被占用，请指定参数重新安装。
-或修改配置：</p>
-<div><pre><code>docker stop portainer-container-id <span># 停止容器</span>
-systemctl stop docker <span># 停止Docker服务</span>
-<span>vim</span> /var/lib/docker/containers/portainer-container-id/hostconfig.json <span># 修改并保存</span>
-<span>vim</span> /var/lib/docker/containers/portainer-container-id/config.v2.json <span># 修改并保存</span>
-systemctl start docker <span># 启动Docker服务</span>
-docker start portainer-container-id <span># 启动容器</span>
-</code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br></div></div><p>比如：<code>HostPort</code>从<code>9000</code>改为<code>9900</code></p>
-<h3 id="hostconfig-json"> hostconfig.json</h3>
-<div><pre><code><span>{</span>
-  <span>"PortBindings"</span><span>:</span>  <span>{</span>
-    <span>"9000/tcp"</span><span>:</span><span>[</span><span>{</span>
-      <span>"HostIp"</span><span>:</span><span>""</span><span>,</span>
-      <span>"HostPort"</span><span>:</span><span>"9900"</span>
-    <span>}</span><span>]</span>
-  <span>}</span>
-<span>}</span>
-</code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br></div></div><h3 id="config-v2-json"> config.v2.json</h3>
-<div><pre><code><span>{</span>
-  <span>"Ports"</span><span>:</span> <span>{</span>
-    <span>"9000/tcp"</span><span>:</span> <span>[</span><span>{</span>
-      <span>"HostIp"</span><span>:</span> <span>"0.0.0.0"</span><span>,</span>
-      <span>"HostPort"</span><span>:</span> <span>"9900"</span>
-    <span>}</span><span>]</span>
-  <span>}</span>
-<span>}</span>
-</code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br></div></div><h2 id="后记"> 后记</h2>
-<p>鉴于 <a href="https://www.portainer.io/" target="_blank" rel="noopener noreferrer">portainer</a> 更新频率相当高，欢迎访问官网，获得正确打开方式。</p>
-]]></content:encoded>
     </item>
     <item>
       <title>Egg.js实现OAuth2授权码方式鉴权</title>
@@ -2419,6 +2419,61 @@ module<span>.</span>exports <span>=</span> UserController<span>;</span>
 ]]></content:encoded>
     </item>
     <item>
+      <title>Git提交规范</title>
+      <link>https://blog.fangyueming.cn/git-commitlint/</link>
+      <guid>https://blog.fangyueming.cn/git-commitlint/</guid>
+      <source url="https://blog.fangyueming.cn/rss.xml">Git提交规范</source>
+      <pubDate>Thu, 02 Jan 2020 00:00:00 GMT</pubDate>
+      <content:encoded><![CDATA[<h1 id="git提交规范"> Git提交规范</h1>
+<p><code>Husky</code>接管Git钩子在commit-msg时利用<code>commitlint</code>检查提交规范。</p>
+<h2 id="参考"> 参考</h2>
+<ul>
+<li><a href="https://juejin.im/post/5d1f1e595188254b732b60a3" target="_blank" rel="noopener noreferrer">规范构建</a></li>
+<li><a href="https://www.ruanyifeng.com/blog/2016/01/commit_message_change_log.html" target="_blank" rel="noopener noreferrer">编写指南</a></li>
+<li><a href="https://github.com/conventional-changelog/commitlint" target="_blank" rel="noopener noreferrer">commitlint</a></li>
+<li><a href="https://github.com/typicode/husky" target="_blank" rel="noopener noreferrer">Husky</a></li>
+</ul>
+<h2 id="实现"> 实现</h2>
+<h3 id="安装开发依赖"> 安装开发依赖</h3>
+<div><pre><code><span>yarn</span> <span>install</span> -D husky
+<span>yarn</span> <span>install</span> -D @commitlint/cli
+<span>yarn</span> <span>install</span> -D @commitlint/config-conventional
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br></div></div><h3 id="配置package-json"> 配置<code>package.json</code></h3>
+<div><pre><code><span>{</span>
+  <span>"husky"</span><span>:</span> <span>{</span>
+      <span>"hooks"</span><span>:</span> <span>{</span>
+        <span>"commit-msg"</span><span>:</span> <span>"commitlint -E HUSKY_GIT_PARAMS"</span>
+      <span>}</span>
+    <span>}</span>
+  <span>}</span>
+<span>}</span>
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br></div></div><h2 id="commit规范"> commit规范</h2>
+<div><pre><code>type<span>(</span>scope?<span>)</span>: subject  <span>#scope is optional</span>
+</code></pre>
+<div><span>1</span><br></div></div><h2 id="生成changelog"> 生成CHANGELOG</h2>
+<h3 id="安装依赖"> 安装依赖</h3>
+<div><pre><code><span>yarn</span> <span>install</span> -D conventional-changelog
+<span>yarn</span> <span>install</span> -D conventional-changelog-cli
+</code></pre>
+<div><span>1</span><br><span>2</span><br></div></div><h3 id="package-json"> package.json</h3>
+<div><pre><code><span>"scripts"</span><span>:</span> <span>{</span>
+  <span>"changelog"</span><span>:</span> <span>"conventional-changelog -p angular -i CHANGELOG.md -s -r 0"</span>
+<span>}</span>
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br></div></div><h3 id="生成"> 生成</h3>
+<div><pre><code><span>yarn</span> changelog  <span># 在项目根目录生成CHANGELOG.md</span>
+</code></pre>
+<div><span>1</span><br></div></div><h3 id="git钩子执行eslint"> Git钩子执行ESLint</h3>
+<p>详见<a href="https://juejin.im/post/5d1f1e595188254b732b60a3" target="_blank" rel="noopener noreferrer">规范构建教程</a></p>
+<blockquote>
+<p>方跃明
+2020-01-02</p>
+</blockquote>
+]]></content:encoded>
+    </item>
+    <item>
       <title>frp内网穿透</title>
       <link>https://blog.fangyueming.cn/frp/</link>
       <guid>https://blog.fangyueming.cn/frp/</guid>
@@ -2541,61 +2596,6 @@ systemctl start frps
 <blockquote>
 <p>方跃明
 2020-06-18</p>
-</blockquote>
-]]></content:encoded>
-    </item>
-    <item>
-      <title>Git提交规范</title>
-      <link>https://blog.fangyueming.cn/git-commitlint/</link>
-      <guid>https://blog.fangyueming.cn/git-commitlint/</guid>
-      <source url="https://blog.fangyueming.cn/rss.xml">Git提交规范</source>
-      <pubDate>Thu, 02 Jan 2020 00:00:00 GMT</pubDate>
-      <content:encoded><![CDATA[<h1 id="git提交规范"> Git提交规范</h1>
-<p><code>Husky</code>接管Git钩子在commit-msg时利用<code>commitlint</code>检查提交规范。</p>
-<h2 id="参考"> 参考</h2>
-<ul>
-<li><a href="https://juejin.im/post/5d1f1e595188254b732b60a3" target="_blank" rel="noopener noreferrer">规范构建</a></li>
-<li><a href="https://www.ruanyifeng.com/blog/2016/01/commit_message_change_log.html" target="_blank" rel="noopener noreferrer">编写指南</a></li>
-<li><a href="https://github.com/conventional-changelog/commitlint" target="_blank" rel="noopener noreferrer">commitlint</a></li>
-<li><a href="https://github.com/typicode/husky" target="_blank" rel="noopener noreferrer">Husky</a></li>
-</ul>
-<h2 id="实现"> 实现</h2>
-<h3 id="安装开发依赖"> 安装开发依赖</h3>
-<div><pre><code><span>yarn</span> <span>install</span> -D husky
-<span>yarn</span> <span>install</span> -D @commitlint/cli
-<span>yarn</span> <span>install</span> -D @commitlint/config-conventional
-</code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br></div></div><h3 id="配置package-json"> 配置<code>package.json</code></h3>
-<div><pre><code><span>{</span>
-  <span>"husky"</span><span>:</span> <span>{</span>
-      <span>"hooks"</span><span>:</span> <span>{</span>
-        <span>"commit-msg"</span><span>:</span> <span>"commitlint -E HUSKY_GIT_PARAMS"</span>
-      <span>}</span>
-    <span>}</span>
-  <span>}</span>
-<span>}</span>
-</code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br></div></div><h2 id="commit规范"> commit规范</h2>
-<div><pre><code>type<span>(</span>scope?<span>)</span>: subject  <span>#scope is optional</span>
-</code></pre>
-<div><span>1</span><br></div></div><h2 id="生成changelog"> 生成CHANGELOG</h2>
-<h3 id="安装依赖"> 安装依赖</h3>
-<div><pre><code><span>yarn</span> <span>install</span> -D conventional-changelog
-<span>yarn</span> <span>install</span> -D conventional-changelog-cli
-</code></pre>
-<div><span>1</span><br><span>2</span><br></div></div><h3 id="package-json"> package.json</h3>
-<div><pre><code><span>"scripts"</span><span>:</span> <span>{</span>
-  <span>"changelog"</span><span>:</span> <span>"conventional-changelog -p angular -i CHANGELOG.md -s -r 0"</span>
-<span>}</span>
-</code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br></div></div><h3 id="生成"> 生成</h3>
-<div><pre><code><span>yarn</span> changelog  <span># 在项目根目录生成CHANGELOG.md</span>
-</code></pre>
-<div><span>1</span><br></div></div><h3 id="git钩子执行eslint"> Git钩子执行ESLint</h3>
-<p>详见<a href="https://juejin.im/post/5d1f1e595188254b732b60a3" target="_blank" rel="noopener noreferrer">规范构建教程</a></p>
-<blockquote>
-<p>方跃明
-2020-01-02</p>
 </blockquote>
 ]]></content:encoded>
     </item>
@@ -2928,71 +2928,6 @@ ssh-keygen -t rsa -C <span>"xxxxx@xxxxx.com"</span>
 ]]></content:encoded>
     </item>
     <item>
-      <title>localhost开启HTTPS</title>
-      <link>https://blog.fangyueming.cn/https-localhost/</link>
-      <guid>https://blog.fangyueming.cn/https-localhost/</guid>
-      <source url="https://blog.fangyueming.cn/rss.xml">localhost开启HTTPS</source>
-      <pubDate>Sat, 28 Mar 2020 00:00:00 GMT</pubDate>
-      <content:encoded><![CDATA[<h1 id="localhost开启https"> localhost开启HTTPS</h1>
-<p>以下操作均处于Windows环境</p>
-<h2 id="证书工具"> 证书工具</h2>
-<ul>
-<li><a href="https://golang.org/dl/" target="_blank" rel="noopener noreferrer">Go语言环境</a></li>
-<li><a href="https://github.com/jsha/minica" target="_blank" rel="noopener noreferrer">minica</a></li>
-</ul>
-<p>下载并安装Go语言安装包，编译<code>minica</code>为可执行文件：<code>minica.exe</code></p>
-<div><pre><code><span>git</span> clone https://github.com/jsha/minica.git
-<span>cd</span> minica
-go build
-</code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br></div></div><h3 id="生成证书"> 生成证书</h3>
-<div><pre><code><span># 若根证书存在，同时生成根证书和叶证书（localhost）</span>
-./minica --domains localhost
-<span># 若根证书存在，为其生成叶证书（localhost.com）</span>
-./minica --domains localhost.com
-<span># 执行成功localhost.com目录下有对应证书</span>
-</code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br></div></div><div><pre><code>|-- minica.exe          # 可执行文件
-|-- minica.pem          # minica根证书
-|-- minica-key.pem      # minica根证书私钥
-|-- localhost           # 域名：localhost
-|   |-- cert.pem        #   域名叶证书
-|   `-- key.pem         #   域名叶证书私钥
-`-- localhost.com       # 域名：localhost.com
-    |-- cert.pem        #   域名叶证书
-    `-- key.pem         #   域名叶证书私钥
-</code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br><span>9</span><br></div></div><h2 id="信任根证书"> 信任根证书</h2>
-<ul>
-<li>生成：进入<a href="https://console.cloud.tencent.com/ssl" target="_blank" rel="noopener noreferrer">腾讯云控制台SSL管理</a>，上传证书，将根证书和根证书私钥填入，生成证书</li>
-<li>导入：下载此证书包，打开IIS目录，双击pfx证书填入对应导入密码，导入</li>
-<li>信任：存储位置选择“受信任的根证书颁发机构”</li>
-</ul>
-<blockquote>
-<p>阿里云可以导入本地证书，生成可导入格式，但无法被下载</p>
-</blockquote>
-<h2 id="配置https"> 配置HTTPS</h2>
-<p>以http-server为例，将叶证书拷贝到对应目录，如<code>certs/localhost</code>下，以HTTPS协议运行。</p>
-<div><pre><code>http-server -S -C ./certs/localhost/cert.pem -K ./certs/localhost/key.pem
-<span># Starting up http-server, serving ./ through https</span>
-<span># Available on: https://127.0.0.1:8080</span>
-</code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br></div></div><p>访问https://localhost:8080，成功判定如下：
-显示连接安全、证书有效、证书路径localhost在minica下、该证书没有问题。</p>
-<h2 id="局域网客户端"> 局域网客户端</h2>
-<ul>
-<li>参照<strong>再次</strong>生成<code>localhost.com</code>的叶证书</li>
-<li>在需要的局域网客户端上导入并信任根证书</li>
-<li>需改<code>hosts</code>将<code>lcoalhost.com</code>指向对应IP</li>
-<li>局域网客户端访问<code>https://localhost.com:8080</code></li>
-</ul>
-<blockquote>
-<p>方跃明
-2020-03-28</p>
-</blockquote>
-]]></content:encoded>
-    </item>
-    <item>
       <title>iOS开发环境搭建</title>
       <link>https://blog.fangyueming.cn/ios-develop/</link>
       <guid>https://blog.fangyueming.cn/ios-develop/</guid>
@@ -3021,35 +2956,6 @@ pod <span>install</span>
 <p>方跃明
 2020-01-01</p>
 </blockquote>
-]]></content:encoded>
-    </item>
-    <item>
-      <title>JavaScript思维导图</title>
-      <link>https://blog.fangyueming.cn/javascript-mind-map/</link>
-      <guid>https://blog.fangyueming.cn/javascript-mind-map/</guid>
-      <source url="https://blog.fangyueming.cn/rss.xml">JavaScript思维导图</source>
-      <pubDate>Sat, 09 May 2015 00:00:00 GMT</pubDate>
-      <content:encoded><![CDATA[<h1 id="javascript思维导图"> JavaScript思维导图</h1>
-<h2 id="数据类型"> 数据类型</h2>
-<p><img src="./javascript-01-data-type.gif" alt="JavaScript数据类型" /></p>
-<h2 id="变量"> 变量</h2>
-<p><img src="./javascript-02-variable.gif" alt="JavaScript变量" /></p>
-<h2 id="数组"> 数组</h2>
-<p><img src="./javascript-03-array.gif" alt="JavaScript数组" /></p>
-<h2 id="运算符"> 运算符</h2>
-<p><img src="./javascript-04-operational-character.gif" alt="JavaScript运算符" /></p>
-<h2 id="函数"> 函数</h2>
-<p><img src="./javascript-05-function-base.gif" alt="JavaScript函数" /></p>
-<h2 id="流程"> 流程</h2>
-<p><img src="./javascript-06-process-statement.gif" alt="JavaScript流程" /></p>
-<h2 id="字符串函数"> 字符串函数</h2>
-<p><img src="./javascript-07-string-function.gif" alt="JavaScript字符串函数" /></p>
-<h2 id="正则表达式"> 正则表达式</h2>
-<p><img src="./javascript-08-regular-expressions.gif" alt="JavaScript正则表达式" /></p>
-<h2 id="windows对象"> Windows对象</h2>
-<p><img src="./javascript-09-windows-object.gif" alt="JavaScript Windows对象" /></p>
-<h2 id="dom操作"> DOM操作</h2>
-<p><img src="./javascript-10-dom-operation.gif" alt="JavaScript DOM操作" /></p>
 ]]></content:encoded>
     </item>
     <item>
@@ -3259,6 +3165,100 @@ pod <span>install</span>
 <p>方跃明
 2016-10-30</p>
 </blockquote>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>localhost开启HTTPS</title>
+      <link>https://blog.fangyueming.cn/https-localhost/</link>
+      <guid>https://blog.fangyueming.cn/https-localhost/</guid>
+      <source url="https://blog.fangyueming.cn/rss.xml">localhost开启HTTPS</source>
+      <pubDate>Sat, 28 Mar 2020 00:00:00 GMT</pubDate>
+      <content:encoded><![CDATA[<h1 id="localhost开启https"> localhost开启HTTPS</h1>
+<p>以下操作均处于Windows环境</p>
+<h2 id="证书工具"> 证书工具</h2>
+<ul>
+<li><a href="https://golang.org/dl/" target="_blank" rel="noopener noreferrer">Go语言环境</a></li>
+<li><a href="https://github.com/jsha/minica" target="_blank" rel="noopener noreferrer">minica</a></li>
+</ul>
+<p>下载并安装Go语言安装包，编译<code>minica</code>为可执行文件：<code>minica.exe</code></p>
+<div><pre><code><span>git</span> clone https://github.com/jsha/minica.git
+<span>cd</span> minica
+go build
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br></div></div><h3 id="生成证书"> 生成证书</h3>
+<div><pre><code><span># 若根证书存在，同时生成根证书和叶证书（localhost）</span>
+./minica --domains localhost
+<span># 若根证书存在，为其生成叶证书（localhost.com）</span>
+./minica --domains localhost.com
+<span># 执行成功localhost.com目录下有对应证书</span>
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br></div></div><div><pre><code>|-- minica.exe          # 可执行文件
+|-- minica.pem          # minica根证书
+|-- minica-key.pem      # minica根证书私钥
+|-- localhost           # 域名：localhost
+|   |-- cert.pem        #   域名叶证书
+|   `-- key.pem         #   域名叶证书私钥
+`-- localhost.com       # 域名：localhost.com
+    |-- cert.pem        #   域名叶证书
+    `-- key.pem         #   域名叶证书私钥
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br><span>9</span><br></div></div><h2 id="信任根证书"> 信任根证书</h2>
+<ul>
+<li>生成：进入<a href="https://console.cloud.tencent.com/ssl" target="_blank" rel="noopener noreferrer">腾讯云控制台SSL管理</a>，上传证书，将根证书和根证书私钥填入，生成证书</li>
+<li>导入：下载此证书包，打开IIS目录，双击pfx证书填入对应导入密码，导入</li>
+<li>信任：存储位置选择“受信任的根证书颁发机构”</li>
+</ul>
+<blockquote>
+<p>阿里云可以导入本地证书，生成可导入格式，但无法被下载</p>
+</blockquote>
+<h2 id="配置https"> 配置HTTPS</h2>
+<p>以http-server为例，将叶证书拷贝到对应目录，如<code>certs/localhost</code>下，以HTTPS协议运行。</p>
+<div><pre><code>http-server -S -C ./certs/localhost/cert.pem -K ./certs/localhost/key.pem
+<span># Starting up http-server, serving ./ through https</span>
+<span># Available on: https://127.0.0.1:8080</span>
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br></div></div><p>访问https://localhost:8080，成功判定如下：
+显示连接安全、证书有效、证书路径localhost在minica下、该证书没有问题。</p>
+<h2 id="局域网客户端"> 局域网客户端</h2>
+<ul>
+<li>参照<strong>再次</strong>生成<code>localhost.com</code>的叶证书</li>
+<li>在需要的局域网客户端上导入并信任根证书</li>
+<li>需改<code>hosts</code>将<code>lcoalhost.com</code>指向对应IP</li>
+<li>局域网客户端访问<code>https://localhost.com:8080</code></li>
+</ul>
+<blockquote>
+<p>方跃明
+2020-03-28</p>
+</blockquote>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>JavaScript思维导图</title>
+      <link>https://blog.fangyueming.cn/javascript-mind-map/</link>
+      <guid>https://blog.fangyueming.cn/javascript-mind-map/</guid>
+      <source url="https://blog.fangyueming.cn/rss.xml">JavaScript思维导图</source>
+      <pubDate>Sat, 09 May 2015 00:00:00 GMT</pubDate>
+      <content:encoded><![CDATA[<h1 id="javascript思维导图"> JavaScript思维导图</h1>
+<h2 id="数据类型"> 数据类型</h2>
+<p><img src="./javascript-01-data-type.gif" alt="JavaScript数据类型" /></p>
+<h2 id="变量"> 变量</h2>
+<p><img src="./javascript-02-variable.gif" alt="JavaScript变量" /></p>
+<h2 id="数组"> 数组</h2>
+<p><img src="./javascript-03-array.gif" alt="JavaScript数组" /></p>
+<h2 id="运算符"> 运算符</h2>
+<p><img src="./javascript-04-operational-character.gif" alt="JavaScript运算符" /></p>
+<h2 id="函数"> 函数</h2>
+<p><img src="./javascript-05-function-base.gif" alt="JavaScript函数" /></p>
+<h2 id="流程"> 流程</h2>
+<p><img src="./javascript-06-process-statement.gif" alt="JavaScript流程" /></p>
+<h2 id="字符串函数"> 字符串函数</h2>
+<p><img src="./javascript-07-string-function.gif" alt="JavaScript字符串函数" /></p>
+<h2 id="正则表达式"> 正则表达式</h2>
+<p><img src="./javascript-08-regular-expressions.gif" alt="JavaScript正则表达式" /></p>
+<h2 id="windows对象"> Windows对象</h2>
+<p><img src="./javascript-09-windows-object.gif" alt="JavaScript Windows对象" /></p>
+<h2 id="dom操作"> DOM操作</h2>
+<p><img src="./javascript-10-dom-operation.gif" alt="JavaScript DOM操作" /></p>
 ]]></content:encoded>
     </item>
     <item>
@@ -3969,189 +3969,6 @@ found in <code>&lt;Component&gt;</code></p>
 <div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br><span>9</span><br><span>10</span><br><span>11</span><br><span>12</span><br><span>13</span><br><span>14</span><br><span>15</span><br><span>16</span><br><span>17</span><br><span>18</span><br><span>19</span><br><span>20</span><br><span>21</span><br><span>22</span><br><span>23</span><br><span>24</span><br></div></div>]]></content:encoded>
     </item>
     <item>
-      <title>Linux Shell 入门</title>
-      <link>https://blog.fangyueming.cn/linux-shell/</link>
-      <guid>https://blog.fangyueming.cn/linux-shell/</guid>
-      <source url="https://blog.fangyueming.cn/rss.xml">Linux Shell 入门</source>
-      <pubDate>Wed, 09 Aug 2017 00:00:00 GMT</pubDate>
-      <content:encoded><![CDATA[<h1 id="linux-shell-入门"> Linux Shell 入门</h1>
-<h2 id="脚本文件"> 脚本文件</h2>
-<ul>
-<li>扩展名：<code>.sh</code></li>
-<li>第一行：<code>#!/bin/bash</code></li>
-<li>执行
-<ul>
-<li><code>chmod +x shell脚本</code></li>
-<li><code>./shell脚本</code></li>
-</ul>
-</li>
-</ul>
-<h2 id="脚本内部执行命令"> 脚本内部执行命令</h2>
-<p>反引号</p>
-<h2 id="变量"> 变量</h2>
-<h3 id="系统变量"> 系统变量</h3>
-<table>
-<thead>
-<tr>
-<th>名称</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>PATH</td>
-<td>shell查找命令的目录列表，由冒号分隔</td>
-</tr>
-<tr>
-<td>HOSTNAME</td>
-<td>当前主机名</td>
-</tr>
-<tr>
-<td>HOME</td>
-<td>当前用户主目录</td>
-</tr>
-<tr>
-<td>SHELL</td>
-<td>当前shell</td>
-</tr>
-<tr>
-<td>USER</td>
-<td>当前用户</td>
-</tr>
-<tr>
-<td>UID</td>
-<td>当前用户ID</td>
-</tr>
-<tr>
-<td>GID</td>
-<td>当前用户组ID</td>
-</tr>
-<tr>
-<td>PWD</td>
-<td>当前所在目录</td>
-</tr>
-<tr>
-<td>OLDPWD</td>
-<td>上次所在目录</td>
-</tr>
-<tr>
-<td>0</td>
-<td>当前命令名称</td>
-</tr>
-<tr>
-<td>n</td>
-<td>当前命令的第n个参数，n=1,2,...,9</td>
-</tr>
-<tr>
-<td>*</td>
-<td>以”参数1，参数2…..”形式保存所有参数</td>
-</tr>
-<tr>
-<td>@</td>
-<td>以”参数1”，”参数2”…..”形式保存所有参数</td>
-</tr>
-<tr>
-<td>#</td>
-<td>命令行参数的个数</td>
-</tr>
-<tr>
-<td>?</td>
-<td>执行上一个指令或函数的返回值，0=没有错误</td>
-</tr>
-<tr>
-<td>$</td>
-<td>本程序的PID（ProcessID）</td>
-</tr>
-<tr>
-<td>!</td>
-<td>后台运行的最后一个进程的进程ID号</td>
-</tr>
-<tr>
-<td>-</td>
-<td>显示shell使用的当前选项，与set命令功能相同</td>
-</tr>
-<tr>
-<td>_</td>
-<td>shell的绝对路径名，最近执行的命令，最近命令最后一个参数</td>
-</tr>
-<tr>
-<td>LINENO</td>
-<td>当前执行的脚本行号</td>
-</tr>
-</tbody>
-</table>
-<h3 id="用户变量"> 用户变量</h3>
-<h4 id="定义变量"> 定义变量</h4>
-<ul>
-<li>变量名=变量值</li>
-</ul>
-<h4 id="引用变量"> 引用变量</h4>
-<ul>
-<li>$变量名</li>
-<li>${变量名}</li>
-</ul>
-<h4 id="只读变量"> 只读变量</h4>
-<ul>
-<li>变量名=变量值</li>
-<li>readonly 变量名</li>
-</ul>
-<h4 id="删除变量"> 删除变量</h4>
-<ul>
-<li>变量名=变量值</li>
-<li>unset 变量名</li>
-</ul>
-<h3 id="字符串变量"> 字符串变量</h3>
-<h4 id="定义"> 定义</h4>
-<ul>
-<li>单引号字符串变量='不可转义字符串'</li>
-<li>双引号字符串变量=&quot;可转义字符串&quot;</li>
-</ul>
-<h4 id="获取字符串长度"> 获取字符串长度</h4>
-<div><pre><code><span>string</span><span>=</span><span>"abcd"</span>
-<span>echo</span> <span>${<span>#</span>string}</span>     <span># 4</span>
-</code></pre>
-<div><span>1</span><br><span>2</span><br></div></div><h4 id="提取字符串"> 提取字符串</h4>
-<div><pre><code><span>string</span><span>=</span><span>"runoob is a great site"</span>
-<span>echo</span> <span>${string<span>:</span>1<span>:</span>4}</span>  <span># unoo</span>
-</code></pre>
-<div><span>1</span><br><span>2</span><br></div></div><h4 id="查找字符串位置"> 查找字符串位置</h4>
-<div><pre><code><span>string</span><span>=</span><span>"runoob is a great company"</span>
-<span>echo</span> <span><span>`</span><span>expr</span> index <span>"<span>$string</span>"</span> is<span>`</span></span>  <span># 8</span>
-</code></pre>
-<div><span>1</span><br><span>2</span><br></div></div><h3 id="数组变量"> 数组变量</h3>
-<h4 id="定义数组"> 定义数组</h4>
-<div><pre><code><span>array_name</span><span>=</span><span>(</span>value0 value1 value2 value3<span>)</span>  <span># 整体定义，可分行</span>
-array_name<span>[</span><span>0</span><span>]</span><span>=</span>value0                      <span># 可单独定义</span>
-</code></pre>
-<div><span>1</span><br><span>2</span><br></div></div><h4 id="引用"> 引用</h4>
-<div><pre><code><span>echo</span> <span>${array_name<span>[</span>n<span>]</span>}</span>   <span># 读取第n个数组，数组下标从0开始</span>
-<span>echo</span> <span>${array_name<span>[</span>*<span>]</span>}</span>   <span># 读取所有数组</span>
-<span>echo</span> <span>${array_name<span>[</span>@<span>]</span>}</span>   <span># 读取所有数组</span>
-</code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br></div></div><h4 id="获取长度"> 获取长度</h4>
-<div><pre><code><span>${<span>#</span>array_name<span>[</span>n<span>]</span>}</span>     <span># 第n个数组长度</span>
-<span>${<span>#</span>array_name<span>[</span>*<span>]</span>}</span>     <span># 整个数组长度</span>
-<span>${<span>#</span>array_name<span>[</span>@<span>]</span>}</span>     <span># 整个数组长度</span>
-</code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br></div></div><h2 id="运算符"> 运算符</h2>
-<h2 id="控制语句"> 控制语句</h2>
-<h2 id="思维导图"> 思维导图</h2>
-<p><img src="./linux-shell-01.jpg" alt="基础知识" />
-<img src="./linux-shell-02.jpg" alt="文件目录" />
-<img src="./linux-shell-03.jpg" alt="文本处理" />
-<img src="./linux-shell-04.jpg" alt="Shell脚本1" />
-<img src="./linux-shell-05.jpg" alt="Shell脚本2" />
-<img src="./linux-shell-06.jpg" alt="Shell脚本3" /></p>
-<blockquote>
-<p>未完待续……</p>
-</blockquote>
-<blockquote>
-<p>方跃明
-2017-08-09</p>
-</blockquote>
-]]></content:encoded>
-    </item>
-    <item>
       <title>Linux编译安装命令configure、make、install的意义</title>
       <link>https://blog.fangyueming.cn/linux-make-install/</link>
       <guid>https://blog.fangyueming.cn/linux-make-install/</guid>
@@ -4341,6 +4158,189 @@ creating ./config. status
 <div><span>1</span><br><span>2</span><br></div></div><blockquote>
 <p>方跃明
 2008-08-08</p>
+</blockquote>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>Linux Shell 入门</title>
+      <link>https://blog.fangyueming.cn/linux-shell/</link>
+      <guid>https://blog.fangyueming.cn/linux-shell/</guid>
+      <source url="https://blog.fangyueming.cn/rss.xml">Linux Shell 入门</source>
+      <pubDate>Wed, 09 Aug 2017 00:00:00 GMT</pubDate>
+      <content:encoded><![CDATA[<h1 id="linux-shell-入门"> Linux Shell 入门</h1>
+<h2 id="脚本文件"> 脚本文件</h2>
+<ul>
+<li>扩展名：<code>.sh</code></li>
+<li>第一行：<code>#!/bin/bash</code></li>
+<li>执行
+<ul>
+<li><code>chmod +x shell脚本</code></li>
+<li><code>./shell脚本</code></li>
+</ul>
+</li>
+</ul>
+<h2 id="脚本内部执行命令"> 脚本内部执行命令</h2>
+<p>反引号</p>
+<h2 id="变量"> 变量</h2>
+<h3 id="系统变量"> 系统变量</h3>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PATH</td>
+<td>shell查找命令的目录列表，由冒号分隔</td>
+</tr>
+<tr>
+<td>HOSTNAME</td>
+<td>当前主机名</td>
+</tr>
+<tr>
+<td>HOME</td>
+<td>当前用户主目录</td>
+</tr>
+<tr>
+<td>SHELL</td>
+<td>当前shell</td>
+</tr>
+<tr>
+<td>USER</td>
+<td>当前用户</td>
+</tr>
+<tr>
+<td>UID</td>
+<td>当前用户ID</td>
+</tr>
+<tr>
+<td>GID</td>
+<td>当前用户组ID</td>
+</tr>
+<tr>
+<td>PWD</td>
+<td>当前所在目录</td>
+</tr>
+<tr>
+<td>OLDPWD</td>
+<td>上次所在目录</td>
+</tr>
+<tr>
+<td>0</td>
+<td>当前命令名称</td>
+</tr>
+<tr>
+<td>n</td>
+<td>当前命令的第n个参数，n=1,2,...,9</td>
+</tr>
+<tr>
+<td>*</td>
+<td>以”参数1，参数2…..”形式保存所有参数</td>
+</tr>
+<tr>
+<td>@</td>
+<td>以”参数1”，”参数2”…..”形式保存所有参数</td>
+</tr>
+<tr>
+<td>#</td>
+<td>命令行参数的个数</td>
+</tr>
+<tr>
+<td>?</td>
+<td>执行上一个指令或函数的返回值，0=没有错误</td>
+</tr>
+<tr>
+<td>$</td>
+<td>本程序的PID（ProcessID）</td>
+</tr>
+<tr>
+<td>!</td>
+<td>后台运行的最后一个进程的进程ID号</td>
+</tr>
+<tr>
+<td>-</td>
+<td>显示shell使用的当前选项，与set命令功能相同</td>
+</tr>
+<tr>
+<td>_</td>
+<td>shell的绝对路径名，最近执行的命令，最近命令最后一个参数</td>
+</tr>
+<tr>
+<td>LINENO</td>
+<td>当前执行的脚本行号</td>
+</tr>
+</tbody>
+</table>
+<h3 id="用户变量"> 用户变量</h3>
+<h4 id="定义变量"> 定义变量</h4>
+<ul>
+<li>变量名=变量值</li>
+</ul>
+<h4 id="引用变量"> 引用变量</h4>
+<ul>
+<li>$变量名</li>
+<li>${变量名}</li>
+</ul>
+<h4 id="只读变量"> 只读变量</h4>
+<ul>
+<li>变量名=变量值</li>
+<li>readonly 变量名</li>
+</ul>
+<h4 id="删除变量"> 删除变量</h4>
+<ul>
+<li>变量名=变量值</li>
+<li>unset 变量名</li>
+</ul>
+<h3 id="字符串变量"> 字符串变量</h3>
+<h4 id="定义"> 定义</h4>
+<ul>
+<li>单引号字符串变量='不可转义字符串'</li>
+<li>双引号字符串变量=&quot;可转义字符串&quot;</li>
+</ul>
+<h4 id="获取字符串长度"> 获取字符串长度</h4>
+<div><pre><code><span>string</span><span>=</span><span>"abcd"</span>
+<span>echo</span> <span>${<span>#</span>string}</span>     <span># 4</span>
+</code></pre>
+<div><span>1</span><br><span>2</span><br></div></div><h4 id="提取字符串"> 提取字符串</h4>
+<div><pre><code><span>string</span><span>=</span><span>"runoob is a great site"</span>
+<span>echo</span> <span>${string<span>:</span>1<span>:</span>4}</span>  <span># unoo</span>
+</code></pre>
+<div><span>1</span><br><span>2</span><br></div></div><h4 id="查找字符串位置"> 查找字符串位置</h4>
+<div><pre><code><span>string</span><span>=</span><span>"runoob is a great company"</span>
+<span>echo</span> <span><span>`</span><span>expr</span> index <span>"<span>$string</span>"</span> is<span>`</span></span>  <span># 8</span>
+</code></pre>
+<div><span>1</span><br><span>2</span><br></div></div><h3 id="数组变量"> 数组变量</h3>
+<h4 id="定义数组"> 定义数组</h4>
+<div><pre><code><span>array_name</span><span>=</span><span>(</span>value0 value1 value2 value3<span>)</span>  <span># 整体定义，可分行</span>
+array_name<span>[</span><span>0</span><span>]</span><span>=</span>value0                      <span># 可单独定义</span>
+</code></pre>
+<div><span>1</span><br><span>2</span><br></div></div><h4 id="引用"> 引用</h4>
+<div><pre><code><span>echo</span> <span>${array_name<span>[</span>n<span>]</span>}</span>   <span># 读取第n个数组，数组下标从0开始</span>
+<span>echo</span> <span>${array_name<span>[</span>*<span>]</span>}</span>   <span># 读取所有数组</span>
+<span>echo</span> <span>${array_name<span>[</span>@<span>]</span>}</span>   <span># 读取所有数组</span>
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br></div></div><h4 id="获取长度"> 获取长度</h4>
+<div><pre><code><span>${<span>#</span>array_name<span>[</span>n<span>]</span>}</span>     <span># 第n个数组长度</span>
+<span>${<span>#</span>array_name<span>[</span>*<span>]</span>}</span>     <span># 整个数组长度</span>
+<span>${<span>#</span>array_name<span>[</span>@<span>]</span>}</span>     <span># 整个数组长度</span>
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br></div></div><h2 id="运算符"> 运算符</h2>
+<h2 id="控制语句"> 控制语句</h2>
+<h2 id="思维导图"> 思维导图</h2>
+<p><img src="./linux-shell-01.jpg" alt="基础知识" />
+<img src="./linux-shell-02.jpg" alt="文件目录" />
+<img src="./linux-shell-03.jpg" alt="文本处理" />
+<img src="./linux-shell-04.jpg" alt="Shell脚本1" />
+<img src="./linux-shell-05.jpg" alt="Shell脚本2" />
+<img src="./linux-shell-06.jpg" alt="Shell脚本3" /></p>
+<blockquote>
+<p>未完待续……</p>
+</blockquote>
+<blockquote>
+<p>方跃明
+2017-08-09</p>
 </blockquote>
 ]]></content:encoded>
     </item>
@@ -4603,82 +4603,6 @@ mysqldump --databases yourdatabase <span>|</span> <span>gzip</span> <span>></spa
 <div><span>1</span><br><span>2</span><br><span>3</span><br></div></div>]]></content:encoded>
     </item>
     <item>
-      <title>CentOS 安装 MySQL 8</title>
-      <link>https://blog.fangyueming.cn/mysql-install/</link>
-      <guid>https://blog.fangyueming.cn/mysql-install/</guid>
-      <source url="https://blog.fangyueming.cn/rss.xml">CentOS 安装 MySQL 8</source>
-      <pubDate>Sat, 11 May 2019 00:00:00 GMT</pubDate>
-      <content:encoded><![CDATA[<h1 id="centos-安装-mysql-8"> CentOS 安装 MySQL 8</h1>
-<h2 id="一、安装并登录"> 一、安装并登录</h2>
-<div><pre><code><span># 安装官方仓库</span>
-yum localinstall https://repo.mysql.com/mysql80-community-release-el7-1.noarch.rpm
-<span># 安装 MySQL Server</span>
-yum <span>install</span> mysql-community-server
-<span># 启动MySQL</span>
-systemctl start mysqld
-<span># 检查服务状态</span>
-systemctl status mysqld
-<span># 查看初始密码</span>
-<span>grep</span> <span>'temporary password'</span> /var/log/mysqld.log
-mysql -uroot -p
-<span># 输入密码进入mysql命令行</span>
-</code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br><span>9</span><br><span>10</span><br><span>11</span><br><span>12</span><br></div></div><h2 id="二、修改密码策略-可选"> 二、修改密码策略（可选）</h2>
-<div><pre><code><span>set</span> <span>global</span> validate_password<span>.</span>policy<span>=</span><span>0</span><span>;</span>
-<span>set</span> <span>global</span> validate_password<span>.</span>length<span>=</span><span>4</span><span>;</span>
-</code></pre>
-<div><span>1</span><br><span>2</span><br></div></div><h2 id="三、修改密码"> 三、修改密码</h2>
-<div><pre><code><span>ALTER</span> <span>USER</span> <span>'root'</span><span>@'localhost'</span> IDENTIFIED <span>BY</span> <span>'password'</span><span>;</span>
-</code></pre>
-<div><span>1</span><br></div></div><h2 id="四、添加用户并授权"> 四、添加用户并授权</h2>
-<div><pre><code><span>CREATE</span> <span>USER</span> <span>'newuser'</span><span>@'%'</span> IDENTIFIED <span>WITH</span> mysql_native_password <span>BY</span> <span>'password'</span><span>;</span>
-<span>-- mysql_native_password 为传统加密方式，适配各种连接器</span>
-<span>GRANT</span> <span>ALL</span> <span>ON</span> newuser_db<span>.</span><span>*</span> <span>TO</span> <span>'newuser'</span><span>@'%'</span><span>;</span>
-FLUSH <span>PRIVILEGES</span><span>;</span>
-</code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br></div></div><h2 id="五、其他配置"> 五、其他配置</h2>
-<ol>
-<li>设置SELinux为disabled，并生效</li>
-<li>开启防火墙mysqld对应端口</li>
-</ol>
-<h2 id="六、忘记密码"> 六、忘记密码</h2>
-<h3 id="_1-设置skip-grant-tables"> 1. 设置skip-grant-tables</h3>
-<div><pre><code><span>vi</span> /etc/my.cnf
-<span># 在 [mysqld] 段添加 skip-grant-tables，并重启mysql</span>
-systemctl restart mysqld
-</code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br></div></div><h3 id="_2-清空密码"> 2. 清空密码</h3>
-<div><pre><code><span>USE</span> mysql<span>;</span>
-<span>UPDATE</span> <span>user</span> <span>SET</span> authentication_string<span>=</span><span>''</span> <span>WHERE</span> <span>user</span><span>=</span><span>'root'</span><span>;</span>
-</code></pre>
-<div><span>1</span><br><span>2</span><br></div></div><h3 id="_3-空密码登录"> 3. 空密码登录</h3>
-<div><pre><code><span>vi</span> /etc/my.cnf
-<span># 修改配置，注释刚刚添加的部分 # skip-grant-tables</span>
-<span># 重启MySQL</span>
-systemctl restart mysqld
-mysql -uroot -p
-<span># 空密码进入 mysql 命令行后使用 ALTER USER 修改密码</span>
-</code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br></div></div><h2 id="七、日常备份"> 七、日常备份</h2>
-<h3 id="_1-编写shell脚本-mysql-backup-sh"> 1. 编写Shell脚本：mysql-backup.sh</h3>
-<div><pre><code><span>#!/bin/bash</span>
-<span>day</span><span>=</span><span><span>`</span><span>date</span> +%Y%m%d<span>`</span></span>
-<span>dir</span><span>=</span><span>$HOME</span>/mysql-backup
-<span>find</span> <span>$dir</span> -ctime +7 -type f <span>|</span> <span>xargs</span> <span>rm</span> -rf
-mysqldump -B sys -uroot -ppassword <span>|</span> <span>gzip</span> <span>></span> <span>$dir</span>/sys-<span>$day</span>.sql.gz
-</code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br></div></div><h3 id="_2-赋予执行权限"> 2. 赋予执行权限</h3>
-<div><pre><code><span>chmod</span> +x mysql-backup.sh
-</code></pre>
-<div><span>1</span><br></div></div><h3 id="_3-添加到-etc-crontab-每天3点钟执行备份"> 3. 添加到<code>/etc/crontab</code>，每天3点钟执行备份</h3>
-<div><pre><code>0 3 * * * bash /path/to/mysql-backup.sh
-</code></pre>
-<div><span>1</span><br></div></div><h4 id="_4-重启crond生效"> 4. 重启crond生效</h4>
-<div><pre><code>/etc/rc.d/init.d/crond restart
-</code></pre>
-<div><span>1</span><br></div></div>]]></content:encoded>
-    </item>
-    <item>
       <title>MySQL多版本单服务器共存</title>
       <link>https://blog.fangyueming.cn/mysql-multi/</link>
       <guid>https://blog.fangyueming.cn/mysql-multi/</guid>
@@ -4767,82 +4691,80 @@ yum -y <span>install</span> <span>make</span> gcc-c++ cmake bison-devel ncurses 
 <div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br><span>9</span><br><span>10</span><br><span>11</span><br><span>12</span><br></div></div>]]></content:encoded>
     </item>
     <item>
-      <title>配置Oracle PL/SQL Developer</title>
-      <link>https://blog.fangyueming.cn/oracle-plsql/</link>
-      <guid>https://blog.fangyueming.cn/oracle-plsql/</guid>
-      <source url="https://blog.fangyueming.cn/rss.xml">配置Oracle PL/SQL Developer</source>
-      <pubDate>Sat, 12 May 2018 00:00:00 GMT</pubDate>
-      <content:encoded><![CDATA[<h1 id="配置oracle-pl-sql-developer"> 配置Oracle PL/SQL Developer</h1>
-<p>参见：<a href="http://blog.csdn.net/helifengwell/article/details/5820434" target="_blank" rel="noopener noreferrer">http://blog.csdn.net/helifengwell/article/details/5820434</a></p>
-<ul>
-<li>
-<p>Instant Client</p>
-<p>先到Oracle网站下载<a href="http://www.oracle.com/technetwork/database/features/instant-client/index-097480.html" target="_blank" rel="noopener noreferrer">Instant Client</a>。
-根据你的操作系统选择不同的Instant Client版本。解压之后放在你喜欢的目录即可.例如:D:/instantclient_11_2。</p>
-</li>
-<li>
-<p>在D:/instantclient_11_2目录下新建目录network，在network目录下再新建admin目录，在admin目录下新建文件tnsnames.ora，使用文本编辑器打开写入如下内容:</p>
-<div><pre><code><span>MWDB</span> <span>=</span>
-<span>(DESCRIPTION</span> <span>=</span>
-    <span>(ADDRESS_LIST</span> <span>=</span>
-      <span>(ADDRESS</span> <span>=</span> <span>(PROTOCOL = TCP)(HOST = 192.168.0.58)(PORT = 1521))</span>
-    )
-    <span>(CONNECT_DATA</span> <span>=</span>
-      <span>(SERVICE_NAME</span> <span>=</span> <span>MWDB)</span>
-    )
-)
+      <title>CentOS 安装 MySQL 8</title>
+      <link>https://blog.fangyueming.cn/mysql-install/</link>
+      <guid>https://blog.fangyueming.cn/mysql-install/</guid>
+      <source url="https://blog.fangyueming.cn/rss.xml">CentOS 安装 MySQL 8</source>
+      <pubDate>Sat, 11 May 2019 00:00:00 GMT</pubDate>
+      <content:encoded><![CDATA[<h1 id="centos-安装-mysql-8"> CentOS 安装 MySQL 8</h1>
+<h2 id="一、安装并登录"> 一、安装并登录</h2>
+<div><pre><code><span># 安装官方仓库</span>
+yum localinstall https://repo.mysql.com/mysql80-community-release-el7-1.noarch.rpm
+<span># 安装 MySQL Server</span>
+yum <span>install</span> mysql-community-server
+<span># 启动MySQL</span>
+systemctl start mysqld
+<span># 检查服务状态</span>
+systemctl status mysqld
+<span># 查看初始密码</span>
+<span>grep</span> <span>'temporary password'</span> /var/log/mysqld.log
+mysql -uroot -p
+<span># 输入密码进入mysql命令行</span>
 </code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br><span>9</span><br></div></div><blockquote>
-<p>MWDB =：表示定义远程服务器的在本地主机名
-SERVICE_NAME =：远程数据库实例名</p>
-</blockquote>
-</li>
-<li>
-<p>添加一个环境变量，名为TNS_ADMIN，值为tnsnames.ora文件所在路径。比如我的本机为：D:/instantclient_11_2/network/admin</p>
-</li>
-<li>
-<p>设置ORACLE的语言，添加环境变量NLS_LANG，值为SIMPLIFIED CHINESE_CHINA.ZHS16GBK。如果不清楚远程数据库的ORACLE 语言，可以ssh或者telnet到远程机器,在命令界面输入，用命令行连接到数据库。</p>
-<div><pre><code><span>select</span> <span>*</span> <span>from</span> nls_instance_parameters<span>;</span>
+<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br><span>9</span><br><span>10</span><br><span>11</span><br><span>12</span><br></div></div><h2 id="二、修改密码策略-可选"> 二、修改密码策略（可选）</h2>
+<div><pre><code><span>set</span> <span>global</span> validate_password<span>.</span>policy<span>=</span><span>0</span><span>;</span>
+<span>set</span> <span>global</span> validate_password<span>.</span>length<span>=</span><span>4</span><span>;</span>
 </code></pre>
-<div><span>1</span><br></div></div><p>查看 NLS_LANGUAGE 的值
-NLS_LANGUAGE
-NLS_TERRITORY</p>
-</li>
-<li>
-<p>下载并安装PL/SQL Developer配置应用，配置tools -&gt; preferences -&gt; connection（工具 -&gt; 首选项 -&gt; 连接）</p>
-<ul>
-<li>Oracle Home（Oracle主目录）: D:/instantclient_11_2</li>
-<li>OCI library（OCI库）: D:/instantclient_11_2/oci.dll</li>
-</ul>
-</li>
-<li>
-<p>关闭PL/SQL Developer，重启Developer。主机名就会出现在PL/SQL Developer的列表里，输入用户名密码，就可以登录远程oracle 11g数据库了。</p>
-</li>
-<li>
-<p>补充Instant Client 说明</p>
-<p>Oracle Instant client 是oracle提供的简便客户端, 支持多种平台。可从oracle网站下载, 下载地址为：<a href="http://www.oracle.com/technetwork/database/features/instant-client/index-097480.html" target="_blank" rel="noopener noreferrer">Instant Client</a></p>
-<p>包括如下内容:</p>
-<ul>
-<li>Instant client Package - Basic 运行OCI, OCCI, 和JDBC-OCI应用程序需要的所有文件</li>
-<li>Instant client Package - Basic Lite: 只包含英语错误信息, 只支持unicode, ascii, 西欧字符集</li>
-<li>Instant client Package - JDBC Supplement  为jdbc增加了xa, 国际化和RowSet操作。</li>
-<li>Instant Client Package - SQL *Plus 包含sqlplus和需要的库文件</li>
-<li>Instant client Package - SDK 使用Instant Client开发Oracle 应用程序需要的头文件及示例makefile</li>
-<li>Instant client package - ODBC 使用odbc时需要的库, 不是所有平台都有. linux平台包含</li>
-</ul>
-<p>Basic和Basic Lite两个中必须选一个, 其他包都是可选的. 我下载了 Basic, JDBC supplement, SQL *Plus, SDK, ODBC. 解压后放在一个文件夹下, 在这个文件夹下建立文件tnsnames.ora，设置环境变量LD_LIBRARY_PATH和TNS_ADMIN指向解压后的目录, 就可以使用sqlplus了。</p>
-<p>我下载的instant client版本为10.2.0.2.0, 测试了联接到oracle 9.2.0.4和oracle 10.2.0.1.</p>
-<p>Instant Client中不包含tnsping, exp/imp, rman, netca等工具. 如果需要这些工具则需要安装oracle client</p>
-</li>
-</ul>
-<h2 id="oracle备份"> Oracle备份</h2>
-<div><pre><code>exp newsoft/econage@ptime file=E:\Backup\%date:~0,10%exp.dmp log=E:\Backup\%date:~0,10exp.log owner=newsoft
+<div><span>1</span><br><span>2</span><br></div></div><h2 id="三、修改密码"> 三、修改密码</h2>
+<div><pre><code><span>ALTER</span> <span>USER</span> <span>'root'</span><span>@'localhost'</span> IDENTIFIED <span>BY</span> <span>'password'</span><span>;</span>
 </code></pre>
-<div><span>1</span><br></div></div><blockquote>
-<p>方跃明
-2018-05-12</p>
-</blockquote>
-]]></content:encoded>
+<div><span>1</span><br></div></div><h2 id="四、添加用户并授权"> 四、添加用户并授权</h2>
+<div><pre><code><span>CREATE</span> <span>USER</span> <span>'newuser'</span><span>@'%'</span> IDENTIFIED <span>WITH</span> mysql_native_password <span>BY</span> <span>'password'</span><span>;</span>
+<span>-- mysql_native_password 为传统加密方式，适配各种连接器</span>
+<span>GRANT</span> <span>ALL</span> <span>ON</span> newuser_db<span>.</span><span>*</span> <span>TO</span> <span>'newuser'</span><span>@'%'</span><span>;</span>
+FLUSH <span>PRIVILEGES</span><span>;</span>
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br></div></div><h2 id="五、其他配置"> 五、其他配置</h2>
+<ol>
+<li>设置SELinux为disabled，并生效</li>
+<li>开启防火墙mysqld对应端口</li>
+</ol>
+<h2 id="六、忘记密码"> 六、忘记密码</h2>
+<h3 id="_1-设置skip-grant-tables"> 1. 设置skip-grant-tables</h3>
+<div><pre><code><span>vi</span> /etc/my.cnf
+<span># 在 [mysqld] 段添加 skip-grant-tables，并重启mysql</span>
+systemctl restart mysqld
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br></div></div><h3 id="_2-清空密码"> 2. 清空密码</h3>
+<div><pre><code><span>USE</span> mysql<span>;</span>
+<span>UPDATE</span> <span>user</span> <span>SET</span> authentication_string<span>=</span><span>''</span> <span>WHERE</span> <span>user</span><span>=</span><span>'root'</span><span>;</span>
+</code></pre>
+<div><span>1</span><br><span>2</span><br></div></div><h3 id="_3-空密码登录"> 3. 空密码登录</h3>
+<div><pre><code><span>vi</span> /etc/my.cnf
+<span># 修改配置，注释刚刚添加的部分 # skip-grant-tables</span>
+<span># 重启MySQL</span>
+systemctl restart mysqld
+mysql -uroot -p
+<span># 空密码进入 mysql 命令行后使用 ALTER USER 修改密码</span>
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br></div></div><h2 id="七、日常备份"> 七、日常备份</h2>
+<h3 id="_1-编写shell脚本-mysql-backup-sh"> 1. 编写Shell脚本：mysql-backup.sh</h3>
+<div><pre><code><span>#!/bin/bash</span>
+<span>day</span><span>=</span><span><span>`</span><span>date</span> +%Y%m%d<span>`</span></span>
+<span>dir</span><span>=</span><span>$HOME</span>/mysql-backup
+<span>find</span> <span>$dir</span> -ctime +7 -type f <span>|</span> <span>xargs</span> <span>rm</span> -rf
+mysqldump -B sys -uroot -ppassword <span>|</span> <span>gzip</span> <span>></span> <span>$dir</span>/sys-<span>$day</span>.sql.gz
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br></div></div><h3 id="_2-赋予执行权限"> 2. 赋予执行权限</h3>
+<div><pre><code><span>chmod</span> +x mysql-backup.sh
+</code></pre>
+<div><span>1</span><br></div></div><h3 id="_3-添加到-etc-crontab-每天3点钟执行备份"> 3. 添加到<code>/etc/crontab</code>，每天3点钟执行备份</h3>
+<div><pre><code>0 3 * * * bash /path/to/mysql-backup.sh
+</code></pre>
+<div><span>1</span><br></div></div><h4 id="_4-重启crond生效"> 4. 重启crond生效</h4>
+<div><pre><code>/etc/rc.d/init.d/crond restart
+</code></pre>
+<div><span>1</span><br></div></div>]]></content:encoded>
     </item>
     <item>
       <title>nginx配置php-fpm</title>
@@ -4949,175 +4871,195 @@ php-fpm -R <span># 以root用户和守护进程方式启动php-fpm</span>
 ]]></content:encoded>
     </item>
     <item>
-      <title>有感于“论PHP的倒掉”</title>
-      <link>https://blog.fangyueming.cn/php-fall/</link>
-      <guid>https://blog.fangyueming.cn/php-fall/</guid>
-      <source url="https://blog.fangyueming.cn/rss.xml">有感于“论PHP的倒掉”</source>
-      <pubDate>Mon, 23 Nov 2009 00:00:00 GMT</pubDate>
-      <content:encoded><![CDATA[<h1 id="有感于-论php的倒掉"> 有感于“论PHP的倒掉”</h1>
-<blockquote>
-<p><a href="http://www.iteye.com/topic/523378" target="_blank" rel="noopener noreferrer">http://www.iteye.com/topic/523378</a>
-<a href="http://hent.iteye.com/" target="_blank" rel="noopener noreferrer">七月十五</a></p>
-</blockquote>
-<p>已被隐藏的《论PHP的倒掉》参见<a href="http://www.iteye.com/topic/520153" target="_blank" rel="noopener noreferrer">http://www.iteye.com/topic/520153</a>。</p>
-<div><p>《论PHP的倒掉》</p>
-<p>最近听闻Python貌似有打入冷宫的危险，惊出一身冷汗。突然想起自己常用的PHP，似乎在红火过几年后，越来越被人们看淡了。其实细细想来，php出局是合理的，作为一个PHPer我深切的意识到这一点。</p>
-<p>PHP能上能下，貌似在后端和前端都可以用。如果PHP的本身（运行机制、内核等等）够强大的话，诚然是好事，几乎可以一统WEB之江湖。但事实并非如此，PHP在性能、安全和语言层面存在很多弱点。导致了性能低下、资源浪费，不适合大型应用开发。在前端比不过javascript+xhtml+css，在后端比不过java，c/c++，Python，Perl。样样懂不如一门精，不无道理。如果没有杀手锏，迟早是要被淘汰的。</p>
-<p>目前，后端开发大量的WebApplication向WebService进化，PHP作为服务端脚本的方便优势越来越小，以至于荡然无存。就WEB编程而言，在前端用Javascript等语言很方便就可以操作html，基于DOM编程，与后端进行ajax交互，快速、安全、高效、节能。在后端采用java、c/c++等语言搭建高性能、高安全性、高并发、集群式的服务平台。完全有理由抛弃PHP等任何服务端的脚本语言。</p>
-<p>我一直在想Service-REST + Application-MVC （Application可以是Browser但不是仅仅是Browser）的威力。在这样的系统构建中，我有一个很极端的想法，那就是服务端脚本都成了鸡肋了。这样的环境下，asp有.net，jsp有java，只在服务端脚本有作为的PHP第一个就倒掉了。</p>
-<p>其实近些年来PHP的价值已经被定位在了前端脚本语言。在运作成熟的大公司，招PHP大部分只用于前端开发，很多PHPer大概也是高达7K左右的月薪——我是自学的程序设计，从未从事过编程设计行业，请原谅我对具体情况的不明真相。面对汹涌而来的大潮，我建议PHPer想从事后端的多多学习java，想从事前端的多学学javascript，不失为一个转型的出路。</p>
-<p>这么多年黑灯瞎火的摸索，在PHP中摸爬滚打也有几年了，回过头来证实了PHP的倒掉。作为一个PHPer，感到莫名的心酸。</p>
-</div>
-<p>面对攻击和隐藏扣分，我并不感到愤怒和伤怀，那样太消极了。被隐藏后引发了我的思考，为什么会被隐藏和遭受攻击？到底我所思考的是不是走入了误区？我如何正确的认识php和编程？我能从中得到些什么启示呢？</p>
-<p>另外我声明一下，我就是phpchina的七月十五，但是并不代表phpchina的立场，所说的话只是私人言论，在javaeye我只希望我是javaeye的会员而已。</p>
-<p>php作为目前排名的第三大语言，这么多年来多少有点研究，php的发展并没有扬长避短，发挥优势，实在看不出php的长处在最近几年的发展。一样东西如果没有长处，一定会有替代品，淘汰是迟早的事情。撇开php在后端领域目前根本就竞争不过java和.net不说，javascript潜力的发掘和崛起，以及Flex，JavaFX，GWT等的进步，无一不威胁着php的优势地位。不要认为php是服务端脚本就没有被取代的可能性。</p>
-<p>未来的编程发展方向是服务(Service)式和分布(Distributed)式的。这必然会导致信息传输的编码标准化，与服务器交互是不限制语言的，只要这个语言有解析编码的能力，就能处理信息。面向服务编程不限语言，这一点可以从淘宝的TOP上直观的看到，TOP几乎支持任何主流语言。面向服务编程也不限客户端，不管你是应用小程序（applet），浏览器（browser），桌面应用程序（desktop），还是移动终端（moblie）都可使用服务。</p>
-<p>也许是我过于偏激了，因为目前大量的phper编程都使用一直以来非常传统的php数据编码编程，思想固化；要么就走向了所谓的企业化的oop及使用大型框架的方向，偏离php的优势。而php的发展方向在哪里，我估计目前zend也比较疑惑。很多人认为php应该加强底层的优化，提高性能和效率，继续以前的简单实用。然后zend貌似要把php拉向企业计算的大池塘里，php这条小鱼要跟java，.net等等大鱼去争一席之地，大鱼吃小鱼是规律。更可怕的是在企业计算重视性能和安全，php这条慢鱼也逃不过快鱼吃慢鱼的的悲剧。</p>
-<p>zend如果不重新审视php的发展方向，以及目标市场，以及发展计划的话。不出三五年后端java，.net等以及前端的javascript，html5，Flex，GWT，JavaFX等会重新占领市场份额。php会在萎缩中倒掉。</p>
-<p>这篇文章因为立场原因不适合发在phpchina，这样的论调要么引发不满，要么消极导向。另一个原因是因为javaeye层次更高些。所以我发在了javaeye的php版块。发布后我就去上海参加了为期三天的行动成功公司的4*8绩效管理研修班了，没有及时关注。原以为会引发讨论，没想到换来的一堆的谩骂和攻击，最后被隐藏扣分。这是我意想不到的。</p>
-<p>之前我就说过，任何语言层面的讨论都没有意义，人菜那才是真的菜。PHPer的现状是不思考，不实践，全作愤怒状，听不进任何意见和建议。心态决定思维，思维准定行为，行为决定结果。盲目自大、鼠目寸光、杯空自满的心态，我想这才是php倒掉的真正原因。</p>
-<p>其实倒掉更多的是人，我不希望见到这个倒掉，那个倒掉。朝阳喷薄，以至如日中天，亦有日薄西山时。时乎，时乎，会当有变时。</p>
-<h2 id="willko"> <a href="http://willko.iteye.com/" target="_blank" rel="noopener noreferrer">willko</a></h2>
-<p>是否想表达，以后有更多的逻辑处理放在浏览器中实现（前端RIA之类的），而后端，因为php本身的原因，所以php只能作为一套系统的web接口。</p>
-<p>但是又因为浏览器的可编程能力提高了，所以php这样的代理作用不大？</p>
-<p>其实，楼主说“PHPer的现状是不思考，不实践，全作愤怒状，听不进任何意见和建议”，我只想说你知道得太少了。</p>
-<p>不要以为一个PPC代表整个中国的PHP现状。。。</p>
-<p>我谈谈我的看法，其实说得并全无道理，确实php会萎缩。</p>
-<p>现在php的需求上升，完全是泡沫，互联网这个市场大家的疯狂涌入，需求肯定会上升的，但是弱肉强食，市场有限，垮掉是时间问题。这是萎缩的原因之一</p>
-<p>其二，正如楼主所说的前端处理能力，以后可能会放更多的逻辑运算在前端，所以php的需求会下降，这是其二</p>
-<p>但是这两条还不至于让php垮掉，php做为最轻便的“web接口”方案，实现简单，部署方便，是肯定会存在的。</p>
-<h2 id="robbin"> <a href="http://robbin.iteye.com/" target="_blank" rel="noopener noreferrer">robbin</a></h2>
-<p>作为一个曾经的老PHPer，我个人的看法是PHP的不会倒掉。我在99年2000年的时候做互联网开发，用PHP作为web，用Java做后端高性能服务，也算10年的老PHPer了。10年的编程生涯回顾过来，对技术的认识也是一个否定之否定，螺旋式上升的过程。</p>
-<p>PHP是一个优点和缺点都过于突出的web语言，因为他的优点就是过于简单易用，所以他非常有生命力，也因为他太简单，所以应用领域受到很大的限制。但你不能忽视一个编程语言简单易用带来的威力，前两年我曾经认为PHP要被更加高级的Python/Ruby取代，但事实证明，PHP还是互联网第一的编程语言，Python/Ruby还是比PHP复杂很多，带来了不少门槛。</p>
-<p>JavaEye曾经有一个PHP的讨论贴：PHP框架的繁荣是正确的发展方向吗？，在这个讨论当中，我对PHP的看法就是，PHP不应该搞重型框架例如Zend这种东西：</p>
-<div><p>【robbin 写道】</p>
-<p>其实PHP核心问题都不是性能，而是能不能保持“简单性”和“草根性”</p>
-<p>一个有点编程背景的普通人，只需要学习PHP半天时间，就可以上手开始开发web应用了，这就是PHP最大的优势。专业程序群体才多大，而电脑爱好者的群体有多大？我一个朋友，做photoshop出身的，人家学了两天PHP，到处接活给人家开发网站，一个人全部搞定。你让他学Java,那真要了他的命了。我另外一个朋友的老公，人家压根就不是这一行的，照样会用PHP搭网站，人家上网去下载一个PHP程序，改吧改吧页面，就弄好了，你让人家学ruby？那肯定不可能。</p>
-<p>PHP的人海战术也就是这么来的，群众基础好。事实上PHP5曾经在相当长时间内被抵制，就是因为PHP5的面向对象语法引入了对于电脑爱好者来说门槛开始变高了，PHP开始变复杂了。</p>
-<p>因此PHP再用什么框架，是违背PHP本身的设计哲学的。PHP就应该做简单的页面处理就够了，复杂的逻辑让后台的Java/C++去处理。</p>
-</div>
-<p>事实上这些年PHP的应用领域也不仅仅在前端，相当多后端编程甚至后端服务也直接使用PHP，比方说Facebook这个现在全球流量第2大的网站就是绝大部分功能都是PHP，附带少量的C++，Java和Erlang，再比如现在热门的网页游戏，基本上也都是直接用PHP做后端来用。可以这样说，最近3年来，PHP不但没有萎缩，反而在扩大市场份额，PHP作为互联网Web编程语言的王者，短期之内还没有出现有威胁的挑战者。</p>
-<p>回到楼主这个话题上来，其实楼主思考的问题应该是：不是PHP有没有前途的问题，PHP是肯定有前途的，但是PHPer会有前途吗？</p>
-<p>这个话题就有些沉重了，PHPer总给人不登大雅之堂的感觉，PHPer的薪资也远远不及同等工作年限的Java/C++这也是一个残酷的现实。一个程序员工作3年之后，随着视野和经验的增长，不可避免要考虑web架构，高性能高可用性问题，而这些领域，都不是一个纯PHPer可以涉及的领域，所以PHPer很容易就触到职业上的天花板，要打破这个天花板，你就不得不去接触C++或者Java这些编程语言。但对一个PHPer来说，当你不得不去学习Java或者C++的时候，心理难免有些感概，我何不从一开始就搞C++呢，这样职业发展道路岂不是更好？所以就会产生PHP没有前途的悲观想法。</p>
-<p>其实我个人觉得从程序员的职业生涯来看，不应该把自己和编程语言绑得过死，开放心态，多学习多接触多实践，各种编程语言仅仅是你工具箱里面的各种工具才好。</p>
-<h2 id="syu"> <a href="http://syu.iteye.com/" target="_blank" rel="noopener noreferrer">syu</a></h2>
-<p>都开了贴子讨论，又何必以沉默待之呢？</p>
-<p>这儿的人一没爆粗口，二没群起愤之。大家仁者见仁，难道不是楼主开贴初衷？</p>
-<p>语言嘛，工具也，又非宗教。</p>
-<p>站在人的角度，适者即用。但也不至于对工具本身死活轻下结论。毕竟还有这么多场合在应用着。</p>
-<p>站在业务的角度，只有不适合的工具，没有不好的语言。</p>
-<p>企业应用是个天大的骗言和幌子，谁能给个定义，什么才算是企业应用？</p>
-<p>多少年来对PHP的打击无一例外不是祭出“PHP不适合企业应用”的大旗。</p>
-<p>那么facebook，yahoo,百度，sina是不是企业？他们有没有用PHP？</p>
-<p>有人也许会轻藐的说，他们只用PHP做简单的事，复杂的仍然是X，Y，Z在做。</p>
-<p>但反过来说，为什么它们不用X,Y,Z来做这样简单的事？因为不适合嘛。</p>
-<p>我所理解的企业应用是一个集合，通常需要多种工具来进行整合，每一环都有它存在的意义和价值。</p>
-<p>PHP在WEB层面活跃不是没有原因的，也不是因为它语法随意，简单。而且以PHP出身（而非终结）的高手业界也不少吧。
-哪里来的死亡？</p>
-<h2 id="dualface"> <a href="http://dualface.iteye.com/" target="_blank" rel="noopener noreferrer">dualface</a></h2>
-<p>（敏感词）倒了，PHP 都还不一定会倒 -_-</p>
-<p>PHP 的成功并不仅仅是“简单”，最重要的原因还是 —— PHP 是一种完全为 Web App 设计的语言，所以用 PHP 做 Web 那是如鱼得水。</p>
-<p>虽然 Java/.NET/Python/Ruby/XXX 也可以做 Web App，但是比起一种专门为 Web App 设计的语言，易用程度和开发效率上有很大区别，所以 PHP 积累了庞大的群众基础。</p>
-<p>当然了，Web App 的规模越来越大，仅靠单一语言是不可能解决问题的。但是人类解决问题的模式就是把大问题分解为小问题，再把小问题分解为更小的问题。如果仅仅着眼于服务端和客户端的交互这一层，PHP 就是极佳的选择。就好像卫生纸和卫生巾都可以吸水，但是没几个女生会用卫生纸来代替卫生巾。</p>
-<p>说的现实一点，雇一个 Java 熟练工的钱可以雇两个 PHP 熟练工，生产力还更高。所以越来越多的 Web App 都把这一层交给 PHP 来处理。</p>
-<h2 id="magician"> <a href="http://magician.iteye.com/" target="_blank" rel="noopener noreferrer">magician</a></h2>
-<p>你显然完全没有理解php的用武之地在哪里</p>
-<p>1、是，显示可以用javascript，但是它的数据来源在哪？是怎么来的？数据是通过什么逻辑组织的？如果你能直接从浏览器访问到存放在任何地方的数据，那我就可以承认其他一切语言都可以滚蛋了，js最牛逼。很可惜，事实上并不是这样。js能直接从服务端得memcache里拿数据吗？可以从数据里拿数据吗？而恰恰目前能帮助js组织好数据，并以一定格式（比如json）返回给浏览器的最好工具正是php，这个我前面已经说明了，不明白请往前看。</p>
-<p>写到这里，如果你还认为要拿php和js来做比较，只能说逻辑不清了，我们没必要再讨论下去。</p>
-<p>2、展示逻辑和展现为什不能分开？</p>
-<p>为什么没有必要分开？</p>
-<p>xml+xslt不是正是在分开他们？</p>
-<p>WML又如何？界面不一样而已，数据组成逻辑也不一样吗？</p>
-<p>而且，正是因为有各种不同的展示方式（html，wml，flash），他们都在变，而恰恰不便的是php在服务端的处理方式：返回一定格式的数据（比如json）
-这不又恰恰说明了剥离展示逻辑（数据生成）和展示方式的必要吗？</p>
-<p>3、方向......</p>
-<p>好像只是你个人在认为某个语言方向不正确，你是不是正确的都不知道，就夸夸其谈你所谓的正确性</p>
-<p>有什么能证明你的方向是正确的吗？</p>
-<p>更何况，编程序的哪个没有触类旁通的能力，就算我现在钻php钻得很深，又如何能断定我的java能力就很差呢？何来跑得越快就偏得越远呢？
-我觉得语言恰恰是你只要精通了一种，其他的都无非是换个壳子，如果你现在还认为有什么语言需要花10年功夫去研究才能小有所成，所以一定要选对方向，不能犯错，那我只能说：你太嫩了</p>
-<p>4、为了证明我以上所说的，我列举一下我现在项目所使用的语言：</p>
+      <title>配置Oracle PL/SQL Developer</title>
+      <link>https://blog.fangyueming.cn/oracle-plsql/</link>
+      <guid>https://blog.fangyueming.cn/oracle-plsql/</guid>
+      <source url="https://blog.fangyueming.cn/rss.xml">配置Oracle PL/SQL Developer</source>
+      <pubDate>Sat, 12 May 2018 00:00:00 GMT</pubDate>
+      <content:encoded><![CDATA[<h1 id="配置oracle-pl-sql-developer"> 配置Oracle PL/SQL Developer</h1>
+<p>参见：<a href="http://blog.csdn.net/helifengwell/article/details/5820434" target="_blank" rel="noopener noreferrer">http://blog.csdn.net/helifengwell/article/details/5820434</a></p>
 <ul>
-<li>大量client javascript</li>
-<li>大量php</li>
-<li>大量java</li>
-<li>少量python</li>
-<li>少量c</li>
-<li>少量shell</li>
-<li>少量flex</li>
-<li>html+css+xml+xslt就不算进去了</li>
+<li>
+<p>Instant Client</p>
+<p>先到Oracle网站下载<a href="http://www.oracle.com/technetwork/database/features/instant-client/index-097480.html" target="_blank" rel="noopener noreferrer">Instant Client</a>。
+根据你的操作系统选择不同的Instant Client版本。解压之后放在你喜欢的目录即可.例如:D:/instantclient_11_2。</p>
+</li>
+<li>
+<p>在D:/instantclient_11_2目录下新建目录network，在network目录下再新建admin目录，在admin目录下新建文件tnsnames.ora，使用文本编辑器打开写入如下内容:</p>
+<div><pre><code><span>MWDB</span> <span>=</span>
+<span>(DESCRIPTION</span> <span>=</span>
+    <span>(ADDRESS_LIST</span> <span>=</span>
+      <span>(ADDRESS</span> <span>=</span> <span>(PROTOCOL = TCP)(HOST = 192.168.0.58)(PORT = 1521))</span>
+    )
+    <span>(CONNECT_DATA</span> <span>=</span>
+      <span>(SERVICE_NAME</span> <span>=</span> <span>MWDB)</span>
+    )
+)
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br><span>9</span><br></div></div><blockquote>
+<p>MWDB =：表示定义远程服务器的在本地主机名
+SERVICE_NAME =：远程数据库实例名</p>
+</blockquote>
+</li>
+<li>
+<p>添加一个环境变量，名为TNS_ADMIN，值为tnsnames.ora文件所在路径。比如我的本机为：D:/instantclient_11_2/network/admin</p>
+</li>
+<li>
+<p>设置ORACLE的语言，添加环境变量NLS_LANG，值为SIMPLIFIED CHINESE_CHINA.ZHS16GBK。如果不清楚远程数据库的ORACLE 语言，可以ssh或者telnet到远程机器,在命令界面输入，用命令行连接到数据库。</p>
+<div><pre><code><span>select</span> <span>*</span> <span>from</span> nls_instance_parameters<span>;</span>
+</code></pre>
+<div><span>1</span><br></div></div><p>查看 NLS_LANGUAGE 的值
+NLS_LANGUAGE
+NLS_TERRITORY</p>
+</li>
+<li>
+<p>下载并安装PL/SQL Developer配置应用，配置tools -&gt; preferences -&gt; connection（工具 -&gt; 首选项 -&gt; 连接）</p>
+<ul>
+<li>Oracle Home（Oracle主目录）: D:/instantclient_11_2</li>
+<li>OCI library（OCI库）: D:/instantclient_11_2/oci.dll</li>
 </ul>
-<p>对于一个日pv 100万左右的网站，我还真没看出来在php这个层面我的方向怎么就错了，界面一直在变，但是php的显示逻辑一直没变过，并且效果高，逻辑清晰。倒是数据库有换的打算，mysql换成postgresql。</p>
-<h2 id="sztime"> <a href="http://sztime.iteye.com/" target="_blank" rel="noopener noreferrer">sztime</a></h2>
-<p>原帖的12页我是耐心的看完了, 但这个帖子的回复我实在是看不下去.</p>
-<p>首先申明: 本人根本不熟悉楼主, 他在PHPChina上的帖子看过的也绝对不超过10个; 以下言论仅代表本人观点.</p>
-<p>楼主的说法确实有点偏激, 但大方向上并没有错.</p>
-<p>何谓&quot;倒掉&quot;? 倒掉并非死掉, 一个企业或品牌, 只要市场萎缩到一半, 就可以称之为倒掉了,而PHP在三五年后份额萎缩到一半, 难道真是不可能的事吗?</p>
-<p>另外就是攻击楼主&quot;拿PHP和JS比较&quot;的那些人, 实话说很可笑! 楼主所站的高度比你们高了至少二个档次, 只不过没有(看了前几页, 感觉应该是他根本就不想)解释得像小学课本那样通俗而已----退一步讲, 就算他再写多一倍的文字, 凭你们的水平恐怕仍然难以打破自己头上的天花板! 你们把&quot;PHP是服务器端语言而JS是浏览器端脚本&quot;当成可以判定一切生死的圣旨,都以为自己很明白, 事实上愚蠢之极! 我打个比方吧: 楼主说, 据最新研究, 火星上可能有水存在----你们看了马上就骂道: 楼主你真白啊, 火星既然叫火星, 上面肯定只有火了, 怎么可能有水呢?</p>
-<h2 id="akandfxs"> <a href="http://akandfxs.iteye.com/" target="_blank" rel="noopener noreferrer">akandfxs</a></h2>
-<p>楼主说的很在理。其实前端javascript太强悍的后果，就是对快速开发提供了足够的支持。以前php强调的灵活性和快速部署，在足够强大的javascript快速开发和java这样的后端语言的提供上，是非常有可能压榨php的空间的。在云计算时代就更是如此了。javascript对php的空间的压缩可能会更明显。</p>
-<h2 id="giginet"> <a href="http://giginet.iteye.com/" target="_blank" rel="noopener noreferrer">giginet</a></h2>
-<p>我觉得lz这是作为一个老手，随着水平不断提高所产生的一种潜意识的危机或半强迫症吧。就好比很多水平越高，反而觉得越技不如人的那些人。而刚入门的反而容易觉得自己已经了解的足够多。</p>
-<p>目前的web层表示越来越丰富，js作为前端语言，对于逻辑的展现也在逐渐增强，对于后台处理的很多数据，可以直接以json输出到前台进行解析，或者一些逻辑也可以使用脚本实现。从开发层次上来说，对于一个web程序的开发，前台功能增强，后台php的编码的确是在逐渐减少。但我并不认为php会被取缔。再好的前台还是最终要有后台支撑的。虽然使用php可以达到某些特殊效果，但与java等的对比性不在这里。php的最大特点还是轻型，快速开发，效率也不错，这是它极大的优势。这就好比mysql与oracle之间的关系一样。这么多年，mysql依然没有倒掉，各个大型网站的后台，mysql的份额看看有多少就知道了。有的时候，免费，简单，轻型，快速，对于一些小型开发还是王道。</p>
-<p>我觉得robbin说的很对，关键还是看人，语言之类的毕竟只是工具，浮云而已。好技术好语言都应该要有它合适的岗位，无所谓排名先后，无所谓影响度高低。就好像前几天看javaeye中有一个开源的小项目，逻辑全部放到数据库中去写，基本都已经不需要写java代码了，但不可以说java就因此而倒掉了。语言终归还是有它合适的场景的。就好比asp，再多么差劲，目前不还是有人在用么，呵呵。</p>
-<p>从市场来讲，要php的企业还是非常多了，php也不会短期内被取缔。只是也许目前phper的薪水与java等实在无法一起比罢了。毕竟php的入门也相对容易得多，薪水低一些是符合市场规律的，而这难免就会对一些老鸟不公，有时也会不可避免的发一些感慨。</p>
-<p>都是技术讨论，个人坚持自己的意见没什么错误，毕竟只是讨论而已。而很多事，本来就难有对错之分。</p>
-<blockquote>
+</li>
+<li>
+<p>关闭PL/SQL Developer，重启Developer。主机名就会出现在PL/SQL Developer的列表里，输入用户名密码，就可以登录远程oracle 11g数据库了。</p>
+</li>
+<li>
+<p>补充Instant Client 说明</p>
+<p>Oracle Instant client 是oracle提供的简便客户端, 支持多种平台。可从oracle网站下载, 下载地址为：<a href="http://www.oracle.com/technetwork/database/features/instant-client/index-097480.html" target="_blank" rel="noopener noreferrer">Instant Client</a></p>
+<p>包括如下内容:</p>
+<ul>
+<li>Instant client Package - Basic 运行OCI, OCCI, 和JDBC-OCI应用程序需要的所有文件</li>
+<li>Instant client Package - Basic Lite: 只包含英语错误信息, 只支持unicode, ascii, 西欧字符集</li>
+<li>Instant client Package - JDBC Supplement  为jdbc增加了xa, 国际化和RowSet操作。</li>
+<li>Instant Client Package - SQL *Plus 包含sqlplus和需要的库文件</li>
+<li>Instant client Package - SDK 使用Instant Client开发Oracle 应用程序需要的头文件及示例makefile</li>
+<li>Instant client package - ODBC 使用odbc时需要的库, 不是所有平台都有. linux平台包含</li>
+</ul>
+<p>Basic和Basic Lite两个中必须选一个, 其他包都是可选的. 我下载了 Basic, JDBC supplement, SQL *Plus, SDK, ODBC. 解压后放在一个文件夹下, 在这个文件夹下建立文件tnsnames.ora，设置环境变量LD_LIBRARY_PATH和TNS_ADMIN指向解压后的目录, 就可以使用sqlplus了。</p>
+<p>我下载的instant client版本为10.2.0.2.0, 测试了联接到oracle 9.2.0.4和oracle 10.2.0.1.</p>
+<p>Instant Client中不包含tnsping, exp/imp, rman, netca等工具. 如果需要这些工具则需要安装oracle client</p>
+</li>
+</ul>
+<h2 id="oracle备份"> Oracle备份</h2>
+<div><pre><code>exp newsoft/econage@ptime file=E:\Backup\%date:~0,10%exp.dmp log=E:\Backup\%date:~0,10exp.log owner=newsoft
+</code></pre>
+<div><span>1</span><br></div></div><blockquote>
 <p>方跃明
-2009-11-23</p>
+2018-05-12</p>
 </blockquote>
 ]]></content:encoded>
     </item>
     <item>
-      <title>php_imagick安装配置</title>
-      <link>https://blog.fangyueming.cn/php-imagick-windows/</link>
-      <guid>https://blog.fangyueming.cn/php-imagick-windows/</guid>
-      <source url="https://blog.fangyueming.cn/rss.xml">php_imagick安装配置</source>
-      <pubDate>Mon, 02 Aug 2010 00:00:00 GMT</pubDate>
-      <content:encoded><![CDATA[<h1 id="php-imagick安装配置"> php_imagick安装配置</h1>
-<p>php_imagick是强大的图片处理PHP插件。</p>
+      <title>RBAC之我见</title>
+      <link>https://blog.fangyueming.cn/rbac/</link>
+      <guid>https://blog.fangyueming.cn/rbac/</guid>
+      <source url="https://blog.fangyueming.cn/rss.xml">RBAC之我见</source>
+      <pubDate>Wed, 09 Sep 2009 00:00:00 GMT</pubDate>
+      <content:encoded><![CDATA[<h1 id="rbac之我见"> RBAC之我见</h1>
+<blockquote>
+<p>原帖见：<a href="http://user.qzone.qq.com/61077523/blog/1374910701" target="_blank" rel="noopener noreferrer">http://user.qzone.qq.com/61077523/blog/1374910701</a></p>
+</blockquote>
+<p>最近又开始折腾权限精细控制，发现多年前发的文章，还挺有思路的。摘录如下：</p>
 <ul>
-<li>参见
+<li><a href="http://bbs.phpchina.com/forum.php?mod=redirect&amp;goto=findpost&amp;ptid=105577&amp;pid=877890&amp;fromuid=8531" target="_blank" rel="noopener noreferrer">http://bbs.phpchina.com/forum.php?mod=redirect&amp;goto=findpost&amp;ptid=105577&amp;pid=877890&amp;fromuid=8531</a></li>
+<li><a href="http://bbs.phpchina.com/forum.php?mod=viewthread&amp;tid=151874&amp;fromuid=8531" target="_blank" rel="noopener noreferrer">http://bbs.phpchina.com/forum.php?mod=viewthread&amp;tid=151874&amp;fromuid=8531</a></li>
+</ul>
+<h2 id="一、缘起-zend-acl"> 一、缘起 Zend_Acl</h2>
+<h3 id="_1-简介"> 1. 简介</h3>
+<p>Zend_Acl 为权限管理提供轻量并灵活的访问控制列表 (ACL,access control list) 的实现。一般地，应用软件可以利用这样的功能限制某些特定对象来访问特定保护的对象。
+在本文档中：</p>
 <ul>
-<li><a href="http://www.cnblogs.com/wangqishu/p/5609950.html" target="_blank" rel="noopener noreferrer">http://www.cnblogs.com/wangqishu/p/5609950.html</a></li>
+<li>resource （资源）是一个限制访问的对象。</li>
+<li>role （角色）是一个可以发出请求去访问Resource的对象。</li>
 </ul>
-</li>
-<li>版本对应
+<p>简单地说就是：roles 请求访问 resources。例如，如果停车服务员要进入汽车，那么，这个停车服务员就是发出请求的 role，而这辆汽车就是 resource，因为不是所有人都有权进入汽车。
+通过规范和访问控制列表（ACL）的使用，应用软件可以控制角色（roles）如何来访问资源（resources）。</p>
+<h3 id="_2-关于资源-resource"> 2. 关于资源(Resource)</h3>
+<p>在 Zend_Acl 中，创建一个 resource 非常简单。Zend_Acl 提供了 resource 接口<code>Zend_Acl_Resource_Interface</code> 使开发者在程序中创建 resources 非常容易。为了使Zend_Acl把某个对象当作一个resource，一个类只需要实现这个只包含了一个方法 getResourceId() 的接口。</p>
+<p>另外，Zend_Acl_Resource是一个包含在 Zend_Acl 里作为一个基本的 resource 实现的类，开发者可以任意扩展它。
+Zend_Acl 提供了一个树结构，它可以添加多个 resources (或者叫“访问控制下的区域”）。因为 resources 被存储在这样一个树结构， 所以它们可以被组织成从一般（树根）到特殊（树叶）。基于特殊resource的查询将自动从resource的等级结构中搜索分配给祖先rResources的规则， 它允许简单的规则继承。</p>
+<p>例如，要把一个缺省的规则应用到一个城市的每个建筑物，就简单地把这个规则分配给这个城市， 而不是把规则分配给每个建筑物。然而，有些建筑物也许要求例外的规则，在Zend_Acl里，很容易地通过分配例外规则给每个有这样要求的建筑物来实现。 一个 resource 可以从唯一的一个父 resource 继承，而这个父 resource 也有它自己的父 resource，等等。</p>
+<p>Zend_Acl 也支持基于 resources 的权限（例如：&quot;create&quot;, &quot;read&quot;, &quot;update&quot;, &quot;delete&quot;）， 所以开发者可以根据 resource 分配影响全部或者特殊权限的规则到一个或多个资源。</p>
+<h3 id="_3-关于角色-role"> 3. 关于角色(Role)</h3>
+<p>象 Resources 一样，创建一个 role 也非常简单。 Zend_Acl 提供了 <code>Zend_Acl_Role_Interface</code> 使开发者创建 roles 非常容易。 为了使Zend_Acl把某个对象当作一个 role，一个类只需要实现这个只包含了一个方法 getRoleId() 的接口。</p>
+<p>另外，Zend_Acl_Role是一个包含在Zend_Acl里作为一个基本的 role 实现的类，开发者可以任意扩展它。
+在 Zend_Acl, 一个 role 可以从一个或多个 role 继承，这就是在 role 中支持规则的继承。</p>
+<p>例如，一个用户 role，如 “sally”， 可以属于一个或多个 role，如：“editor”和“administrator”。开发者可以分别给“editor”和“administrator”分配规则， 而“sally”将从它们俩继承规则，不需要直接给“sally”分配规则。
+虽然从多重角色继承的能力非常有用，但是多重继承也带来了一定程度的复杂性。</p>
+<p>下面的例子来示例含糊情形和Zend_Acl如何解决它。</p>
+<h2 id="二、分析"> 二、分析</h2>
+<p>按ZendFramework的做法ACL（访问控制列表）与Auth（认证）是分开的，我用五张表来实现。</p>
 <ul>
-<li>PHP Version: 7.0.9</li>
-<li>Compiler: MSVC14 (Visual C++ 2015)</li>
-<li>Architecture: x86</li>
-<li>Thread Safety: enabled</li>
-<li>imagick module version: 3.4.2</li>
-<li>Imagick compiled with ImageMagick version: ImageMagick 6.9.3-7 Q16 x86</li>
-<li>Imagick using ImageMagick library version: ImageMagick 6.9.3-7 Q16 x86</li>
-<li>ImageMagick number of supported formats: 240 (必须有数量)</li>
+<li>用于ACL的有：role、resource、access</li>
+<li>用于AUTH的有：user</li>
+<li>AUTH和ACL结合的表是：group</li>
 </ul>
-</li>
-<li>安装文件及设置
-<ul>
-<li>安装程序: ImageMagick-6.9.6-8-Q16-x86-dll.exe</li>
-<li>环境变量: MAGICK_HOME = C:\Program Files (x86)\ImageMagick-6.9.6-Q16\modules\coders</li>
-<li>扩展文件：php_imagick-3.4.2-7.0-ts-vc14-x86.zip (对应x86, vc14, ts)</li>
-<li>php: CORE_RL_-.dll</li>
-<li>php/ext: php_imagick.dll</li>
-<li>php.ini: extension=php_imagick.dll</li>
-</ul>
-</li>
-<li>对应插件
-<ul>
-<li><a href="https://packagist.org/packages/intervention/image" target="_blank" rel="noopener noreferrer">https://packagist.org/packages/intervention/image</a></li>
-<li><a href="http://image.intervention.io" target="_blank" rel="noopener noreferrer">http://image.intervention.io</a></li>
-</ul>
-</li>
-<li>排错
-<ul>
-<li><code>php_imagick.dll - %1 不是有效的 Win32 应用程序</code>：则说明版本不相符合。需要检查imagick软件本身( 如x86 )、php本身( x86 ts (thread safe) )、php扩展php_imagick.dllts）三方版本 要一致。</li>
-<li><code>php.exe - 系统错误 ，无法启动此程序因为计算机丢失CORE_RL_wand_.dll</code>：说明你没有将php_imagick-3.4.2-7.0-ts-vc14-x86.zip扩展包中的“CORE_-.dll”放到你的php.exe同级目录下。</li>
-<li><code>ImageMagick number of supported formats: 0</code>：支持的图片格式数量为0，检查环境变量MAGICK_HOME设置。</li>
-<li><code>NoDecodeDelegateForThisImageFormat</code>：php_imagick.dll的版本并不支持或并不匹配ImageMagick软件版本，需要更换对应的ImageMagick软件版本。</li>
-</ul>
-</li>
-</ul>
+<p>很多RBAC笼统的把ACL和AUTH结合在一起了，所以比较混杂，搞不清楚。下面的草图简要说明ACL和AUTH的结合。</p>
+<p><img src="./rbac-flowchart.jpg" alt="流程图" /></p>
+<h2 id="三、数据模型分析与设计"> 三、数据模型分析与设计</h2>
+<p><img src="./rbac-er.png" alt="模型ER" />
+这个就不多说了，直接贴MySQL代码。</p>
+<div><pre><code><span>-- database leogb</span>
+<span>DROP</span> <span>DATABASE</span> <span>IF</span> <span>EXISTS</span> hent_leogb<span>;</span>
+<span>CREATE</span> <span>DATABASE</span> hent_leogb <span>DEFAULT</span> <span>CHARACTER</span> <span>SET</span> <span>=</span> <span>'utf8'</span><span>;</span>
+<span>USE</span> hent_leogb<span>;</span>
+<span>-- for first import</span>
+<span>-- table user</span>
+<span>CREATE</span> <span>TABLE</span> leo_user <span>(</span>
+    id <span>int</span><span>(</span><span>11</span><span>)</span> <span>NOT</span> <span>NULL</span> <span>AUTO_INCREMENT</span> <span>PRIMARY</span> <span>KEY</span><span>,</span>
+    name <span>char</span><span>(</span><span>40</span><span>)</span> <span>NOT</span> <span>NULL</span> <span>UNIQUE</span> <span>KEY</span><span>,</span>
+    password <span>char</span><span>(</span><span>32</span><span>)</span> <span>NOT</span> <span>NULL</span><span>,</span>
+    <span>time</span> <span>datetime</span> <span>NOT</span> <span>NULL</span><span>,</span>
+    <span>status</span> <span>int</span><span>(</span><span>4</span><span>)</span> <span>NOT</span> <span>NULL</span>
+<span>)</span> <span>DEFAULT</span> <span>CHARACTER</span> <span>SET</span> <span>=</span> <span>'utf8'</span> <span>TYPE</span> <span>=</span> <span>'InnoDB'</span><span>;</span>
+<span>-- table role</span>
+<span>CREATE</span> <span>TABLE</span> leo_role <span>(</span>
+    id <span>int</span><span>(</span><span>11</span><span>)</span> <span>NOT</span> <span>NULL</span> <span>AUTO_INCREMENT</span> <span>PRIMARY</span> <span>KEY</span><span>,</span>
+    role_id <span>int</span><span>(</span><span>11</span><span>)</span> <span>NOT</span> <span>NULL</span><span>,</span>
+    <span>FOREIGN</span> <span>KEY</span> <span>(</span>role_id<span>)</span> <span>REFERENCES</span> leo_role<span>(</span>id<span>)</span> <span>ON</span> <span>UPDATE</span> <span>CASCADE</span> <span>ON</span> <span>DELETE</span> <span>RESTRICT</span><span>,</span>
+    name <span>char</span><span>(</span><span>30</span><span>)</span> <span>NOT</span> <span>NULL</span> <span>UNIQUE</span> <span>KEY</span><span>,</span>
+    <span>status</span> <span>int</span><span>(</span><span>4</span><span>)</span> <span>NOT</span> <span>NULL</span><span>,</span>
+    <span>comment</span> <span>char</span><span>(</span><span>30</span><span>)</span> <span>NOT</span> <span>NULL</span>
+<span>)</span> <span>DEFAULT</span> <span>CHARACTER</span> <span>SET</span> <span>=</span> <span>'utf8'</span> <span>TYPE</span> <span>=</span> <span>'InnoDB'</span><span>;</span>
+<span>-- table resource</span>
+<span>CREATE</span> <span>TABLE</span> leo_resource <span>(</span>
+    id <span>int</span><span>(</span><span>11</span><span>)</span> <span>NOT</span> <span>NULL</span> <span>AUTO_INCREMENT</span> <span>PRIMARY</span> <span>KEY</span><span>,</span>
+    resource_id <span>int</span><span>(</span><span>11</span><span>)</span> <span>NOT</span> <span>NULL</span><span>,</span>
+    <span>FOREIGN</span> <span>KEY</span> <span>(</span>resource_id<span>)</span> <span>REFERENCES</span> leo_resource<span>(</span>id<span>)</span> <span>ON</span> <span>UPDATE</span> <span>CASCADE</span> <span>ON</span> <span>DELETE</span> <span>RESTRICT</span><span>,</span>
+    name <span>char</span><span>(</span><span>30</span><span>)</span> <span>NOT</span> <span>NULL</span> <span>UNIQUE</span> <span>KEY</span><span>,</span>
+    <span>status</span> <span>int</span><span>(</span><span>4</span><span>)</span> <span>NOT</span> <span>NULL</span><span>,</span>
+    <span>comment</span> <span>char</span><span>(</span><span>30</span><span>)</span> <span>NOT</span> <span>NULL</span>
+<span>)</span> <span>DEFAULT</span> <span>CHARACTER</span> <span>SET</span> <span>=</span> <span>'utf8'</span> <span>TYPE</span> <span>=</span> <span>'InnoDB'</span><span>;</span>
+<span>-- table group</span>
+<span>CREATE</span> <span>TABLE</span> leo_group <span>(</span>
+    user_id <span>int</span><span>(</span><span>11</span><span>)</span> <span>NOT</span> <span>NULL</span><span>,</span>
+    <span>FOREIGN</span> <span>KEY</span> <span>(</span>user_id<span>)</span> <span>REFERENCES</span> leo_user<span>(</span>id<span>)</span> <span>ON</span> <span>UPDATE</span> <span>CASCADE</span> <span>ON</span> <span>DELETE</span> <span>CASCADE</span><span>,</span>
+    role_id <span>int</span><span>(</span><span>11</span><span>)</span> <span>NOT</span> <span>NULL</span><span>,</span>
+    <span>FOREIGN</span> <span>KEY</span> <span>(</span>role_id<span>)</span> <span>REFERENCES</span> leo_role<span>(</span>id<span>)</span> <span>ON</span> <span>UPDATE</span> <span>CASCADE</span> <span>ON</span> <span>DELETE</span> <span>CASCADE</span><span>,</span>
+    <span>UNIQUE</span> <span>KEY</span> <span>(</span>user_id<span>,</span> role_id<span>)</span>
+<span>)</span> <span>DEFAULT</span> <span>CHARACTER</span> <span>SET</span> <span>=</span> <span>'utf8'</span> <span>TYPE</span> <span>=</span> <span>'InnoDB'</span><span>;</span>
+<span>-- table access</span>
+<span>CREATE</span> <span>TABLE</span> leo_access <span>(</span>
+    role_id <span>int</span><span>(</span><span>11</span><span>)</span> <span>NOT</span> <span>NULL</span><span>,</span>
+    <span>FOREIGN</span> <span>KEY</span> <span>(</span>role_id<span>)</span> <span>REFERENCES</span> leo_role<span>(</span>id<span>)</span> <span>ON</span> <span>UPDATE</span> <span>CASCADE</span> <span>ON</span> <span>DELETE</span> <span>CASCADE</span><span>,</span>
+    resource_id <span>int</span><span>(</span><span>11</span><span>)</span> <span>NOT</span> <span>NULL</span><span>,</span>
+    <span>FOREIGN</span> <span>KEY</span> <span>(</span>resource_id<span>)</span> <span>REFERENCES</span> leo_resource<span>(</span>id<span>)</span> <span>ON</span> <span>UPDATE</span> <span>CASCADE</span> <span>ON</span> <span>DELETE</span> <span>CASCADE</span><span>,</span>
+    <span>UNIQUE</span> <span>KEY</span> <span>(</span>role_id<span>,</span> resource_id<span>)</span>
+<span>)</span> <span>DEFAULT</span> <span>CHARACTER</span> <span>SET</span> <span>=</span> <span>'utf8'</span> <span>TYPE</span> <span>=</span> <span>'InnoDB'</span><span>;</span>
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br><span>9</span><br><span>10</span><br><span>11</span><br><span>12</span><br><span>13</span><br><span>14</span><br><span>15</span><br><span>16</span><br><span>17</span><br><span>18</span><br><span>19</span><br><span>20</span><br><span>21</span><br><span>22</span><br><span>23</span><br><span>24</span><br><span>25</span><br><span>26</span><br><span>27</span><br><span>28</span><br><span>29</span><br><span>30</span><br><span>31</span><br><span>32</span><br><span>33</span><br><span>34</span><br><span>35</span><br><span>36</span><br><span>37</span><br><span>38</span><br><span>39</span><br><span>40</span><br><span>41</span><br><span>42</span><br><span>43</span><br><span>44</span><br><span>45</span><br><span>46</span><br><span>47</span><br></div></div><h2 id="四、应用分析与实现"> 四、应用分析与实现</h2>
+<p><img src="./rbac-active.png" alt="活动图" /></p>
+<p>以下是按上面的思路做的应用，两张权限分配图是之前没有考虑多层资源结构时设计应用时的截图，供参考：</p>
+<p><img src="./rbac-app01.gif" alt="应用截图01" /></p>
+<p><img src="./rbac-app02.gif" alt="应用截图02" /></p>
+<h2 id="五、后记"> 五、后记</h2>
+<p>当年的思路还是局限于MVC设计中，一堆的Controller和Action，看上去很壮观。
+算是有点过设计了，不过，思路还算清晰吧。
+现在要我来做多半是要REST，估计是一堆的properties或者一堆的json，代码方面要简单很多，设计方面却要费很多脑子。
+前端是APP设计风格MVC，后端是API设计风格REST，两头都得折腾。</p>
+<blockquote>
+<p>方跃明
+发表于 2009-9-9</p>
+</blockquote>
 ]]></content:encoded>
     </item>
     <item>
@@ -5143,6 +5085,46 @@ php-fpm -R <span># 以root用户和守护进程方式启动php-fpm</span>
 <p>注：PHP-Client、PHP-Controler、PHP-Db等都是作者发明的名词，非专业通用名词
 方跃明
 2009-8-1 12:35</p>
+</blockquote>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>图解SQL JOINS</title>
+      <link>https://blog.fangyueming.cn/sql-join/</link>
+      <guid>https://blog.fangyueming.cn/sql-join/</guid>
+      <source url="https://blog.fangyueming.cn/rss.xml">图解SQL JOINS</source>
+      <pubDate>Sat, 28 Apr 2018 00:00:00 GMT</pubDate>
+      <content:encoded><![CDATA[<h1 id="图解sql-joins"> 图解SQL JOINS</h1>
+<p>左连接、右连接、内连接、外连接……傻傻分不清</p>
+<p><img src="./sql-join.jpg" alt="SQL JOINS" /></p>
+<blockquote>
+<p>方跃明
+2018-4-28</p>
+</blockquote>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>UmiJS之我见</title>
+      <link>https://blog.fangyueming.cn/umijs-ux/</link>
+      <guid>https://blog.fangyueming.cn/umijs-ux/</guid>
+      <source url="https://blog.fangyueming.cn/rss.xml">UmiJS之我见</source>
+      <pubDate>Sun, 23 Feb 2020 00:00:00 GMT</pubDate>
+      <content:encoded><![CDATA[<h1 id="umijs之我见"> UmiJS之我见</h1>
+<p>到目前为止，UmiJS还不算严谨成熟的框架，像小孩捏的泥人，随意松散，慎用。</p>
+<ul>
+<li>仅简单整合了Redux、Router、Saga，未系统化为有机体</li>
+<li>配置未考虑各种场景，没有统一接口和方法（不仅仅是配置）</li>
+<li>将原本赏心悦目得Webpack配置拆得七零八落，何苦来哉</li>
+<li>未提供框架必要的参数（如：app、routes）存取方法，大面积污染全局window变量</li>
+<li>未显式引入插件和中间件机制，需自行实现，相关文件都扔src/utils下，plugins目录居然是系统保留</li>
+<li>每级路由都需要加入显示加入404，相当丑陋</li>
+<li>Layout和Page在路由里同级均视为组件，导致路由设置层级过深，需各种判断</li>
+<li>文件、常量、变量规范很随意，大小写混淆，且互相不对应（model/setting -&gt; state.settings）</li>
+<li>使用了不恰当的代码检查配置，且提交时自动格式化代码，极不人性</li>
+</ul>
+<blockquote>
+<p>方跃明
+2020-02-23</p>
 </blockquote>
 ]]></content:encoded>
     </item>
@@ -5232,6 +5214,255 @@ console<span>.</span><span>log</span><span>(</span>Store<span>.</span><span>next
 <p>方跃明
 2020-02-18</p>
 </blockquote>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>vi基本操作</title>
+      <link>https://blog.fangyueming.cn/vi/</link>
+      <guid>https://blog.fangyueming.cn/vi/</guid>
+      <source url="https://blog.fangyueming.cn/rss.xml">vi基本操作</source>
+      <pubDate>Fri, 10 May 2019 00:00:00 GMT</pubDate>
+      <content:encoded><![CDATA[<h1 id="vi基本操作"> vi基本操作</h1>
+<p>Linux上有大量的配置操作，需要掌握文本编辑器，通常使用vi。
+vi是上Linux非常常用的编辑器，很多Linux发行版都默认安装了vi。
+vi命令繁多但是如果使用灵活之后将会大大提高效率。
+vi是“visual interface”的缩写，vim是vi IMproved(增强版的vi)。
+在一般的系统管理维护中vi就够用，如果想使用代码加亮的话可以使用vim。</p>
+<div><pre><code><span>vi</span> <span>[</span>filename<span>]</span>     <span># 用vi打开文件filename</span>
+</code></pre>
+<div><span>1</span><br></div></div><h2 id="command-mode-命令模式"> command mode（命令模式）</h2>
+<p>任何时候，不管用户处于何种模式，只要按一下“ESC”键，即可使vi进入命令行模式；我们在shell环境（提示符为$）下输入启动vi命令，进入编辑器时，也是处于该模式下。在该模式下，用户可以输入各种合法的vi命令，用于管理自己的文档。此时从键盘上输入的任何字符都被当做编辑命令来解释，若输入的字符是合法的vi命令，则vi在接受用户命令之后完成相应的动作。但需注意的是，所输入的命令并不在屏幕上显示出来。若输入的字符不是vi的合法命令，vi会响铃报警。</p>
+<h2 id="input-mode-编辑模式"> input mode（编辑模式）</h2>
+<p>在命令模式下输入插入命令i（insert）、附加命令a （append）、打开命令o（open）、修改命令c（change）、取代命令r或替换命令s都可以进入文本输入模式。在该模式下，用户输入的任何字符都被vi当做文件内容保存起来，并将其显示在屏幕上。在文本输入过程中，若想回到命令模式下，按&quot;ESC&quot;键即可。</p>
+<h2 id="last-line-mode-行末模式"> last line mode（行末模式）</h2>
+<p>末行模式也称ex转义模式。vi和Ex编辑器的功能是相同的，二者主要区别是用户界面。在vi中，命令通常是单个键，例如i、a、o等；而在Ex中，命令是以按回车键结束的正文行。vi有一个专门的“转义”命令，可访问很多面向行的Ex命令。在命令模式下，用户按“:”键即可进入末行模式下，此时vi会在显示窗口的最后一行（通常也是屏幕的最后一行）显示一个“:”作为末行模式的提示符，等待用户输入命令。多数文件管理命令都是在此模式下执行的（如把编辑缓冲区的内容写到文件中等）。末行命令执行完后，vi自动回到命令模式。</p>
+<p><img src="./vi-keymap.png" alt="vi-keymap" /></p>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>:w</code></td>
+<td>保存文件</td>
+</tr>
+<tr>
+<td><code>:w filename</code></td>
+<td>保存至filename文件</td>
+</tr>
+<tr>
+<td><code>:q</code></td>
+<td>退出编辑器（文件未被修改）</td>
+</tr>
+<tr>
+<td><code>:q!</code></td>
+<td>退出编辑器，且不保存</td>
+</tr>
+<tr>
+<td><code>:wq</code></td>
+<td>退出编辑器，且保存文件</td>
+</tr>
+<tr>
+<td><code>:x</code></td>
+<td>退出编辑器，且保存文件</td>
+</tr>
+<tr>
+<td><code>:set nu</code></td>
+<td>显示行号</td>
+</tr>
+<tr>
+<td><code>:set nonu</code></td>
+<td>取消显示行号</td>
+</tr>
+<tr>
+<td><code>:set fileformat=unix</code></td>
+<td>将文件修改为unix格式，如win下面的文本文件在linux下会出现^M</td>
+</tr>
+<tr>
+<td><code>:s/old/new</code></td>
+<td>用new替换行中首次出现的old</td>
+</tr>
+<tr>
+<td><code>:s/old/new/g</code></td>
+<td>用new替换行中所有的old</td>
+</tr>
+<tr>
+<td><code>:n,m s/old/new/g</code></td>
+<td>用new替换从n到m行里所有的old</td>
+</tr>
+<tr>
+<td><code>:%s/old/new/g</code></td>
+<td>用new替换当前文件里所有的old</td>
+</tr>
+<tr>
+<td><code>:e otherfilename</code></td>
+<td>编辑文件名为otherfilename的文件</td>
+</tr>
+<tr>
+<td><code>/keyword</code></td>
+<td>向光标下搜索keyword字符串</td>
+</tr>
+<tr>
+<td><code>?keyword</code></td>
+<td>向光标上搜索keyword字符串</td>
+</tr>
+<tr>
+<td><code>a</code></td>
+<td>在当前光标位置的右边添加文本</td>
+</tr>
+<tr>
+<td><code>i</code></td>
+<td>在当前光标位置的左边添加文本</td>
+</tr>
+<tr>
+<td><code>A</code></td>
+<td>在当前行的末尾位置添加文本</td>
+</tr>
+<tr>
+<td><code>I</code></td>
+<td>在当前行的开始处添加文本(非空字符的行首)</td>
+</tr>
+<tr>
+<td><code>O</code></td>
+<td>在当前行的上面新建一行</td>
+</tr>
+<tr>
+<td><code>o</code></td>
+<td>在当前行的下面新建一行</td>
+</tr>
+<tr>
+<td><code>R</code></td>
+<td>替换(覆盖)当前光标位置及后面的若干文本</td>
+</tr>
+<tr>
+<td><code>J</code></td>
+<td>合并光标所在行及下一行为一行(依然在命令模式)</td>
+</tr>
+<tr>
+<td><code>x</code></td>
+<td>删除当前字符</td>
+</tr>
+<tr>
+<td><code>nx</code></td>
+<td>删除从光标开始的n个字符</td>
+</tr>
+<tr>
+<td><code>dd</code></td>
+<td>删除当前行</td>
+</tr>
+<tr>
+<td><code>ndd</code></td>
+<td>向下删除当前行在内的n行</td>
+</tr>
+<tr>
+<td><code>u</code></td>
+<td>撤销上一步操作</td>
+</tr>
+<tr>
+<td><code>U</code></td>
+<td>撤销对当前行的所有操作</td>
+</tr>
+<tr>
+<td><code>yy</code></td>
+<td>将当前行复制到缓存区</td>
+</tr>
+<tr>
+<td><code>ayy</code></td>
+<td>复制当前行到a缓冲区，a也可以替换为a到z的任意字母，可以完成多个复制任务</td>
+</tr>
+<tr>
+<td><code>nyy</code></td>
+<td>将当前行向下n行复制到缓冲区</td>
+</tr>
+<tr>
+<td><code>anyy</code></td>
+<td>复制前行向下n行到a 缓冲区，a也可以替换为a到z的任意字母，可以完成多个复制任务</td>
+</tr>
+<tr>
+<td><code>yw</code></td>
+<td>复制从光标开始到词尾的字符</td>
+</tr>
+<tr>
+<td><code>nyw</code></td>
+<td>复制从光标开始的n个单词</td>
+</tr>
+<tr>
+<td><code>y^</code></td>
+<td>复制从光标到行首的内容</td>
+</tr>
+<tr>
+<td><code>y$</code></td>
+<td>复制从光标到行尾的内容</td>
+</tr>
+<tr>
+<td><code>p</code></td>
+<td>粘贴剪切板里的内容在光标后，如果使用了前面的自定义缓冲区，建议使用ap进行粘贴</td>
+</tr>
+<tr>
+<td><code>P</code></td>
+<td>粘贴剪切板里的内容在光标前，如果使用了前面的自定义缓冲区，建议使用aP进行粘贴</td>
+</tr>
+<tr>
+<td><code>h</code></td>
+<td>向左</td>
+</tr>
+<tr>
+<td><code>j</code></td>
+<td>向下</td>
+</tr>
+<tr>
+<td><code>k</code></td>
+<td>向上</td>
+</tr>
+<tr>
+<td><code>l</code></td>
+<td>向右</td>
+</tr>
+<tr>
+<td><code>Space</code></td>
+<td>向右</td>
+</tr>
+<tr>
+<td><code>Backspace</code></td>
+<td>向左</td>
+</tr>
+<tr>
+<td><code>Enter</code></td>
+<td>移动到下一行首</td>
+</tr>
+<tr>
+<td><code>-</code></td>
+<td>移动到上一行首</td>
+</tr>
+<tr>
+<td><code>n</code></td>
+<td>向下搜索前一个搜素动作</td>
+</tr>
+<tr>
+<td><code>N</code></td>
+<td>向上搜索前一个搜索动作</td>
+</tr>
+<tr>
+<td><code>n+</code></td>
+<td>向下跳n行</td>
+</tr>
+<tr>
+<td><code>n-</code></td>
+<td>向上跳n行</td>
+</tr>
+<tr>
+<td><code>nG</code></td>
+<td>跳到行号为n的行</td>
+</tr>
+<tr>
+<td><code>G</code></td>
+<td>跳至文件的底部</td>
+</tr>
+</tbody>
+</table>
 ]]></content:encoded>
     </item>
     <item>
@@ -6259,503 +6490,6 @@ console<span>.</span><span>log</span><span>(</span>Store<span>.</span><span>next
 ]]></content:encoded>
     </item>
     <item>
-      <title>RBAC之我见</title>
-      <link>https://blog.fangyueming.cn/rbac/</link>
-      <guid>https://blog.fangyueming.cn/rbac/</guid>
-      <source url="https://blog.fangyueming.cn/rss.xml">RBAC之我见</source>
-      <pubDate>Wed, 09 Sep 2009 00:00:00 GMT</pubDate>
-      <content:encoded><![CDATA[<h1 id="rbac之我见"> RBAC之我见</h1>
-<blockquote>
-<p>原帖见：<a href="http://user.qzone.qq.com/61077523/blog/1374910701" target="_blank" rel="noopener noreferrer">http://user.qzone.qq.com/61077523/blog/1374910701</a></p>
-</blockquote>
-<p>最近又开始折腾权限精细控制，发现多年前发的文章，还挺有思路的。摘录如下：</p>
-<ul>
-<li><a href="http://bbs.phpchina.com/forum.php?mod=redirect&amp;goto=findpost&amp;ptid=105577&amp;pid=877890&amp;fromuid=8531" target="_blank" rel="noopener noreferrer">http://bbs.phpchina.com/forum.php?mod=redirect&amp;goto=findpost&amp;ptid=105577&amp;pid=877890&amp;fromuid=8531</a></li>
-<li><a href="http://bbs.phpchina.com/forum.php?mod=viewthread&amp;tid=151874&amp;fromuid=8531" target="_blank" rel="noopener noreferrer">http://bbs.phpchina.com/forum.php?mod=viewthread&amp;tid=151874&amp;fromuid=8531</a></li>
-</ul>
-<h2 id="一、缘起-zend-acl"> 一、缘起 Zend_Acl</h2>
-<h3 id="_1-简介"> 1. 简介</h3>
-<p>Zend_Acl 为权限管理提供轻量并灵活的访问控制列表 (ACL,access control list) 的实现。一般地，应用软件可以利用这样的功能限制某些特定对象来访问特定保护的对象。
-在本文档中：</p>
-<ul>
-<li>resource （资源）是一个限制访问的对象。</li>
-<li>role （角色）是一个可以发出请求去访问Resource的对象。</li>
-</ul>
-<p>简单地说就是：roles 请求访问 resources。例如，如果停车服务员要进入汽车，那么，这个停车服务员就是发出请求的 role，而这辆汽车就是 resource，因为不是所有人都有权进入汽车。
-通过规范和访问控制列表（ACL）的使用，应用软件可以控制角色（roles）如何来访问资源（resources）。</p>
-<h3 id="_2-关于资源-resource"> 2. 关于资源(Resource)</h3>
-<p>在 Zend_Acl 中，创建一个 resource 非常简单。Zend_Acl 提供了 resource 接口<code>Zend_Acl_Resource_Interface</code> 使开发者在程序中创建 resources 非常容易。为了使Zend_Acl把某个对象当作一个resource，一个类只需要实现这个只包含了一个方法 getResourceId() 的接口。</p>
-<p>另外，Zend_Acl_Resource是一个包含在 Zend_Acl 里作为一个基本的 resource 实现的类，开发者可以任意扩展它。
-Zend_Acl 提供了一个树结构，它可以添加多个 resources (或者叫“访问控制下的区域”）。因为 resources 被存储在这样一个树结构， 所以它们可以被组织成从一般（树根）到特殊（树叶）。基于特殊resource的查询将自动从resource的等级结构中搜索分配给祖先rResources的规则， 它允许简单的规则继承。</p>
-<p>例如，要把一个缺省的规则应用到一个城市的每个建筑物，就简单地把这个规则分配给这个城市， 而不是把规则分配给每个建筑物。然而，有些建筑物也许要求例外的规则，在Zend_Acl里，很容易地通过分配例外规则给每个有这样要求的建筑物来实现。 一个 resource 可以从唯一的一个父 resource 继承，而这个父 resource 也有它自己的父 resource，等等。</p>
-<p>Zend_Acl 也支持基于 resources 的权限（例如：&quot;create&quot;, &quot;read&quot;, &quot;update&quot;, &quot;delete&quot;）， 所以开发者可以根据 resource 分配影响全部或者特殊权限的规则到一个或多个资源。</p>
-<h3 id="_3-关于角色-role"> 3. 关于角色(Role)</h3>
-<p>象 Resources 一样，创建一个 role 也非常简单。 Zend_Acl 提供了 <code>Zend_Acl_Role_Interface</code> 使开发者创建 roles 非常容易。 为了使Zend_Acl把某个对象当作一个 role，一个类只需要实现这个只包含了一个方法 getRoleId() 的接口。</p>
-<p>另外，Zend_Acl_Role是一个包含在Zend_Acl里作为一个基本的 role 实现的类，开发者可以任意扩展它。
-在 Zend_Acl, 一个 role 可以从一个或多个 role 继承，这就是在 role 中支持规则的继承。</p>
-<p>例如，一个用户 role，如 “sally”， 可以属于一个或多个 role，如：“editor”和“administrator”。开发者可以分别给“editor”和“administrator”分配规则， 而“sally”将从它们俩继承规则，不需要直接给“sally”分配规则。
-虽然从多重角色继承的能力非常有用，但是多重继承也带来了一定程度的复杂性。</p>
-<p>下面的例子来示例含糊情形和Zend_Acl如何解决它。</p>
-<h2 id="二、分析"> 二、分析</h2>
-<p>按ZendFramework的做法ACL（访问控制列表）与Auth（认证）是分开的，我用五张表来实现。</p>
-<ul>
-<li>用于ACL的有：role、resource、access</li>
-<li>用于AUTH的有：user</li>
-<li>AUTH和ACL结合的表是：group</li>
-</ul>
-<p>很多RBAC笼统的把ACL和AUTH结合在一起了，所以比较混杂，搞不清楚。下面的草图简要说明ACL和AUTH的结合。</p>
-<p><img src="./rbac-flowchart.jpg" alt="流程图" /></p>
-<h2 id="三、数据模型分析与设计"> 三、数据模型分析与设计</h2>
-<p><img src="./rbac-er.png" alt="模型ER" />
-这个就不多说了，直接贴MySQL代码。</p>
-<div><pre><code><span>-- database leogb</span>
-<span>DROP</span> <span>DATABASE</span> <span>IF</span> <span>EXISTS</span> hent_leogb<span>;</span>
-<span>CREATE</span> <span>DATABASE</span> hent_leogb <span>DEFAULT</span> <span>CHARACTER</span> <span>SET</span> <span>=</span> <span>'utf8'</span><span>;</span>
-<span>USE</span> hent_leogb<span>;</span>
-<span>-- for first import</span>
-<span>-- table user</span>
-<span>CREATE</span> <span>TABLE</span> leo_user <span>(</span>
-    id <span>int</span><span>(</span><span>11</span><span>)</span> <span>NOT</span> <span>NULL</span> <span>AUTO_INCREMENT</span> <span>PRIMARY</span> <span>KEY</span><span>,</span>
-    name <span>char</span><span>(</span><span>40</span><span>)</span> <span>NOT</span> <span>NULL</span> <span>UNIQUE</span> <span>KEY</span><span>,</span>
-    password <span>char</span><span>(</span><span>32</span><span>)</span> <span>NOT</span> <span>NULL</span><span>,</span>
-    <span>time</span> <span>datetime</span> <span>NOT</span> <span>NULL</span><span>,</span>
-    <span>status</span> <span>int</span><span>(</span><span>4</span><span>)</span> <span>NOT</span> <span>NULL</span>
-<span>)</span> <span>DEFAULT</span> <span>CHARACTER</span> <span>SET</span> <span>=</span> <span>'utf8'</span> <span>TYPE</span> <span>=</span> <span>'InnoDB'</span><span>;</span>
-<span>-- table role</span>
-<span>CREATE</span> <span>TABLE</span> leo_role <span>(</span>
-    id <span>int</span><span>(</span><span>11</span><span>)</span> <span>NOT</span> <span>NULL</span> <span>AUTO_INCREMENT</span> <span>PRIMARY</span> <span>KEY</span><span>,</span>
-    role_id <span>int</span><span>(</span><span>11</span><span>)</span> <span>NOT</span> <span>NULL</span><span>,</span>
-    <span>FOREIGN</span> <span>KEY</span> <span>(</span>role_id<span>)</span> <span>REFERENCES</span> leo_role<span>(</span>id<span>)</span> <span>ON</span> <span>UPDATE</span> <span>CASCADE</span> <span>ON</span> <span>DELETE</span> <span>RESTRICT</span><span>,</span>
-    name <span>char</span><span>(</span><span>30</span><span>)</span> <span>NOT</span> <span>NULL</span> <span>UNIQUE</span> <span>KEY</span><span>,</span>
-    <span>status</span> <span>int</span><span>(</span><span>4</span><span>)</span> <span>NOT</span> <span>NULL</span><span>,</span>
-    <span>comment</span> <span>char</span><span>(</span><span>30</span><span>)</span> <span>NOT</span> <span>NULL</span>
-<span>)</span> <span>DEFAULT</span> <span>CHARACTER</span> <span>SET</span> <span>=</span> <span>'utf8'</span> <span>TYPE</span> <span>=</span> <span>'InnoDB'</span><span>;</span>
-<span>-- table resource</span>
-<span>CREATE</span> <span>TABLE</span> leo_resource <span>(</span>
-    id <span>int</span><span>(</span><span>11</span><span>)</span> <span>NOT</span> <span>NULL</span> <span>AUTO_INCREMENT</span> <span>PRIMARY</span> <span>KEY</span><span>,</span>
-    resource_id <span>int</span><span>(</span><span>11</span><span>)</span> <span>NOT</span> <span>NULL</span><span>,</span>
-    <span>FOREIGN</span> <span>KEY</span> <span>(</span>resource_id<span>)</span> <span>REFERENCES</span> leo_resource<span>(</span>id<span>)</span> <span>ON</span> <span>UPDATE</span> <span>CASCADE</span> <span>ON</span> <span>DELETE</span> <span>RESTRICT</span><span>,</span>
-    name <span>char</span><span>(</span><span>30</span><span>)</span> <span>NOT</span> <span>NULL</span> <span>UNIQUE</span> <span>KEY</span><span>,</span>
-    <span>status</span> <span>int</span><span>(</span><span>4</span><span>)</span> <span>NOT</span> <span>NULL</span><span>,</span>
-    <span>comment</span> <span>char</span><span>(</span><span>30</span><span>)</span> <span>NOT</span> <span>NULL</span>
-<span>)</span> <span>DEFAULT</span> <span>CHARACTER</span> <span>SET</span> <span>=</span> <span>'utf8'</span> <span>TYPE</span> <span>=</span> <span>'InnoDB'</span><span>;</span>
-<span>-- table group</span>
-<span>CREATE</span> <span>TABLE</span> leo_group <span>(</span>
-    user_id <span>int</span><span>(</span><span>11</span><span>)</span> <span>NOT</span> <span>NULL</span><span>,</span>
-    <span>FOREIGN</span> <span>KEY</span> <span>(</span>user_id<span>)</span> <span>REFERENCES</span> leo_user<span>(</span>id<span>)</span> <span>ON</span> <span>UPDATE</span> <span>CASCADE</span> <span>ON</span> <span>DELETE</span> <span>CASCADE</span><span>,</span>
-    role_id <span>int</span><span>(</span><span>11</span><span>)</span> <span>NOT</span> <span>NULL</span><span>,</span>
-    <span>FOREIGN</span> <span>KEY</span> <span>(</span>role_id<span>)</span> <span>REFERENCES</span> leo_role<span>(</span>id<span>)</span> <span>ON</span> <span>UPDATE</span> <span>CASCADE</span> <span>ON</span> <span>DELETE</span> <span>CASCADE</span><span>,</span>
-    <span>UNIQUE</span> <span>KEY</span> <span>(</span>user_id<span>,</span> role_id<span>)</span>
-<span>)</span> <span>DEFAULT</span> <span>CHARACTER</span> <span>SET</span> <span>=</span> <span>'utf8'</span> <span>TYPE</span> <span>=</span> <span>'InnoDB'</span><span>;</span>
-<span>-- table access</span>
-<span>CREATE</span> <span>TABLE</span> leo_access <span>(</span>
-    role_id <span>int</span><span>(</span><span>11</span><span>)</span> <span>NOT</span> <span>NULL</span><span>,</span>
-    <span>FOREIGN</span> <span>KEY</span> <span>(</span>role_id<span>)</span> <span>REFERENCES</span> leo_role<span>(</span>id<span>)</span> <span>ON</span> <span>UPDATE</span> <span>CASCADE</span> <span>ON</span> <span>DELETE</span> <span>CASCADE</span><span>,</span>
-    resource_id <span>int</span><span>(</span><span>11</span><span>)</span> <span>NOT</span> <span>NULL</span><span>,</span>
-    <span>FOREIGN</span> <span>KEY</span> <span>(</span>resource_id<span>)</span> <span>REFERENCES</span> leo_resource<span>(</span>id<span>)</span> <span>ON</span> <span>UPDATE</span> <span>CASCADE</span> <span>ON</span> <span>DELETE</span> <span>CASCADE</span><span>,</span>
-    <span>UNIQUE</span> <span>KEY</span> <span>(</span>role_id<span>,</span> resource_id<span>)</span>
-<span>)</span> <span>DEFAULT</span> <span>CHARACTER</span> <span>SET</span> <span>=</span> <span>'utf8'</span> <span>TYPE</span> <span>=</span> <span>'InnoDB'</span><span>;</span>
-</code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br><span>9</span><br><span>10</span><br><span>11</span><br><span>12</span><br><span>13</span><br><span>14</span><br><span>15</span><br><span>16</span><br><span>17</span><br><span>18</span><br><span>19</span><br><span>20</span><br><span>21</span><br><span>22</span><br><span>23</span><br><span>24</span><br><span>25</span><br><span>26</span><br><span>27</span><br><span>28</span><br><span>29</span><br><span>30</span><br><span>31</span><br><span>32</span><br><span>33</span><br><span>34</span><br><span>35</span><br><span>36</span><br><span>37</span><br><span>38</span><br><span>39</span><br><span>40</span><br><span>41</span><br><span>42</span><br><span>43</span><br><span>44</span><br><span>45</span><br><span>46</span><br><span>47</span><br></div></div><h2 id="四、应用分析与实现"> 四、应用分析与实现</h2>
-<p><img src="./rbac-active.png" alt="活动图" /></p>
-<p>以下是按上面的思路做的应用，两张权限分配图是之前没有考虑多层资源结构时设计应用时的截图，供参考：</p>
-<p><img src="./rbac-app01.gif" alt="应用截图01" /></p>
-<p><img src="./rbac-app02.gif" alt="应用截图02" /></p>
-<h2 id="五、后记"> 五、后记</h2>
-<p>当年的思路还是局限于MVC设计中，一堆的Controller和Action，看上去很壮观。
-算是有点过设计了，不过，思路还算清晰吧。
-现在要我来做多半是要REST，估计是一堆的properties或者一堆的json，代码方面要简单很多，设计方面却要费很多脑子。
-前端是APP设计风格MVC，后端是API设计风格REST，两头都得折腾。</p>
-<blockquote>
-<p>方跃明
-发表于 2009-9-9</p>
-</blockquote>
-]]></content:encoded>
-    </item>
-    <item>
-      <title>图解SQL JOINS</title>
-      <link>https://blog.fangyueming.cn/sql-join/</link>
-      <guid>https://blog.fangyueming.cn/sql-join/</guid>
-      <source url="https://blog.fangyueming.cn/rss.xml">图解SQL JOINS</source>
-      <pubDate>Sat, 28 Apr 2018 00:00:00 GMT</pubDate>
-      <content:encoded><![CDATA[<h1 id="图解sql-joins"> 图解SQL JOINS</h1>
-<p>左连接、右连接、内连接、外连接……傻傻分不清</p>
-<p><img src="./sql-join.jpg" alt="SQL JOINS" /></p>
-<blockquote>
-<p>方跃明
-2018-4-28</p>
-</blockquote>
-]]></content:encoded>
-    </item>
-    <item>
-      <title>UmiJS之我见</title>
-      <link>https://blog.fangyueming.cn/umijs-ux/</link>
-      <guid>https://blog.fangyueming.cn/umijs-ux/</guid>
-      <source url="https://blog.fangyueming.cn/rss.xml">UmiJS之我见</source>
-      <pubDate>Sun, 23 Feb 2020 00:00:00 GMT</pubDate>
-      <content:encoded><![CDATA[<h1 id="umijs之我见"> UmiJS之我见</h1>
-<p>到目前为止，UmiJS还不算严谨成熟的框架，像小孩捏的泥人，随意松散，慎用。</p>
-<ul>
-<li>仅简单整合了Redux、Router、Saga，未系统化为有机体</li>
-<li>配置未考虑各种场景，没有统一接口和方法（不仅仅是配置）</li>
-<li>将原本赏心悦目得Webpack配置拆得七零八落，何苦来哉</li>
-<li>未提供框架必要的参数（如：app、routes）存取方法，大面积污染全局window变量</li>
-<li>未显式引入插件和中间件机制，需自行实现，相关文件都扔src/utils下，plugins目录居然是系统保留</li>
-<li>每级路由都需要加入显示加入404，相当丑陋</li>
-<li>Layout和Page在路由里同级均视为组件，导致路由设置层级过深，需各种判断</li>
-<li>文件、常量、变量规范很随意，大小写混淆，且互相不对应（model/setting -&gt; state.settings）</li>
-<li>使用了不恰当的代码检查配置，且提交时自动格式化代码，极不人性</li>
-</ul>
-<blockquote>
-<p>方跃明
-2020-02-23</p>
-</blockquote>
-]]></content:encoded>
-    </item>
-    <item>
-      <title>vi基本操作</title>
-      <link>https://blog.fangyueming.cn/vi/</link>
-      <guid>https://blog.fangyueming.cn/vi/</guid>
-      <source url="https://blog.fangyueming.cn/rss.xml">vi基本操作</source>
-      <pubDate>Fri, 10 May 2019 00:00:00 GMT</pubDate>
-      <content:encoded><![CDATA[<h1 id="vi基本操作"> vi基本操作</h1>
-<p>Linux上有大量的配置操作，需要掌握文本编辑器，通常使用vi。
-vi是上Linux非常常用的编辑器，很多Linux发行版都默认安装了vi。
-vi命令繁多但是如果使用灵活之后将会大大提高效率。
-vi是“visual interface”的缩写，vim是vi IMproved(增强版的vi)。
-在一般的系统管理维护中vi就够用，如果想使用代码加亮的话可以使用vim。</p>
-<div><pre><code><span>vi</span> <span>[</span>filename<span>]</span>     <span># 用vi打开文件filename</span>
-</code></pre>
-<div><span>1</span><br></div></div><h2 id="command-mode-命令模式"> command mode（命令模式）</h2>
-<p>任何时候，不管用户处于何种模式，只要按一下“ESC”键，即可使vi进入命令行模式；我们在shell环境（提示符为$）下输入启动vi命令，进入编辑器时，也是处于该模式下。在该模式下，用户可以输入各种合法的vi命令，用于管理自己的文档。此时从键盘上输入的任何字符都被当做编辑命令来解释，若输入的字符是合法的vi命令，则vi在接受用户命令之后完成相应的动作。但需注意的是，所输入的命令并不在屏幕上显示出来。若输入的字符不是vi的合法命令，vi会响铃报警。</p>
-<h2 id="input-mode-编辑模式"> input mode（编辑模式）</h2>
-<p>在命令模式下输入插入命令i（insert）、附加命令a （append）、打开命令o（open）、修改命令c（change）、取代命令r或替换命令s都可以进入文本输入模式。在该模式下，用户输入的任何字符都被vi当做文件内容保存起来，并将其显示在屏幕上。在文本输入过程中，若想回到命令模式下，按&quot;ESC&quot;键即可。</p>
-<h2 id="last-line-mode-行末模式"> last line mode（行末模式）</h2>
-<p>末行模式也称ex转义模式。vi和Ex编辑器的功能是相同的，二者主要区别是用户界面。在vi中，命令通常是单个键，例如i、a、o等；而在Ex中，命令是以按回车键结束的正文行。vi有一个专门的“转义”命令，可访问很多面向行的Ex命令。在命令模式下，用户按“:”键即可进入末行模式下，此时vi会在显示窗口的最后一行（通常也是屏幕的最后一行）显示一个“:”作为末行模式的提示符，等待用户输入命令。多数文件管理命令都是在此模式下执行的（如把编辑缓冲区的内容写到文件中等）。末行命令执行完后，vi自动回到命令模式。</p>
-<p><img src="./vi-keymap.png" alt="vi-keymap" /></p>
-<table>
-<thead>
-<tr>
-<th>命令</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>:w</code></td>
-<td>保存文件</td>
-</tr>
-<tr>
-<td><code>:w filename</code></td>
-<td>保存至filename文件</td>
-</tr>
-<tr>
-<td><code>:q</code></td>
-<td>退出编辑器（文件未被修改）</td>
-</tr>
-<tr>
-<td><code>:q!</code></td>
-<td>退出编辑器，且不保存</td>
-</tr>
-<tr>
-<td><code>:wq</code></td>
-<td>退出编辑器，且保存文件</td>
-</tr>
-<tr>
-<td><code>:x</code></td>
-<td>退出编辑器，且保存文件</td>
-</tr>
-<tr>
-<td><code>:set nu</code></td>
-<td>显示行号</td>
-</tr>
-<tr>
-<td><code>:set nonu</code></td>
-<td>取消显示行号</td>
-</tr>
-<tr>
-<td><code>:set fileformat=unix</code></td>
-<td>将文件修改为unix格式，如win下面的文本文件在linux下会出现^M</td>
-</tr>
-<tr>
-<td><code>:s/old/new</code></td>
-<td>用new替换行中首次出现的old</td>
-</tr>
-<tr>
-<td><code>:s/old/new/g</code></td>
-<td>用new替换行中所有的old</td>
-</tr>
-<tr>
-<td><code>:n,m s/old/new/g</code></td>
-<td>用new替换从n到m行里所有的old</td>
-</tr>
-<tr>
-<td><code>:%s/old/new/g</code></td>
-<td>用new替换当前文件里所有的old</td>
-</tr>
-<tr>
-<td><code>:e otherfilename</code></td>
-<td>编辑文件名为otherfilename的文件</td>
-</tr>
-<tr>
-<td><code>/keyword</code></td>
-<td>向光标下搜索keyword字符串</td>
-</tr>
-<tr>
-<td><code>?keyword</code></td>
-<td>向光标上搜索keyword字符串</td>
-</tr>
-<tr>
-<td><code>a</code></td>
-<td>在当前光标位置的右边添加文本</td>
-</tr>
-<tr>
-<td><code>i</code></td>
-<td>在当前光标位置的左边添加文本</td>
-</tr>
-<tr>
-<td><code>A</code></td>
-<td>在当前行的末尾位置添加文本</td>
-</tr>
-<tr>
-<td><code>I</code></td>
-<td>在当前行的开始处添加文本(非空字符的行首)</td>
-</tr>
-<tr>
-<td><code>O</code></td>
-<td>在当前行的上面新建一行</td>
-</tr>
-<tr>
-<td><code>o</code></td>
-<td>在当前行的下面新建一行</td>
-</tr>
-<tr>
-<td><code>R</code></td>
-<td>替换(覆盖)当前光标位置及后面的若干文本</td>
-</tr>
-<tr>
-<td><code>J</code></td>
-<td>合并光标所在行及下一行为一行(依然在命令模式)</td>
-</tr>
-<tr>
-<td><code>x</code></td>
-<td>删除当前字符</td>
-</tr>
-<tr>
-<td><code>nx</code></td>
-<td>删除从光标开始的n个字符</td>
-</tr>
-<tr>
-<td><code>dd</code></td>
-<td>删除当前行</td>
-</tr>
-<tr>
-<td><code>ndd</code></td>
-<td>向下删除当前行在内的n行</td>
-</tr>
-<tr>
-<td><code>u</code></td>
-<td>撤销上一步操作</td>
-</tr>
-<tr>
-<td><code>U</code></td>
-<td>撤销对当前行的所有操作</td>
-</tr>
-<tr>
-<td><code>yy</code></td>
-<td>将当前行复制到缓存区</td>
-</tr>
-<tr>
-<td><code>ayy</code></td>
-<td>复制当前行到a缓冲区，a也可以替换为a到z的任意字母，可以完成多个复制任务</td>
-</tr>
-<tr>
-<td><code>nyy</code></td>
-<td>将当前行向下n行复制到缓冲区</td>
-</tr>
-<tr>
-<td><code>anyy</code></td>
-<td>复制前行向下n行到a 缓冲区，a也可以替换为a到z的任意字母，可以完成多个复制任务</td>
-</tr>
-<tr>
-<td><code>yw</code></td>
-<td>复制从光标开始到词尾的字符</td>
-</tr>
-<tr>
-<td><code>nyw</code></td>
-<td>复制从光标开始的n个单词</td>
-</tr>
-<tr>
-<td><code>y^</code></td>
-<td>复制从光标到行首的内容</td>
-</tr>
-<tr>
-<td><code>y$</code></td>
-<td>复制从光标到行尾的内容</td>
-</tr>
-<tr>
-<td><code>p</code></td>
-<td>粘贴剪切板里的内容在光标后，如果使用了前面的自定义缓冲区，建议使用ap进行粘贴</td>
-</tr>
-<tr>
-<td><code>P</code></td>
-<td>粘贴剪切板里的内容在光标前，如果使用了前面的自定义缓冲区，建议使用aP进行粘贴</td>
-</tr>
-<tr>
-<td><code>h</code></td>
-<td>向左</td>
-</tr>
-<tr>
-<td><code>j</code></td>
-<td>向下</td>
-</tr>
-<tr>
-<td><code>k</code></td>
-<td>向上</td>
-</tr>
-<tr>
-<td><code>l</code></td>
-<td>向右</td>
-</tr>
-<tr>
-<td><code>Space</code></td>
-<td>向右</td>
-</tr>
-<tr>
-<td><code>Backspace</code></td>
-<td>向左</td>
-</tr>
-<tr>
-<td><code>Enter</code></td>
-<td>移动到下一行首</td>
-</tr>
-<tr>
-<td><code>-</code></td>
-<td>移动到上一行首</td>
-</tr>
-<tr>
-<td><code>n</code></td>
-<td>向下搜索前一个搜素动作</td>
-</tr>
-<tr>
-<td><code>N</code></td>
-<td>向上搜索前一个搜索动作</td>
-</tr>
-<tr>
-<td><code>n+</code></td>
-<td>向下跳n行</td>
-</tr>
-<tr>
-<td><code>n-</code></td>
-<td>向上跳n行</td>
-</tr>
-<tr>
-<td><code>nG</code></td>
-<td>跳到行号为n的行</td>
-</tr>
-<tr>
-<td><code>G</code></td>
-<td>跳至文件的底部</td>
-</tr>
-</tbody>
-</table>
-]]></content:encoded>
-    </item>
-    <item>
-      <title>Vue父子组件通信</title>
-      <link>https://blog.fangyueming.cn/vue-props/</link>
-      <guid>https://blog.fangyueming.cn/vue-props/</guid>
-      <source url="https://blog.fangyueming.cn/rss.xml">Vue父子组件通信</source>
-      <pubDate>Sun, 30 Sep 2018 00:00:00 GMT</pubDate>
-      <content:encoded><![CDATA[<h1 id="vue父子组件通信"> Vue父子组件通信</h1>
-<h2 id="理解"> 理解</h2>
-<ul>
-<li><code>component</code>：相当于一个函数，<code>props =&gt; { return event =&gt; $emit }</code></li>
-<li><code>props</code>：相当于传统意义上类的<code>public</code>属性，但此属性不能被自身初始化</li>
-<li><code>data</code>：相当于传统意义上类的<code>private</code>属性，此属性必须被自身初始化</li>
-<li><code>$emit('event')</code>：里的<code>event</code>相当于传统意义上类的<code>callback</code>回调</li>
-<li><code>methods</code>: 里的方法相当于传统意义上类的<code>private</code>方法</li>
-<li><code>mounted()</code>：相当于传统意义上类的构造函数</li>
-</ul>
-<h2 id="官方文档"> 官方文档</h2>
-<ul>
-<li><a href="https://cn.vuejs.org/v2/guide/components-props.html" target="_blank" rel="noopener noreferrer">props</a></li>
-<li><a href="https://cn.vuejs.org/v2/guide/components-custom-events.html#sync-%E4%BF%AE%E9%A5%B0%E7%AC%A6" target="_blank" rel="noopener noreferrer">.sync</a></li>
-</ul>
-<h2 id="分析"> 分析</h2>
-<ul>
-<li>子组件
-<ul>
-<li>定义<code>props</code>，父组件调用子组件时，父组件可直接改变绑定的<code>props</code>值</li>
-<li>通过<code>this.$emit('event', val)</code>传递事件（<code>event</code>）和值（<code>val</code>）到父组件</li>
-</ul>
-</li>
-<li>父组件
-<ul>
-<li>调用子组件，其中<code>props</code>值的变化，直接被传递到子组件</li>
-<li>子组件若要将<code>props</code>的值传给父组件，需要通过<code>emit</code>发射事件和值到父组件</li>
-</ul>
-</li>
-</ul>
-<p><img src="./vue-props.png" alt="Vue父子组件通信" /></p>
-<h2 id="示例"> 示例</h2>
-<div><pre><code><span>&lt;!-- Children.vue --></span>
-<span><span><span>&lt;</span>template</span><span>></span></span>
-  <span><span><span>&lt;</span>div</span> <span>id</span><span><span>=</span><span>"</span>children<span>"</span></span><span>></span></span>
-    <span><span><span>&lt;</span>h3</span><span>></span></span>Children<span><span><span>&lt;/</span>h3</span><span>></span></span>
-    <span><span><span>&lt;</span>button</span> <span>@click</span><span><span>=</span><span>"</span>toParent<span>"</span></span><span>></span></span>get data from Children<span><span><span>&lt;/</span>button</span><span>></span></span>
-    <span><span><span>&lt;</span>div</span><span>></span></span>{{message}}<span><span><span>&lt;/</span>div</span><span>></span></span>
-  <span><span><span>&lt;/</span>div</span><span>></span></span>
-<span><span><span>&lt;/</span>template</span><span>></span></span>
-
-<span><span><span>&lt;</span>script</span><span>></span></span><span><span>
-<span>export</span> <span>default</span> <span>{</span>
-  name<span>:</span> <span>'Children'</span><span>,</span>
-  props<span>:</span> <span>[</span><span>'message'</span><span>]</span><span>,</span>
-  <span>data</span><span>(</span><span>)</span> <span>{</span>
-    <span>return</span> <span>{</span>
-
-    <span>}</span>
-  <span>}</span><span>,</span>
-  methods<span>:</span> <span>{</span>
-    <span>toParent</span><span>(</span><span>)</span> <span>{</span>
-      <span>this</span><span>.</span><span>$emit</span><span>(</span><span>'monitor'</span><span>,</span><span>'click: data from Children'</span><span>)</span><span>;</span>
-    <span>}</span>
-  <span>}</span>
-<span>}</span>
-</span></span><span><span><span>&lt;/</span>script</span><span>></span></span>
-</code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br><span>9</span><br><span>10</span><br><span>11</span><br><span>12</span><br><span>13</span><br><span>14</span><br><span>15</span><br><span>16</span><br><span>17</span><br><span>18</span><br><span>19</span><br><span>20</span><br><span>21</span><br><span>22</span><br><span>23</span><br><span>24</span><br><span>25</span><br></div></div><div><pre><code><span>&lt;!-- Parent.vue --></span>
-<span><span><span>&lt;</span>template</span><span>></span></span>
-  <span><span><span>&lt;</span>div</span> <span>id</span><span><span>=</span><span>"</span>parent<span>"</span></span><span>></span></span>
-    <span><span><span>&lt;</span>h3</span><span>></span></span>Parent<span><span><span>&lt;/</span>h3</span><span>></span></span>
-    <span><span><span>&lt;</span>children</span> <span>:message</span><span><span>=</span><span>"</span>fromParent<span>"</span></span> <span>@monitor</span><span><span>=</span><span>"</span>fromChildren<span>"</span></span><span>></span></span><span><span><span>&lt;/</span>children</span><span>></span></span>
-  <span><span><span>&lt;/</span>div</span><span>></span></span>
-<span><span><span>&lt;/</span>template</span><span>></span></span>
-
-<span><span><span>&lt;</span>script</span><span>></span></span><span><span>
-<span>import</span> Children <span>from</span> <span>'./Children'</span>
-<span>export</span> <span>default</span> <span>{</span>
-  name<span>:</span> <span>'Parent'</span><span>,</span>
-  components<span>:</span> <span>{</span>
-    Children
-  <span>}</span><span>,</span>
-  <span>data</span><span>(</span><span>)</span> <span>{</span>
-    <span>return</span> <span>{</span>
-      fromParent<span>:</span> <span>'init: data from Parent'</span>
-    <span>}</span>
-  <span>}</span><span>,</span>
-  methods<span>:</span> <span>{</span>
-    <span>fromChildren</span><span>(</span><span>val</span><span>)</span> <span>{</span>
-      <span>this</span><span>.</span>fromParent <span>=</span> val
-    <span>}</span>
-  <span>}</span>
-<span>}</span>
-</span></span><span><span><span>&lt;/</span>script</span><span>></span></span>
-</code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br><span>9</span><br><span>10</span><br><span>11</span><br><span>12</span><br><span>13</span><br><span>14</span><br><span>15</span><br><span>16</span><br><span>17</span><br><span>18</span><br><span>19</span><br><span>20</span><br><span>21</span><br><span>22</span><br><span>23</span><br><span>24</span><br><span>25</span><br><span>26</span><br><span>27</span><br></div></div>]]></content:encoded>
-    </item>
-    <item>
       <title>WEB前端编码变迁记</title>
       <link>https://blog.fangyueming.cn/web-component/</link>
       <guid>https://blog.fangyueming.cn/web-component/</guid>
@@ -6937,6 +6671,219 @@ ReactDOM<span>.</span><span>render</span><span>(</span>
 ]]></content:encoded>
     </item>
     <item>
+      <title>Vue父子组件通信</title>
+      <link>https://blog.fangyueming.cn/vue-props/</link>
+      <guid>https://blog.fangyueming.cn/vue-props/</guid>
+      <source url="https://blog.fangyueming.cn/rss.xml">Vue父子组件通信</source>
+      <pubDate>Sun, 30 Sep 2018 00:00:00 GMT</pubDate>
+      <content:encoded><![CDATA[<h1 id="vue父子组件通信"> Vue父子组件通信</h1>
+<h2 id="理解"> 理解</h2>
+<ul>
+<li><code>component</code>：相当于一个函数，<code>props =&gt; { return event =&gt; $emit }</code></li>
+<li><code>props</code>：相当于传统意义上类的<code>public</code>属性，但此属性不能被自身初始化</li>
+<li><code>data</code>：相当于传统意义上类的<code>private</code>属性，此属性必须被自身初始化</li>
+<li><code>$emit('event')</code>：里的<code>event</code>相当于传统意义上类的<code>callback</code>回调</li>
+<li><code>methods</code>: 里的方法相当于传统意义上类的<code>private</code>方法</li>
+<li><code>mounted()</code>：相当于传统意义上类的构造函数</li>
+</ul>
+<h2 id="官方文档"> 官方文档</h2>
+<ul>
+<li><a href="https://cn.vuejs.org/v2/guide/components-props.html" target="_blank" rel="noopener noreferrer">props</a></li>
+<li><a href="https://cn.vuejs.org/v2/guide/components-custom-events.html#sync-%E4%BF%AE%E9%A5%B0%E7%AC%A6" target="_blank" rel="noopener noreferrer">.sync</a></li>
+</ul>
+<h2 id="分析"> 分析</h2>
+<ul>
+<li>子组件
+<ul>
+<li>定义<code>props</code>，父组件调用子组件时，父组件可直接改变绑定的<code>props</code>值</li>
+<li>通过<code>this.$emit('event', val)</code>传递事件（<code>event</code>）和值（<code>val</code>）到父组件</li>
+</ul>
+</li>
+<li>父组件
+<ul>
+<li>调用子组件，其中<code>props</code>值的变化，直接被传递到子组件</li>
+<li>子组件若要将<code>props</code>的值传给父组件，需要通过<code>emit</code>发射事件和值到父组件</li>
+</ul>
+</li>
+</ul>
+<p><img src="./vue-props.png" alt="Vue父子组件通信" /></p>
+<h2 id="示例"> 示例</h2>
+<div><pre><code><span>&lt;!-- Children.vue --></span>
+<span><span><span>&lt;</span>template</span><span>></span></span>
+  <span><span><span>&lt;</span>div</span> <span>id</span><span><span>=</span><span>"</span>children<span>"</span></span><span>></span></span>
+    <span><span><span>&lt;</span>h3</span><span>></span></span>Children<span><span><span>&lt;/</span>h3</span><span>></span></span>
+    <span><span><span>&lt;</span>button</span> <span>@click</span><span><span>=</span><span>"</span>toParent<span>"</span></span><span>></span></span>get data from Children<span><span><span>&lt;/</span>button</span><span>></span></span>
+    <span><span><span>&lt;</span>div</span><span>></span></span>{{message}}<span><span><span>&lt;/</span>div</span><span>></span></span>
+  <span><span><span>&lt;/</span>div</span><span>></span></span>
+<span><span><span>&lt;/</span>template</span><span>></span></span>
+
+<span><span><span>&lt;</span>script</span><span>></span></span><span><span>
+<span>export</span> <span>default</span> <span>{</span>
+  name<span>:</span> <span>'Children'</span><span>,</span>
+  props<span>:</span> <span>[</span><span>'message'</span><span>]</span><span>,</span>
+  <span>data</span><span>(</span><span>)</span> <span>{</span>
+    <span>return</span> <span>{</span>
+
+    <span>}</span>
+  <span>}</span><span>,</span>
+  methods<span>:</span> <span>{</span>
+    <span>toParent</span><span>(</span><span>)</span> <span>{</span>
+      <span>this</span><span>.</span><span>$emit</span><span>(</span><span>'monitor'</span><span>,</span><span>'click: data from Children'</span><span>)</span><span>;</span>
+    <span>}</span>
+  <span>}</span>
+<span>}</span>
+</span></span><span><span><span>&lt;/</span>script</span><span>></span></span>
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br><span>9</span><br><span>10</span><br><span>11</span><br><span>12</span><br><span>13</span><br><span>14</span><br><span>15</span><br><span>16</span><br><span>17</span><br><span>18</span><br><span>19</span><br><span>20</span><br><span>21</span><br><span>22</span><br><span>23</span><br><span>24</span><br><span>25</span><br></div></div><div><pre><code><span>&lt;!-- Parent.vue --></span>
+<span><span><span>&lt;</span>template</span><span>></span></span>
+  <span><span><span>&lt;</span>div</span> <span>id</span><span><span>=</span><span>"</span>parent<span>"</span></span><span>></span></span>
+    <span><span><span>&lt;</span>h3</span><span>></span></span>Parent<span><span><span>&lt;/</span>h3</span><span>></span></span>
+    <span><span><span>&lt;</span>children</span> <span>:message</span><span><span>=</span><span>"</span>fromParent<span>"</span></span> <span>@monitor</span><span><span>=</span><span>"</span>fromChildren<span>"</span></span><span>></span></span><span><span><span>&lt;/</span>children</span><span>></span></span>
+  <span><span><span>&lt;/</span>div</span><span>></span></span>
+<span><span><span>&lt;/</span>template</span><span>></span></span>
+
+<span><span><span>&lt;</span>script</span><span>></span></span><span><span>
+<span>import</span> Children <span>from</span> <span>'./Children'</span>
+<span>export</span> <span>default</span> <span>{</span>
+  name<span>:</span> <span>'Parent'</span><span>,</span>
+  components<span>:</span> <span>{</span>
+    Children
+  <span>}</span><span>,</span>
+  <span>data</span><span>(</span><span>)</span> <span>{</span>
+    <span>return</span> <span>{</span>
+      fromParent<span>:</span> <span>'init: data from Parent'</span>
+    <span>}</span>
+  <span>}</span><span>,</span>
+  methods<span>:</span> <span>{</span>
+    <span>fromChildren</span><span>(</span><span>val</span><span>)</span> <span>{</span>
+      <span>this</span><span>.</span>fromParent <span>=</span> val
+    <span>}</span>
+  <span>}</span>
+<span>}</span>
+</span></span><span><span><span>&lt;/</span>script</span><span>></span></span>
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br><span>9</span><br><span>10</span><br><span>11</span><br><span>12</span><br><span>13</span><br><span>14</span><br><span>15</span><br><span>16</span><br><span>17</span><br><span>18</span><br><span>19</span><br><span>20</span><br><span>21</span><br><span>22</span><br><span>23</span><br><span>24</span><br><span>25</span><br><span>26</span><br><span>27</span><br></div></div>]]></content:encoded>
+    </item>
+    <item>
+      <title>有感于“论PHP的倒掉”</title>
+      <link>https://blog.fangyueming.cn/php-fall/</link>
+      <guid>https://blog.fangyueming.cn/php-fall/</guid>
+      <source url="https://blog.fangyueming.cn/rss.xml">有感于“论PHP的倒掉”</source>
+      <pubDate>Mon, 23 Nov 2009 00:00:00 GMT</pubDate>
+      <content:encoded><![CDATA[<h1 id="有感于-论php的倒掉"> 有感于“论PHP的倒掉”</h1>
+<blockquote>
+<p><a href="http://www.iteye.com/topic/523378" target="_blank" rel="noopener noreferrer">http://www.iteye.com/topic/523378</a>
+<a href="http://hent.iteye.com/" target="_blank" rel="noopener noreferrer">七月十五</a></p>
+</blockquote>
+<p>已被隐藏的《论PHP的倒掉》参见<a href="http://www.iteye.com/topic/520153" target="_blank" rel="noopener noreferrer">http://www.iteye.com/topic/520153</a>。</p>
+<div><p>《论PHP的倒掉》</p>
+<p>最近听闻Python貌似有打入冷宫的危险，惊出一身冷汗。突然想起自己常用的PHP，似乎在红火过几年后，越来越被人们看淡了。其实细细想来，php出局是合理的，作为一个PHPer我深切的意识到这一点。</p>
+<p>PHP能上能下，貌似在后端和前端都可以用。如果PHP的本身（运行机制、内核等等）够强大的话，诚然是好事，几乎可以一统WEB之江湖。但事实并非如此，PHP在性能、安全和语言层面存在很多弱点。导致了性能低下、资源浪费，不适合大型应用开发。在前端比不过javascript+xhtml+css，在后端比不过java，c/c++，Python，Perl。样样懂不如一门精，不无道理。如果没有杀手锏，迟早是要被淘汰的。</p>
+<p>目前，后端开发大量的WebApplication向WebService进化，PHP作为服务端脚本的方便优势越来越小，以至于荡然无存。就WEB编程而言，在前端用Javascript等语言很方便就可以操作html，基于DOM编程，与后端进行ajax交互，快速、安全、高效、节能。在后端采用java、c/c++等语言搭建高性能、高安全性、高并发、集群式的服务平台。完全有理由抛弃PHP等任何服务端的脚本语言。</p>
+<p>我一直在想Service-REST + Application-MVC （Application可以是Browser但不是仅仅是Browser）的威力。在这样的系统构建中，我有一个很极端的想法，那就是服务端脚本都成了鸡肋了。这样的环境下，asp有.net，jsp有java，只在服务端脚本有作为的PHP第一个就倒掉了。</p>
+<p>其实近些年来PHP的价值已经被定位在了前端脚本语言。在运作成熟的大公司，招PHP大部分只用于前端开发，很多PHPer大概也是高达7K左右的月薪——我是自学的程序设计，从未从事过编程设计行业，请原谅我对具体情况的不明真相。面对汹涌而来的大潮，我建议PHPer想从事后端的多多学习java，想从事前端的多学学javascript，不失为一个转型的出路。</p>
+<p>这么多年黑灯瞎火的摸索，在PHP中摸爬滚打也有几年了，回过头来证实了PHP的倒掉。作为一个PHPer，感到莫名的心酸。</p>
+</div>
+<p>面对攻击和隐藏扣分，我并不感到愤怒和伤怀，那样太消极了。被隐藏后引发了我的思考，为什么会被隐藏和遭受攻击？到底我所思考的是不是走入了误区？我如何正确的认识php和编程？我能从中得到些什么启示呢？</p>
+<p>另外我声明一下，我就是phpchina的七月十五，但是并不代表phpchina的立场，所说的话只是私人言论，在javaeye我只希望我是javaeye的会员而已。</p>
+<p>php作为目前排名的第三大语言，这么多年来多少有点研究，php的发展并没有扬长避短，发挥优势，实在看不出php的长处在最近几年的发展。一样东西如果没有长处，一定会有替代品，淘汰是迟早的事情。撇开php在后端领域目前根本就竞争不过java和.net不说，javascript潜力的发掘和崛起，以及Flex，JavaFX，GWT等的进步，无一不威胁着php的优势地位。不要认为php是服务端脚本就没有被取代的可能性。</p>
+<p>未来的编程发展方向是服务(Service)式和分布(Distributed)式的。这必然会导致信息传输的编码标准化，与服务器交互是不限制语言的，只要这个语言有解析编码的能力，就能处理信息。面向服务编程不限语言，这一点可以从淘宝的TOP上直观的看到，TOP几乎支持任何主流语言。面向服务编程也不限客户端，不管你是应用小程序（applet），浏览器（browser），桌面应用程序（desktop），还是移动终端（moblie）都可使用服务。</p>
+<p>也许是我过于偏激了，因为目前大量的phper编程都使用一直以来非常传统的php数据编码编程，思想固化；要么就走向了所谓的企业化的oop及使用大型框架的方向，偏离php的优势。而php的发展方向在哪里，我估计目前zend也比较疑惑。很多人认为php应该加强底层的优化，提高性能和效率，继续以前的简单实用。然后zend貌似要把php拉向企业计算的大池塘里，php这条小鱼要跟java，.net等等大鱼去争一席之地，大鱼吃小鱼是规律。更可怕的是在企业计算重视性能和安全，php这条慢鱼也逃不过快鱼吃慢鱼的的悲剧。</p>
+<p>zend如果不重新审视php的发展方向，以及目标市场，以及发展计划的话。不出三五年后端java，.net等以及前端的javascript，html5，Flex，GWT，JavaFX等会重新占领市场份额。php会在萎缩中倒掉。</p>
+<p>这篇文章因为立场原因不适合发在phpchina，这样的论调要么引发不满，要么消极导向。另一个原因是因为javaeye层次更高些。所以我发在了javaeye的php版块。发布后我就去上海参加了为期三天的行动成功公司的4*8绩效管理研修班了，没有及时关注。原以为会引发讨论，没想到换来的一堆的谩骂和攻击，最后被隐藏扣分。这是我意想不到的。</p>
+<p>之前我就说过，任何语言层面的讨论都没有意义，人菜那才是真的菜。PHPer的现状是不思考，不实践，全作愤怒状，听不进任何意见和建议。心态决定思维，思维准定行为，行为决定结果。盲目自大、鼠目寸光、杯空自满的心态，我想这才是php倒掉的真正原因。</p>
+<p>其实倒掉更多的是人，我不希望见到这个倒掉，那个倒掉。朝阳喷薄，以至如日中天，亦有日薄西山时。时乎，时乎，会当有变时。</p>
+<h2 id="willko"> <a href="http://willko.iteye.com/" target="_blank" rel="noopener noreferrer">willko</a></h2>
+<p>是否想表达，以后有更多的逻辑处理放在浏览器中实现（前端RIA之类的），而后端，因为php本身的原因，所以php只能作为一套系统的web接口。</p>
+<p>但是又因为浏览器的可编程能力提高了，所以php这样的代理作用不大？</p>
+<p>其实，楼主说“PHPer的现状是不思考，不实践，全作愤怒状，听不进任何意见和建议”，我只想说你知道得太少了。</p>
+<p>不要以为一个PPC代表整个中国的PHP现状。。。</p>
+<p>我谈谈我的看法，其实说得并全无道理，确实php会萎缩。</p>
+<p>现在php的需求上升，完全是泡沫，互联网这个市场大家的疯狂涌入，需求肯定会上升的，但是弱肉强食，市场有限，垮掉是时间问题。这是萎缩的原因之一</p>
+<p>其二，正如楼主所说的前端处理能力，以后可能会放更多的逻辑运算在前端，所以php的需求会下降，这是其二</p>
+<p>但是这两条还不至于让php垮掉，php做为最轻便的“web接口”方案，实现简单，部署方便，是肯定会存在的。</p>
+<h2 id="robbin"> <a href="http://robbin.iteye.com/" target="_blank" rel="noopener noreferrer">robbin</a></h2>
+<p>作为一个曾经的老PHPer，我个人的看法是PHP的不会倒掉。我在99年2000年的时候做互联网开发，用PHP作为web，用Java做后端高性能服务，也算10年的老PHPer了。10年的编程生涯回顾过来，对技术的认识也是一个否定之否定，螺旋式上升的过程。</p>
+<p>PHP是一个优点和缺点都过于突出的web语言，因为他的优点就是过于简单易用，所以他非常有生命力，也因为他太简单，所以应用领域受到很大的限制。但你不能忽视一个编程语言简单易用带来的威力，前两年我曾经认为PHP要被更加高级的Python/Ruby取代，但事实证明，PHP还是互联网第一的编程语言，Python/Ruby还是比PHP复杂很多，带来了不少门槛。</p>
+<p>JavaEye曾经有一个PHP的讨论贴：PHP框架的繁荣是正确的发展方向吗？，在这个讨论当中，我对PHP的看法就是，PHP不应该搞重型框架例如Zend这种东西：</p>
+<div><p>【robbin 写道】</p>
+<p>其实PHP核心问题都不是性能，而是能不能保持“简单性”和“草根性”</p>
+<p>一个有点编程背景的普通人，只需要学习PHP半天时间，就可以上手开始开发web应用了，这就是PHP最大的优势。专业程序群体才多大，而电脑爱好者的群体有多大？我一个朋友，做photoshop出身的，人家学了两天PHP，到处接活给人家开发网站，一个人全部搞定。你让他学Java,那真要了他的命了。我另外一个朋友的老公，人家压根就不是这一行的，照样会用PHP搭网站，人家上网去下载一个PHP程序，改吧改吧页面，就弄好了，你让人家学ruby？那肯定不可能。</p>
+<p>PHP的人海战术也就是这么来的，群众基础好。事实上PHP5曾经在相当长时间内被抵制，就是因为PHP5的面向对象语法引入了对于电脑爱好者来说门槛开始变高了，PHP开始变复杂了。</p>
+<p>因此PHP再用什么框架，是违背PHP本身的设计哲学的。PHP就应该做简单的页面处理就够了，复杂的逻辑让后台的Java/C++去处理。</p>
+</div>
+<p>事实上这些年PHP的应用领域也不仅仅在前端，相当多后端编程甚至后端服务也直接使用PHP，比方说Facebook这个现在全球流量第2大的网站就是绝大部分功能都是PHP，附带少量的C++，Java和Erlang，再比如现在热门的网页游戏，基本上也都是直接用PHP做后端来用。可以这样说，最近3年来，PHP不但没有萎缩，反而在扩大市场份额，PHP作为互联网Web编程语言的王者，短期之内还没有出现有威胁的挑战者。</p>
+<p>回到楼主这个话题上来，其实楼主思考的问题应该是：不是PHP有没有前途的问题，PHP是肯定有前途的，但是PHPer会有前途吗？</p>
+<p>这个话题就有些沉重了，PHPer总给人不登大雅之堂的感觉，PHPer的薪资也远远不及同等工作年限的Java/C++这也是一个残酷的现实。一个程序员工作3年之后，随着视野和经验的增长，不可避免要考虑web架构，高性能高可用性问题，而这些领域，都不是一个纯PHPer可以涉及的领域，所以PHPer很容易就触到职业上的天花板，要打破这个天花板，你就不得不去接触C++或者Java这些编程语言。但对一个PHPer来说，当你不得不去学习Java或者C++的时候，心理难免有些感概，我何不从一开始就搞C++呢，这样职业发展道路岂不是更好？所以就会产生PHP没有前途的悲观想法。</p>
+<p>其实我个人觉得从程序员的职业生涯来看，不应该把自己和编程语言绑得过死，开放心态，多学习多接触多实践，各种编程语言仅仅是你工具箱里面的各种工具才好。</p>
+<h2 id="syu"> <a href="http://syu.iteye.com/" target="_blank" rel="noopener noreferrer">syu</a></h2>
+<p>都开了贴子讨论，又何必以沉默待之呢？</p>
+<p>这儿的人一没爆粗口，二没群起愤之。大家仁者见仁，难道不是楼主开贴初衷？</p>
+<p>语言嘛，工具也，又非宗教。</p>
+<p>站在人的角度，适者即用。但也不至于对工具本身死活轻下结论。毕竟还有这么多场合在应用着。</p>
+<p>站在业务的角度，只有不适合的工具，没有不好的语言。</p>
+<p>企业应用是个天大的骗言和幌子，谁能给个定义，什么才算是企业应用？</p>
+<p>多少年来对PHP的打击无一例外不是祭出“PHP不适合企业应用”的大旗。</p>
+<p>那么facebook，yahoo,百度，sina是不是企业？他们有没有用PHP？</p>
+<p>有人也许会轻藐的说，他们只用PHP做简单的事，复杂的仍然是X，Y，Z在做。</p>
+<p>但反过来说，为什么它们不用X,Y,Z来做这样简单的事？因为不适合嘛。</p>
+<p>我所理解的企业应用是一个集合，通常需要多种工具来进行整合，每一环都有它存在的意义和价值。</p>
+<p>PHP在WEB层面活跃不是没有原因的，也不是因为它语法随意，简单。而且以PHP出身（而非终结）的高手业界也不少吧。
+哪里来的死亡？</p>
+<h2 id="dualface"> <a href="http://dualface.iteye.com/" target="_blank" rel="noopener noreferrer">dualface</a></h2>
+<p>（敏感词）倒了，PHP 都还不一定会倒 -_-</p>
+<p>PHP 的成功并不仅仅是“简单”，最重要的原因还是 —— PHP 是一种完全为 Web App 设计的语言，所以用 PHP 做 Web 那是如鱼得水。</p>
+<p>虽然 Java/.NET/Python/Ruby/XXX 也可以做 Web App，但是比起一种专门为 Web App 设计的语言，易用程度和开发效率上有很大区别，所以 PHP 积累了庞大的群众基础。</p>
+<p>当然了，Web App 的规模越来越大，仅靠单一语言是不可能解决问题的。但是人类解决问题的模式就是把大问题分解为小问题，再把小问题分解为更小的问题。如果仅仅着眼于服务端和客户端的交互这一层，PHP 就是极佳的选择。就好像卫生纸和卫生巾都可以吸水，但是没几个女生会用卫生纸来代替卫生巾。</p>
+<p>说的现实一点，雇一个 Java 熟练工的钱可以雇两个 PHP 熟练工，生产力还更高。所以越来越多的 Web App 都把这一层交给 PHP 来处理。</p>
+<h2 id="magician"> <a href="http://magician.iteye.com/" target="_blank" rel="noopener noreferrer">magician</a></h2>
+<p>你显然完全没有理解php的用武之地在哪里</p>
+<p>1、是，显示可以用javascript，但是它的数据来源在哪？是怎么来的？数据是通过什么逻辑组织的？如果你能直接从浏览器访问到存放在任何地方的数据，那我就可以承认其他一切语言都可以滚蛋了，js最牛逼。很可惜，事实上并不是这样。js能直接从服务端得memcache里拿数据吗？可以从数据里拿数据吗？而恰恰目前能帮助js组织好数据，并以一定格式（比如json）返回给浏览器的最好工具正是php，这个我前面已经说明了，不明白请往前看。</p>
+<p>写到这里，如果你还认为要拿php和js来做比较，只能说逻辑不清了，我们没必要再讨论下去。</p>
+<p>2、展示逻辑和展现为什不能分开？</p>
+<p>为什么没有必要分开？</p>
+<p>xml+xslt不是正是在分开他们？</p>
+<p>WML又如何？界面不一样而已，数据组成逻辑也不一样吗？</p>
+<p>而且，正是因为有各种不同的展示方式（html，wml，flash），他们都在变，而恰恰不便的是php在服务端的处理方式：返回一定格式的数据（比如json）
+这不又恰恰说明了剥离展示逻辑（数据生成）和展示方式的必要吗？</p>
+<p>3、方向......</p>
+<p>好像只是你个人在认为某个语言方向不正确，你是不是正确的都不知道，就夸夸其谈你所谓的正确性</p>
+<p>有什么能证明你的方向是正确的吗？</p>
+<p>更何况，编程序的哪个没有触类旁通的能力，就算我现在钻php钻得很深，又如何能断定我的java能力就很差呢？何来跑得越快就偏得越远呢？
+我觉得语言恰恰是你只要精通了一种，其他的都无非是换个壳子，如果你现在还认为有什么语言需要花10年功夫去研究才能小有所成，所以一定要选对方向，不能犯错，那我只能说：你太嫩了</p>
+<p>4、为了证明我以上所说的，我列举一下我现在项目所使用的语言：</p>
+<ul>
+<li>大量client javascript</li>
+<li>大量php</li>
+<li>大量java</li>
+<li>少量python</li>
+<li>少量c</li>
+<li>少量shell</li>
+<li>少量flex</li>
+<li>html+css+xml+xslt就不算进去了</li>
+</ul>
+<p>对于一个日pv 100万左右的网站，我还真没看出来在php这个层面我的方向怎么就错了，界面一直在变，但是php的显示逻辑一直没变过，并且效果高，逻辑清晰。倒是数据库有换的打算，mysql换成postgresql。</p>
+<h2 id="sztime"> <a href="http://sztime.iteye.com/" target="_blank" rel="noopener noreferrer">sztime</a></h2>
+<p>原帖的12页我是耐心的看完了, 但这个帖子的回复我实在是看不下去.</p>
+<p>首先申明: 本人根本不熟悉楼主, 他在PHPChina上的帖子看过的也绝对不超过10个; 以下言论仅代表本人观点.</p>
+<p>楼主的说法确实有点偏激, 但大方向上并没有错.</p>
+<p>何谓&quot;倒掉&quot;? 倒掉并非死掉, 一个企业或品牌, 只要市场萎缩到一半, 就可以称之为倒掉了,而PHP在三五年后份额萎缩到一半, 难道真是不可能的事吗?</p>
+<p>另外就是攻击楼主&quot;拿PHP和JS比较&quot;的那些人, 实话说很可笑! 楼主所站的高度比你们高了至少二个档次, 只不过没有(看了前几页, 感觉应该是他根本就不想)解释得像小学课本那样通俗而已----退一步讲, 就算他再写多一倍的文字, 凭你们的水平恐怕仍然难以打破自己头上的天花板! 你们把&quot;PHP是服务器端语言而JS是浏览器端脚本&quot;当成可以判定一切生死的圣旨,都以为自己很明白, 事实上愚蠢之极! 我打个比方吧: 楼主说, 据最新研究, 火星上可能有水存在----你们看了马上就骂道: 楼主你真白啊, 火星既然叫火星, 上面肯定只有火了, 怎么可能有水呢?</p>
+<h2 id="akandfxs"> <a href="http://akandfxs.iteye.com/" target="_blank" rel="noopener noreferrer">akandfxs</a></h2>
+<p>楼主说的很在理。其实前端javascript太强悍的后果，就是对快速开发提供了足够的支持。以前php强调的灵活性和快速部署，在足够强大的javascript快速开发和java这样的后端语言的提供上，是非常有可能压榨php的空间的。在云计算时代就更是如此了。javascript对php的空间的压缩可能会更明显。</p>
+<h2 id="giginet"> <a href="http://giginet.iteye.com/" target="_blank" rel="noopener noreferrer">giginet</a></h2>
+<p>我觉得lz这是作为一个老手，随着水平不断提高所产生的一种潜意识的危机或半强迫症吧。就好比很多水平越高，反而觉得越技不如人的那些人。而刚入门的反而容易觉得自己已经了解的足够多。</p>
+<p>目前的web层表示越来越丰富，js作为前端语言，对于逻辑的展现也在逐渐增强，对于后台处理的很多数据，可以直接以json输出到前台进行解析，或者一些逻辑也可以使用脚本实现。从开发层次上来说，对于一个web程序的开发，前台功能增强，后台php的编码的确是在逐渐减少。但我并不认为php会被取缔。再好的前台还是最终要有后台支撑的。虽然使用php可以达到某些特殊效果，但与java等的对比性不在这里。php的最大特点还是轻型，快速开发，效率也不错，这是它极大的优势。这就好比mysql与oracle之间的关系一样。这么多年，mysql依然没有倒掉，各个大型网站的后台，mysql的份额看看有多少就知道了。有的时候，免费，简单，轻型，快速，对于一些小型开发还是王道。</p>
+<p>我觉得robbin说的很对，关键还是看人，语言之类的毕竟只是工具，浮云而已。好技术好语言都应该要有它合适的岗位，无所谓排名先后，无所谓影响度高低。就好像前几天看javaeye中有一个开源的小项目，逻辑全部放到数据库中去写，基本都已经不需要写java代码了，但不可以说java就因此而倒掉了。语言终归还是有它合适的场景的。就好比asp，再多么差劲，目前不还是有人在用么，呵呵。</p>
+<p>从市场来讲，要php的企业还是非常多了，php也不会短期内被取缔。只是也许目前phper的薪水与java等实在无法一起比罢了。毕竟php的入门也相对容易得多，薪水低一些是符合市场规律的，而这难免就会对一些老鸟不公，有时也会不可避免的发一些感慨。</p>
+<p>都是技术讨论，个人坚持自己的意见没什么错误，毕竟只是讨论而已。而很多事，本来就难有对错之分。</p>
+<blockquote>
+<p>方跃明
+2009-11-23</p>
+</blockquote>
+]]></content:encoded>
+    </item>
+    <item>
       <title>Internet技术概览</title>
       <link>https://blog.fangyueming.cn/web-internet/</link>
       <guid>https://blog.fangyueming.cn/web-internet/</guid>
@@ -6944,6 +6891,140 @@ ReactDOM<span>.</span><span>render</span><span>(</span>
       <pubDate>Tue, 20 Dec 2016 00:00:00 GMT</pubDate>
       <content:encoded><![CDATA[<h1 id="internet技术概览"> Internet技术概览</h1>
 <p><img src="./web-internet.jpg" alt="Internet技术概览" /></p>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>Zabbix安装笔记</title>
+      <link>https://blog.fangyueming.cn/zabbix-install/</link>
+      <guid>https://blog.fangyueming.cn/zabbix-install/</guid>
+      <source url="https://blog.fangyueming.cn/rss.xml">Zabbix安装笔记</source>
+      <pubDate>Fri, 11 Nov 2011 00:00:00 GMT</pubDate>
+      <content:encoded><![CDATA[<h1 id="zabbix安装笔记"> Zabbix安装笔记</h1>
+<p>详细安装步骤参见：<a href="https://www.zabbix.com/documentation/3.0/manual/installation/install_from_packages" target="_blank" rel="noopener noreferrer">官方安装手册</a></p>
+<h2 id="zabbix-server"> Zabbix Server</h2>
+<p><img src="./zabbix-schema.jpg" alt="Zabbix部署示意图" /></p>
+<h3 id="安装数据库"> 安装数据库</h3>
+<div><pre><code><span># 安装 MariaDB 服务器和客户端</span>
+yum <span>install</span> mariadb-server mariadb
+systemctl start mariadb
+mysql -uroot -ppassword    <span># 进入MySQL命令行</span>
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br></div></div><div><pre><code><span>-- MariaDB新建zabbix用户</span>
+<span>UPDATE</span> <span>user</span> <span>SET</span> password<span>=</span>PASSWORD<span>(</span><span>'zabbix'</span><span>)</span> <span>WHERE</span> <span>user</span><span>=</span><span>'zabbix'</span><span>;</span>
+<span>CREATE</span> <span>DATABASE</span> <span>IF</span> <span>NOT</span> <span>EXISTS</span> zabbix <span>DEFAULT</span> <span>CHARACTER</span> <span>SET</span> utf8 <span>COLLATE</span> utf8_general_ci<span>;</span>
+FLUSH <span>PRIVILEGES</span><span>;</span>
+QUIT
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br></div></div><h3 id="安装服务端"> 安装服务端</h3>
+<div><pre><code><span>rpm</span> -ivh http://repo.zabbix.com/zabbix/3.0/rhel/7/x86_64/zabbix-release-3.0-1.el7.noarch.rpm
+yum <span>install</span> zabbix-server-mysql zabbix-web-mysql
+<span>cd</span> /usr/share/doc/zabbix-server-mysql-3.0.3
+zcat create.sql.gz <span>|</span> mysql -uzabbix -pzabbix zabbix
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br></div></div><h3 id="修改服务器配置"> 修改服务器配置</h3>
+<div><pre><code><span>## vi /etc/zabbix/zabbix_server.conf</span>
+<span>DBHost</span><span>=</span><span>localhost</span>
+<span>DBName</span><span>=</span><span>zabbix</span>
+<span>DBUser</span><span>=</span><span>zabbix</span>
+<span>DBPassword</span><span>=</span><span>zabbix</span>
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br></div></div><h3 id="修改web服务器配置文件"> 修改WEB服务器配置文件</h3>
+<div><pre><code><span>## vi /etc/httpd/conf.d/zabbix.conf</span>
+php_value data.timezone Asia/Shanghai
+</code></pre>
+<div><span>1</span><br><span>2</span><br></div></div><h3 id="启动zabbix服务器和web服务器"> 启动Zabbix服务器和WEB服务器</h3>
+<div><pre><code>systemctl start zabbix-server
+systemctl start httpd
+</code></pre>
+<div><span>1</span><br><span>2</span><br></div></div><h2 id="zabbix-agent"> Zabbix Agent</h2>
+<p><img src="./zabbix-proxy.png" alt="Zabbix分布式部署示意图" /></p>
+<h3 id="centos"> CentOS</h3>
+<h4 id="安装"> 安装</h4>
+<div><pre><code>yum <span>install</span> zabbix-agent
+</code></pre>
+<div><span>1</span><br></div></div><h4 id="配置"> 配置</h4>
+<div><pre><code><span># vi /etc/zabbix/zabbix_agent.conf</span>
+<span>LogFile</span><span>=</span><span>/var/log/zabbix/zabbix_agentd.log   # 日志</span>
+<span>Server</span><span>=</span><span>127.0.0.1                            # Zabbix Server（直接连接）或者Zabbix Proxy（通过Proxy）</span>
+<span>Hostname</span><span>=</span><span>Zabbix Server                      # 对应zabbix web里面的host，不一定是os本机名称</span>
+<span>ServerActive</span><span>=</span><span>127.0.0.1                      # Zabbix Server或Zabbix Proxy</span>
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br></div></div><h4 id="配置防火墙-打开zabbix-agent端口-默认入站端口10050"> 配置防火墙，打开Zabbix Agent端口（默认入站端口10050）</h4>
+<div><pre><code>systemctl start zabbix-agent
+</code></pre>
+<div><span>1</span><br></div></div><h3 id="windows"> Windows</h3>
+<h4 id="下载并解压到运行目录"> 下载并解压到运行目录</h4>
+<p><a href="http://www.zabbix.com/download.php" target="_blank" rel="noopener noreferrer">Zabbix pre-compiled agents for Windows</a></p>
+<h4 id="配置conf-conf-zabbix-agentd-win-conf"> 配置conf(conf\zabbix-agentd.win.conf)</h4>
+<div><pre><code><span>LogFile</span><span>=</span><span>c:\zabbix_agentd.log  # 日志</span>
+<span>Server</span><span>=</span><span>127.0.0.1              # Zabbix服务器</span>
+<span>Hostname</span><span>=</span><span>Windows Host         # 对应zabbix web里面的host，不一定是本机名称</span>
+<span>ServerActive</span><span>=</span><span>127.0.0.1        # Zabbix服务器</span>
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br></div></div><ul>
+<li>注册为Windows服务：<code>bin\zabbix_agentd.exe -c \conf\zabbix_agentd.win.conf –i</code></li>
+<li>打开Zabbix Agent端口（默认入站端口10050）</li>
+<li>从Windows服务启动Zabbix Agent客户端</li>
+</ul>
+<h2 id="zabbix-proxy"> Zabbix Proxy</h2>
+<h3 id="安装服务器"> 安装服务器</h3>
+<div><pre><code><span>rpm</span> -ivh http://repo.zabbix.com/zabbix/3.0/rhel/7/x86_64/zabbix-release-3.0-1.el7.noarch.rpm
+yum <span>install</span> mariadb-server mariadb zabbix-proxy-mysql
+systemctl start mariadb
+mysql                       <span># 进入MySQL命令行</span>
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br></div></div><h3 id="分配帐号、授权及建立数据库"> 分配帐号、授权及建立数据库</h3>
+<div><pre><code><span>UPDATE</span> <span>user</span> <span>SET</span> password<span>=</span>PASSWORD<span>(</span><span>'zabbix'</span><span>)</span> <span>WHERE</span> <span>user</span><span>=</span><span>'zabbix'</span><span>;</span>
+FLUSH <span>PRIVILEGES</span><span>;</span>
+<span>CREATE</span> <span>DATABASE</span> <span>IF</span> <span>NOT</span> <span>EXISTS</span> zabbix_proxy <span>DEFAULT</span> <span>CHARACTER</span> <span>SET</span> utf8 <span>COLLATE</span> utf8_general_ci<span>;</span>
+QUIT
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br></div></div><h3 id="导入数据库"> 导入数据库</h3>
+<div><pre><code><span># cd /usr/share/doc/zabbix-proxy-mysql-3.0.3</span>
+zcat schema.sql.gz <span>|</span> mysql -uzabbix -pzabbix zabbix_proxy
+</code></pre>
+<div><span>1</span><br><span>2</span><br></div></div><h3 id="修改服务器配置文件"> 修改服务器配置文件</h3>
+<div><pre><code><span># vi /etc/zabbix/zabbix_proxy.conf</span>
+<span>Server</span><span>=</span><span>zabbix.server.url      # Zabbix Server 所在IP或者DNS Name</span>
+<span>Hostname</span><span>=</span><span>proxy.zabbix.name    # Zabbix Proxy 名字（对应Server里的Proxies名字）</span>
+<span>DBHost</span><span>=</span><span>localhost</span>
+<span>DBName</span><span>=</span><span>zabbix_proxy</span>
+<span>DBUser</span><span>=</span><span>zabbix</span>
+<span>DBPassword</span><span>=</span><span>zabbix</span>
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br></div></div><h3 id="打开zabbix-agent端口-默认入站端口10050"> 打开Zabbix Agent端口（默认入站端口10050）</h3>
+<h3 id="启动zabbix服务器"> 启动Zabbix服务器</h3>
+<div><pre><code>systemctl start zabbix-proxy
+</code></pre>
+<div><span>1</span><br></div></div><h3 id="zabbix-server-web-对应的设置"> Zabbix Server Web 对应的设置</h3>
+<ul>
+<li>添加代理：Administration -&gt; Proxies -&gt; Create proxy -&gt; Proxy name -&gt; proxy.zabbix.name</li>
+<li>添加代理下的主机：Configuration -&gt; Hosts -&gt; Create Host -&gt; Monitored by proxy -&gt; proxy.zabbix.name</li>
+</ul>
+<h3 id="注意事项"> 注意事项</h3>
+<ul>
+<li>Proxy只能使用proxy的数据库，不能使用Server的数据库</li>
+<li>注意Server端和Proxy端的IP/DNS名称、配置主机名称、Web端名称、各选项正确且一一对应</li>
+</ul>
+<h2 id="zabbix-snmp"> Zabbix SNMP</h2>
+<ul>
+<li>
+<p>Windows Server 2008 R2</p>
+<ul>
+<li>客户机端安装：SNMP Service</li>
+<li>客户机端设置：服务 -&gt; SNMP Service -&gt; 安全 -&gt; 接受的社区名称：public，只读 -&gt; 添加接受主机：Zabbix服务器</li>
+<li>客户机端防火墙：入站规则 -&gt; 默认端口161 -&gt; 协议UDP</li>
+<li>Zabbix Web端添加SNMP主机及端口号</li>
+</ul>
+</li>
+<li>
+<p>CentOS</p>
+<ul>
+<li>安装：<code>yum install net-snmp net-snmp-utils</code></li>
+<li>参见：<a href="https://blog.csdn.net/sinat_21302587/article/details/75099915" target="_blank" rel="noopener noreferrer">https://blog.csdn.net/sinat_21302587/article/details/75099915</a></li>
+</ul>
+</li>
+</ul>
 ]]></content:encoded>
     </item>
     <item>
@@ -7310,134 +7391,53 @@ you need to accept <span>add</span> key
 ]]></content:encoded>
     </item>
     <item>
-      <title>Zabbix安装笔记</title>
-      <link>https://blog.fangyueming.cn/zabbix-install/</link>
-      <guid>https://blog.fangyueming.cn/zabbix-install/</guid>
-      <source url="https://blog.fangyueming.cn/rss.xml">Zabbix安装笔记</source>
-      <pubDate>Fri, 11 Nov 2011 00:00:00 GMT</pubDate>
-      <content:encoded><![CDATA[<h1 id="zabbix安装笔记"> Zabbix安装笔记</h1>
-<p>详细安装步骤参见：<a href="https://www.zabbix.com/documentation/3.0/manual/installation/install_from_packages" target="_blank" rel="noopener noreferrer">官方安装手册</a></p>
-<h2 id="zabbix-server"> Zabbix Server</h2>
-<p><img src="./zabbix-schema.jpg" alt="Zabbix部署示意图" /></p>
-<h3 id="安装数据库"> 安装数据库</h3>
-<div><pre><code><span># 安装 MariaDB 服务器和客户端</span>
-yum <span>install</span> mariadb-server mariadb
-systemctl start mariadb
-mysql -uroot -ppassword    <span># 进入MySQL命令行</span>
-</code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br></div></div><div><pre><code><span>-- MariaDB新建zabbix用户</span>
-<span>UPDATE</span> <span>user</span> <span>SET</span> password<span>=</span>PASSWORD<span>(</span><span>'zabbix'</span><span>)</span> <span>WHERE</span> <span>user</span><span>=</span><span>'zabbix'</span><span>;</span>
-<span>CREATE</span> <span>DATABASE</span> <span>IF</span> <span>NOT</span> <span>EXISTS</span> zabbix <span>DEFAULT</span> <span>CHARACTER</span> <span>SET</span> utf8 <span>COLLATE</span> utf8_general_ci<span>;</span>
-FLUSH <span>PRIVILEGES</span><span>;</span>
-QUIT
-</code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br></div></div><h3 id="安装服务端"> 安装服务端</h3>
-<div><pre><code><span>rpm</span> -ivh http://repo.zabbix.com/zabbix/3.0/rhel/7/x86_64/zabbix-release-3.0-1.el7.noarch.rpm
-yum <span>install</span> zabbix-server-mysql zabbix-web-mysql
-<span>cd</span> /usr/share/doc/zabbix-server-mysql-3.0.3
-zcat create.sql.gz <span>|</span> mysql -uzabbix -pzabbix zabbix
-</code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br></div></div><h3 id="修改服务器配置"> 修改服务器配置</h3>
-<div><pre><code><span>## vi /etc/zabbix/zabbix_server.conf</span>
-<span>DBHost</span><span>=</span><span>localhost</span>
-<span>DBName</span><span>=</span><span>zabbix</span>
-<span>DBUser</span><span>=</span><span>zabbix</span>
-<span>DBPassword</span><span>=</span><span>zabbix</span>
-</code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br></div></div><h3 id="修改web服务器配置文件"> 修改WEB服务器配置文件</h3>
-<div><pre><code><span>## vi /etc/httpd/conf.d/zabbix.conf</span>
-php_value data.timezone Asia/Shanghai
-</code></pre>
-<div><span>1</span><br><span>2</span><br></div></div><h3 id="启动zabbix服务器和web服务器"> 启动Zabbix服务器和WEB服务器</h3>
-<div><pre><code>systemctl start zabbix-server
-systemctl start httpd
-</code></pre>
-<div><span>1</span><br><span>2</span><br></div></div><h2 id="zabbix-agent"> Zabbix Agent</h2>
-<p><img src="./zabbix-proxy.png" alt="Zabbix分布式部署示意图" /></p>
-<h3 id="centos"> CentOS</h3>
-<h4 id="安装"> 安装</h4>
-<div><pre><code>yum <span>install</span> zabbix-agent
-</code></pre>
-<div><span>1</span><br></div></div><h4 id="配置"> 配置</h4>
-<div><pre><code><span># vi /etc/zabbix/zabbix_agent.conf</span>
-<span>LogFile</span><span>=</span><span>/var/log/zabbix/zabbix_agentd.log   # 日志</span>
-<span>Server</span><span>=</span><span>127.0.0.1                            # Zabbix Server（直接连接）或者Zabbix Proxy（通过Proxy）</span>
-<span>Hostname</span><span>=</span><span>Zabbix Server                      # 对应zabbix web里面的host，不一定是os本机名称</span>
-<span>ServerActive</span><span>=</span><span>127.0.0.1                      # Zabbix Server或Zabbix Proxy</span>
-</code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br></div></div><h4 id="配置防火墙-打开zabbix-agent端口-默认入站端口10050"> 配置防火墙，打开Zabbix Agent端口（默认入站端口10050）</h4>
-<div><pre><code>systemctl start zabbix-agent
-</code></pre>
-<div><span>1</span><br></div></div><h3 id="windows"> Windows</h3>
-<h4 id="下载并解压到运行目录"> 下载并解压到运行目录</h4>
-<p><a href="http://www.zabbix.com/download.php" target="_blank" rel="noopener noreferrer">Zabbix pre-compiled agents for Windows</a></p>
-<h4 id="配置conf-conf-zabbix-agentd-win-conf"> 配置conf(conf\zabbix-agentd.win.conf)</h4>
-<div><pre><code><span>LogFile</span><span>=</span><span>c:\zabbix_agentd.log  # 日志</span>
-<span>Server</span><span>=</span><span>127.0.0.1              # Zabbix服务器</span>
-<span>Hostname</span><span>=</span><span>Windows Host         # 对应zabbix web里面的host，不一定是本机名称</span>
-<span>ServerActive</span><span>=</span><span>127.0.0.1        # Zabbix服务器</span>
-</code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br></div></div><ul>
-<li>注册为Windows服务：<code>bin\zabbix_agentd.exe -c \conf\zabbix_agentd.win.conf –i</code></li>
-<li>打开Zabbix Agent端口（默认入站端口10050）</li>
-<li>从Windows服务启动Zabbix Agent客户端</li>
-</ul>
-<h2 id="zabbix-proxy"> Zabbix Proxy</h2>
-<h3 id="安装服务器"> 安装服务器</h3>
-<div><pre><code><span>rpm</span> -ivh http://repo.zabbix.com/zabbix/3.0/rhel/7/x86_64/zabbix-release-3.0-1.el7.noarch.rpm
-yum <span>install</span> mariadb-server mariadb zabbix-proxy-mysql
-systemctl start mariadb
-mysql                       <span># 进入MySQL命令行</span>
-</code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br></div></div><h3 id="分配帐号、授权及建立数据库"> 分配帐号、授权及建立数据库</h3>
-<div><pre><code><span>UPDATE</span> <span>user</span> <span>SET</span> password<span>=</span>PASSWORD<span>(</span><span>'zabbix'</span><span>)</span> <span>WHERE</span> <span>user</span><span>=</span><span>'zabbix'</span><span>;</span>
-FLUSH <span>PRIVILEGES</span><span>;</span>
-<span>CREATE</span> <span>DATABASE</span> <span>IF</span> <span>NOT</span> <span>EXISTS</span> zabbix_proxy <span>DEFAULT</span> <span>CHARACTER</span> <span>SET</span> utf8 <span>COLLATE</span> utf8_general_ci<span>;</span>
-QUIT
-</code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br></div></div><h3 id="导入数据库"> 导入数据库</h3>
-<div><pre><code><span># cd /usr/share/doc/zabbix-proxy-mysql-3.0.3</span>
-zcat schema.sql.gz <span>|</span> mysql -uzabbix -pzabbix zabbix_proxy
-</code></pre>
-<div><span>1</span><br><span>2</span><br></div></div><h3 id="修改服务器配置文件"> 修改服务器配置文件</h3>
-<div><pre><code><span># vi /etc/zabbix/zabbix_proxy.conf</span>
-<span>Server</span><span>=</span><span>zabbix.server.url      # Zabbix Server 所在IP或者DNS Name</span>
-<span>Hostname</span><span>=</span><span>proxy.zabbix.name    # Zabbix Proxy 名字（对应Server里的Proxies名字）</span>
-<span>DBHost</span><span>=</span><span>localhost</span>
-<span>DBName</span><span>=</span><span>zabbix_proxy</span>
-<span>DBUser</span><span>=</span><span>zabbix</span>
-<span>DBPassword</span><span>=</span><span>zabbix</span>
-</code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br></div></div><h3 id="打开zabbix-agent端口-默认入站端口10050"> 打开Zabbix Agent端口（默认入站端口10050）</h3>
-<h3 id="启动zabbix服务器"> 启动Zabbix服务器</h3>
-<div><pre><code>systemctl start zabbix-proxy
-</code></pre>
-<div><span>1</span><br></div></div><h3 id="zabbix-server-web-对应的设置"> Zabbix Server Web 对应的设置</h3>
+      <title>php_imagick安装配置</title>
+      <link>https://blog.fangyueming.cn/php-imagick-windows/</link>
+      <guid>https://blog.fangyueming.cn/php-imagick-windows/</guid>
+      <source url="https://blog.fangyueming.cn/rss.xml">php_imagick安装配置</source>
+      <pubDate>Mon, 02 Aug 2010 00:00:00 GMT</pubDate>
+      <content:encoded><![CDATA[<h1 id="php-imagick安装配置"> php_imagick安装配置</h1>
+<p>php_imagick是强大的图片处理PHP插件。</p>
 <ul>
-<li>添加代理：Administration -&gt; Proxies -&gt; Create proxy -&gt; Proxy name -&gt; proxy.zabbix.name</li>
-<li>添加代理下的主机：Configuration -&gt; Hosts -&gt; Create Host -&gt; Monitored by proxy -&gt; proxy.zabbix.name</li>
-</ul>
-<h3 id="注意事项"> 注意事项</h3>
+<li>参见
 <ul>
-<li>Proxy只能使用proxy的数据库，不能使用Server的数据库</li>
-<li>注意Server端和Proxy端的IP/DNS名称、配置主机名称、Web端名称、各选项正确且一一对应</li>
-</ul>
-<h2 id="zabbix-snmp"> Zabbix SNMP</h2>
-<ul>
-<li>
-<p>Windows Server 2008 R2</p>
-<ul>
-<li>客户机端安装：SNMP Service</li>
-<li>客户机端设置：服务 -&gt; SNMP Service -&gt; 安全 -&gt; 接受的社区名称：public，只读 -&gt; 添加接受主机：Zabbix服务器</li>
-<li>客户机端防火墙：入站规则 -&gt; 默认端口161 -&gt; 协议UDP</li>
-<li>Zabbix Web端添加SNMP主机及端口号</li>
+<li><a href="http://www.cnblogs.com/wangqishu/p/5609950.html" target="_blank" rel="noopener noreferrer">http://www.cnblogs.com/wangqishu/p/5609950.html</a></li>
 </ul>
 </li>
-<li>
-<p>CentOS</p>
+<li>版本对应
 <ul>
-<li>安装：<code>yum install net-snmp net-snmp-utils</code></li>
-<li>参见：<a href="https://blog.csdn.net/sinat_21302587/article/details/75099915" target="_blank" rel="noopener noreferrer">https://blog.csdn.net/sinat_21302587/article/details/75099915</a></li>
+<li>PHP Version: 7.0.9</li>
+<li>Compiler: MSVC14 (Visual C++ 2015)</li>
+<li>Architecture: x86</li>
+<li>Thread Safety: enabled</li>
+<li>imagick module version: 3.4.2</li>
+<li>Imagick compiled with ImageMagick version: ImageMagick 6.9.3-7 Q16 x86</li>
+<li>Imagick using ImageMagick library version: ImageMagick 6.9.3-7 Q16 x86</li>
+<li>ImageMagick number of supported formats: 240 (必须有数量)</li>
+</ul>
+</li>
+<li>安装文件及设置
+<ul>
+<li>安装程序: ImageMagick-6.9.6-8-Q16-x86-dll.exe</li>
+<li>环境变量: MAGICK_HOME = C:\Program Files (x86)\ImageMagick-6.9.6-Q16\modules\coders</li>
+<li>扩展文件：php_imagick-3.4.2-7.0-ts-vc14-x86.zip (对应x86, vc14, ts)</li>
+<li>php: CORE_RL_-.dll</li>
+<li>php/ext: php_imagick.dll</li>
+<li>php.ini: extension=php_imagick.dll</li>
+</ul>
+</li>
+<li>对应插件
+<ul>
+<li><a href="https://packagist.org/packages/intervention/image" target="_blank" rel="noopener noreferrer">https://packagist.org/packages/intervention/image</a></li>
+<li><a href="http://image.intervention.io" target="_blank" rel="noopener noreferrer">http://image.intervention.io</a></li>
+</ul>
+</li>
+<li>排错
+<ul>
+<li><code>php_imagick.dll - %1 不是有效的 Win32 应用程序</code>：则说明版本不相符合。需要检查imagick软件本身( 如x86 )、php本身( x86 ts (thread safe) )、php扩展php_imagick.dllts）三方版本 要一致。</li>
+<li><code>php.exe - 系统错误 ，无法启动此程序因为计算机丢失CORE_RL_wand_.dll</code>：说明你没有将php_imagick-3.4.2-7.0-ts-vc14-x86.zip扩展包中的“CORE_-.dll”放到你的php.exe同级目录下。</li>
+<li><code>ImageMagick number of supported formats: 0</code>：支持的图片格式数量为0，检查环境变量MAGICK_HOME设置。</li>
+<li><code>NoDecodeDelegateForThisImageFormat</code>：php_imagick.dll的版本并不支持或并不匹配ImageMagick软件版本，需要更换对应的ImageMagick软件版本。</li>
 </ul>
 </li>
 </ul>
