@@ -5,10 +5,10 @@ module.exports = config({
   description: 'WEB应用开发技术笔记',
   dest: 'docs',
   head: [
-    // ['script', { src: '//cdn.jsdelivr.net/npm/react/umd/react.production.min.js' }],
-    // ['script', { src: '//cdn.jsdelivr.net/npm/react-dom/umd/react-dom.production.min.js' }],
-    // ['script', { src: '//cdn.jsdelivr.net/npm/vue/dist/vue.min.js' }],
-    // ['script', { src: '//cdn.jsdelivr.net/npm/@babel/standalone/babel.min.js' }],
+    ['script', { src: '//cdn.jsdelivr.net/npm/react/umd/react.production.min.js' }],
+    ['script', { src: '//cdn.jsdelivr.net/npm/react-dom/umd/react-dom.production.min.js' }],
+    ['script', { src: '//cdn.jsdelivr.net/npm/vue/dist/vue.min.js' }],
+    ['script', { src: '//cdn.jsdelivr.net/npm/@babel/standalone/babel.min.js' }],
     ['script', { src: 'https://www.googletagmanager.com/gtag/js?id=G-RKKX4QJ4PJ', async: true }],
     ['script', { src: 'scripts/gtag.js' }],
   ],
@@ -26,6 +26,7 @@ module.exports = config({
     repo: 'https://github.com/axolo/axolo.github.io',
     nav: [
       { text: '首页', link: '/', icon: 'home' },
+      { text: '国内镜像', link: 'https://fangyueming.gitee.io', icon: 'link' },
       { text: 'LeoVue', link: 'https://axolo.github.io/leovue', icon: 'vue' },
     ],
     prevLinks: true,
