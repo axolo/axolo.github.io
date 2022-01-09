@@ -1,7 +1,7 @@
 <script>
 export default {
   created() {
-    console.log('我是一个广告')
+    // console.log('我是一个广告')
   }
 }
 </script>
