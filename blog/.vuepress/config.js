@@ -63,8 +63,8 @@ module.exports = config({
         plugins: ['highlight', 'math', 'search', 'notes', 'zoom', 'anything', 'audio', 'chalkboard'],
       },
     },
-    custom: {
-      contentTop: './components/ad.vue',
-    }
+    // custom: {
+    //   contentTop: './components/ad.vue',
+    // }
   },
 });
