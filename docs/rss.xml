@@ -6,8 +6,8 @@
     <link>https://blog.fangyueming.cn/</link>
     <description>WEB应用开发技术笔记</description>
     <language>zh-CN</language>
-    <pubDate>Sun, 09 Jan 2022 04:34:31 GMT</pubDate>
-    <lastBuildDate>Sun, 09 Jan 2022 04:34:31 GMT</lastBuildDate>
+    <pubDate>Wed, 12 Jan 2022 11:05:32 GMT</pubDate>
+    <lastBuildDate>Wed, 12 Jan 2022 11:05:32 GMT</lastBuildDate>
     <generator>@mr-hope/vuepress-plugin-feed</generator>
     <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
     <copyright>Copyright by 方跃明</copyright>
@@ -967,89 +967,6 @@ nameserver 8.8.8.8
 ]]></content:encoded>
     </item>
     <item>
-      <title>钉钉云推送自建RDS最佳实践</title>
-      <link>https://blog.fangyueming.cn/ding-cloud-push/</link>
-      <guid>https://blog.fangyueming.cn/ding-cloud-push/</guid>
-      <source url="https://blog.fangyueming.cn/rss.xml">钉钉云推送自建RDS最佳实践</source>
-      <pubDate>Mon, 08 Apr 2019 00:00:00 GMT</pubDate>
-      <content:encoded><![CDATA[<h1 id="钉钉云推送自建rds最佳实践"> 钉钉云推送自建RDS最佳实践</h1>
-<p>钉钉云推送常规建设方法请参见<a href="https://open-doc.dingtalk.com/microapp/ln6dmh/ib4xrf" target="_blank" rel="noopener noreferrer">钉钉云推送自建RDS官方文档</a>。</p>
-<p>缺陷如下：</p>
-<ol>
-<li><code>MySQL</code>版本必须为5.6或5.7，若应用使用同一数据库引擎，则无法使用<code>MySQL 8.x</code>的<code>CTE</code>等新特性；</li>
-<li>跨服务器触发应用数据库操作很困难，需要应用使用轮询来处理推送数据，浪费资源，时效性差。</li>
-</ol>
-<p>最佳实践：</p>
-<ol>
-<li>钉钉云推送数据表使用<code>FEDERATED</code>引擎连接应用数据库对应表；</li>
-<li>应用数据库的云推送数据表上建立触发器，同步钉钉云推送数据变更操作。</li>
-</ol>
-<p>流程如下：</p>
-<div><pre><code>+------------+    +-----------------+    +---------------------+    +-------------+
-|  DingTalk  |    | Dingtalk RDS    |    | App Database        |    | Data Sync   |
-|  Cloud     | =&gt; | [FEDERATED]     | =&gt; | [TABLE]             | =&gt; | [TRIGGER]   |
-|  Push      |    | ding_cloud_push |    | dingtalk_cloud_push |    | other table |
-+------------+    +-----------------+    +---------------------+    +-------------+
-</code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br></div></div><h2 id="应用数据库"> 应用数据库</h2>
-<h3 id="安装mysql8-x"> 安装MySQL8.x</h3>
-<p>参见<a href="./mysql-8-install.html">安装MySQL 8.x</a></p>
-<h3 id="创建钉钉云推送数据表"> 创建钉钉云推送数据表</h3>
-<p>根据钉钉自建RDS文档格式创建钉钉云推送数据表，请留意表可以不同名，不兼容部分有细微改动。</p>
-<div><pre><code><span>CREATE</span> <span>TABLE</span> <span>`</span>dingtalk_cloud_push<span>`</span> <span>(</span>
-  <span>`</span>id<span>`</span> <span>bigint</span><span>(</span><span>20</span><span>)</span> <span>NOT</span> <span>NULL</span> <span>AUTO_INCREMENT</span> <span>COMMENT</span> <span>'ID'</span><span>,</span>
-  <span>`</span>gmt_create<span>`</span> <span>datetime</span> <span>NOT</span> <span>NULL</span> <span>COMMENT</span> <span>'创建时间'</span><span>,</span>
-  <span>`</span>gmt_modified<span>`</span> <span>datetime</span> <span>NOT</span> <span>NULL</span> <span>COMMENT</span> <span>'更新时间'</span><span>,</span>
-  <span>`</span>subscribe_id<span>`</span> <span>varchar</span><span>(</span><span>64</span><span>)</span> <span>NOT</span> <span>NULL</span> <span>COMMENT</span> <span>'订阅方ID'</span><span>,</span>
-  <span>`</span>corp_id<span>`</span> <span>varchar</span><span>(</span><span>64</span><span>)</span> <span>NOT</span> <span>NULL</span> <span>COMMENT</span> <span>'企业ID'</span><span>,</span>
-  <span>`</span>biz_id<span>`</span> <span>varchar</span><span>(</span><span>128</span><span>)</span> <span>NOT</span> <span>NULL</span> <span>COMMENT</span> <span>'业务ID'</span><span>,</span>
-  <span>`</span>biz_type<span>`</span> <span>int</span><span>(</span><span>11</span><span>)</span> <span>NOT</span> <span>NULL</span> <span>COMMENT</span> <span>'业务类型'</span><span>,</span>
-  <span>`</span>biz_data<span>`</span> <span>text</span> <span>NOT</span> <span>NULL</span> <span>COMMENT</span> <span>'业务数据'</span><span>,</span>
-  <span>`</span>open_cursor<span>`</span> <span>bigint</span><span>(</span><span>20</span><span>)</span> <span>NOT</span> <span>NULL</span> <span>COMMENT</span> <span>'对账游标'</span><span>,</span>
-  <span>`</span><span>status</span><span>`</span> <span>int</span><span>(</span><span>11</span><span>)</span> <span>NOT</span> <span>NULL</span> <span>COMMENT</span> <span>'处理状态0为未处理。其他状态开发者自行定义'</span><span>,</span>
-  <span>PRIMARY</span> <span>KEY</span> <span>(</span><span>`</span>id<span>`</span><span>)</span><span>,</span>
-  <span>UNIQUE</span> <span>KEY</span> <span>`</span>uk_subscribe_corp_biz<span>`</span> <span>(</span><span>`</span>subscribe_id<span>`</span><span>,</span><span>`</span>corp_id<span>`</span><span>,</span><span>`</span>biz_id<span>`</span><span>,</span><span>`</span>biz_type<span>`</span><span>)</span>
-<span>)</span> <span>AUTO_INCREMENT</span><span>=</span><span>0</span> <span>DEFAULT</span> <span>CHARSET</span><span>=</span>utf8mb4 <span>COMMENT</span><span>=</span><span>'钉钉云推送高优先级数据'</span><span>;</span>
-</code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br><span>9</span><br><span>10</span><br><span>11</span><br><span>12</span><br><span>13</span><br><span>14</span><br></div></div><h3 id="创建触发器"> 创建触发器</h3>
-<p>触发器根据具体需求改为应用需要的内容，此处仅为示例。</p>
-<div><pre><code><span>DELIMITER</span> $$
-<span>CREATE</span> <span>TRIGGER</span> dingtalk_cloud_push_update
-BEFORE <span>INSERT</span> <span>ON</span> dingtalk_cloud_push <span>FOR EACH ROW</span>
-<span>BEGIN</span>
-  <span>INSERT</span> <span>INTO</span> test <span>(</span>method<span>,</span> <span>data</span><span>)</span> <span>values</span> <span>(</span><span>'insert'</span><span>,</span> new<span>.</span>biz_data<span>)</span><span>;</span>
-<span>END</span>$$
-</code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br></div></div><h2 id="钉钉云推送数据库"> 钉钉云推送数据库</h2>
-<h3 id="安装mysql5-7"> 安装MySQL5.7</h3>
-<p>参见<a href="./mysql-second.html">MySQL多版本共存</a></p>
-<h3 id="启用federated"> 启用FEDERATED</h3>
-<p>修改<code>MySQL</code>配置文件<code>my.cnf</code>启用<code>FEDERATED</code>引擎后重启<code>MySQL</code>服务。</p>
-<div><pre><code><span><span>[</span><span>mysqld</span><span>]</span></span>
-federated
-</code></pre>
-<div><span>1</span><br><span>2</span><br></div></div><h3 id="创建federated表"> 创建FEDERATED表</h3>
-<p>此表被钉钉云推送RDS直接访问，其数据库名称、表名称、字符集、表结构符合钉钉云推送相关格式。</p>
-<div><pre><code><span>CREATE</span> <span>DATABASE</span> ding_cloud_push <span>DEFAULT</span> <span>CHARACTER</span> <span>SET</span> utf8mb4 <span>COLLATE</span> utf8mb4_general_ci<span>;</span>
-<span>CREATE</span> <span>TABLE</span> <span>`</span>open_sync_biz_data<span>`</span> <span>(</span>
-  <span>`</span>id<span>`</span> <span>bigint</span><span>(</span><span>20</span><span>)</span> <span>NOT</span> <span>NULL</span> <span>AUTO_INCREMENT</span> <span>COMMENT</span> <span>'ID'</span><span>,</span>
-  <span>`</span>gmt_create<span>`</span> <span>datetime</span> <span>NOT</span> <span>NULL</span> <span>COMMENT</span> <span>'创建时间'</span><span>,</span>
-  <span>`</span>gmt_modified<span>`</span> <span>datetime</span> <span>NOT</span> <span>NULL</span> <span>COMMENT</span> <span>'更新时间'</span><span>,</span>
-  <span>`</span>subscribe_id<span>`</span> <span>varchar</span><span>(</span><span>64</span><span>)</span> <span>NOT</span> <span>NULL</span> <span>COMMENT</span> <span>'订阅方ID'</span><span>,</span>
-  <span>`</span>corp_id<span>`</span> <span>varchar</span><span>(</span><span>64</span><span>)</span> <span>NOT</span> <span>NULL</span> <span>COMMENT</span> <span>'企业ID'</span><span>,</span>
-  <span>`</span>biz_id<span>`</span> <span>varchar</span><span>(</span><span>128</span><span>)</span> <span>NOT</span> <span>NULL</span> <span>COMMENT</span> <span>'业务ID'</span><span>,</span>
-  <span>`</span>biz_type<span>`</span> <span>int</span><span>(</span><span>11</span><span>)</span> <span>NOT</span> <span>NULL</span> <span>COMMENT</span> <span>'业务类型'</span><span>,</span>
-  <span>`</span>biz_data<span>`</span> <span>text</span> <span>NOT</span> <span>NULL</span> <span>COMMENT</span> <span>'业务数据'</span><span>,</span>
-  <span>`</span>open_cursor<span>`</span> <span>bigint</span><span>(</span><span>20</span><span>)</span> <span>NOT</span> <span>NULL</span> <span>COMMENT</span> <span>'对账游标'</span><span>,</span>
-  <span>`</span><span>status</span><span>`</span> <span>int</span><span>(</span><span>11</span><span>)</span> <span>NOT</span> <span>NULL</span> <span>COMMENT</span> <span>'处理状态0为未处理。其他状态开发者自行定义'</span><span>,</span>
-  <span>PRIMARY</span> <span>KEY</span> <span>(</span><span>`</span>id<span>`</span><span>)</span><span>,</span>
-  <span>UNIQUE</span> <span>KEY</span> <span>`</span>uk_subscribe_corp_biz<span>`</span> <span>(</span><span>`</span>subscribe_id<span>`</span><span>,</span><span>`</span>corp_id<span>`</span><span>,</span><span>`</span>biz_id<span>`</span><span>,</span><span>`</span>biz_type<span>`</span><span>)</span>
-<span>)</span> <span>ENGINE</span><span>=</span>FEDERATED <span>AUTO_INCREMENT</span><span>=</span><span>0</span> <span>DEFAULT</span> <span>CHARSET</span><span>=</span>utf8mb4 <span>COMMENT</span><span>=</span><span>'高优先级数据'</span>
-CONNECTION<span>=</span><span>'mysql://user:password@localhost:3306/appdb/dingtalk_cloud_push'</span><span>;</span>
-</code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br><span>9</span><br><span>10</span><br><span>11</span><br><span>12</span><br><span>13</span><br><span>14</span><br><span>15</span><br><span>16</span><br></div></div>]]></content:encoded>
-    </item>
-    <item>
       <title>Docker Mysql</title>
       <link>https://blog.fangyueming.cn/docker-mysql/</link>
       <guid>https://blog.fangyueming.cn/docker-mysql/</guid>
@@ -1180,6 +1097,138 @@ docker start portainer-container-id <span># 启动容器</span>
 <div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br></div></div><h2 id="后记"> 后记</h2>
 <p>鉴于 <a href="https://www.portainer.io/" target="_blank" rel="noopener noreferrer">portainer</a> 更新频率相当高，欢迎访问官网，获得正确打开方式。</p>
 ]]></content:encoded>
+    </item>
+    <item>
+      <title>前端概念图</title>
+      <link>https://blog.fangyueming.cn/frontend-map/</link>
+      <guid>https://blog.fangyueming.cn/frontend-map/</guid>
+      <source url="https://blog.fangyueming.cn/rss.xml">前端概念图</source>
+      <pubDate>Sun, 19 Dec 2021 03:19:43 GMT</pubDate>
+      <content:encoded><![CDATA[<h1 id="前端概念图"> 前端概念图</h1>
+<h2 id="图示"> 图示</h2>
+<Mermaid id="mermaid-1a962850" data-code="graph%20LR%0AB(URL)%0AS(API%20Sever)%0AC(Action)%0AD(Data)%0AV(View)%0AS%20--%3E%7Cresponse%7C%20D%0AD%20--%3E%7Crequest%7C%20S%0AB%20--%3E%7Crouter%7C%20D%0AD%20--%3E%7Crender%7C%20V%0AV%20--%3E%7Cevent%7C%20C%0AC%20--%3E%7Cdispatch%7C%20D%0A"></Mermaid><h2 id="概念"> 概念</h2>
+<table>
+<thead>
+<tr>
+<th>概念</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>URL</td>
+<td>访问什么页面</td>
+</tr>
+<tr>
+<td>Data</td>
+<td>显示什么信息</td>
+</tr>
+<tr>
+<td>View</td>
+<td>页面长成什么样</td>
+</tr>
+<tr>
+<td>Action</td>
+<td>对页面做了什么操作</td>
+</tr>
+<tr>
+<td>API Server</td>
+<td>Data数据的来源</td>
+</tr>
+</tbody>
+</table>
+<h2 id="参考"> 参考</h2>
+<p><a href="https://github.com/sorrycc/blog/issues/1" target="_blank" rel="noopener noreferrer">https://github.com/sorrycc/blog/issues/1</a></p>
+<p><img src="https://camo.githubusercontent.com/27dc8a7706005007aa24e557dc06eed9d66cb926f5704fcec9dea222935a3d56/68747470733a2f2f6f732e616c697061796f626a656374732e636f6d2f726d73706f7274616c2f43684d775a42755a6c614c725377652e706e67" alt="前端概念图" /></p>
+<blockquote>
+<p>方跃明
+2020-02-07</p>
+</blockquote>
+]]></content:encoded>
+      <enclosure url="https://camo.githubusercontent.com/27dc8a7706005007aa24e557dc06eed9d66cb926f5704fcec9dea222935a3d56/68747470733a2f2f6f732e616c697061796f626a656374732e636f6d2f726d73706f7274616c2f43684d775a42755a6c614c725377652e706e67" type="image/"/>
+    </item>
+    <item>
+      <title>钉钉云推送自建RDS最佳实践</title>
+      <link>https://blog.fangyueming.cn/ding-cloud-push/</link>
+      <guid>https://blog.fangyueming.cn/ding-cloud-push/</guid>
+      <source url="https://blog.fangyueming.cn/rss.xml">钉钉云推送自建RDS最佳实践</source>
+      <pubDate>Mon, 08 Apr 2019 00:00:00 GMT</pubDate>
+      <content:encoded><![CDATA[<h1 id="钉钉云推送自建rds最佳实践"> 钉钉云推送自建RDS最佳实践</h1>
+<p>钉钉云推送常规建设方法请参见<a href="https://open-doc.dingtalk.com/microapp/ln6dmh/ib4xrf" target="_blank" rel="noopener noreferrer">钉钉云推送自建RDS官方文档</a>。</p>
+<p>缺陷如下：</p>
+<ol>
+<li><code>MySQL</code>版本必须为5.6或5.7，若应用使用同一数据库引擎，则无法使用<code>MySQL 8.x</code>的<code>CTE</code>等新特性；</li>
+<li>跨服务器触发应用数据库操作很困难，需要应用使用轮询来处理推送数据，浪费资源，时效性差。</li>
+</ol>
+<p>最佳实践：</p>
+<ol>
+<li>钉钉云推送数据表使用<code>FEDERATED</code>引擎连接应用数据库对应表；</li>
+<li>应用数据库的云推送数据表上建立触发器，同步钉钉云推送数据变更操作。</li>
+</ol>
+<p>流程如下：</p>
+<div><pre><code>+------------+    +-----------------+    +---------------------+    +-------------+
+|  DingTalk  |    | Dingtalk RDS    |    | App Database        |    | Data Sync   |
+|  Cloud     | =&gt; | [FEDERATED]     | =&gt; | [TABLE]             | =&gt; | [TRIGGER]   |
+|  Push      |    | ding_cloud_push |    | dingtalk_cloud_push |    | other table |
++------------+    +-----------------+    +---------------------+    +-------------+
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br></div></div><h2 id="应用数据库"> 应用数据库</h2>
+<h3 id="安装mysql8-x"> 安装MySQL8.x</h3>
+<p>参见<a href="./mysql-8-install.html">安装MySQL 8.x</a></p>
+<h3 id="创建钉钉云推送数据表"> 创建钉钉云推送数据表</h3>
+<p>根据钉钉自建RDS文档格式创建钉钉云推送数据表，请留意表可以不同名，不兼容部分有细微改动。</p>
+<div><pre><code><span>CREATE</span> <span>TABLE</span> <span>`</span>dingtalk_cloud_push<span>`</span> <span>(</span>
+  <span>`</span>id<span>`</span> <span>bigint</span><span>(</span><span>20</span><span>)</span> <span>NOT</span> <span>NULL</span> <span>AUTO_INCREMENT</span> <span>COMMENT</span> <span>'ID'</span><span>,</span>
+  <span>`</span>gmt_create<span>`</span> <span>datetime</span> <span>NOT</span> <span>NULL</span> <span>COMMENT</span> <span>'创建时间'</span><span>,</span>
+  <span>`</span>gmt_modified<span>`</span> <span>datetime</span> <span>NOT</span> <span>NULL</span> <span>COMMENT</span> <span>'更新时间'</span><span>,</span>
+  <span>`</span>subscribe_id<span>`</span> <span>varchar</span><span>(</span><span>64</span><span>)</span> <span>NOT</span> <span>NULL</span> <span>COMMENT</span> <span>'订阅方ID'</span><span>,</span>
+  <span>`</span>corp_id<span>`</span> <span>varchar</span><span>(</span><span>64</span><span>)</span> <span>NOT</span> <span>NULL</span> <span>COMMENT</span> <span>'企业ID'</span><span>,</span>
+  <span>`</span>biz_id<span>`</span> <span>varchar</span><span>(</span><span>128</span><span>)</span> <span>NOT</span> <span>NULL</span> <span>COMMENT</span> <span>'业务ID'</span><span>,</span>
+  <span>`</span>biz_type<span>`</span> <span>int</span><span>(</span><span>11</span><span>)</span> <span>NOT</span> <span>NULL</span> <span>COMMENT</span> <span>'业务类型'</span><span>,</span>
+  <span>`</span>biz_data<span>`</span> <span>text</span> <span>NOT</span> <span>NULL</span> <span>COMMENT</span> <span>'业务数据'</span><span>,</span>
+  <span>`</span>open_cursor<span>`</span> <span>bigint</span><span>(</span><span>20</span><span>)</span> <span>NOT</span> <span>NULL</span> <span>COMMENT</span> <span>'对账游标'</span><span>,</span>
+  <span>`</span><span>status</span><span>`</span> <span>int</span><span>(</span><span>11</span><span>)</span> <span>NOT</span> <span>NULL</span> <span>COMMENT</span> <span>'处理状态0为未处理。其他状态开发者自行定义'</span><span>,</span>
+  <span>PRIMARY</span> <span>KEY</span> <span>(</span><span>`</span>id<span>`</span><span>)</span><span>,</span>
+  <span>UNIQUE</span> <span>KEY</span> <span>`</span>uk_subscribe_corp_biz<span>`</span> <span>(</span><span>`</span>subscribe_id<span>`</span><span>,</span><span>`</span>corp_id<span>`</span><span>,</span><span>`</span>biz_id<span>`</span><span>,</span><span>`</span>biz_type<span>`</span><span>)</span>
+<span>)</span> <span>AUTO_INCREMENT</span><span>=</span><span>0</span> <span>DEFAULT</span> <span>CHARSET</span><span>=</span>utf8mb4 <span>COMMENT</span><span>=</span><span>'钉钉云推送高优先级数据'</span><span>;</span>
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br><span>9</span><br><span>10</span><br><span>11</span><br><span>12</span><br><span>13</span><br><span>14</span><br></div></div><h3 id="创建触发器"> 创建触发器</h3>
+<p>触发器根据具体需求改为应用需要的内容，此处仅为示例。</p>
+<div><pre><code><span>DELIMITER</span> $$
+<span>CREATE</span> <span>TRIGGER</span> dingtalk_cloud_push_update
+BEFORE <span>INSERT</span> <span>ON</span> dingtalk_cloud_push <span>FOR EACH ROW</span>
+<span>BEGIN</span>
+  <span>INSERT</span> <span>INTO</span> test <span>(</span>method<span>,</span> <span>data</span><span>)</span> <span>values</span> <span>(</span><span>'insert'</span><span>,</span> new<span>.</span>biz_data<span>)</span><span>;</span>
+<span>END</span>$$
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br></div></div><h2 id="钉钉云推送数据库"> 钉钉云推送数据库</h2>
+<h3 id="安装mysql5-7"> 安装MySQL5.7</h3>
+<p>参见<a href="./mysql-second.html">MySQL多版本共存</a></p>
+<h3 id="启用federated"> 启用FEDERATED</h3>
+<p>修改<code>MySQL</code>配置文件<code>my.cnf</code>启用<code>FEDERATED</code>引擎后重启<code>MySQL</code>服务。</p>
+<div><pre><code><span><span>[</span><span>mysqld</span><span>]</span></span>
+federated
+</code></pre>
+<div><span>1</span><br><span>2</span><br></div></div><h3 id="创建federated表"> 创建FEDERATED表</h3>
+<p>此表被钉钉云推送RDS直接访问，其数据库名称、表名称、字符集、表结构符合钉钉云推送相关格式。</p>
+<div><pre><code><span>CREATE</span> <span>DATABASE</span> ding_cloud_push <span>DEFAULT</span> <span>CHARACTER</span> <span>SET</span> utf8mb4 <span>COLLATE</span> utf8mb4_general_ci<span>;</span>
+<span>CREATE</span> <span>TABLE</span> <span>`</span>open_sync_biz_data<span>`</span> <span>(</span>
+  <span>`</span>id<span>`</span> <span>bigint</span><span>(</span><span>20</span><span>)</span> <span>NOT</span> <span>NULL</span> <span>AUTO_INCREMENT</span> <span>COMMENT</span> <span>'ID'</span><span>,</span>
+  <span>`</span>gmt_create<span>`</span> <span>datetime</span> <span>NOT</span> <span>NULL</span> <span>COMMENT</span> <span>'创建时间'</span><span>,</span>
+  <span>`</span>gmt_modified<span>`</span> <span>datetime</span> <span>NOT</span> <span>NULL</span> <span>COMMENT</span> <span>'更新时间'</span><span>,</span>
+  <span>`</span>subscribe_id<span>`</span> <span>varchar</span><span>(</span><span>64</span><span>)</span> <span>NOT</span> <span>NULL</span> <span>COMMENT</span> <span>'订阅方ID'</span><span>,</span>
+  <span>`</span>corp_id<span>`</span> <span>varchar</span><span>(</span><span>64</span><span>)</span> <span>NOT</span> <span>NULL</span> <span>COMMENT</span> <span>'企业ID'</span><span>,</span>
+  <span>`</span>biz_id<span>`</span> <span>varchar</span><span>(</span><span>128</span><span>)</span> <span>NOT</span> <span>NULL</span> <span>COMMENT</span> <span>'业务ID'</span><span>,</span>
+  <span>`</span>biz_type<span>`</span> <span>int</span><span>(</span><span>11</span><span>)</span> <span>NOT</span> <span>NULL</span> <span>COMMENT</span> <span>'业务类型'</span><span>,</span>
+  <span>`</span>biz_data<span>`</span> <span>text</span> <span>NOT</span> <span>NULL</span> <span>COMMENT</span> <span>'业务数据'</span><span>,</span>
+  <span>`</span>open_cursor<span>`</span> <span>bigint</span><span>(</span><span>20</span><span>)</span> <span>NOT</span> <span>NULL</span> <span>COMMENT</span> <span>'对账游标'</span><span>,</span>
+  <span>`</span><span>status</span><span>`</span> <span>int</span><span>(</span><span>11</span><span>)</span> <span>NOT</span> <span>NULL</span> <span>COMMENT</span> <span>'处理状态0为未处理。其他状态开发者自行定义'</span><span>,</span>
+  <span>PRIMARY</span> <span>KEY</span> <span>(</span><span>`</span>id<span>`</span><span>)</span><span>,</span>
+  <span>UNIQUE</span> <span>KEY</span> <span>`</span>uk_subscribe_corp_biz<span>`</span> <span>(</span><span>`</span>subscribe_id<span>`</span><span>,</span><span>`</span>corp_id<span>`</span><span>,</span><span>`</span>biz_id<span>`</span><span>,</span><span>`</span>biz_type<span>`</span><span>)</span>
+<span>)</span> <span>ENGINE</span><span>=</span>FEDERATED <span>AUTO_INCREMENT</span><span>=</span><span>0</span> <span>DEFAULT</span> <span>CHARSET</span><span>=</span>utf8mb4 <span>COMMENT</span><span>=</span><span>'高优先级数据'</span>
+CONNECTION<span>=</span><span>'mysql://user:password@localhost:3306/appdb/dingtalk_cloud_push'</span><span>;</span>
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br><span>9</span><br><span>10</span><br><span>11</span><br><span>12</span><br><span>13</span><br><span>14</span><br><span>15</span><br><span>16</span><br></div></div>]]></content:encoded>
     </item>
     <item>
       <title>Egg.js实现OAuth2授权码方式鉴权</title>
@@ -1880,55 +1929,6 @@ module<span>.</span>exports <span>=</span> UserController<span>;</span>
 ]]></content:encoded>
     </item>
     <item>
-      <title>前端概念图</title>
-      <link>https://blog.fangyueming.cn/frontend-map/</link>
-      <guid>https://blog.fangyueming.cn/frontend-map/</guid>
-      <source url="https://blog.fangyueming.cn/rss.xml">前端概念图</source>
-      <pubDate>Sun, 19 Dec 2021 03:19:43 GMT</pubDate>
-      <content:encoded><![CDATA[<h1 id="前端概念图"> 前端概念图</h1>
-<h2 id="图示"> 图示</h2>
-<Mermaid id="mermaid-1a962850" data-code="graph%20LR%0AB(URL)%0AS(API%20Sever)%0AC(Action)%0AD(Data)%0AV(View)%0AS%20--%3E%7Cresponse%7C%20D%0AD%20--%3E%7Crequest%7C%20S%0AB%20--%3E%7Crouter%7C%20D%0AD%20--%3E%7Crender%7C%20V%0AV%20--%3E%7Cevent%7C%20C%0AC%20--%3E%7Cdispatch%7C%20D%0A"></Mermaid><h2 id="概念"> 概念</h2>
-<table>
-<thead>
-<tr>
-<th>概念</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>URL</td>
-<td>访问什么页面</td>
-</tr>
-<tr>
-<td>Data</td>
-<td>显示什么信息</td>
-</tr>
-<tr>
-<td>View</td>
-<td>页面长成什么样</td>
-</tr>
-<tr>
-<td>Action</td>
-<td>对页面做了什么操作</td>
-</tr>
-<tr>
-<td>API Server</td>
-<td>Data数据的来源</td>
-</tr>
-</tbody>
-</table>
-<h2 id="参考"> 参考</h2>
-<p><a href="https://github.com/sorrycc/blog/issues/1" target="_blank" rel="noopener noreferrer">https://github.com/sorrycc/blog/issues/1</a></p>
-<p><img src="https://camo.githubusercontent.com/27dc8a7706005007aa24e557dc06eed9d66cb926f5704fcec9dea222935a3d56/68747470733a2f2f6f732e616c697061796f626a656374732e636f6d2f726d73706f7274616c2f43684d775a42755a6c614c725377652e706e67" alt="前端概念图" /></p>
-<blockquote>
-<p>方跃明
-2020-02-07</p>
-</blockquote>
-]]></content:encoded>
-      <enclosure url="https://camo.githubusercontent.com/27dc8a7706005007aa24e557dc06eed9d66cb926f5704fcec9dea222935a3d56/68747470733a2f2f6f732e616c697061796f626a656374732e636f6d2f726d73706f7274616c2f43684d775a42755a6c614c725377652e706e67" type="image/"/>
-    </item>
-    <item>
       <title>前端常用工具</title>
       <link>https://blog.fangyueming.cn/frontend-tools/</link>
       <guid>https://blog.fangyueming.cn/frontend-tools/</guid>
@@ -2600,64 +2600,6 @@ systemctl start frps
 ]]></content:encoded>
     </item>
     <item>
-      <title>Git排除忽略子目录</title>
-      <link>https://blog.fangyueming.cn/git-ignore-exclude/</link>
-      <guid>https://blog.fangyueming.cn/git-ignore-exclude/</guid>
-      <source url="https://blog.fangyueming.cn/rss.xml">Git排除忽略子目录</source>
-      <pubDate>Mon, 09 Sep 2019 00:00:00 GMT</pubDate>
-      <content:encoded><![CDATA[<h1 id="git排除忽略子目录"> Git排除忽略子目录</h1>
-<p>想忽略某个目录，但又不想忽略这个目录下的某个子目录？</p>
-<p>排除此目录，改为忽略*，然后忽略子目录。</p>
-<div><pre><code># exclude ignore cn
-!app/
-
-app/*
-!app/locale/
-
-app/locale/*
-!app/locale/cn/
-</code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br></div></div><h2 id="示例"> 示例</h2>
-<p>uni-app项目忽略unpackage下但排除h5和res</p>
-<div><pre><code>unpackage
-|-- cache
-|-- dist
-|   |-- build
-|   |   |-- .automator
-|   |   |-- app-plus
-|   |   `-- h5              # 排除
-|   |       `-- static
-|   |           |-- js
-|   |           |-- pages
-|   |           `-- styles
-|   `-- dev
-|-- release
-|   `-- apk
-`-- res                     # 排除
-    `-- icons
-</code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br><span>9</span><br><span>10</span><br><span>11</span><br><span>12</span><br><span>13</span><br><span>14</span><br><span>15</span><br><span>16</span><br></div></div><div><pre><code># uni-app dist
-!unpackage/
-unpackage/*
-!unpackage/res
-
-!unpackage/dist
-unpackage/dist/*
-
-!unpackage/dist/build
-unpackage/dist/build/*
-
-!unpackage/dist/build/h5
-!unpackage/dist/build/README.md
-!unpackage/dist/build/.gitignore
-</code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br><span>9</span><br><span>10</span><br><span>11</span><br><span>12</span><br><span>13</span><br><span>14</span><br></div></div><blockquote>
-<p>方跃明
-2019-09-09</p>
-</blockquote>
-]]></content:encoded>
-    </item>
-    <item>
       <title>Git subtree</title>
       <link>https://blog.fangyueming.cn/git-subtree/</link>
       <guid>https://blog.fangyueming.cn/git-subtree/</guid>
@@ -2723,41 +2665,60 @@ unpackage/dist/build/*
 ]]></content:encoded>
     </item>
     <item>
-      <title>图解Git常用操作</title>
-      <link>https://blog.fangyueming.cn/git/</link>
-      <guid>https://blog.fangyueming.cn/git/</guid>
-      <source url="https://blog.fangyueming.cn/rss.xml">图解Git常用操作</source>
-      <pubDate>Sat, 28 Apr 2018 00:00:00 GMT</pubDate>
-      <content:encoded><![CDATA[<h1 id="图解git常用操作"> 图解Git常用操作</h1>
-<h2 id="git"> git</h2>
-<p>你真的需要记住那么多Git操作吗？
-也许阮一峰老师的<a href="http://www.ruanyifeng.com/blog/2015/12/git-cheat-sheet.html" target="_blank" rel="noopener noreferrer">《常用Git命令清单》</a>就够了。
-<img src="./git.png" alt="Git常见操作图解" /></p>
-<h2 id="git-subtree"> git subtree</h2>
-<p>项目包含子项目这么办？是时候让你出场了！show time！</p>
-<ul>
-<li><a href="https://segmentfault.com/a/1190000012002151" target="_blank" rel="noopener noreferrer">git subtree教程</a></li>
-<li><a href="https://segmentfault.com/a/1190000003969060" target="_blank" rel="noopener noreferrer">用 Git Subtree 在多个 Git 项目间双向同步子项目</a></li>
-</ul>
-<p><img src="./git-subtree.png" alt="git subtree" /></p>
-<div><pre><code><span># 克隆主项目仓库到本地</span>
-<span>git</span> clone https://coding.net/axolo/lcoamaxy
-<span># 建立子项目，并从远程克隆子项目到本地对应目录</span>
-<span>git</span> subtree <span>add</span> --prefix<span>=</span>www origin coding-pages
-<span># 主项目正常提交</span>
-<span>git</span> <span>add</span> --all
-<span>git</span> commit -m <span>"use git subtree"</span>
-<span>git</span> push
-<span># 提交子项目的变更到远程仓库</span>
-<span>git</span> subtree push -P www/ origin coding-pages
-<span># 从远程获取子项目的变更</span>
-<span>git</span> subtree pull -P www/ origin coding-pages
-<span># 在子项目生成新分支hotfix-001</span>
-<span>git</span> subtree push -P www/ origin hotfix-001
+      <title>Git排除忽略子目录</title>
+      <link>https://blog.fangyueming.cn/git-ignore-exclude/</link>
+      <guid>https://blog.fangyueming.cn/git-ignore-exclude/</guid>
+      <source url="https://blog.fangyueming.cn/rss.xml">Git排除忽略子目录</source>
+      <pubDate>Mon, 09 Sep 2019 00:00:00 GMT</pubDate>
+      <content:encoded><![CDATA[<h1 id="git排除忽略子目录"> Git排除忽略子目录</h1>
+<p>想忽略某个目录，但又不想忽略这个目录下的某个子目录？</p>
+<p>排除此目录，改为忽略*，然后忽略子目录。</p>
+<div><pre><code># exclude ignore cn
+!app/
+
+app/*
+!app/locale/
+
+app/locale/*
+!app/locale/cn/
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br></div></div><h2 id="示例"> 示例</h2>
+<p>uni-app项目忽略unpackage下但排除h5和res</p>
+<div><pre><code>unpackage
+|-- cache
+|-- dist
+|   |-- build
+|   |   |-- .automator
+|   |   |-- app-plus
+|   |   `-- h5              # 排除
+|   |       `-- static
+|   |           |-- js
+|   |           |-- pages
+|   |           `-- styles
+|   `-- dev
+|-- release
+|   `-- apk
+`-- res                     # 排除
+    `-- icons
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br><span>9</span><br><span>10</span><br><span>11</span><br><span>12</span><br><span>13</span><br><span>14</span><br><span>15</span><br><span>16</span><br></div></div><div><pre><code># uni-app dist
+!unpackage/
+unpackage/*
+!unpackage/res
+
+!unpackage/dist
+unpackage/dist/*
+
+!unpackage/dist/build
+unpackage/dist/build/*
+
+!unpackage/dist/build/h5
+!unpackage/dist/build/README.md
+!unpackage/dist/build/.gitignore
 </code></pre>
 <div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br><span>9</span><br><span>10</span><br><span>11</span><br><span>12</span><br><span>13</span><br><span>14</span><br></div></div><blockquote>
 <p>方跃明
-2018-4-28</p>
+2019-09-09</p>
 </blockquote>
 ]]></content:encoded>
     </item>
@@ -2993,33 +2954,41 @@ go build
 ]]></content:encoded>
     </item>
     <item>
-      <title>iOS开发环境搭建</title>
-      <link>https://blog.fangyueming.cn/ios-develop/</link>
-      <guid>https://blog.fangyueming.cn/ios-develop/</guid>
-      <source url="https://blog.fangyueming.cn/rss.xml">iOS开发环境搭建</source>
-      <pubDate>Wed, 01 Jan 2020 00:00:00 GMT</pubDate>
-      <content:encoded><![CDATA[<h1 id="ios开发环境搭建"> iOS开发环境搭建</h1>
-<h2 id="全局"> 全局</h2>
-<div><pre><code>xcode-select --install <span># 安装xcode开发依赖</span>
-gcc --version <span># 出现版本号表示成功</span>
-<span>sudo</span> gem <span>install</span> cocoapods <span># 安装依赖管理工具</span>
-pod --version <span># 出现版本号表示成功</span>
-pod setup <span># 设置pod</span>
-<span># 安装brew，此处使用国内源，参见：https://brew.sh</span>
-/bin/zsh -c <span>"<span><span>$(</span><span>curl</span> -fsSL https://gitee.com/cunkai/HomebrewCN/raw/master/Homebrew.sh<span>)</span></span>"</span>
-brew --version <span># 出现版本号表示成功</span>
-brew <span>install</span> <span>git</span> <span># 安装git</span>
-<span>git</span> --version <span># 出现版本号表示成功</span>
+      <title>图解Git常用操作</title>
+      <link>https://blog.fangyueming.cn/git/</link>
+      <guid>https://blog.fangyueming.cn/git/</guid>
+      <source url="https://blog.fangyueming.cn/rss.xml">图解Git常用操作</source>
+      <pubDate>Sat, 28 Apr 2018 00:00:00 GMT</pubDate>
+      <content:encoded><![CDATA[<h1 id="图解git常用操作"> 图解Git常用操作</h1>
+<h2 id="git"> git</h2>
+<p>你真的需要记住那么多Git操作吗？
+也许阮一峰老师的<a href="http://www.ruanyifeng.com/blog/2015/12/git-cheat-sheet.html" target="_blank" rel="noopener noreferrer">《常用Git命令清单》</a>就够了。
+<img src="./git.png" alt="Git常见操作图解" /></p>
+<h2 id="git-subtree"> git subtree</h2>
+<p>项目包含子项目这么办？是时候让你出场了！show time！</p>
+<ul>
+<li><a href="https://segmentfault.com/a/1190000012002151" target="_blank" rel="noopener noreferrer">git subtree教程</a></li>
+<li><a href="https://segmentfault.com/a/1190000003969060" target="_blank" rel="noopener noreferrer">用 Git Subtree 在多个 Git 项目间双向同步子项目</a></li>
+</ul>
+<p><img src="./git-subtree.png" alt="git subtree" /></p>
+<div><pre><code><span># 克隆主项目仓库到本地</span>
+<span>git</span> clone https://coding.net/axolo/lcoamaxy
+<span># 建立子项目，并从远程克隆子项目到本地对应目录</span>
+<span>git</span> subtree <span>add</span> --prefix<span>=</span>www origin coding-pages
+<span># 主项目正常提交</span>
+<span>git</span> <span>add</span> --all
+<span>git</span> commit -m <span>"use git subtree"</span>
+<span>git</span> push
+<span># 提交子项目的变更到远程仓库</span>
+<span>git</span> subtree push -P www/ origin coding-pages
+<span># 从远程获取子项目的变更</span>
+<span>git</span> subtree pull -P www/ origin coding-pages
+<span># 在子项目生成新分支hotfix-001</span>
+<span>git</span> subtree push -P www/ origin hotfix-001
 </code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br><span>9</span><br><span>10</span><br></div></div><h2 id="项目"> 项目</h2>
-<div><pre><code><span>cd</span> ~/Projects/your-project
-<span># 建议将Podfile的源更换为国内源后执行安装</span>
-<span># source 'https://mirrors.tuna.tsinghua.edu.cn/git/CocoaPods/Specs.git'</span>
-pod <span>install</span>
-</code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br></div></div><blockquote>
+<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br><span>9</span><br><span>10</span><br><span>11</span><br><span>12</span><br><span>13</span><br><span>14</span><br></div></div><blockquote>
 <p>方跃明
-2020-01-01</p>
+2018-4-28</p>
 </blockquote>
 ]]></content:encoded>
     </item>
@@ -3050,6 +3019,37 @@ pod <span>install</span>
 <p><img src="./javascript-09-windows-object.gif" alt="JavaScript Windows对象" /></p>
 <h2 id="dom操作"> DOM操作</h2>
 <p><img src="./javascript-10-dom-operation.gif" alt="JavaScript DOM操作" /></p>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>iOS开发环境搭建</title>
+      <link>https://blog.fangyueming.cn/ios-develop/</link>
+      <guid>https://blog.fangyueming.cn/ios-develop/</guid>
+      <source url="https://blog.fangyueming.cn/rss.xml">iOS开发环境搭建</source>
+      <pubDate>Wed, 01 Jan 2020 00:00:00 GMT</pubDate>
+      <content:encoded><![CDATA[<h1 id="ios开发环境搭建"> iOS开发环境搭建</h1>
+<h2 id="全局"> 全局</h2>
+<div><pre><code>xcode-select --install <span># 安装xcode开发依赖</span>
+gcc --version <span># 出现版本号表示成功</span>
+<span>sudo</span> gem <span>install</span> cocoapods <span># 安装依赖管理工具</span>
+pod --version <span># 出现版本号表示成功</span>
+pod setup <span># 设置pod</span>
+<span># 安装brew，此处使用国内源，参见：https://brew.sh</span>
+/bin/zsh -c <span>"<span><span>$(</span><span>curl</span> -fsSL https://gitee.com/cunkai/HomebrewCN/raw/master/Homebrew.sh<span>)</span></span>"</span>
+brew --version <span># 出现版本号表示成功</span>
+brew <span>install</span> <span>git</span> <span># 安装git</span>
+<span>git</span> --version <span># 出现版本号表示成功</span>
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br><span>9</span><br><span>10</span><br></div></div><h2 id="项目"> 项目</h2>
+<div><pre><code><span>cd</span> ~/Projects/your-project
+<span># 建议将Podfile的源更换为国内源后执行安装</span>
+<span># source 'https://mirrors.tuna.tsinghua.edu.cn/git/CocoaPods/Specs.git'</span>
+pod <span>install</span>
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br></div></div><blockquote>
+<p>方跃明
+2020-01-01</p>
+</blockquote>
 ]]></content:encoded>
     </item>
     <item>
@@ -3259,82 +3259,6 @@ pod <span>install</span>
 <p>方跃明
 2016-10-30</p>
 </blockquote>
-]]></content:encoded>
-    </item>
-    <item>
-      <title>Docker、kubernetes和Apache Mesos之间的正确关系</title>
-      <link>https://blog.fangyueming.cn/kubernetes-docker-mesos/</link>
-      <guid>https://blog.fangyueming.cn/kubernetes-docker-mesos/</guid>
-      <source url="https://blog.fangyueming.cn/rss.xml">Docker、kubernetes和Apache Mesos之间的正确关系</source>
-      <pubDate>Sun, 29 Apr 2018 00:00:00 GMT</pubDate>
-      <content:encoded><![CDATA[<h1 id="docker、kubernetes和apache-mesos之间的正确关系"> Docker、kubernetes和Apache Mesos之间的正确关系</h1>
-<p><a href="http://www.techug.com/post/docker-vs-kubernetes-vs-apache-mesos.html" target="_blank" rel="noopener noreferrer">http://www.techug.com/post/docker-vs-kubernetes-vs-apache-mesos.html</a></p>
-<p>无数的文章、社交媒体在探讨Docker、kubernetes、Mesos三者之间孰优孰劣。如果你听信了某些一知半解者的言论，你可能会认为这三个开源项目正在为争夺容器霸权而殊死战斗。同时，你也会相信，在这三者间的选择无异于对其所奉宗教的信仰，而且真正的信徒敢于大胆和异教徒作斗争，并且拥护自己的信仰。</p>
-<p>那些都是扯淡。</p>
-<p>虽然这三种技术都可以使用容器来部署、管理和扩展应用程序，但实际上它们每个都侧重解决不同的问题，并且扎根非常不同的环境之上。事实上，这三种被广泛采用的工具链彼此完全不同。</p>
-<p>与其比较这些快速演进的技术的重叠特性，不如让我们回顾一下每个项目的原始任务、架构以及它们之间如何相互补充和交互。</p>
-<h2 id="docker"> Docker</h2>
-<p>今天的Docker公司脱胎于一个平台即服务的初创公司dotCloud。dotCloud团队发现，在许多应用程序和客户之间管理依赖关系和二进制文件需要做大量的工作。因此，他们将Linux cgroups和namespaces的一些功能组合成一个简单易用的包，这样应用程序就可以在任何基础设施上持续运行。这个包就是Docker镜像，它提供以下功能:</p>
-<ol>
-<li>
-<p>将应用程序和库封装在单个包中(Docker镜像)，因此应用程序可以跨多环境一致部署;
-提供类似于git的语义，例如“dockerpush”，“docker commit”，这样可以让应用程序开发人员可以轻松地采用新技术，并将其融入到现有的workflow中;</p>
-</li>
-<li>
-<p>将Docker镜像定义为不可变层，启用不可变的基础设施。提交的更改被存储为一个单独的只读层，这让镜像复用和跟踪更改变得更加容易。另外，层还可以通过传输更新而不是整个镜像来节省磁盘空间和网络流量;</p>
-</li>
-<li>
-<p>通过使用可以临时存储运行时更改的可写层来实例化不可变映像，从而方便快速部署和扩展应用程序的多个实例。</p>
-</li>
-<li>
-<p>随着Docker的风靡，开发人员开始从笔记本电脑转移到在生产环境中运行。这就需要借助工具来协调这些容器，我们称为容器编排。有趣的是，Apache Mesos的Marathon成为当时(2014年6月)第一个支持Docker镜像的容器编排工具(我们将在下面详细描述它)。就连Docker创始人、首席技术官Solomon Hykes也推荐Mesos为“生产集群的黄金标准”。不久之后，除了Marathon之外，许多容器编排技术出现了，这其中包括：Nomad、kubernetes、DockerSwarm(现在是Docker引擎的一部分)。</p>
-</li>
-</ol>
-<p>随着Docker开始商业化开源文件格式，该公司也开始引入工具来补充核心Docker文件格式和runtime引擎，包括:</p>
-<ul>
-<li>Docker hub</li>
-<li>Docker registry</li>
-<li>Docker cloud</li>
-<li>Docker datacenter</li>
-</ul>
-<p><img src="./docker-architecture.png" alt="Docker结构" /></p>
-<p>​Docker让开发者可以打包他们的应用以及依赖包到一个可移植的容器中的特性，使其成为软件行业的游戏规则改变者;这有点类似mp3格式帮助重塑了音乐产业。Docker文件格式成为行业标准，并且领导容器技术供应商(包括Docker、Pivotal, Mesosphere以及其他许多)成立CNCF和OCI。今天，CNCF和OCI的目标就是确保跨容器技术的互操作性和标准化接口，并确保使用任何工具构建的Docker容器，都可以在任何runtime或基础设施上运行。</p>
-<h2 id="kubernetes"> kubernetes</h2>
-<p>谷歌很早就认识到Docker镜像的潜力，并试图在谷歌云平台上交付“容器编排即服务”。谷歌在容器方面有丰富的经验(他们在Linux中引入了cgroups)，但是现有的内部容器和像Borg这样的分布式计算工具与它们的基础设施直接耦合。因此，谷歌没有使用现有系统中的任何代码，而是从头开始设计了kubernetes，以编排Docker容器。kubernetes于2015年2月发布，并提出以下目标和考虑:</p>
-<ol>
-<li>为应用程序开发人员提供一个强大的工具，用于Docker容器编排，而不必与底层基础设施交互;</li>
-<li>跨云环境下，为一致的应用程序部署经验和APIs 提供标准部署接口和原型;</li>
-<li>构建一个模块化的API核心，允许供应商围绕核心kubernetes技术集成系统。</li>
-</ol>
-<p>截至2016年3月，谷歌向CNCF捐赠了kubernetes，至今谷歌仍是该项目的主要贡献者(其次是Redhat、CoreOS等)。</p>
-<p><img src="./architecture.png" alt="kubernetes结构" /></p>
-<p>kubernetes对应用程序开发人员非常有吸引力，因为它减少了对基础设施和操作团队的依赖。供应商也非常喜欢kubernetes，因为它提供了一种简单的方式来让他们拥抱容器运动，并为他们运行自己的kubernetes部署提供一个商业化解决方案。kubernetes之所以很有吸引力，因为它是CNCF下的开源项目，与Docker集群相比，后者虽然是开源的，但却受到Docker Inc .的严格控制。</p>
-<p>kubernetes的核心优势是为应用程序开发人员提供强大的工具来编排无状态的Docker容器。虽然有多个计划将项目的范围扩展到更多的工作负载(如分析和有状态的数据服务)，但这些计划仍然处于非常早期的阶段，还有待观察。</p>
-<h2 id="apache-mesos"> Apache Mesos</h2>
-<p>Apache Mesos最初是UCBerkeley为创建下一代集群管理器而诞生的项目，并从如谷歌的Borg和Facebook的Tupperware中吸取经验教训。但是Borg和Tupperware是单体架构，并且是和物理基础设施绑定的封源专有技术。Mesos引入了模块化架构，采用开源的方法，且其设计完全独立于底层基础架构。基于这些因素，Mesos很快被Twitter、Apple(Siri)、Yelp、Uber、Netflix以及许多领先的科技公司所采用，以支持他们在微服务、大数据和实时分析到弹性伸缩的一切实践。</p>
-<p>作为一个集群管理器，Mesos的架构是为了解决一组非常不同的挑战:</p>
-<ol>
-<li>将数据中心资源整合成一个单一的池，以简化资源配置，同时在私有或公共云之间提供一致的应用程序和操作体验;</li>
-<li>在相同的基础设施上使用不同的工作负载，比如分析、无状态微服务、分布式数据服务和传统应用程序，以提高利用率，降低成本和空间;</li>
-<li>特定应用程序的任务(如部署、自修复、扩展和升级)设置为自动化day-two 操作;提供高可用的容错基础设施;</li>
-<li>在不修改集群管理器或现有应用程序的情况下，提供常绿的可扩展性来运行新的应用程序和技术;</li>
-<li>将应用程序和底层基础设施弹性扩展到数万个节点。</li>
-</ol>
-<p>Mesos的独特之处还在于，可以单独管理各种不同的工作负载——包括传统的应用程序，如Java、无状态Docker微服务、批处理作业、实时分析和有状态的分布式数据服务。Mesos广泛的工作负载覆盖来自于它的两级架构，它支持“应用感知”的调度。应用感知调度是通过将应用程序特定操作逻辑封装到“Mesos框架”(类似于运行中的runbook)来完成的。</p>
-<p>Mesos Master资源管理器，提供这些底层基础设施的框架部分，同时保持隔离。这种方法允许每个工作负载有自己专用的应用程序调度器，它了解其对部署、缩放和升级的具体操作需求。应用程序调度程序也独立地被开发、管理和更新，这让Mesos保持高度可扩展性，支持新的工作负载，或者随着时间的推移增加更多的操作能力。</p>
-<p><img src="./mesos.png" alt="Mesos结构" /></p>
-<p>以一个团队如何管理升级为例。无状态应用程序可以从“蓝/绿”部署方法中获益;当旧的应用程序还在使用的时候，另一个完整版本的应用程序已经spun up，当旧的应用程序被销毁时，流量切换到新的应用程序。但是，升级像HDFS或Cassandra这样的数据工作负载需要一次脱机，维护本地数据量以避免数据丢失，执行特定序列的升级，并在升级之前和之后对每个节点类型执行特殊检查和命令。这些步骤中的所有环节针对特定的应用程序或服务，甚至是特定版本进行的。这使得用常规容器编排调度器管理数据服务变得非常困难。</p>
-<p>Mesos具备按需管理每个工作负载的能力，使得许多公司将Mesos作为一个统一的平台，并通过其将微服务和数据服务结合运行。运行数据密集型应用程序的一个通用参考架构是“SMACK堆栈”。</p>
-<h2 id="清晰时刻"> 清晰时刻</h2>
-<p>注意：我们在描述Apache Mesos的过程中，没有提及任何关于容器编排的内容。那么，为什么人们总是会将Mesos与容器编排联系起来呢？容器编排是一个可以在Mesos模块化架构上运行的工作负载的例子，它使用的是构建在Mesos上的一个专门的编排“框架”Marathon。Marathon最初是为了在cgroup容器中编排应用程序(如JARs、tarball、ZIP文件)而开发的，并且在2014年成为第一批支持Docker容器的容器编排之一。</p>
-<p>因此，当人们拿Docker、kubernetes和Mesos比较时，他们实际上是在对比kubernetes、Docker Swarm和Mesos上运行的Marathon。</p>
-<p>为什么这很重要？因为Mesos根本不关心上面跑的是什么。Mesos可以为Java应用服务器、Docker容器编排、Jenkins CI Jobs, Apache Spark analytics, Apache Kafka streaming以及更多的共享基础设施提供集群服务。Mesos甚至可以运行kubernetes或其他容器编排，尽管还没有对外集成。</p>
-<p>Mesos的另一个考虑(以及为什么它对许多企业架构师有吸引力)是它在运行任务关键工作负载时的成熟度。Mesos已经在大规模生产环境下运行(数万台服务器)超过7年，这就是为什么它比市场上其他技术更成熟，更可靠的原因。</p>
-<h2 id="这一切意味着什么"> 这一切意味着什么？</h2>
-<p>总之，这三种技术都与Docker容器有关，并允许您访问容器编排，以获得应用程序的可移植性和伸缩性。那么在这三者间要如何选择呢？这就要视不同的工作环境需求而定，工作需求不同，所适用的工具自然也是各不相同。如果您是一名应用程序开发人员，并且正在寻找一种现代的方法来构建和打包您的应用程序，或者加快微服务项目，那么Docker容器格式和开发工具是你最好的选择。</p>
-<p>如果你是一个dev / devops团队,想要构建一个专门的docker容器编排系统,并愿意亲自动手让你的解决方案和底层基础设施集成(或依赖于公共云基础设施如谷歌引擎或Azure容器服务),kubernetes将是你一个很好的选项。</p>
-<p>如果您想构建一个可靠的平台，用以运行多任务关键工作负载，包括Docker容器、遗留应用程序(例如Java)和分布式数据服务(例如Spark、Kafka、Cassandra、Elastic)，并希望所有这些都可以在云或数据中心上可移植，那么，Mesos是最适合你的。</p>
-<p>无论你作何选择，你所拥抱的一系列工具都将提升你的服务器资源利用率，同时简化应用程序移植，并提高开发人员的敏捷性。你真的值得拥有！</p>
 ]]></content:encoded>
     </item>
     <item>
@@ -3705,129 +3629,79 @@ systemctl start kubelet kube-proxy flanneld docker
 ]]></content:encoded>
     </item>
     <item>
-      <title>LeoVue打包发布NPM折腾记</title>
-      <link>https://blog.fangyueming.cn/leovue-npm/</link>
-      <guid>https://blog.fangyueming.cn/leovue-npm/</guid>
-      <source url="https://blog.fangyueming.cn/rss.xml">LeoVue打包发布NPM折腾记</source>
-      <pubDate>Sun, 19 Aug 2018 00:00:00 GMT</pubDate>
-      <content:encoded><![CDATA[<h1 id="leovue打包发布npm折腾记"> LeoVue打包发布NPM折腾记</h1>
-<h2 id="发布步骤"> 发布步骤</h2>
-<h3 id="建立项目并发布"> 建立项目并发布</h3>
-<div><pre><code><span>npm</span> <span>install</span> vue-cli -g          <span># 安装 vue 命令行工具</span>
-vue init webpack-simple leovue  <span># 生成 package.json，请按需填写</span>
-<span>cd</span> leovue                       <span># 配置webpack、编写并调试项目，各种折腾</span>
-<span>npm</span> build                       <span># 可能会遇到各种错误，请按提示解决</span>
-<span>npm</span> login                       <span># 按提示登录 npmjs.com，可能需要再次激活您的邮箱</span>
-<span>npm</span> publish                     <span># 按提示排错，比如包的命名问题等等，直至成功</span>
-</code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br></div></div><div><p>建议</p>
-<p>因为<code>npm</code>的传输问题、排错问题、稳定性问题等等，强烈建议用<code>yarn</code>来代替<code>npm</code>。</p>
-</div>
-<h3 id="package-json"> package.json</h3>
-<div><pre><code><span>{</span>
-  <span>"name"</span><span>:</span> <span>"@axolo/leovue"</span><span>,</span>
-  <span>"description"</span><span>:</span> <span>"LeoVue components lib"</span><span>,</span>
-  <span>"version"</span><span>:</span> <span>"0.0.8"</span><span>,</span>
-  <span>"author"</span><span>:</span> <span>"Yueming Fang"</span><span>,</span>
-  <span>"license"</span><span>:</span> <span>"MIT"</span><span>,</span>
-  <span>"homepage"</span><span>:</span> <span>"https://axolo.github.io/leovue"</span><span>,</span>
-  <span>"repository"</span><span>:</span> <span>{</span>
-    <span>"type"</span><span>:</span> <span>"git"</span><span>,</span>
-    <span>"url"</span><span>:</span> <span>"https://github.com/axolo/leovue.git"</span>
-  <span>}</span><span>,</span>
-  <span>"keywords"</span><span>:</span> <span>[</span><span>"vue"</span><span>,</span> <span>"html5"</span><span>]</span><span>,</span>
-  <span>"main"</span><span>:</span> <span>"./dist/leovue.js"</span><span>,</span>
-  <span>"scripts"</span><span>:</span> <span>{</span>
-    <span>"build"</span><span>:</span> <span>"cross-env NODE_ENV=production webpack --progress --hide-modules"</span>
-  <span>}</span><span>,</span>
-  <span>"dependencies"</span><span>:</span> <span>{</span>
-    <span>"vue"</span><span>:</span> <span>"^2.5.11"</span>
-  <span>}</span><span>,</span>
-  <span>"browserslist"</span><span>:</span> <span>[</span>
-    <span>"> 1%"</span><span>,</span>
-    <span>"last 2 versions"</span><span>,</span>
-    <span>"not ie &lt;= 8"</span>
-  <span>]</span><span>,</span>
-  <span>"devDependencies"</span><span>:</span> <span>{</span>
-    <span>"babel-core"</span><span>:</span> <span>"^6.26.0"</span><span>,</span>
-    <span>"babel-loader"</span><span>:</span> <span>"^7.1.2"</span><span>,</span>
-    <span>"babel-preset-env"</span><span>:</span> <span>"^1.6.0"</span><span>,</span>
-    <span>"babel-preset-stage-3"</span><span>:</span> <span>"^6.24.1"</span><span>,</span>
-    <span>"cross-env"</span><span>:</span> <span>"^5.0.5"</span><span>,</span>
-    <span>"css-loader"</span><span>:</span> <span>"^0.28.7"</span><span>,</span>
-    <span>"file-loader"</span><span>:</span> <span>"^1.1.4"</span><span>,</span>
-    <span>"vue-loader"</span><span>:</span> <span>"^13.0.5"</span><span>,</span>
-    <span>"vue-template-compiler"</span><span>:</span> <span>"^2.4.4"</span><span>,</span>
-    <span>"webpack"</span><span>:</span> <span>"^3.6.0"</span><span>,</span>
-    <span>"webpack-dev-server"</span><span>:</span> <span>"^2.9.1"</span>
-  <span>}</span>
-<span>}</span>
-</code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br><span>9</span><br><span>10</span><br><span>11</span><br><span>12</span><br><span>13</span><br><span>14</span><br><span>15</span><br><span>16</span><br><span>17</span><br><span>18</span><br><span>19</span><br><span>20</span><br><span>21</span><br><span>22</span><br><span>23</span><br><span>24</span><br><span>25</span><br><span>26</span><br><span>27</span><br><span>28</span><br><span>29</span><br><span>30</span><br><span>31</span><br><span>32</span><br><span>33</span><br><span>34</span><br><span>35</span><br><span>36</span><br><span>37</span><br><span>38</span><br></div></div><p><img src="./leovue-npm.png" alt="npmjs" /></p>
-<p>上图是<code>package.json</code>跟<code>npmjs.com</code>内容关系图，<code>keywords</code>在项目主页底部，
-<code>README.md</code>内容显示在主页，<code>version</code>、<code>license</code>、<code>homepage</code>、<code>repository</code>信息在右侧。</p>
-<h2 id="需求实现"> 需求实现</h2>
-<h3 id="多组件"> 多组件</h3>
-<div><pre><code><span>// 入口文件：./src/index.js</span>
-<span>// 即webpack.config.js里的：entry: './src/index.js'</span>
-<span>import</span> LeoDialog <span>from</span> <span>'./components/LeoDialog'</span>
-<span>import</span> LeoLodop   <span>from</span> <span>'./components/LeoLodop'</span>
-
-<span>const</span> components <span>=</span> <span>[</span> LeoDialog<span>,</span> LeoLodop <span>]</span>
-<span>const</span> <span>install</span> <span>=</span> <span>function</span> <span>(</span><span>Vue<span>,</span> opts <span>=</span> <span>{</span><span>}</span></span><span>)</span> <span>{</span>
-  components<span>.</span><span>forEach</span><span>(</span><span>component</span> <span>=></span> <span>{</span>
-    Vue<span>.</span><span>component</span><span>(</span>component<span>.</span>name<span>,</span> component<span>)</span>
-  <span>}</span><span>)</span>
-<span>}</span>
-
-<span>if</span> <span>(</span><span>typeof</span> window <span>!==</span> <span>'undefined'</span> <span>&amp;&amp;</span> window<span>.</span>Vue<span>)</span> <span>{</span>
-  <span>install</span><span>(</span>window<span>.</span>Vue<span>)</span>
-<span>}</span>
-
-<span>export</span> <span>{</span> LeoDialog<span>,</span> LeoLodop <span>}</span>
-</code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br><span>9</span><br><span>10</span><br><span>11</span><br><span>12</span><br><span>13</span><br><span>14</span><br><span>15</span><br><span>16</span><br><span>17</span><br></div></div><h3 id="精简发布"> 精简发布</h3>
-<div><pre><code><span># 以下内容添加到.npmignore后</span>
-<span># 仅README.md和package.json和/dist目录被发布</span>
-/*
-!/dist/
-!README.md
-!package.json
-</code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br></div></div><h2 id="错误解决"> 错误解决</h2>
-<div><p>属性只读</p>
-<p>Uncaught TypeError: Cannot assign to read only property 'exports' of object '<code>#&lt;Object&gt;</code>'</p>
-</div>
-<p>翻译过来就是说，代码没毛病，在webpack打包的时候，可以在js文件中混用require和export。但是不能混用import以及module.exports 。
-因为webpack 2中不允许混用import和module.exports，解决办法就是统一改成ES6的方式编写即可。</p>
-<div><pre><code><span>import</span> <span>{</span> Component <span>}</span> <span>from</span> <span>'components'</span>
-<span>// moduler.exports = Component    // 混用可通过Webpack2编译，但使用错误</span>
-<span>export</span> <span>default</span> Component
-</code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br></div></div><div><p>标签未知</p>
-<p>Unknown custom element: <code>&lt;component&gt;</code> - did you register the component correctly?
-For recursive components, make sure to provide the &quot;name&quot; option.</p>
-</div>
-<p>一般情况下是组件未被正确加载，或者组件打包时命名错误。比如以<code>export default Component</code>打包，
-却以<code>import { Component } from 'components'</code>来引用，多了个花括号，反之亦然。</p>
-<div><p>渲染未知</p>
-<p>[Vue warn]: Failed to mount component: template or render function not defined.
-found in <code>&lt;Component&gt;</code></p>
-</div>
-<p>打包需要指定一种模块输出类型，可以是commonjs,AMD,script,UMD模式。
-在这里是写插件，要采用UMD模式，即libraryTarget: 'umd'。
-于是webpack.config.js出口文件配置修改为：</p>
-<div><pre><code> output<span>:</span> <span>{</span>
-  path<span>:</span> path<span>.</span><span>resolve</span><span>(</span>__dirname<span>,</span> <span>'./dist'</span><span>)</span><span>,</span>
-  publicPath<span>:</span> <span>'/dist/'</span><span>,</span>
-  filename<span>:</span> <span>'leovue.js'</span><span>,</span>
-  library<span>:</span> <span>'leovue'</span><span>,</span>
-  libraryTarget<span>:</span> <span>'umd'</span><span>,</span>
-  umdNamedDefine<span>:</span> <span>true</span>
- <span>}</span>
-</code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br></div></div><h2 id="参考"> 参考</h2>
-<p><a href="https://www.jb51.net/article/137725.htm" target="_blank" rel="noopener noreferrer">vue todo-list组件发布到npm上的方法</a></p>
+      <title>Docker、kubernetes和Apache Mesos之间的正确关系</title>
+      <link>https://blog.fangyueming.cn/kubernetes-docker-mesos/</link>
+      <guid>https://blog.fangyueming.cn/kubernetes-docker-mesos/</guid>
+      <source url="https://blog.fangyueming.cn/rss.xml">Docker、kubernetes和Apache Mesos之间的正确关系</source>
+      <pubDate>Sun, 29 Apr 2018 00:00:00 GMT</pubDate>
+      <content:encoded><![CDATA[<h1 id="docker、kubernetes和apache-mesos之间的正确关系"> Docker、kubernetes和Apache Mesos之间的正确关系</h1>
+<p><a href="http://www.techug.com/post/docker-vs-kubernetes-vs-apache-mesos.html" target="_blank" rel="noopener noreferrer">http://www.techug.com/post/docker-vs-kubernetes-vs-apache-mesos.html</a></p>
+<p>无数的文章、社交媒体在探讨Docker、kubernetes、Mesos三者之间孰优孰劣。如果你听信了某些一知半解者的言论，你可能会认为这三个开源项目正在为争夺容器霸权而殊死战斗。同时，你也会相信，在这三者间的选择无异于对其所奉宗教的信仰，而且真正的信徒敢于大胆和异教徒作斗争，并且拥护自己的信仰。</p>
+<p>那些都是扯淡。</p>
+<p>虽然这三种技术都可以使用容器来部署、管理和扩展应用程序，但实际上它们每个都侧重解决不同的问题，并且扎根非常不同的环境之上。事实上，这三种被广泛采用的工具链彼此完全不同。</p>
+<p>与其比较这些快速演进的技术的重叠特性，不如让我们回顾一下每个项目的原始任务、架构以及它们之间如何相互补充和交互。</p>
+<h2 id="docker"> Docker</h2>
+<p>今天的Docker公司脱胎于一个平台即服务的初创公司dotCloud。dotCloud团队发现，在许多应用程序和客户之间管理依赖关系和二进制文件需要做大量的工作。因此，他们将Linux cgroups和namespaces的一些功能组合成一个简单易用的包，这样应用程序就可以在任何基础设施上持续运行。这个包就是Docker镜像，它提供以下功能:</p>
+<ol>
+<li>
+<p>将应用程序和库封装在单个包中(Docker镜像)，因此应用程序可以跨多环境一致部署;
+提供类似于git的语义，例如“dockerpush”，“docker commit”，这样可以让应用程序开发人员可以轻松地采用新技术，并将其融入到现有的workflow中;</p>
+</li>
+<li>
+<p>将Docker镜像定义为不可变层，启用不可变的基础设施。提交的更改被存储为一个单独的只读层，这让镜像复用和跟踪更改变得更加容易。另外，层还可以通过传输更新而不是整个镜像来节省磁盘空间和网络流量;</p>
+</li>
+<li>
+<p>通过使用可以临时存储运行时更改的可写层来实例化不可变映像，从而方便快速部署和扩展应用程序的多个实例。</p>
+</li>
+<li>
+<p>随着Docker的风靡，开发人员开始从笔记本电脑转移到在生产环境中运行。这就需要借助工具来协调这些容器，我们称为容器编排。有趣的是，Apache Mesos的Marathon成为当时(2014年6月)第一个支持Docker镜像的容器编排工具(我们将在下面详细描述它)。就连Docker创始人、首席技术官Solomon Hykes也推荐Mesos为“生产集群的黄金标准”。不久之后，除了Marathon之外，许多容器编排技术出现了，这其中包括：Nomad、kubernetes、DockerSwarm(现在是Docker引擎的一部分)。</p>
+</li>
+</ol>
+<p>随着Docker开始商业化开源文件格式，该公司也开始引入工具来补充核心Docker文件格式和runtime引擎，包括:</p>
+<ul>
+<li>Docker hub</li>
+<li>Docker registry</li>
+<li>Docker cloud</li>
+<li>Docker datacenter</li>
+</ul>
+<p><img src="./docker-architecture.png" alt="Docker结构" /></p>
+<p>​Docker让开发者可以打包他们的应用以及依赖包到一个可移植的容器中的特性，使其成为软件行业的游戏规则改变者;这有点类似mp3格式帮助重塑了音乐产业。Docker文件格式成为行业标准，并且领导容器技术供应商(包括Docker、Pivotal, Mesosphere以及其他许多)成立CNCF和OCI。今天，CNCF和OCI的目标就是确保跨容器技术的互操作性和标准化接口，并确保使用任何工具构建的Docker容器，都可以在任何runtime或基础设施上运行。</p>
+<h2 id="kubernetes"> kubernetes</h2>
+<p>谷歌很早就认识到Docker镜像的潜力，并试图在谷歌云平台上交付“容器编排即服务”。谷歌在容器方面有丰富的经验(他们在Linux中引入了cgroups)，但是现有的内部容器和像Borg这样的分布式计算工具与它们的基础设施直接耦合。因此，谷歌没有使用现有系统中的任何代码，而是从头开始设计了kubernetes，以编排Docker容器。kubernetes于2015年2月发布，并提出以下目标和考虑:</p>
+<ol>
+<li>为应用程序开发人员提供一个强大的工具，用于Docker容器编排，而不必与底层基础设施交互;</li>
+<li>跨云环境下，为一致的应用程序部署经验和APIs 提供标准部署接口和原型;</li>
+<li>构建一个模块化的API核心，允许供应商围绕核心kubernetes技术集成系统。</li>
+</ol>
+<p>截至2016年3月，谷歌向CNCF捐赠了kubernetes，至今谷歌仍是该项目的主要贡献者(其次是Redhat、CoreOS等)。</p>
+<p><img src="./architecture.png" alt="kubernetes结构" /></p>
+<p>kubernetes对应用程序开发人员非常有吸引力，因为它减少了对基础设施和操作团队的依赖。供应商也非常喜欢kubernetes，因为它提供了一种简单的方式来让他们拥抱容器运动，并为他们运行自己的kubernetes部署提供一个商业化解决方案。kubernetes之所以很有吸引力，因为它是CNCF下的开源项目，与Docker集群相比，后者虽然是开源的，但却受到Docker Inc .的严格控制。</p>
+<p>kubernetes的核心优势是为应用程序开发人员提供强大的工具来编排无状态的Docker容器。虽然有多个计划将项目的范围扩展到更多的工作负载(如分析和有状态的数据服务)，但这些计划仍然处于非常早期的阶段，还有待观察。</p>
+<h2 id="apache-mesos"> Apache Mesos</h2>
+<p>Apache Mesos最初是UCBerkeley为创建下一代集群管理器而诞生的项目，并从如谷歌的Borg和Facebook的Tupperware中吸取经验教训。但是Borg和Tupperware是单体架构，并且是和物理基础设施绑定的封源专有技术。Mesos引入了模块化架构，采用开源的方法，且其设计完全独立于底层基础架构。基于这些因素，Mesos很快被Twitter、Apple(Siri)、Yelp、Uber、Netflix以及许多领先的科技公司所采用，以支持他们在微服务、大数据和实时分析到弹性伸缩的一切实践。</p>
+<p>作为一个集群管理器，Mesos的架构是为了解决一组非常不同的挑战:</p>
+<ol>
+<li>将数据中心资源整合成一个单一的池，以简化资源配置，同时在私有或公共云之间提供一致的应用程序和操作体验;</li>
+<li>在相同的基础设施上使用不同的工作负载，比如分析、无状态微服务、分布式数据服务和传统应用程序，以提高利用率，降低成本和空间;</li>
+<li>特定应用程序的任务(如部署、自修复、扩展和升级)设置为自动化day-two 操作;提供高可用的容错基础设施;</li>
+<li>在不修改集群管理器或现有应用程序的情况下，提供常绿的可扩展性来运行新的应用程序和技术;</li>
+<li>将应用程序和底层基础设施弹性扩展到数万个节点。</li>
+</ol>
+<p>Mesos的独特之处还在于，可以单独管理各种不同的工作负载——包括传统的应用程序，如Java、无状态Docker微服务、批处理作业、实时分析和有状态的分布式数据服务。Mesos广泛的工作负载覆盖来自于它的两级架构，它支持“应用感知”的调度。应用感知调度是通过将应用程序特定操作逻辑封装到“Mesos框架”(类似于运行中的runbook)来完成的。</p>
+<p>Mesos Master资源管理器，提供这些底层基础设施的框架部分，同时保持隔离。这种方法允许每个工作负载有自己专用的应用程序调度器，它了解其对部署、缩放和升级的具体操作需求。应用程序调度程序也独立地被开发、管理和更新，这让Mesos保持高度可扩展性，支持新的工作负载，或者随着时间的推移增加更多的操作能力。</p>
+<p><img src="./mesos.png" alt="Mesos结构" /></p>
+<p>以一个团队如何管理升级为例。无状态应用程序可以从“蓝/绿”部署方法中获益;当旧的应用程序还在使用的时候，另一个完整版本的应用程序已经spun up，当旧的应用程序被销毁时，流量切换到新的应用程序。但是，升级像HDFS或Cassandra这样的数据工作负载需要一次脱机，维护本地数据量以避免数据丢失，执行特定序列的升级，并在升级之前和之后对每个节点类型执行特殊检查和命令。这些步骤中的所有环节针对特定的应用程序或服务，甚至是特定版本进行的。这使得用常规容器编排调度器管理数据服务变得非常困难。</p>
+<p>Mesos具备按需管理每个工作负载的能力，使得许多公司将Mesos作为一个统一的平台，并通过其将微服务和数据服务结合运行。运行数据密集型应用程序的一个通用参考架构是“SMACK堆栈”。</p>
+<h2 id="清晰时刻"> 清晰时刻</h2>
+<p>注意：我们在描述Apache Mesos的过程中，没有提及任何关于容器编排的内容。那么，为什么人们总是会将Mesos与容器编排联系起来呢？容器编排是一个可以在Mesos模块化架构上运行的工作负载的例子，它使用的是构建在Mesos上的一个专门的编排“框架”Marathon。Marathon最初是为了在cgroup容器中编排应用程序(如JARs、tarball、ZIP文件)而开发的，并且在2014年成为第一批支持Docker容器的容器编排之一。</p>
+<p>因此，当人们拿Docker、kubernetes和Mesos比较时，他们实际上是在对比kubernetes、Docker Swarm和Mesos上运行的Marathon。</p>
+<p>为什么这很重要？因为Mesos根本不关心上面跑的是什么。Mesos可以为Java应用服务器、Docker容器编排、Jenkins CI Jobs, Apache Spark analytics, Apache Kafka streaming以及更多的共享基础设施提供集群服务。Mesos甚至可以运行kubernetes或其他容器编排，尽管还没有对外集成。</p>
+<p>Mesos的另一个考虑(以及为什么它对许多企业架构师有吸引力)是它在运行任务关键工作负载时的成熟度。Mesos已经在大规模生产环境下运行(数万台服务器)超过7年，这就是为什么它比市场上其他技术更成熟，更可靠的原因。</p>
+<h2 id="这一切意味着什么"> 这一切意味着什么？</h2>
+<p>总之，这三种技术都与Docker容器有关，并允许您访问容器编排，以获得应用程序的可移植性和伸缩性。那么在这三者间要如何选择呢？这就要视不同的工作环境需求而定，工作需求不同，所适用的工具自然也是各不相同。如果您是一名应用程序开发人员，并且正在寻找一种现代的方法来构建和打包您的应用程序，或者加快微服务项目，那么Docker容器格式和开发工具是你最好的选择。</p>
+<p>如果你是一个dev / devops团队,想要构建一个专门的docker容器编排系统,并愿意亲自动手让你的解决方案和底层基础设施集成(或依赖于公共云基础设施如谷歌引擎或Azure容器服务),kubernetes将是你一个很好的选项。</p>
+<p>如果您想构建一个可靠的平台，用以运行多任务关键工作负载，包括Docker容器、遗留应用程序(例如Java)和分布式数据服务(例如Spark、Kafka、Cassandra、Elastic)，并希望所有这些都可以在云或数据中心上可移植，那么，Mesos是最适合你的。</p>
+<p>无论你作何选择，你所拥抱的一系列工具都将提升你的服务器资源利用率，同时简化应用程序移植，并提高开发人员的敏捷性。你真的值得拥有！</p>
 ]]></content:encoded>
     </item>
     <item>
@@ -3967,6 +3841,315 @@ found in <code>&lt;Component&gt;</code></p>
 `-- tmp                                     # 临时文件
 </code></pre>
 <div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br><span>9</span><br><span>10</span><br><span>11</span><br><span>12</span><br><span>13</span><br><span>14</span><br><span>15</span><br><span>16</span><br><span>17</span><br><span>18</span><br><span>19</span><br><span>20</span><br><span>21</span><br><span>22</span><br><span>23</span><br><span>24</span><br></div></div>]]></content:encoded>
+    </item>
+    <item>
+      <title>LeoVue打包发布NPM折腾记</title>
+      <link>https://blog.fangyueming.cn/leovue-npm/</link>
+      <guid>https://blog.fangyueming.cn/leovue-npm/</guid>
+      <source url="https://blog.fangyueming.cn/rss.xml">LeoVue打包发布NPM折腾记</source>
+      <pubDate>Sun, 19 Aug 2018 00:00:00 GMT</pubDate>
+      <content:encoded><![CDATA[<h1 id="leovue打包发布npm折腾记"> LeoVue打包发布NPM折腾记</h1>
+<h2 id="发布步骤"> 发布步骤</h2>
+<h3 id="建立项目并发布"> 建立项目并发布</h3>
+<div><pre><code><span>npm</span> <span>install</span> vue-cli -g          <span># 安装 vue 命令行工具</span>
+vue init webpack-simple leovue  <span># 生成 package.json，请按需填写</span>
+<span>cd</span> leovue                       <span># 配置webpack、编写并调试项目，各种折腾</span>
+<span>npm</span> build                       <span># 可能会遇到各种错误，请按提示解决</span>
+<span>npm</span> login                       <span># 按提示登录 npmjs.com，可能需要再次激活您的邮箱</span>
+<span>npm</span> publish                     <span># 按提示排错，比如包的命名问题等等，直至成功</span>
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br></div></div><div><p>建议</p>
+<p>因为<code>npm</code>的传输问题、排错问题、稳定性问题等等，强烈建议用<code>yarn</code>来代替<code>npm</code>。</p>
+</div>
+<h3 id="package-json"> package.json</h3>
+<div><pre><code><span>{</span>
+  <span>"name"</span><span>:</span> <span>"@axolo/leovue"</span><span>,</span>
+  <span>"description"</span><span>:</span> <span>"LeoVue components lib"</span><span>,</span>
+  <span>"version"</span><span>:</span> <span>"0.0.8"</span><span>,</span>
+  <span>"author"</span><span>:</span> <span>"Yueming Fang"</span><span>,</span>
+  <span>"license"</span><span>:</span> <span>"MIT"</span><span>,</span>
+  <span>"homepage"</span><span>:</span> <span>"https://axolo.github.io/leovue"</span><span>,</span>
+  <span>"repository"</span><span>:</span> <span>{</span>
+    <span>"type"</span><span>:</span> <span>"git"</span><span>,</span>
+    <span>"url"</span><span>:</span> <span>"https://github.com/axolo/leovue.git"</span>
+  <span>}</span><span>,</span>
+  <span>"keywords"</span><span>:</span> <span>[</span><span>"vue"</span><span>,</span> <span>"html5"</span><span>]</span><span>,</span>
+  <span>"main"</span><span>:</span> <span>"./dist/leovue.js"</span><span>,</span>
+  <span>"scripts"</span><span>:</span> <span>{</span>
+    <span>"build"</span><span>:</span> <span>"cross-env NODE_ENV=production webpack --progress --hide-modules"</span>
+  <span>}</span><span>,</span>
+  <span>"dependencies"</span><span>:</span> <span>{</span>
+    <span>"vue"</span><span>:</span> <span>"^2.5.11"</span>
+  <span>}</span><span>,</span>
+  <span>"browserslist"</span><span>:</span> <span>[</span>
+    <span>"> 1%"</span><span>,</span>
+    <span>"last 2 versions"</span><span>,</span>
+    <span>"not ie &lt;= 8"</span>
+  <span>]</span><span>,</span>
+  <span>"devDependencies"</span><span>:</span> <span>{</span>
+    <span>"babel-core"</span><span>:</span> <span>"^6.26.0"</span><span>,</span>
+    <span>"babel-loader"</span><span>:</span> <span>"^7.1.2"</span><span>,</span>
+    <span>"babel-preset-env"</span><span>:</span> <span>"^1.6.0"</span><span>,</span>
+    <span>"babel-preset-stage-3"</span><span>:</span> <span>"^6.24.1"</span><span>,</span>
+    <span>"cross-env"</span><span>:</span> <span>"^5.0.5"</span><span>,</span>
+    <span>"css-loader"</span><span>:</span> <span>"^0.28.7"</span><span>,</span>
+    <span>"file-loader"</span><span>:</span> <span>"^1.1.4"</span><span>,</span>
+    <span>"vue-loader"</span><span>:</span> <span>"^13.0.5"</span><span>,</span>
+    <span>"vue-template-compiler"</span><span>:</span> <span>"^2.4.4"</span><span>,</span>
+    <span>"webpack"</span><span>:</span> <span>"^3.6.0"</span><span>,</span>
+    <span>"webpack-dev-server"</span><span>:</span> <span>"^2.9.1"</span>
+  <span>}</span>
+<span>}</span>
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br><span>9</span><br><span>10</span><br><span>11</span><br><span>12</span><br><span>13</span><br><span>14</span><br><span>15</span><br><span>16</span><br><span>17</span><br><span>18</span><br><span>19</span><br><span>20</span><br><span>21</span><br><span>22</span><br><span>23</span><br><span>24</span><br><span>25</span><br><span>26</span><br><span>27</span><br><span>28</span><br><span>29</span><br><span>30</span><br><span>31</span><br><span>32</span><br><span>33</span><br><span>34</span><br><span>35</span><br><span>36</span><br><span>37</span><br><span>38</span><br></div></div><p><img src="./leovue-npm.png" alt="npmjs" /></p>
+<p>上图是<code>package.json</code>跟<code>npmjs.com</code>内容关系图，<code>keywords</code>在项目主页底部，
+<code>README.md</code>内容显示在主页，<code>version</code>、<code>license</code>、<code>homepage</code>、<code>repository</code>信息在右侧。</p>
+<h2 id="需求实现"> 需求实现</h2>
+<h3 id="多组件"> 多组件</h3>
+<div><pre><code><span>// 入口文件：./src/index.js</span>
+<span>// 即webpack.config.js里的：entry: './src/index.js'</span>
+<span>import</span> LeoDialog <span>from</span> <span>'./components/LeoDialog'</span>
+<span>import</span> LeoLodop   <span>from</span> <span>'./components/LeoLodop'</span>
+
+<span>const</span> components <span>=</span> <span>[</span> LeoDialog<span>,</span> LeoLodop <span>]</span>
+<span>const</span> <span>install</span> <span>=</span> <span>function</span> <span>(</span><span>Vue<span>,</span> opts <span>=</span> <span>{</span><span>}</span></span><span>)</span> <span>{</span>
+  components<span>.</span><span>forEach</span><span>(</span><span>component</span> <span>=></span> <span>{</span>
+    Vue<span>.</span><span>component</span><span>(</span>component<span>.</span>name<span>,</span> component<span>)</span>
+  <span>}</span><span>)</span>
+<span>}</span>
+
+<span>if</span> <span>(</span><span>typeof</span> window <span>!==</span> <span>'undefined'</span> <span>&amp;&amp;</span> window<span>.</span>Vue<span>)</span> <span>{</span>
+  <span>install</span><span>(</span>window<span>.</span>Vue<span>)</span>
+<span>}</span>
+
+<span>export</span> <span>{</span> LeoDialog<span>,</span> LeoLodop <span>}</span>
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br><span>9</span><br><span>10</span><br><span>11</span><br><span>12</span><br><span>13</span><br><span>14</span><br><span>15</span><br><span>16</span><br><span>17</span><br></div></div><h3 id="精简发布"> 精简发布</h3>
+<div><pre><code><span># 以下内容添加到.npmignore后</span>
+<span># 仅README.md和package.json和/dist目录被发布</span>
+/*
+!/dist/
+!README.md
+!package.json
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br></div></div><h2 id="错误解决"> 错误解决</h2>
+<div><p>属性只读</p>
+<p>Uncaught TypeError: Cannot assign to read only property 'exports' of object '<code>#&lt;Object&gt;</code>'</p>
+</div>
+<p>翻译过来就是说，代码没毛病，在webpack打包的时候，可以在js文件中混用require和export。但是不能混用import以及module.exports 。
+因为webpack 2中不允许混用import和module.exports，解决办法就是统一改成ES6的方式编写即可。</p>
+<div><pre><code><span>import</span> <span>{</span> Component <span>}</span> <span>from</span> <span>'components'</span>
+<span>// moduler.exports = Component    // 混用可通过Webpack2编译，但使用错误</span>
+<span>export</span> <span>default</span> Component
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br></div></div><div><p>标签未知</p>
+<p>Unknown custom element: <code>&lt;component&gt;</code> - did you register the component correctly?
+For recursive components, make sure to provide the &quot;name&quot; option.</p>
+</div>
+<p>一般情况下是组件未被正确加载，或者组件打包时命名错误。比如以<code>export default Component</code>打包，
+却以<code>import { Component } from 'components'</code>来引用，多了个花括号，反之亦然。</p>
+<div><p>渲染未知</p>
+<p>[Vue warn]: Failed to mount component: template or render function not defined.
+found in <code>&lt;Component&gt;</code></p>
+</div>
+<p>打包需要指定一种模块输出类型，可以是commonjs,AMD,script,UMD模式。
+在这里是写插件，要采用UMD模式，即libraryTarget: 'umd'。
+于是webpack.config.js出口文件配置修改为：</p>
+<div><pre><code> output<span>:</span> <span>{</span>
+  path<span>:</span> path<span>.</span><span>resolve</span><span>(</span>__dirname<span>,</span> <span>'./dist'</span><span>)</span><span>,</span>
+  publicPath<span>:</span> <span>'/dist/'</span><span>,</span>
+  filename<span>:</span> <span>'leovue.js'</span><span>,</span>
+  library<span>:</span> <span>'leovue'</span><span>,</span>
+  libraryTarget<span>:</span> <span>'umd'</span><span>,</span>
+  umdNamedDefine<span>:</span> <span>true</span>
+ <span>}</span>
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br></div></div><h2 id="参考"> 参考</h2>
+<p><a href="https://www.jb51.net/article/137725.htm" target="_blank" rel="noopener noreferrer">vue todo-list组件发布到npm上的方法</a></p>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>Linux Shell 入门</title>
+      <link>https://blog.fangyueming.cn/linux-shell/</link>
+      <guid>https://blog.fangyueming.cn/linux-shell/</guid>
+      <source url="https://blog.fangyueming.cn/rss.xml">Linux Shell 入门</source>
+      <pubDate>Wed, 09 Aug 2017 00:00:00 GMT</pubDate>
+      <content:encoded><![CDATA[<h1 id="linux-shell-入门"> Linux Shell 入门</h1>
+<h2 id="脚本文件"> 脚本文件</h2>
+<ul>
+<li>扩展名：<code>.sh</code></li>
+<li>第一行：<code>#!/bin/bash</code></li>
+<li>执行
+<ul>
+<li><code>chmod +x shell脚本</code></li>
+<li><code>./shell脚本</code></li>
+</ul>
+</li>
+</ul>
+<h2 id="脚本内部执行命令"> 脚本内部执行命令</h2>
+<p>反引号</p>
+<h2 id="变量"> 变量</h2>
+<h3 id="系统变量"> 系统变量</h3>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PATH</td>
+<td>shell查找命令的目录列表，由冒号分隔</td>
+</tr>
+<tr>
+<td>HOSTNAME</td>
+<td>当前主机名</td>
+</tr>
+<tr>
+<td>HOME</td>
+<td>当前用户主目录</td>
+</tr>
+<tr>
+<td>SHELL</td>
+<td>当前shell</td>
+</tr>
+<tr>
+<td>USER</td>
+<td>当前用户</td>
+</tr>
+<tr>
+<td>UID</td>
+<td>当前用户ID</td>
+</tr>
+<tr>
+<td>GID</td>
+<td>当前用户组ID</td>
+</tr>
+<tr>
+<td>PWD</td>
+<td>当前所在目录</td>
+</tr>
+<tr>
+<td>OLDPWD</td>
+<td>上次所在目录</td>
+</tr>
+<tr>
+<td>0</td>
+<td>当前命令名称</td>
+</tr>
+<tr>
+<td>n</td>
+<td>当前命令的第n个参数，n=1,2,...,9</td>
+</tr>
+<tr>
+<td>*</td>
+<td>以”参数1，参数2…..”形式保存所有参数</td>
+</tr>
+<tr>
+<td>@</td>
+<td>以”参数1”，”参数2”…..”形式保存所有参数</td>
+</tr>
+<tr>
+<td>#</td>
+<td>命令行参数的个数</td>
+</tr>
+<tr>
+<td>?</td>
+<td>执行上一个指令或函数的返回值，0=没有错误</td>
+</tr>
+<tr>
+<td>$</td>
+<td>本程序的PID（ProcessID）</td>
+</tr>
+<tr>
+<td>!</td>
+<td>后台运行的最后一个进程的进程ID号</td>
+</tr>
+<tr>
+<td>-</td>
+<td>显示shell使用的当前选项，与set命令功能相同</td>
+</tr>
+<tr>
+<td>_</td>
+<td>shell的绝对路径名，最近执行的命令，最近命令最后一个参数</td>
+</tr>
+<tr>
+<td>LINENO</td>
+<td>当前执行的脚本行号</td>
+</tr>
+</tbody>
+</table>
+<h3 id="用户变量"> 用户变量</h3>
+<h4 id="定义变量"> 定义变量</h4>
+<ul>
+<li>变量名=变量值</li>
+</ul>
+<h4 id="引用变量"> 引用变量</h4>
+<ul>
+<li>$变量名</li>
+<li>${变量名}</li>
+</ul>
+<h4 id="只读变量"> 只读变量</h4>
+<ul>
+<li>变量名=变量值</li>
+<li>readonly 变量名</li>
+</ul>
+<h4 id="删除变量"> 删除变量</h4>
+<ul>
+<li>变量名=变量值</li>
+<li>unset 变量名</li>
+</ul>
+<h3 id="字符串变量"> 字符串变量</h3>
+<h4 id="定义"> 定义</h4>
+<ul>
+<li>单引号字符串变量='不可转义字符串'</li>
+<li>双引号字符串变量=&quot;可转义字符串&quot;</li>
+</ul>
+<h4 id="获取字符串长度"> 获取字符串长度</h4>
+<div><pre><code><span>string</span><span>=</span><span>"abcd"</span>
+<span>echo</span> <span>${<span>#</span>string}</span>     <span># 4</span>
+</code></pre>
+<div><span>1</span><br><span>2</span><br></div></div><h4 id="提取字符串"> 提取字符串</h4>
+<div><pre><code><span>string</span><span>=</span><span>"runoob is a great site"</span>
+<span>echo</span> <span>${string<span>:</span>1<span>:</span>4}</span>  <span># unoo</span>
+</code></pre>
+<div><span>1</span><br><span>2</span><br></div></div><h4 id="查找字符串位置"> 查找字符串位置</h4>
+<div><pre><code><span>string</span><span>=</span><span>"runoob is a great company"</span>
+<span>echo</span> <span><span>`</span><span>expr</span> index <span>"<span>$string</span>"</span> is<span>`</span></span>  <span># 8</span>
+</code></pre>
+<div><span>1</span><br><span>2</span><br></div></div><h3 id="数组变量"> 数组变量</h3>
+<h4 id="定义数组"> 定义数组</h4>
+<div><pre><code><span>array_name</span><span>=</span><span>(</span>value0 value1 value2 value3<span>)</span>  <span># 整体定义，可分行</span>
+array_name<span>[</span><span>0</span><span>]</span><span>=</span>value0                      <span># 可单独定义</span>
+</code></pre>
+<div><span>1</span><br><span>2</span><br></div></div><h4 id="引用"> 引用</h4>
+<div><pre><code><span>echo</span> <span>${array_name<span>[</span>n<span>]</span>}</span>   <span># 读取第n个数组，数组下标从0开始</span>
+<span>echo</span> <span>${array_name<span>[</span>*<span>]</span>}</span>   <span># 读取所有数组</span>
+<span>echo</span> <span>${array_name<span>[</span>@<span>]</span>}</span>   <span># 读取所有数组</span>
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br></div></div><h4 id="获取长度"> 获取长度</h4>
+<div><pre><code><span>${<span>#</span>array_name<span>[</span>n<span>]</span>}</span>     <span># 第n个数组长度</span>
+<span>${<span>#</span>array_name<span>[</span>*<span>]</span>}</span>     <span># 整个数组长度</span>
+<span>${<span>#</span>array_name<span>[</span>@<span>]</span>}</span>     <span># 整个数组长度</span>
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br></div></div><h2 id="运算符"> 运算符</h2>
+<h2 id="控制语句"> 控制语句</h2>
+<h2 id="思维导图"> 思维导图</h2>
+<p><img src="./linux-shell-01.jpg" alt="基础知识" />
+<img src="./linux-shell-02.jpg" alt="文件目录" />
+<img src="./linux-shell-03.jpg" alt="文本处理" />
+<img src="./linux-shell-04.jpg" alt="Shell脚本1" />
+<img src="./linux-shell-05.jpg" alt="Shell脚本2" />
+<img src="./linux-shell-06.jpg" alt="Shell脚本3" /></p>
+<blockquote>
+<p>未完待续……</p>
+</blockquote>
+<blockquote>
+<p>方跃明
+2017-08-09</p>
+</blockquote>
+]]></content:encoded>
     </item>
     <item>
       <title>Linux编译安装命令configure、make、install的意义</title>
@@ -4158,189 +4341,6 @@ creating ./config. status
 <div><span>1</span><br><span>2</span><br></div></div><blockquote>
 <p>方跃明
 2008-08-08</p>
-</blockquote>
-]]></content:encoded>
-    </item>
-    <item>
-      <title>Linux Shell 入门</title>
-      <link>https://blog.fangyueming.cn/linux-shell/</link>
-      <guid>https://blog.fangyueming.cn/linux-shell/</guid>
-      <source url="https://blog.fangyueming.cn/rss.xml">Linux Shell 入门</source>
-      <pubDate>Wed, 09 Aug 2017 00:00:00 GMT</pubDate>
-      <content:encoded><![CDATA[<h1 id="linux-shell-入门"> Linux Shell 入门</h1>
-<h2 id="脚本文件"> 脚本文件</h2>
-<ul>
-<li>扩展名：<code>.sh</code></li>
-<li>第一行：<code>#!/bin/bash</code></li>
-<li>执行
-<ul>
-<li><code>chmod +x shell脚本</code></li>
-<li><code>./shell脚本</code></li>
-</ul>
-</li>
-</ul>
-<h2 id="脚本内部执行命令"> 脚本内部执行命令</h2>
-<p>反引号</p>
-<h2 id="变量"> 变量</h2>
-<h3 id="系统变量"> 系统变量</h3>
-<table>
-<thead>
-<tr>
-<th>名称</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>PATH</td>
-<td>shell查找命令的目录列表，由冒号分隔</td>
-</tr>
-<tr>
-<td>HOSTNAME</td>
-<td>当前主机名</td>
-</tr>
-<tr>
-<td>HOME</td>
-<td>当前用户主目录</td>
-</tr>
-<tr>
-<td>SHELL</td>
-<td>当前shell</td>
-</tr>
-<tr>
-<td>USER</td>
-<td>当前用户</td>
-</tr>
-<tr>
-<td>UID</td>
-<td>当前用户ID</td>
-</tr>
-<tr>
-<td>GID</td>
-<td>当前用户组ID</td>
-</tr>
-<tr>
-<td>PWD</td>
-<td>当前所在目录</td>
-</tr>
-<tr>
-<td>OLDPWD</td>
-<td>上次所在目录</td>
-</tr>
-<tr>
-<td>0</td>
-<td>当前命令名称</td>
-</tr>
-<tr>
-<td>n</td>
-<td>当前命令的第n个参数，n=1,2,...,9</td>
-</tr>
-<tr>
-<td>*</td>
-<td>以”参数1，参数2…..”形式保存所有参数</td>
-</tr>
-<tr>
-<td>@</td>
-<td>以”参数1”，”参数2”…..”形式保存所有参数</td>
-</tr>
-<tr>
-<td>#</td>
-<td>命令行参数的个数</td>
-</tr>
-<tr>
-<td>?</td>
-<td>执行上一个指令或函数的返回值，0=没有错误</td>
-</tr>
-<tr>
-<td>$</td>
-<td>本程序的PID（ProcessID）</td>
-</tr>
-<tr>
-<td>!</td>
-<td>后台运行的最后一个进程的进程ID号</td>
-</tr>
-<tr>
-<td>-</td>
-<td>显示shell使用的当前选项，与set命令功能相同</td>
-</tr>
-<tr>
-<td>_</td>
-<td>shell的绝对路径名，最近执行的命令，最近命令最后一个参数</td>
-</tr>
-<tr>
-<td>LINENO</td>
-<td>当前执行的脚本行号</td>
-</tr>
-</tbody>
-</table>
-<h3 id="用户变量"> 用户变量</h3>
-<h4 id="定义变量"> 定义变量</h4>
-<ul>
-<li>变量名=变量值</li>
-</ul>
-<h4 id="引用变量"> 引用变量</h4>
-<ul>
-<li>$变量名</li>
-<li>${变量名}</li>
-</ul>
-<h4 id="只读变量"> 只读变量</h4>
-<ul>
-<li>变量名=变量值</li>
-<li>readonly 变量名</li>
-</ul>
-<h4 id="删除变量"> 删除变量</h4>
-<ul>
-<li>变量名=变量值</li>
-<li>unset 变量名</li>
-</ul>
-<h3 id="字符串变量"> 字符串变量</h3>
-<h4 id="定义"> 定义</h4>
-<ul>
-<li>单引号字符串变量='不可转义字符串'</li>
-<li>双引号字符串变量=&quot;可转义字符串&quot;</li>
-</ul>
-<h4 id="获取字符串长度"> 获取字符串长度</h4>
-<div><pre><code><span>string</span><span>=</span><span>"abcd"</span>
-<span>echo</span> <span>${<span>#</span>string}</span>     <span># 4</span>
-</code></pre>
-<div><span>1</span><br><span>2</span><br></div></div><h4 id="提取字符串"> 提取字符串</h4>
-<div><pre><code><span>string</span><span>=</span><span>"runoob is a great site"</span>
-<span>echo</span> <span>${string<span>:</span>1<span>:</span>4}</span>  <span># unoo</span>
-</code></pre>
-<div><span>1</span><br><span>2</span><br></div></div><h4 id="查找字符串位置"> 查找字符串位置</h4>
-<div><pre><code><span>string</span><span>=</span><span>"runoob is a great company"</span>
-<span>echo</span> <span><span>`</span><span>expr</span> index <span>"<span>$string</span>"</span> is<span>`</span></span>  <span># 8</span>
-</code></pre>
-<div><span>1</span><br><span>2</span><br></div></div><h3 id="数组变量"> 数组变量</h3>
-<h4 id="定义数组"> 定义数组</h4>
-<div><pre><code><span>array_name</span><span>=</span><span>(</span>value0 value1 value2 value3<span>)</span>  <span># 整体定义，可分行</span>
-array_name<span>[</span><span>0</span><span>]</span><span>=</span>value0                      <span># 可单独定义</span>
-</code></pre>
-<div><span>1</span><br><span>2</span><br></div></div><h4 id="引用"> 引用</h4>
-<div><pre><code><span>echo</span> <span>${array_name<span>[</span>n<span>]</span>}</span>   <span># 读取第n个数组，数组下标从0开始</span>
-<span>echo</span> <span>${array_name<span>[</span>*<span>]</span>}</span>   <span># 读取所有数组</span>
-<span>echo</span> <span>${array_name<span>[</span>@<span>]</span>}</span>   <span># 读取所有数组</span>
-</code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br></div></div><h4 id="获取长度"> 获取长度</h4>
-<div><pre><code><span>${<span>#</span>array_name<span>[</span>n<span>]</span>}</span>     <span># 第n个数组长度</span>
-<span>${<span>#</span>array_name<span>[</span>*<span>]</span>}</span>     <span># 整个数组长度</span>
-<span>${<span>#</span>array_name<span>[</span>@<span>]</span>}</span>     <span># 整个数组长度</span>
-</code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br></div></div><h2 id="运算符"> 运算符</h2>
-<h2 id="控制语句"> 控制语句</h2>
-<h2 id="思维导图"> 思维导图</h2>
-<p><img src="./linux-shell-01.jpg" alt="基础知识" />
-<img src="./linux-shell-02.jpg" alt="文件目录" />
-<img src="./linux-shell-03.jpg" alt="文本处理" />
-<img src="./linux-shell-04.jpg" alt="Shell脚本1" />
-<img src="./linux-shell-05.jpg" alt="Shell脚本2" />
-<img src="./linux-shell-06.jpg" alt="Shell脚本3" /></p>
-<blockquote>
-<p>未完待续……</p>
-</blockquote>
-<blockquote>
-<p>方跃明
-2017-08-09</p>
 </blockquote>
 ]]></content:encoded>
     </item>
@@ -5231,6 +5231,21 @@ console<span>.</span><span>log</span><span>(</span>Store<span>.</span><span>next
 <div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br><span>9</span><br><span>10</span><br><span>11</span><br><span>12</span><br><span>13</span><br><span>14</span><br></div></div><blockquote>
 <p>方跃明
 2020-02-18</p>
+</blockquote>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>图解SQL JOINS</title>
+      <link>https://blog.fangyueming.cn/sql-join/</link>
+      <guid>https://blog.fangyueming.cn/sql-join/</guid>
+      <source url="https://blog.fangyueming.cn/rss.xml">图解SQL JOINS</source>
+      <pubDate>Sat, 28 Apr 2018 00:00:00 GMT</pubDate>
+      <content:encoded><![CDATA[<h1 id="图解sql-joins"> 图解SQL JOINS</h1>
+<p>左连接、右连接、内连接、外连接……傻傻分不清</p>
+<p><img src="./sql-join.jpg" alt="SQL JOINS" /></p>
+<blockquote>
+<p>方跃明
+2018-4-28</p>
 </blockquote>
 ]]></content:encoded>
     </item>
@@ -6373,46 +6388,6 @@ Zend_Acl 提供了一个树结构，它可以添加多个 resources (或者叫�
 ]]></content:encoded>
     </item>
     <item>
-      <title>图解SQL JOINS</title>
-      <link>https://blog.fangyueming.cn/sql-join/</link>
-      <guid>https://blog.fangyueming.cn/sql-join/</guid>
-      <source url="https://blog.fangyueming.cn/rss.xml">图解SQL JOINS</source>
-      <pubDate>Sat, 28 Apr 2018 00:00:00 GMT</pubDate>
-      <content:encoded><![CDATA[<h1 id="图解sql-joins"> 图解SQL JOINS</h1>
-<p>左连接、右连接、内连接、外连接……傻傻分不清</p>
-<p><img src="./sql-join.jpg" alt="SQL JOINS" /></p>
-<blockquote>
-<p>方跃明
-2018-4-28</p>
-</blockquote>
-]]></content:encoded>
-    </item>
-    <item>
-      <title>UmiJS之我见</title>
-      <link>https://blog.fangyueming.cn/umijs-ux/</link>
-      <guid>https://blog.fangyueming.cn/umijs-ux/</guid>
-      <source url="https://blog.fangyueming.cn/rss.xml">UmiJS之我见</source>
-      <pubDate>Sun, 23 Feb 2020 00:00:00 GMT</pubDate>
-      <content:encoded><![CDATA[<h1 id="umijs之我见"> UmiJS之我见</h1>
-<p>到目前为止，UmiJS还不算严谨成熟的框架，像小孩捏的泥人，随意松散，慎用。</p>
-<ul>
-<li>仅简单整合了Redux、Router、Saga，未系统化为有机体</li>
-<li>配置未考虑各种场景，没有统一接口和方法（不仅仅是配置）</li>
-<li>将原本赏心悦目得Webpack配置拆得七零八落，何苦来哉</li>
-<li>未提供框架必要的参数（如：app、routes）存取方法，大面积污染全局window变量</li>
-<li>未显式引入插件和中间件机制，需自行实现，相关文件都扔src/utils下，plugins目录居然是系统保留</li>
-<li>每级路由都需要加入显示加入404，相当丑陋</li>
-<li>Layout和Page在路由里同级均视为组件，导致路由设置层级过深，需各种判断</li>
-<li>文件、常量、变量规范很随意，大小写混淆，且互相不对应（model/setting -&gt; state.settings）</li>
-<li>使用了不恰当的代码检查配置，且提交时自动格式化代码，极不人性</li>
-</ul>
-<blockquote>
-<p>方跃明
-2020-02-23</p>
-</blockquote>
-]]></content:encoded>
-    </item>
-    <item>
       <title>vi基本操作</title>
       <link>https://blog.fangyueming.cn/vi/</link>
       <guid>https://blog.fangyueming.cn/vi/</guid>
@@ -6659,6 +6634,91 @@ vi是“visual interface”的缩写，vim是vi IMproved(增强版的vi)。
 </tr>
 </tbody>
 </table>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>UmiJS之我见</title>
+      <link>https://blog.fangyueming.cn/umijs-ux/</link>
+      <guid>https://blog.fangyueming.cn/umijs-ux/</guid>
+      <source url="https://blog.fangyueming.cn/rss.xml">UmiJS之我见</source>
+      <pubDate>Sun, 23 Feb 2020 00:00:00 GMT</pubDate>
+      <content:encoded><![CDATA[<h1 id="umijs之我见"> UmiJS之我见</h1>
+<p>到目前为止，UmiJS还不算严谨成熟的框架，像小孩捏的泥人，随意松散，慎用。</p>
+<ul>
+<li>仅简单整合了Redux、Router、Saga，未系统化为有机体</li>
+<li>配置未考虑各种场景，没有统一接口和方法（不仅仅是配置）</li>
+<li>将原本赏心悦目得Webpack配置拆得七零八落，何苦来哉</li>
+<li>未提供框架必要的参数（如：app、routes）存取方法，大面积污染全局window变量</li>
+<li>未显式引入插件和中间件机制，需自行实现，相关文件都扔src/utils下，plugins目录居然是系统保留</li>
+<li>每级路由都需要加入显示加入404，相当丑陋</li>
+<li>Layout和Page在路由里同级均视为组件，导致路由设置层级过深，需各种判断</li>
+<li>文件、常量、变量规范很随意，大小写混淆，且互相不对应（model/setting -&gt; state.settings）</li>
+<li>使用了不恰当的代码检查配置，且提交时自动格式化代码，极不人性</li>
+</ul>
+<blockquote>
+<p>方跃明
+2020-02-23</p>
+</blockquote>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>Internet技术概览</title>
+      <link>https://blog.fangyueming.cn/web-internet/</link>
+      <guid>https://blog.fangyueming.cn/web-internet/</guid>
+      <source url="https://blog.fangyueming.cn/rss.xml">Internet技术概览</source>
+      <pubDate>Tue, 20 Dec 2016 00:00:00 GMT</pubDate>
+      <content:encoded><![CDATA[<h1 id="internet技术概览"> Internet技术概览</h1>
+<p><img src="./web-internet.jpg" alt="Internet技术概览" /></p>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>Webpack编译移除控制台输出</title>
+      <link>https://blog.fangyueming.cn/webpack-drop-console/</link>
+      <guid>https://blog.fangyueming.cn/webpack-drop-console/</guid>
+      <source url="https://blog.fangyueming.cn/rss.xml">Webpack编译移除控制台输出</source>
+      <pubDate>Tue, 14 Dec 2021 00:00:00 GMT</pubDate>
+      <content:encoded><![CDATA[<h1 id="webpack编译移除控制台输出"> Webpack编译移除控制台输出</h1>
+<p>前端程序员在开发的时候经常会使用<code>console.log</code>来调试。
+然而，出于安全渗透和代码审计需要，生产环境往往需要移除控制台（<code>console</code>系列函数）输出。
+一个个去删除难免漏网之鱼，而且有时候开发环境仍需要用到。
+此时使用 <a href="https://webpack.js.org/plugins/terser-webpack-plugin/" target="_blank" rel="noopener noreferrer">terser-webpack-plugin</a> 不失为一个好办法。</p>
+<p>本文以 <a href="https://cli.vuejs.org/zh/" target="_blank" rel="noopener noreferrer">Vue CLI</a> 为例来实现，当前 <a href="https://cli.vuejs.org/zh/" target="_blank" rel="noopener noreferrer">Vue CLI</a> 对应适配的 <a href="https://webpack.js.org/plugins/terser-webpack-plugin/" target="_blank" rel="noopener noreferrer">terser-webpack-plugin</a> 版本为：<code>4.2.3</code>。</p>
+<h2 id="安装"> 安装</h2>
+<div><pre><code><span>yarn</span> <span>add</span> terser-webpack-plugin@4.2.3
+</code></pre>
+<div><span>1</span><br></div></div><h2 id="配置"> 配置</h2>
+<div><pre><code><span>// vue.config.js</span>
+<span>const</span> TerserPlugin <span>=</span> <span>require</span><span>(</span><span>'terser-webpack-plugin'</span><span>)</span>
+
+module<span>.</span>exports <span>=</span> <span>{</span>
+ configureWebpack<span>:</span> <span>{</span>
+   optimization<span>:</span> <span>{</span>
+     minimizer<span>:</span> <span>[</span>
+       <span>new</span> <span>TerserPlugin</span><span>(</span><span>{</span>
+         terserOptions<span>:</span> <span>{</span>
+           ecma<span>:</span> <span>undefined</span><span>,</span>
+           warnings<span>:</span> <span>false</span><span>,</span>
+           parse<span>:</span> <span>{</span><span>}</span><span>,</span>
+           compress<span>:</span> <span>{</span>
+             drop_console<span>:</span> <span>true</span><span>,</span>
+             drop_debugger<span>:</span> <span>false</span><span>,</span>
+             <span>// pure_funcs: ['console.log'], // 移除console</span>
+           <span>}</span>
+         <span>}</span>
+       <span>}</span><span>)</span>
+     <span>]</span>
+   <span>}</span>
+ <span>}</span>
+<span>}</span>
+</code></pre>
+<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br><span>9</span><br><span>10</span><br><span>11</span><br><span>12</span><br><span>13</span><br><span>14</span><br><span>15</span><br><span>16</span><br><span>17</span><br><span>18</span><br><span>19</span><br><span>20</span><br><span>21</span><br><span>22</span><br><span>23</span><br></div></div><h2 id="编译"> 编译</h2>
+<div><pre><code><span>yarn</span> build
+</code></pre>
+<div><span>1</span><br></div></div><p>至此，<code>console</code>系列函数已不会在编译后的代码里从控制台输出了。</p>
+<blockquote>
+<p>方跃明
+2021-12-14</p>
+</blockquote>
 ]]></content:encoded>
     </item>
     <item>
@@ -6933,66 +6993,6 @@ ReactDOM<span>.</span><span>render</span><span>(</span>
 <div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br><span>9</span><br><span>10</span><br><span>11</span><br><span>12</span><br><span>13</span><br><span>14</span><br><span>15</span><br><span>16</span><br><span>17</span><br><span>18</span><br><span>19</span><br><span>20</span><br><span>21</span><br></div></div><blockquote>
 <p>方跃明
 2016-12-19</p>
-</blockquote>
-]]></content:encoded>
-    </item>
-    <item>
-      <title>Internet技术概览</title>
-      <link>https://blog.fangyueming.cn/web-internet/</link>
-      <guid>https://blog.fangyueming.cn/web-internet/</guid>
-      <source url="https://blog.fangyueming.cn/rss.xml">Internet技术概览</source>
-      <pubDate>Tue, 20 Dec 2016 00:00:00 GMT</pubDate>
-      <content:encoded><![CDATA[<h1 id="internet技术概览"> Internet技术概览</h1>
-<p><img src="./web-internet.jpg" alt="Internet技术概览" /></p>
-]]></content:encoded>
-    </item>
-    <item>
-      <title>Webpack编译移除控制台输出</title>
-      <link>https://blog.fangyueming.cn/webpack-drop-console/</link>
-      <guid>https://blog.fangyueming.cn/webpack-drop-console/</guid>
-      <source url="https://blog.fangyueming.cn/rss.xml">Webpack编译移除控制台输出</source>
-      <pubDate>Tue, 14 Dec 2021 00:00:00 GMT</pubDate>
-      <content:encoded><![CDATA[<h1 id="webpack编译移除控制台输出"> Webpack编译移除控制台输出</h1>
-<p>前端程序员在开发的时候经常会使用<code>console.log</code>来调试。
-然而，出于安全渗透和代码审计需要，生产环境往往需要移除控制台（<code>console</code>系列函数）输出。
-一个个去删除难免漏网之鱼，而且有时候开发环境仍需要用到。
-此时使用 <a href="https://webpack.js.org/plugins/terser-webpack-plugin/" target="_blank" rel="noopener noreferrer">terser-webpack-plugin</a> 不失为一个好办法。</p>
-<p>本文以 <a href="https://cli.vuejs.org/zh/" target="_blank" rel="noopener noreferrer">Vue CLI</a> 为例来实现，当前 <a href="https://cli.vuejs.org/zh/" target="_blank" rel="noopener noreferrer">Vue CLI</a> 对应适配的 <a href="https://webpack.js.org/plugins/terser-webpack-plugin/" target="_blank" rel="noopener noreferrer">terser-webpack-plugin</a> 版本为：<code>4.2.3</code>。</p>
-<h2 id="安装"> 安装</h2>
-<div><pre><code><span>yarn</span> <span>add</span> terser-webpack-plugin@4.2.3
-</code></pre>
-<div><span>1</span><br></div></div><h2 id="配置"> 配置</h2>
-<div><pre><code><span>// vue.config.js</span>
-<span>const</span> TerserPlugin <span>=</span> <span>require</span><span>(</span><span>'terser-webpack-plugin'</span><span>)</span>
-
-module<span>.</span>exports <span>=</span> <span>{</span>
- configureWebpack<span>:</span> <span>{</span>
-   optimization<span>:</span> <span>{</span>
-     minimizer<span>:</span> <span>[</span>
-       <span>new</span> <span>TerserPlugin</span><span>(</span><span>{</span>
-         terserOptions<span>:</span> <span>{</span>
-           ecma<span>:</span> <span>undefined</span><span>,</span>
-           warnings<span>:</span> <span>false</span><span>,</span>
-           parse<span>:</span> <span>{</span><span>}</span><span>,</span>
-           compress<span>:</span> <span>{</span>
-             drop_console<span>:</span> <span>true</span><span>,</span>
-             drop_debugger<span>:</span> <span>false</span><span>,</span>
-             <span>// pure_funcs: ['console.log'], // 移除console</span>
-           <span>}</span>
-         <span>}</span>
-       <span>}</span><span>)</span>
-     <span>]</span>
-   <span>}</span>
- <span>}</span>
-<span>}</span>
-</code></pre>
-<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br><span>9</span><br><span>10</span><br><span>11</span><br><span>12</span><br><span>13</span><br><span>14</span><br><span>15</span><br><span>16</span><br><span>17</span><br><span>18</span><br><span>19</span><br><span>20</span><br><span>21</span><br><span>22</span><br><span>23</span><br></div></div><h2 id="编译"> 编译</h2>
-<div><pre><code><span>yarn</span> build
-</code></pre>
-<div><span>1</span><br></div></div><p>至此，<code>console</code>系列函数已不会在编译后的代码里从控制台输出了。</p>
-<blockquote>
-<p>方跃明
-2021-12-14</p>
 </blockquote>
 ]]></content:encoded>
     </item>
