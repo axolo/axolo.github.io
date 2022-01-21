@@ -1,0 +1,151 @@
+---
+time: 2022-01-20
+tags:
+  - Linux
+  - Node.js
+categories:
+  - Linux
+  - Node.js
+---
+
+# 基于WSL搭建Node.js开发环境
+
+适用于 Linux 的 Windows 子系统（WSL）可让开发人员直接在 Windows 上按原样运行 GNU/Linux 环境（包括大多数命令行工具、实用工具和应用程序），且不会产生传统虚拟机或双启动设置开销。
+
+以下操作基于Windows 10 企业版 LTSC 21H2版，安装WSL发行版，默认安装Ubuntu，配置Node.js开发环境。
+
+## 安装WSL
+
+可以选择以下任一方式进行安装。但由于Windows 10 企业版 LTSC默认未搭载[微软应用商店](#微软应用商店)（AppStore），且受限于网络环境，[命令行安装](#命令行安装)模式容易失败，推荐使用[下载安装](#下载安装)进行安装。
+
+### 微软应用商店
+
+搜索“Ubuntu”下载安装。
+
+### 命令行安装
+
+以管理员身份运行PowerShell使用以下命令安装。
+
+```powershell
+wsl --install -d Ubuntu
+```
+
+### 下载安装
+
+[下载WSL发行版]，后以管理员身份运行PowerShell使用以下命令安装。
+
+```powershell
+Add-AppxPackage .\Ubuntu_2004.2020.424.0_x64.appx
+```
+
+## 使用WSL
+
+  方式   |                 操作                  | 推荐
+-------- | ------------------------------------- | ----
+右键菜单 | Shift + 右键 → 在此处打开Linux Shell | 是
+快捷方式 | 开始菜单 → Ubuntu LTS 快捷方式       |
+
+## 安装Node.js
+
+可根据需要选择以下任一方式安装Node.js。若需要多版本切换，建议使用nvm方式安装。
+
+微软官方亦有[WSL Node.js]安装文档，供参考。
+
+### Node.js二进制包
+
+参见[Node.js二进制包安装]。
+
+```bash
+wget https://nodejs.org/dist/v16.13.2/node-v16.13.2.tar.gz
+sudo tar -xzvf node-v16.13.2.tar.gz -C /usr/local/lib/nodejs
+vi ~/.profile # 添加到PATH，增加以下一行
+# export PATH=/usr/local/lib/nodejs/node-$VERSION-$DISTRO/bin:$PATH
+. ~/.profile
+node --version  # 安装成功输出Node.js版本
+npm --version   # 安装成功输出NPM版本
+```
+
+### NodeSource
+
+参见[NodeSource Ubuntu]安装。
+
+```bash
+curl -fsSL https://deb.nodesource.com/setup_17.x | sudo -E bash -
+sudo apt install -y nodejs
+```
+
+### nvm
+
+采用以下命令安装：
+
+```bash
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
+```
+
+若以上方式失败，请下载发行包安装：
+
+```bash
+wget https://github.com/nvm-sh/nvm/archive/refs/tags/v0.39.1.tar.gz
+tar -xzvf v0.39.1.tar.gz
+cd nvm-0.39.1
+./install.sh
+```
+
+## 安装Python2
+
+WSL Ubuntu默认安装了Python3，如需使用Python2请使用以下命令安装：
+
+```bash
+sudo apt install python2
+python2 --version # 安装成功输出Python2版本号
+```
+
+## 安装Java
+
+需要使用Java环境的，建议安装OpenJDK和Maven。
+
+```bash
+sudo apt update
+sudo apt install openjdk-jdk-11
+java --version    # 安装成功输出Java版本号
+sudo apt install maven
+mvn --version     # 安装成功输出Maven版本号
+```
+
+## 安装MySql
+
+```bash
+sudo apt install mysql  # 默认安装MySQL 8
+```
+
+## 启用SSH登录
+
+> 安装SSH服务
+
+```bash
+sudo passwd root                  # 修改root密码
+sudo apt install openssh-server   # 安装SSH服务
+```
+
+> 启用root用户密码SSH登录
+
+```ini
+# vi /etc/ssh/sshd_config
+PasswordAuthentication yes        # 开启密码验证登录
+PermitRootLogin yes               # 开启root用户登录
+```
+
+> 启动SSH服务
+
+```bash
+sudo service ssh start
+```
+
+> 方跃明
+> 2022-01-20
+
+
+[下载WSL发行版]: https://docs.microsoft.com/zh-cn/windows/wsl/install-manual#downloading-distributions
+[NodeSource Ubuntu]: https://github.com/nodesource/distributions#deb
+[WSL Node.js]: https://docs.microsoft.com/zh-cn/windows/dev-environment/javascript/nodejs-on-wsl
+[Node.js二进制包安装]: https://github.com/nodejs/help/wiki/Installation
