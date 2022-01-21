@@ -38,7 +38,14 @@ wsl --install -d Ubuntu
 Add-AppxPackage .\Ubuntu_2004.2020.424.0_x64.appx
 ```
 
-## 配置源
+## 使用WSL
+
+  方式   |                 操作                  | 推荐
+-------- | ------------------------------------- | ----
+右键菜单 | Shift + 右键 → 在此处打开Linux Shell | 是
+快捷方式 | 开始菜单 → Ubuntu LTS 快捷方式       |
+
+## 配置Ubuntu源
 
 这里示例使用[Ubuntu阿里源]
 
@@ -63,15 +70,30 @@ deb-src http://mirrors.aliyun.com/ubuntu/ focal-proposed main restricted univers
 
 deb http://mirrors.aliyun.com/ubuntu/ focal-backports main restricted universe multiverse
 deb-src http://mirrors.aliyun.com/ubuntu/ focal-backports main restricted universe multiverse
-
 ```
 
-## 使用WSL
+## 启用SSH登录
 
-  方式   |                 操作                  | 推荐
--------- | ------------------------------------- | ----
-右键菜单 | Shift + 右键 → 在此处打开Linux Shell | 是
-快捷方式 | 开始菜单 → Ubuntu LTS 快捷方式       |
+> 安装SSH服务
+
+```bash
+sudo passwd root                  # 修改root密码
+sudo apt install openssh-server   # 安装SSH服务
+```
+
+> 启用root用户密码SSH登录
+
+```ini
+# vi /etc/ssh/sshd_config
+PasswordAuthentication yes        # 开启密码验证登录
+PermitRootLogin yes               # 开启root用户登录
+```
+
+> 启动SSH服务
+
+```bash
+sudo service ssh start
+```
 
 ## 安装Node.js
 
@@ -104,19 +126,39 @@ sudo apt install -y nodejs
 
 ### nvm
 
-采用以下命令安装：
+采用以下命令安装nvm：
 
 ```bash
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
 ```
 
-若以上方式失败，请下载发行包安装：
+若以上方式失败，请下载发行包安装nvm：
 
 ```bash
 wget https://github.com/nvm-sh/nvm/archive/refs/tags/v0.39.1.tar.gz
 tar -xzvf v0.39.1.tar.gz
 cd nvm-0.39.1
 ./install.sh
+```
+
+安装Node.js
+
+```bash
+nvm install 14.18.3   # 安装Node.js v14.18.3 LTS
+```
+
+## 安装nginx
+
+```bash
+sudo apt install nginx    # 安装nginx
+sudo service nginx start  # 启动nginx代理服务
+```
+
+## 安装MySql
+
+```bash
+sudo apt install mysql    # 默认安装MySQL 8
+sudo service mysql start  # 启动MySQL数据库服务
 ```
 
 ## 安装Python2
@@ -138,35 +180,6 @@ sudo apt install openjdk-jdk-11
 java --version    # 安装成功输出Java版本号
 sudo apt install maven
 mvn --version     # 安装成功输出Maven版本号
-```
-
-## 安装MySql
-
-```bash
-sudo apt install mysql  # 默认安装MySQL 8
-```
-
-## 启用SSH登录
-
-> 安装SSH服务
-
-```bash
-sudo passwd root                  # 修改root密码
-sudo apt install openssh-server   # 安装SSH服务
-```
-
-> 启用root用户密码SSH登录
-
-```ini
-# vi /etc/ssh/sshd_config
-PasswordAuthentication yes        # 开启密码验证登录
-PermitRootLogin yes               # 开启root用户登录
-```
-
-> 启动SSH服务
-
-```bash
-sudo service ssh start
 ```
 
 > 方跃明
