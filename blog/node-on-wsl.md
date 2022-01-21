@@ -12,7 +12,7 @@ categories:
 
 适用于 Linux 的 Windows 子系统（WSL）可让开发人员直接在 Windows 上按原样运行 GNU/Linux 环境（包括大多数命令行工具、实用工具和应用程序），且不会产生传统虚拟机或双启动设置开销。
 
-以下操作基于Windows 10 企业版 LTSC 21H2版，安装WSL发行版，默认安装Ubuntu，配置Node.js开发环境。
+以下操作基于Windows 10 企业版 LTSC 21H2版，安装默认的WSL发行版（Ubuntu 20.04 LTS），配置Node.js开发环境。
 
 ## 安装WSL
 
@@ -36,6 +36,34 @@ wsl --install -d Ubuntu
 
 ```powershell
 Add-AppxPackage .\Ubuntu_2004.2020.424.0_x64.appx
+```
+
+## 配置源
+
+这里示例使用[Ubuntu阿里源]
+
+```bash
+vi /etc/apt/sources.list
+```
+
+替换默认的 http://archive.ubuntu.com/ 为 mirrors.aliyun.com
+
+```
+deb http://mirrors.aliyun.com/ubuntu/ focal main restricted universe multiverse
+deb-src http://mirrors.aliyun.com/ubuntu/ focal main restricted universe multiverse
+
+deb http://mirrors.aliyun.com/ubuntu/ focal-security main restricted universe multiverse
+deb-src http://mirrors.aliyun.com/ubuntu/ focal-security main restricted universe multiverse
+
+deb http://mirrors.aliyun.com/ubuntu/ focal-updates main restricted universe multiverse
+deb-src http://mirrors.aliyun.com/ubuntu/ focal-updates main restricted universe multiverse
+
+deb http://mirrors.aliyun.com/ubuntu/ focal-proposed main restricted universe multiverse
+deb-src http://mirrors.aliyun.com/ubuntu/ focal-proposed main restricted universe multiverse
+
+deb http://mirrors.aliyun.com/ubuntu/ focal-backports main restricted universe multiverse
+deb-src http://mirrors.aliyun.com/ubuntu/ focal-backports main restricted universe multiverse
+
 ```
 
 ## 使用WSL
@@ -146,6 +174,7 @@ sudo service ssh start
 
 
 [下载WSL发行版]: https://docs.microsoft.com/zh-cn/windows/wsl/install-manual#downloading-distributions
+[Ubuntu阿里源]: https://developer.aliyun.com/mirror/ubuntu
 [NodeSource Ubuntu]: https://github.com/nodesource/distributions#deb
 [WSL Node.js]: https://docs.microsoft.com/zh-cn/windows/dev-environment/javascript/nodejs-on-wsl
 [Node.js二进制包安装]: https://github.com/nodejs/help/wiki/Installation
