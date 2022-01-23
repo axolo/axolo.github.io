@@ -178,6 +178,13 @@ sudo apt install maven
 mvn --version     # 安装成功输出Maven版本号
 ```
 
+> 示例：运行Spring Boot项目
+
+```bash
+cd your-project
+mvn spring-boot:run
+```
+
 > 方跃明
 > 2022-01-20
 
