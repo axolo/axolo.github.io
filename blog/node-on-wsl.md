@@ -38,12 +38,18 @@ wsl --install -d Ubuntu
 Add-AppxPackage .\Ubuntu_2004.2020.424.0_x64.appx
 ```
 
+> 设置默认版本为WSL 2
+
+```powershell
+wsl --set-default-version 2
+```
 ## 使用WSL
 
-  方式   |                 操作                  | 推荐
--------- | ------------------------------------- | ----
-右键菜单 | Shift + 右键 → 在此处打开Linux Shell | 是
-快捷方式 | 开始菜单 → Ubuntu LTS 快捷方式       |
+  方式   |                         操作                           | 推荐
+-------- | ------------------------------------------------------ | ----
+VSCode   | 左下角 → 打开远程窗口 → New WSL Window use Distro... | 是
+右键菜单 | Shift + 右键 → 在此处打开Linux Shell                  |
+快捷方式 | 开始菜单 → Ubuntu LTS 快捷方式                        |
 
 ## 配置Ubuntu源
 
@@ -143,6 +149,26 @@ cd nvm-0.39.1
 nvm install 14.18.3   # 安装Node.js v14.18.3 LTS
 ```
 
+## 安装Yarn
+
+```bash
+npm install -g yarn   # version 1.x
+```
+
+> 解决yarn node-sass失败
+
+```bash
+yarn add node-sass-install # 或
+yarn config set sass_binary_site http://cdn.npm.taobao.org/dist/node-sass -g
+```
+
+## 安装git
+
+```shell
+apt install git # 安装
+git config --global credential.helper store # 记住密码
+```
+
 ## 安装nginx
 
 ```bash
@@ -154,7 +180,8 @@ sudo service nginx start  # 启动nginx代理服务
 
 ```bash
 sudo apt install mysql    # 默认安装MySQL 8
-sudo service mysql start  # 启动MySQL数据库服务
+sudo service mysql start  # 启动MySQL数据库
+sudo mysql -uroot         # 首次访问务必root用户权限
 ```
 
 ## 安装Python2
@@ -174,15 +201,41 @@ python2 --version # 安装成功输出Python2版本号
 sudo apt update
 sudo apt install openjdk-jdk-11
 java --version    # 安装成功输出Java版本号
+```
+
+## Maven
+
+### 安装Maven
+
+```
 sudo apt install maven
 mvn --version     # 安装成功输出Maven版本号
 ```
 
-> 示例：运行Spring Boot项目
+### 配置仓库地址
+
+Maven安装目录`conf/settings.xml`或当前用户`.m2/setttings.xml`
+
+```xml
+<mirrors>
+  <mirror>
+    <id>aliyunmaven</id>
+    <mirrorOf>*</mirrorOf>
+    <name>阿里云公共仓库</name>
+    <url>https://maven.aliyun.com/repository/public</url>
+  </mirror>
+</mirrors>
+```
+
+### Spring Boot项目相关命令
 
 ```bash
 cd your-project
-mvn spring-boot:run
+mvn spring-boot:run # 开发
+mvn clean           # 清理
+mvn compile         # 编译
+mvn package         # 打包
+mvn install         # 安装
 ```
 
 > 方跃明
