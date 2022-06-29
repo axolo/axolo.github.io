@@ -1,5 +1,7 @@
 # 方跃明的博客
 
+## 运行
+
 ```bash
 yarn dev    # 开发
 yarn build  # 编译
