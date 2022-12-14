@@ -1,16 +1,28 @@
 {
   "name": "fangyueming-blog",
-  "version": "0.2.0",
+  "version": "0.0.1",
   "description": "方跃明的博客",
-  "license": "MIT",
+  "private": true,
   "scripts": {
-    "dev": "vuepress dev blog",
-    "build": "vuepress build blog",
-    "clean": "vuepress dev blog --no-cache",
-    "eject": "vuepress eject-hope blog"
+    "install": "bundle install",
+    "serve": "bundle exec jekyll serve"
   },
-  "devDependencies": {
-    "vuepress": "^1.8.2",
-    "vuepress-theme-hope": "^1.21.0"
+  "keywords": [
+    "前端",
+    "Web",
+    "Javascript",
+    "Vue",
+    "Vue.js",
+    "FrontEnd"
+  ],
+  "author": "Yueming Fang",
+  "license": "MIT",
+  "homepage": "https://axolo.github.io",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/axolo/axolo.github.io.git"
+  },
+  "bugs": {
+    "url": "https://github.com/axolo/axolo.github.io/issues"
   }
 }
