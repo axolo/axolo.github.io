@@ -1,0 +1,28 @@
+{
+  "name": "fangyueming-blog",
+  "version": "0.1.0",
+  "description": "Yueming Fang's blog. powered by vitepress",
+  "author": "Yueming Fang",
+  "license": "MIT",
+  "keywords": [
+    "vite",
+    "vitepress",
+    "blog",
+    "vue.js",
+    "node.js",
+    "Yueming Fang",
+    "方跃明",
+    "博客"
+  ],
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vitepress dev .",
+    "save": "vitepress build . --save",
+    "build": "vitepress build .",
+    "serve": "vitepress serve ."
+  },
+  "devDependencies": {
+    "vitepress": "^1.0.0-alpha.35"
+  }
+}
