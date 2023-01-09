@@ -1,6 +1,14 @@
 # 方跃明的博客
 
-基于 vitepress 构建
+基于 [VitePress] 构建。
+
+一键生成博客数据保存在 `pages.json` 供开发使用。
+
+## pages.json
+
+- 一个 **必须** 存在的 `JSON` 文件，其初始值为 `[]`
+- 存放博客 `Frontmatter` 和相关数据（标题、创作时间、标签、分类等）
+- 编译发布前，请务必通过 `npm run save` 更新
 
 ## 命令
 
@@ -24,11 +32,7 @@ npm run serve   # 运行（发布后的内容）
 `-- README.md             # 说明
 ```
 
-## pages.json
-
-- 一个 **必须** 存在的 `JSON` 文件，其初始值为 `[]`
-- 存放博客 `Frontmatter` 和相关数据（标题、创作时间、标签、分类等）
-- 编译发布前请务必通过 `npm run save` 更新
-
 > 方跃明
 > 2023-01-09
+
+[VitePress]: https://vitepress.vuejs.org/
