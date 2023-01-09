@@ -4,7 +4,9 @@ const buildPages = []
 
 export default {
   title: '方跃明的博客',
-  srcDir: './src',
+  srcDir: './src', // 博客源文件目录
+  outDir: './docs', // 方便部署各种Pages
+  lastUpdated: true,
   async transformPageData(pageData) {
     if(!process.argv.includes('--save')) return // --save = 更新数据
     delete pageData.headers
