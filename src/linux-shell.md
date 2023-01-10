@@ -1,7 +1,6 @@
 ---
 title: Linux Shell 入门
 time: 2017-08-09
-layout: post
 categories: Linux
 tags: [Linux, Shell]
 ---

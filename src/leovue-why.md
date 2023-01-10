@@ -1,7 +1,6 @@
 ---
 title: LeoVue 的由来
 time: 2018-08-19
-layout: post
 categories: Vue
 tags: [Vue.js]
 ---

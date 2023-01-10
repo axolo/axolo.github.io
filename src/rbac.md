@@ -1,7 +1,6 @@
 ---
 title: RBAC之我见
 time: 2009-09-09
-layout: post
 categories: MySQL
 tags: [RBAC, MySQL]
 ---

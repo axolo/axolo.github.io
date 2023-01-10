@@ -1,7 +1,6 @@
 ---
 title: iOS开发环境搭建
 time: 2020-01-01
-layout: post
 categories: iOS
 tags: [iOS]
 ---

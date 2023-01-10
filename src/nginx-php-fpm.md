@@ -1,7 +1,6 @@
 ---
 title: nginx 配置 php-fpm
 time: 2017-01-01
-layout: post
 categories: PHP
 tags: [CentOS, nginx, PHP]
 ---

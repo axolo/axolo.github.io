@@ -1,7 +1,6 @@
 ---
 title: Linux目录结构
 time: 2021-12-19
-layout: post
 categories: Linux
 tags: [CentOS, Linux]
 ---

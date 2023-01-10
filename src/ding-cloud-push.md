@@ -1,7 +1,6 @@
 ---
 title: 钉钉云推送自建RDS最佳实践
 time: 2019-04-08
-layout: post
 tags: [MySQL, 钉钉, 钉钉云, 阿里云]
 categories: MySQL
 ---

@@ -1,7 +1,6 @@
 ---
 title: 基于WSL搭建Node.js开发环境
 time: 2022-01-20
-layout: post
 categories: Linux
 tags: [Linux, Node.js]
 ---

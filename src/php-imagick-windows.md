@@ -1,7 +1,6 @@
 ---
 title: php_imagick安装配置
 time: 2010-08-02
-layout: post
 categories: PHP
 tags: [PHP]
 ---

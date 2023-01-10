@@ -1,7 +1,6 @@
 ---
 title: JavaScript Promise
 time: 2020-02-18
-layout: post
 categories: JavaScript
 tags: [JavaScript]
 ---

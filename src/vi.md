@@ -1,7 +1,6 @@
 ---
 title: vi基本操作
 time: 2019-05-10
-layout: post
 categories: Linux
 tags: [Linux]
 ---

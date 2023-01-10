@@ -1,7 +1,6 @@
 ---
 title: MVC及PHP++、PHP--胡思乱想杂记
 time: 2009-08-01
-layout: post
 categories: PHP
 tags: [PHP]
 ---

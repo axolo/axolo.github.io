@@ -6,4 +6,5 @@ const url = path => '/' + path.replace(/.(md|markdown)$/i, '')
 
 <div v-for="(page, index) in pages" :key="index">
   <a :href="url(page.relativePath)">{{ page.title }}</a>
+  <address>{{ page.description }}</address>
 </div>

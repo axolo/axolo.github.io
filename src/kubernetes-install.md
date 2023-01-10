@@ -1,7 +1,6 @@
 ---
 title: Kubernetes 安装指南
 time: 2018-04-29
-layout: post
 categories: DevOps
 tags: [Docker, DevOps, Kubernetes]
 ---

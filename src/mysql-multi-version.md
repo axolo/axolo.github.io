@@ -1,7 +1,6 @@
 ---
 title: MySQL多版本单服务器共存
 time: 2019-05-12
-layout: post
 categories: MySQL
 tags: [MySQL, Linux, CentOS]
 ---

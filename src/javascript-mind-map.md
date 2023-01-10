@@ -1,7 +1,6 @@
 ---
 title: JavaScript 思维导图
 time: 2015-05-09
-layout: post
 tags: [JavaScript, WEB]
 categories: JavaScript
 ---

@@ -1,7 +1,6 @@
 ---
 title: MySQL定时备份
 time: 2019-05-11
-layout: post
 categories: MySQL
 tags: [MySQL, Linux, Shell]
 ---

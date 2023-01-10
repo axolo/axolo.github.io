@@ -1,7 +1,6 @@
 ---
 title: 读《SQL反模式》
 time: 2018-05-31
-layout: post
 categories: SQL
 tags: [SQL]
 top: 1

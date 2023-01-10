@@ -1,7 +1,6 @@
 ---
 title: Docker、kubernetes 和 Apache Mesos 之间的正确关系
 time: 2018-04-29
-layout: post
 categories: DevOps
 tags: [DevOps, Docker, Kubernetes, Mesos]
 ---

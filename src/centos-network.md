@@ -1,7 +1,6 @@
 ---
 title: CentOS网络
 time: 2019-12-25
-layout: post
 categories: Linux
 tags: [CentOS, Linux]
 ---

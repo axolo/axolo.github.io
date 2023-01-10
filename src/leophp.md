@@ -1,7 +1,6 @@
 ---
 title: LeoPHP Framework
 time: 2016-12-01
-layout: post
 categories: PHP
 tags: [PHP]
 ---

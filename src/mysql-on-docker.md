@@ -1,7 +1,6 @@
 ---
 title: Docker Mysql
 time: 2021-06-18
-layout: post
 categories: MySQL
 tags: [MySQL, Linux, Shell, Docker]
 ---

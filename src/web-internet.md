@@ -1,7 +1,6 @@
 ---
 title: Internet技术概览
 time: 2016-12-20
-layout: post
 categories: WEB
 tags: [WEB]
 ---

@@ -1,7 +1,6 @@
 ---
 title: CentOS入坑指南
 time: 2019-05-09
-layout: post
 categories: Linux
 tags: [CentOS, Linux]
 ---

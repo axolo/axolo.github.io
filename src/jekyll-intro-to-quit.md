@@ -1,7 +1,6 @@
 ---
 title: Jekyll从入门到放弃
 time: 2022-12-15
-layout: post
 categories: WEB
 tags: [WEB, Jekyll]
 ---

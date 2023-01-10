@@ -1,7 +1,6 @@
 ---
 title: Git提交规范
 time: 2020-01-02
-layout: post
 categories: Git
 tags: [Git]
 ---

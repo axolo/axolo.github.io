@@ -1,7 +1,6 @@
 ---
 title: Docker Portianer
 time: 2020-06-18
-layout: post
 categories: DevOps
 tags: [Linux, DevOps, Docker]
 ---

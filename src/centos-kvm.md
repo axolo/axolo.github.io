@@ -1,7 +1,7 @@
 ---
 title: CentOS 安装 KVM
+description: 很多人都使用Openstack，通过nova来管理KVM，对于KVM本身其实很陌生，本文理论联系实践，加深对KVM的认识。
 time: 2014-04-04
-layout: post
 categories: Linux
 tags: [CentOS, Linux, KVM]
 ---

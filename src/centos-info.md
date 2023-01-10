@@ -1,7 +1,6 @@
 ---
 title: CentOS查看各种信息
 time: 2012-04-03
-layout: post
 categories: Linux
 tags: [CentOS, Linux]
 ---

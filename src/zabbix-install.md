@@ -1,7 +1,6 @@
 ---
 title: Zabbix安装笔记
 time: 2011-11-11
-layout: post
 categories: DevOps
 tags: [Linux, DevOps]
 ---

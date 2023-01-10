@@ -1,7 +1,7 @@
 ---
 title: Egg.js实现OAuth2授权码方式鉴权
+description: 大量详尽的代码细述OAuth2授权码方式鉴权在Egg.js中的实现
 time: 2020-01-07
-layout: post
 categories: Node
 tags: [OAuth2, Egg.js, Node.js]
 top: 2

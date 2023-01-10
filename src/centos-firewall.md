@@ -1,7 +1,7 @@
 ---
 title: CentOS防火墙
+description: CentOS使用防火墙系统firewalld。大多数服务需要开启防火墙端口才能被正确访问。
 time: 2019-12-25
-layout: post
 categories: Linux
 tags: [CentOS, Linux]
 ---

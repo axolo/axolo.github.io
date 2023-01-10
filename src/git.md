@@ -1,7 +1,6 @@
 ---
 title: 图解 Git 常用操作
 time: 2018-04-28
-layout: post
 categories: Git
 tags: [Git]
 ---

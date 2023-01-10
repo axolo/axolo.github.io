@@ -1,7 +1,6 @@
 ---
 title: LeoVue 打包发布 NPM 折腾记
 time: 2018-08-19
-layout: post
 categories: Vue
 tags: [Vue.js, Node.js]
 ---

@@ -1,7 +1,6 @@
 ---
 title: WEB前端编码变迁记
 time: 2016-12-19
-layout: post
 categories: WEB
 tags: [WEB]
 ---

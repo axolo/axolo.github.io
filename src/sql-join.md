@@ -1,7 +1,6 @@
 ---
 title: 图解 SQL JOINS
 time: 2018-04-28
-layout: post
 categories: SQL
 tags: [SQL]
 ---

@@ -1,7 +1,6 @@
 ---
 title: Lodop打印解决方案
 time: 2018-07-09
-layout: post
 categories: WEB
 tags: [WEB]
 ---

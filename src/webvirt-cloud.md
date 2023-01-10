@@ -1,7 +1,6 @@
 ---
 title: WebVirtCloud 部署笔记
 time: 2013-12-30
-layout: post
 categories: Linux
 tags: [CentOS, Linux, KVM]
 ---

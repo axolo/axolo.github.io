@@ -1,7 +1,6 @@
 ---
 title: HTTP DELETE 方法传递参数
 time: 2019-10-01
-layout: post
 categories: WEB
 tags: [HTTP, WEB]
 ---

@@ -1,7 +1,6 @@
 ---
 title: frp内网穿透
 time: 2020-06-18
-layout: post
 categories: Linux
 tags: [Linux, CentOS, 内网穿透]
 ---

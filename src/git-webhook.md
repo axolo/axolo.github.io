@@ -1,7 +1,6 @@
 ---
 title: Git WebHooks
 time: 2019-09-23
-layout: post
 categories: Git
 tags: [Git]
 ---

@@ -1,7 +1,6 @@
 ---
 title: Linux 个人目录规划
 time: 2014-04-03
-layout: post
 categories: Linux
 tags: [CentOS, Linux]
 ---

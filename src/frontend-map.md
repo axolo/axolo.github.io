@@ -1,7 +1,6 @@
 ---
 title: 前端概念图
 time: 2020-02-07
-layout: post
 categories: WEB
 tags: [WEB]
 ---

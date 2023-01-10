@@ -1,7 +1,6 @@
 ---
 title: Vue父子组件通信
 time: 2018-09-30
-layout: post
 categories: Vue
 tags: [Vue.js]
 ---

@@ -1,7 +1,6 @@
 ---
 title: 前端常用工具
 time: 2018-03-02
-layout: post
 categories: Node
 tags: [Node.js]
 ---

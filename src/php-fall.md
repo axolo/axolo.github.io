@@ -1,7 +1,6 @@
 ---
 title: 有感于“论PHP的倒掉”
 time: 2009-11-23
-layout: post
 categories: PHP
 tags: [PHP]
 top: 2

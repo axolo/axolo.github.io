@@ -1,7 +1,6 @@
 ---
 title:  配置 Oracle PL/SQL Developer
 time: 2018-05-12
-layout: post
 categories: DevOps
 tags: [Oracle, SQL, DevOps]
 ---

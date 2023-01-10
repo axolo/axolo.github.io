@@ -1,7 +1,6 @@
 ---
 title: CentOS快速安装常用开发工具
 time: 2020-05-11
-layout: post
 categories: Linux
 tags: [CentOS, Linux]
 ---

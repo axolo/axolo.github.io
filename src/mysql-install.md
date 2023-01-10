@@ -1,7 +1,6 @@
 ---
 title: CentOS 安装 MySQL 8
 time: 2019-05-11
-layout: post
 categories: MySQL
 tags: [CentOS, MySQL, Linux]
 ---

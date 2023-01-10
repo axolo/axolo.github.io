@@ -1,7 +1,6 @@
 ---
 title: Webpack编译移除控制台输出
 time: 2021-12-14
-layout: post
 categories: Vue
 tags: [Vue.js, Webpack]
 ---

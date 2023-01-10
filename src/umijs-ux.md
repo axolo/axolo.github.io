@@ -1,7 +1,6 @@
 ---
 title: UmiJS之我见
 time: 2020-02-23
-layout: post
 categories: React
 tags: [React]
 ---

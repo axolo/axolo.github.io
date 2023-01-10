@@ -1,7 +1,6 @@
 ---
 title: jQuery常用表格操作
 time: 2016-10-30
-layout: post
 categories: JavaScript
 tags: [JavaScript, jQuery, WEB]
 ---

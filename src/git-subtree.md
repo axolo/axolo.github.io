@@ -1,7 +1,6 @@
 ---
 title: Git subtree
 time: 2020-08-20
-layout: post
 categories: Git
 tags: [Git]
 ---

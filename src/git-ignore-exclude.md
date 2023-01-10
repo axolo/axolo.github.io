@@ -1,7 +1,6 @@
 ---
 title: Git排除忽略子目录
 time: 2019-09-09
-layout: post
 categories: Git
 tags: [Git]
 ---
