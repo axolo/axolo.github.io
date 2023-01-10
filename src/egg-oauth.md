@@ -349,7 +349,10 @@ class Model {
       dataType: 'json',
     });
     if (!codes.length) return true;
-    const res = await app.curl(`${url}/codes/${codes[0].id}`, { method: 'DELETE', dataType: 'json' });
+    const res = await app.curl(`${url}/codes/${codes[0].id}`, {
+      method: 'DELETE',
+      dataType: 'json'
+    });
     if (res.status === 200) return true;
     return res;
   }
@@ -474,7 +477,9 @@ class CodeController extends Controller {
         return user;
       },
     };
-    const authorize = await oauth.server.authorize(request, response, { authenticateHandler });
+    const authorize = await oauth.server.authorize(request, response, {
+      authenticateHandler
+    });
     const { authorizationCode, redirectUri } = authorize;
     ctx.redirect(`${redirectUri}?code=${authorizationCode}&state=${query.state}`);
   }
@@ -518,7 +523,13 @@ module.exports = CodeController;
                 <div class="input-group-prepend">
                   <div class="input-group-text"><i class="fa fa-user"></i></div>
                 </div>
-                <input class="form-control" id="username" name="username" placeholder="用户名/手机/邮箱" required>
+                <input
+                  id="username"
+                  class="form-control"
+                  name="username"
+                  placeholder="用户名/手机/邮箱"
+                  required
+                >
               </div>
             </div>
             <div class="form-group">
@@ -527,10 +538,19 @@ module.exports = CodeController;
                 <div class="input-group-prepend">
                   <div class="input-group-text"><i class="fa fa-lock"></i></div>
                 </div>
-                <input type="password" class="form-control" id="password" name="password" placeholder="密码将被加密发送" required>
+                <input
+                  id="password"
+                  class="form-control"
+                  type="password"
+                  name="password"
+                  placeholder="密码将被加密发送"
+                  required
+                >
               </div>
             </div>
-            <button type="submit" class="btn btn-block btn-success submit">同意并授权</button>
+            <button type="submit" class="btn btn-block btn-success submit">
+              同意并授权
+            </button>
           </form>
         </div>
       </div>

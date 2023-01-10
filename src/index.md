@@ -1,7 +1,3 @@
----
-home: true
----
-
 <script setup>
 import { useData } from 'vitepress'
 import pages from '../.vitepress/data/pages.json'

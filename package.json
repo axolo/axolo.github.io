@@ -1,6 +1,6 @@
 {
   "name": "fangyueming-blog",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Yueming Fang's blog. powered by vitepress",
   "author": "Yueming Fang",
   "license": "MIT",
@@ -23,6 +23,8 @@
     "serve": "vitepress serve ."
   },
   "devDependencies": {
-    "vitepress": "^1.0.0-alpha.35"
+    "mermaid": "^8.14.0",
+    "vitepress": "^1.0.0-alpha.35",
+    "vitepress-plugin-mermaid": "^2.0.8"
   }
 }

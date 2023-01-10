@@ -1,8 +1,9 @@
 import fs from 'fs'
+import { withMermaid } from "vitepress-plugin-mermaid";
 
 const buildPages = []
 
-export default {
+export default withMermaid({
   title: '方跃明的博客',
   srcDir: './src', // 博客源文件目录
   outDir: './docs', // 方便部署各种Pages
@@ -22,4 +23,4 @@ export default {
     })
     fs.writeFileSync('./.vitepress/data/pages.json', JSON.stringify(data), { encoding: 'UTF-8' })
   }
-}
+})
