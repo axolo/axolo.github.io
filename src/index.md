@@ -1,10 +1,5 @@
 <script setup>
-import { useData } from 'vitepress'
-import pages from '../.vitepress/data/pages.json'
-const url = path => '/' + path.replace(/.(md|markdown)$/i, '')
+import Home from '../.vitepress/components/home.vue'
 </script>
 
-<div v-for="(page, index) in pages" :key="index">
-  <a :href="url(page.relativePath)">{{ page.title }}</a>
-  <address>{{ page.description }}</address>
-</div>
+<Home />
