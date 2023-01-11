@@ -1,11 +1,12 @@
 <script setup>
-import pages from '../data/pages.json'
-const url = path => '/' + path.replace(/.(md|markdown)$/i, '')
+import Author from './author.vue'
+import Pages from './pages.vue'
 </script>
 
 <template>
-  <div v-for="(page, index) in pages" :key="index">
-    <a :href="url(page.relativePath)">{{ page.title }}</a>
-    <address>{{ page.description }}</address>
+  <div class="VPHome">
+    <div class="container">
+      <Pages />
+    </div>
   </div>
 </template>
