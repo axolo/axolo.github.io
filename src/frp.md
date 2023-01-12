@@ -7,7 +7,7 @@ tags: [Linux, CentOS, 内网穿透]
 
 # frp内网穿透
 
-内网穿透利器，官网：<https://github.com/fatedier/frp>
+内网穿透利器，官网：<https://gofrp.org/>
 
 ## frps
 
@@ -62,12 +62,7 @@ Type=simple
 User=nobody
 Restart=on-failure
 RestartSec=5s
-ExecStart=/usr/bin/frps -c /etc/frp/frps.ini
-# 创建软链接
-# ln -s /etc/frp/frps /usr/bin/frps
-# ln -s /etc/frp/frpc /usr/bin/frpc
-# 或，修改以下内容指向正确位置
-# ExecStart=/etc/frp/frps -c /etc/frp/frps.ini
+ExecStart=/etc/frp/frps -c /etc/frp/frps.ini
 
 [Install]
 WantedBy=multi-user.target
@@ -116,14 +111,12 @@ remote_port = 3306
 type = http
 subdomain = dev
 local_port = 80
-proxy_protocol_version = v2
 
 [egg]
 type = tcp
 local_ip = 127.0.0.1
 local_port = 7001
 remote_port = 7001
-proxy_protocol_version = v2
 ```
 
 ### 服务
