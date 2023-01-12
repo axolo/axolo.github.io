@@ -35,7 +35,7 @@ export default withMermaid({
       icon: 'github'
     }],
     footer: {
-      message: '©2021, fangyueming.cn',
+      message: '© 2021 fangyueming.cn',
       copyright: '<a href="https://beian.miit.gov.cn">浙ICP备20010733号-2</a>'
     }
   },
