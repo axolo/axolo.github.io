@@ -2,7 +2,7 @@ import fs from 'fs'
 import { withMermaid } from 'vitepress-plugin-mermaid'
 import icons from './data/icons'
 
-const buildPages = []
+const pages = []
 
 export default withMermaid({
   title: '方跃明的博客',
@@ -23,9 +23,9 @@ export default withMermaid({
       indexName: 'blog'
     },
     nav: [
-      { text: '归档', link: '/archive' },
+      { text: '标签', link: '/tag' },
       { text: '分类', link: '/category' },
-      { text: '标签', link: '/tag' }
+      { text: '归档', link: '/archive' }
     ],
     socialLinks: [{
       link: 'https://gitee.com/axolo',
@@ -42,19 +42,20 @@ export default withMermaid({
   async transformPageData(pageData) {
     if(!process.argv.includes('--save')) return // --save = 更新数据
     delete pageData.headers
-    buildPages.push(pageData)
+    pages.push(pageData)
   },
   async buildEnd(siteConfig) {
     if(!process.argv.includes('--save')) return // --save = 更新数据
     // FIXME: 屏蔽被重复push文章
-    const unique = [...new Set(buildPages.map(p => p.relativePath))]
-    const uniquePages = unique.map(u => buildPages.find(p => p.relativePath === u))
-    const data = uniquePages.sort((a, b) => {
+    const unique = [...new Set(pages.map(p => p.relativePath))]
+    const uniquePages = unique.map(u => pages.find(p => p.relativePath === u))
+    const docs = uniquePages.filter(p => !p.frontmatter.unsave) // 过滤不保存的
+    const data = docs.sort((a, b) => {
       // 第一排序：置顶顺序，第二排序：时间倒序
       const sortA = (a.frontmatter.top || 0) + (a.frontmatter.time?.toISOString() || '0000-00-00T00:00:00.000Z')
       const sortB = (b.frontmatter.top || 0) + (b.frontmatter.time?.toISOString() || '0000-00-00T00:00:00.000Z')
       return sortB.localeCompare(sortA)
     })
-    fs.writeFileSync('./.vitepress/data/pages.json', JSON.stringify(data), { encoding: 'UTF-8' })
+    fs.writeFileSync('./.vitepress/data/docs.json', JSON.stringify(data), { encoding: 'UTF-8' })
   }
 })

@@ -1,10 +1,11 @@
 ---
 layout: page
 lastUpdated: false
+unsave: true
 ---
 
 <script setup>
-import Home from '../.vitepress/components/home.vue'
+import MyHome from '../.vitepress/components/my/home.vue'
 </script>
 
-<Home />
+<MyHome />

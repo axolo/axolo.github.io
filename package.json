@@ -1,6 +1,6 @@
 {
   "name": "fangyueming-blog",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Yueming Fang's blog. powered by vitepress",
   "author": "Yueming Fang",
   "license": "MIT",
@@ -10,7 +10,9 @@
     "blog",
     "vue.js",
     "node.js",
+    "axolo",
     "Yueming Fang",
+    "方跃明的博客",
     "方跃明",
     "博客"
   ],
@@ -22,7 +24,15 @@
     "build": "vitepress build .",
     "serve": "vitepress serve ."
   },
+  "dependencies": {
+    "dayjs": "^1.11.7"
+  },
   "devDependencies": {
+    "@babel/eslint-parser": "^7.19.1",
+    "@vue/eslint-config-standard": "^8.0.1",
+    "eslint": "^8.24.0",
+    "eslint-config-alloy": "^4.7.0",
+    "eslint-plugin-vue": "^9.5.1",
     "mermaid": "^8.14.0",
     "sass": "^1.57.1",
     "vitepress": "^1.0.0-alpha.35",
