@@ -23,10 +23,8 @@ const doc = item => router.go(url(item.relativePath))
           <i class="my my-calendar icon" />
           <span class="text">{{ dayjs(page.frontmatter.time).format('YYYY-MM-DD') }}</span>
         </div>
-        <div class="tags">
-          <div v-for="item in page.frontmatter.tags" :key="item" class="tag" @click="tag(item)">
-            {{ item }}
-          </div>
+        <div v-for="item in page.frontmatter.tags" :key="item" class="tag" @click="tag(item)">
+          {{ item }}
         </div>
       </div>
       <div class="desc" @click="doc(page)">{{ page.description }}</div>
@@ -60,7 +58,7 @@ const doc = item => router.go(url(item.relativePath))
       display: flex;
       flex-wrap: wrap;
       align-items: center;
-      gap: 0.75em;
+      gap: 0.5em;
       .date {
         display: flex;
         flex-wrap: nowrap;
@@ -78,33 +76,27 @@ const doc = item => router.go(url(item.relativePath))
           white-space: nowrap;
         }
       }
-      .tags {
+      .tag {
+        cursor: pointer;
+        padding: 0 0.75em;
+        font-size: 0.75em;
         display: flex;
-        flex-wrap: wrap;
+        white-space: nowrap;
+        justify-content: center;
         align-items: center;
-        gap: 0.75em;
-        .tag {
-          cursor: pointer;
-          padding: 0 0.75em;
-          font-size: 0.75em;
-          display: flex;
-          white-space: nowrap;
-          justify-content: center;
-          align-items: center;
-          border-radius: 0.25em;
-          border-color: var(--vp-button-alt-border);
-          color: var(--vp-button-alt-text);
-          background-color: var(--vp-button-alt-bg);
-          &:hover {
-            border-color: var(--vp-button-alt-hover-border);
-            color: var(--vp-button-alt-hover-text);
-            background-color: var(--vp-button-alt-hover-bg);
-          }
-          &:active {
-            border-color: var(--vp-button-alt-active-border);
-            color: var(--vp-button-alt-active-text);
-            background-color: var(--vp-button-alt-active-bg);
-          }
+        border-radius: 0.25em;
+        border-color: var(--vp-button-alt-border);
+        color: var(--vp-button-alt-text);
+        background-color: var(--vp-button-alt-bg);
+        &:hover {
+          border-color: var(--vp-button-alt-hover-border);
+          color: var(--vp-button-alt-hover-text);
+          background-color: var(--vp-button-alt-hover-bg);
+        }
+        &:active {
+          border-color: var(--vp-button-alt-active-border);
+          color: var(--vp-button-alt-active-text);
+          background-color: var(--vp-button-alt-active-bg);
         }
       }
     }
