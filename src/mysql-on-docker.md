@@ -1,11 +1,14 @@
 ---
-title: Docker Mysql
+title: MySQL on Docker
 time: 2021-06-18
+description: 把 MySQL 部署到 Docker 上不失为一个很好的选择。
 categories: MySQL
-tags: [MySQL, Linux, Shell, Docker]
+tags: [MySQL, Docker, Linux, Shell]
 ---
 
-# Docker Mysql
+# MySQL on Docker
+
+把 MySQL 部署到 Docker 上不失为一个很好的选择。
 
 ## Install
 
@@ -37,7 +40,7 @@ mysql:latest
 # 1. add user to mysql
 #
 # create user 'backup'@'localhost' identified by 'backup';
-# grant SELECT, RELOAD, LOCK TABLES, REPLICATION CLIENT, SHOW VIEW, TRIGGER, PROCESS on *.* to 'backup'@'localhost';
+# grant all on *.* to 'backup'@'localhost';
 #
 # 2. my.cnf
 #
@@ -74,7 +77,8 @@ find /root/backup/mysql/ -ctime +7 -type d | xargs rm -rf
 # db1 => /root/backup/mysql/20210314/db1-20210314.sql.gz
 # db2 => /root/backup/mysql/20210314/db2-20210314.sql.gz
 # ...
-docker exec mysql mysqldump --skip-opt --databases ${db} | gzip > ${dir}/${db}-${date}.sql.gz
+docker exec mysql mysqldump --skip-opt --databases ${db} | \
+gzip > ${dir}/${db}-${date}.sql.gz
 ```
 
 ## CLI

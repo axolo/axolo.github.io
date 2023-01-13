@@ -1,5 +1,6 @@
 ---
 title: RBAC之我见
+description: RBAC（Role-Based Access Control）即：基于角色的权限控制。通过角色关联用户，角色关联权限的方式间接赋予用户权限。
 time: 2009-09-09
 categories: MySQL
 tags: [RBAC, MySQL]

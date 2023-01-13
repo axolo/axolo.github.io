@@ -1,5 +1,6 @@
 ---
-title: Chrome inspect开发钉钉应用
+title: Chrome inspect 开发钉钉应用
+description: Chrome inspect 是 Chrome 浏览器基于 webkit remote debug 的实现，支持安卓模拟器和真实设备。
 time: 2019-04-07
 categories: WEB
 tags: [Chrome, WEB]

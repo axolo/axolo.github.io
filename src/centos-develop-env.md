@@ -1,5 +1,6 @@
 ---
-title: CentOS快速安装常用开发工具
+title: CentOS快速搭建开发运行环境
+description: CentOS 快速安装 Docker、MySQL、nginx、Node.js，搭建开发运行环境。
 time: 2020-05-11
 categories: Linux
 tags: [CentOS, Linux]

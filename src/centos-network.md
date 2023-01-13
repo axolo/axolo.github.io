@@ -1,5 +1,6 @@
 ---
 title: CentOS网络
+description: CentOS 7 开始默认使用 network-manager 来配置网络。虽然传统方式依然可以配置，但不推荐。
 time: 2019-12-25
 categories: Linux
 tags: [CentOS, Linux]
@@ -9,7 +10,7 @@ tags: [CentOS, Linux]
 
 ## nmcli方式
 
-`CentOS 7`开始默认使用`network-manager`来配置网络，虽然传统方式依然可以配置但不推荐。
+`CentOS 7`开始默认使用`network-manager`来配置网络。虽然传统方式依然可以配置，但不推荐。
 
 以下为配置无线连接，其他网络管理命令参照帮助。
 

@@ -1,5 +1,6 @@
 ---
 title: CentOS查看各种信息
+description: 收集了点 CentOS 系统常用的软硬件信息查看方法
 time: 2012-04-03
 categories: Linux
 tags: [CentOS, Linux]

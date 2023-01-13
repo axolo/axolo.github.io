@@ -1,5 +1,6 @@
 ---
 title: UmiJS之我见
+description: 到目前为止，UmiJS还不算严谨成熟的框架，像小孩捏的泥人，随意松散，慎用。
 time: 2020-02-23
 categories: React
 tags: [React]
@@ -8,6 +9,8 @@ tags: [React]
 # UmiJS之我见
 
 到目前为止，UmiJS还不算严谨成熟的框架，像小孩捏的泥人，随意松散，慎用。
+
+<https://github.com/umijs/umi/issues/3989>
 
 - 仅简单整合了Redux、Router、Saga，未系统化为有机体
 - 配置未考虑各种场景，没有统一接口和方法（不仅仅是配置）

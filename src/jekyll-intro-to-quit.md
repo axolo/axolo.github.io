@@ -1,14 +1,15 @@
 ---
 title: Jekyll从入门到放弃
+description: 各种不习惯，严重受虐，从入门到放弃只需一周。Hugo 和 Hexo 别笑了，你俩半斤八两，五十步笑百步。
 time: 2022-12-15
 categories: WEB
-tags: [WEB, Jekyll]
+tags: [WEB, Blog]
 ---
 
 # Jekyll从入门到放弃
 
 各种不习惯，严重受虐，从入门到放弃只需一周。
-Jekyll、Hugo、Hexo 三兄弟都差不多，一并入门到放弃。
+Hugo 和 Hexo 别笑了，你俩半斤八两，五十步笑百步。
 
 ## 准备环境
 

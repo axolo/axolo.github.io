@@ -1,5 +1,6 @@
 ---
 title: HTTP DELETE 方法传递参数
+description: 尽管不建议 DELETE 方法携带 body，但实际业务用了，现实往往很无奈……
 time: 2019-10-01
 categories: WEB
 tags: [HTTP, WEB]
@@ -8,7 +9,7 @@ tags: [HTTP, WEB]
 # HTTP DELETE 方法传递参数
 
 :::warning
-[RFC2616]不建议 DELETE 方法甚至是 GET 方法 body 携带参数。
+[RFC2616] 不建议 DELETE 方法甚至是 GET 方法 body 携带参数。
 :::
 
 

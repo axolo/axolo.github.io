@@ -1,5 +1,6 @@
 ---
 title: CentOS安装配置OpenVPN
+description: 这个就不多说了，真的不能多说……
 time: 2020-01-29
 categories: CentOS
 tags: [CentOS, Linux, OpenVPN]

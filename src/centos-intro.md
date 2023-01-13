@@ -1,11 +1,14 @@
 ---
 title: CentOS入坑指南
+description: 一入 CentOS 深似海，从此再也爬不出来。
 time: 2019-05-09
 categories: Linux
 tags: [CentOS, Linux]
 ---
 
 # CentOS入坑指南
+
+一入 CentOS 深似海，从此再也爬不出来。
 
 ## 基本命令
 

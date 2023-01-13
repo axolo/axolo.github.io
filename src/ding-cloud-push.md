@@ -1,5 +1,6 @@
 ---
 title: 钉钉云推送自建RDS最佳实践
+description: 被钉钉云RDS坑过的，请自觉来此报到。
 time: 2019-04-08
 tags: [MySQL, 钉钉, 钉钉云, 阿里云]
 categories: MySQL
