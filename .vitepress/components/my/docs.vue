@@ -8,20 +8,27 @@ const url = path => site.value.base + path.replace(/.(md|markdown)$/i, '')
 
 const router = useRouter()
 const tag = item => router.go('/tag#' + item)
+const doc = item => router.go(url(item.relativePath))
 </script>
 
 <template>
-  <div v-for="(doc, index) in pages" :key="index" class="doc">
-    <a :href="url(doc.relativePath)">{{ doc.title }}</a>
+  <div v-for="(page, index) in pages" :key="index" class="doc">
+    <div class="title">
+      <a :href="url(page.relativePath)">{{ page.title }}</a>
+      <i v-if="page.frontmatter.top" class="my my-medal icon" />
+    </div>
     <div class="info">
-      <div class="date">{{ dayjs(doc.frontmatter.time).format('YYYY-MM-DD') }}</div>
+      <div class="date">
+        <i class="my my-calendar icon" />
+        <span>{{ dayjs(page.frontmatter.time).format('YYYY-MM-DD') }}</span>
+      </div>
       <div class="tags">
-        <div v-for="item in doc.frontmatter.tags" :key="item" class="tag" @click="tag(item)">
+        <div v-for="item in page.frontmatter.tags" :key="item" class="tag" @click="tag(item)">
           {{ item }}
         </div>
       </div>
     </div>
-    <div class="desc">{{ doc.description }}</div>
+    <div class="desc" @click="doc(page)">{{ page.description }}</div>
   </div>
 </template>
 
@@ -31,21 +38,34 @@ const tag = item => router.go('/tag#' + item)
   &:first-child {
     margin-top: 0;
   }
-  a {
+  .title {
     font-size: 1.2em;
-    font-weight: 500;
-    color: var(--vp-c-brand);
-    text-decoration-style: dotted;
-    transition: color 0.25s;
+    display: flex;
+    align-items: center;
+    a {
+      color: var(--vp-c-brand);
+      text-decoration-style: dotted;
+      transition: color 0.25s;
+    }
+    .icon {
+      margin-left: 0.1em;
+      font-size: 1.1em;
+      color: #fa8b4b;
+    }
   }
   .info {
     margin: 0.5em 0;
     display: flex;
     align-items: center;
     .date {
+      display: flex;
+      align-items: center;
       font-size: 0.9em;
       color: var(--vp-c-text-2);
       transition: color 0.5s;
+      .icon {
+        margin-right: 0.1em;
+      }
     }
     .tags {
       display: flex;

@@ -4,7 +4,7 @@ description: 花几个小时刷完阿里云数据工程师张友东力荐《SQL�
 time: 2018-05-31
 categories: SQL
 tags: [SQL]
-top: 1
+top: 2
 ---
 
 # 读《SQL反模式》

@@ -1,13 +1,13 @@
 ---
-title: 有感于“论PHP的倒掉”
+title: 有感于《论PHP的倒掉》
 description: 其实倒掉更多的是人，我不希望见到这个倒掉，那个倒掉。朝阳喷薄，以至如日中天，亦有日薄西山时。时乎，时乎，会当有变时。
 time: 2009-11-23
 categories: PHP
 tags: [PHP]
-top: 2
+top: 1
 ---
 
-# 有感于“论PHP的倒掉”
+# 有感于《论PHP的倒掉》
 
 > <http://www.iteye.com/topic/523378>
 > [七月十五](http://hent.iteye.com/)
