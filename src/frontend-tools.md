@@ -1,11 +1,70 @@
 ---
 title: 前端常用工具
+description: 工欲善其事，必先利其器。
 time: 2018-03-02
-categories: Node
+categories: node
 tags: [Node.js]
 ---
 
 # 前端常用工具
+
+工欲善其事，必先利其器。
+
+## Development
+
+开发辅助工具。
+
+|        工具         |                说明                |
+| ------------------- | ---------------------------------- |
+| [Vite server.proxy] | 前端开发环境跨域[CORS]问题终极神器 |
+| [http-server]       | 交付部署前自测一下可以增进感情     |
+| [JSON Sever]        | RESTful风格API模拟工具             |
+| [nvm-windows]       | Node.js版本管理工具                |
+| [WSL]               | 近乎真实环境体验的Linux            |
+
+## VSCode
+
+[Visual Studio Code] 插件。
+
+|      插件      |           说明           |
+| -------------- | ------------------------ |
+| [Iosevka]      | 编程字体                 |
+| [Todo Tree]    | 好记性不如烂笔头         |
+| [EditorConfig] | 你知道吗？[CRLF也是漏洞] |
+| [ESLint]       | 不以规矩，不成方圆       |
+| [Prettier]     | 前端美妆包               |
+| [DotENV]       | .env语法高亮             |
+| [Volar]        | Vue.js开发辅助神器       |
+| [Git Graph]    | git辅助神器              |
+| [REST Client]  | 后端API接口自测工具      |
+
+## EDGE
+
+[Microsoft EDGE] 浏览器插件。
+
+|       插件        |          说明          |
+| ----------------- | ---------------------- |
+| [Vue.js devtools] | Vue.js开发工具         |
+| [JSON Formatter]  | JSON格式化工具         |
+| [Allow CORS]      | 跨域[CORS]临时解决工具 |
+| [Boomerang]       | RESTful风格API请求工具 |
+| [Wappalyzer]      | 他山之石可以攻玉       |
+
+## Chrome
+
+[Google Chrome] 浏览器插件。
+
+::: warning 科学上网
+[Google Chrome] 应用商店和账号同步需要科学上网。对于Google轻度依赖者更推荐使用 [Microsoft EDGE]。
+:::
+
+|           插件            |          说明          |
+| ------------------------- | ---------------------- |
+| [Chrome版Vue.js devtools] | Vue.js开发工具         |
+| [JSON Viewer]             | JSON格式化工具         |
+| [Chrome版Allow CORS]      | 跨域[CORS]临时解决工具 |
+| [Yet Another REST Client] | RESTful风格API请求工具 |
+| [Chrome版Wappalyzer]      | 他山之石可以攻玉       |
 
 ## 基础
 
@@ -85,5 +144,37 @@ NSSM         | Windows服务     | <https://nssm.cc>
 pm2          | 后台运行Node.js | <https://pm2.keymetrics.io>
 forever      | 后台运行Node.js | <https://github.com/foreverjs/forever>
 
+> 持续整理中……
+
 > 方跃明
 > 2021-12-22
+
+[CORS]: https://developer.mozilla.org/zh-CN/docs/Web/HTTP/CORS
+[CRLF也是漏洞]: https://cloud.tencent.com/developer/article/1745279
+[Visual Studio Code]: https://code.visualstudio.com/
+[Microsoft EDGE]: https://www.microsoft.com/zh-cn/edge
+[Google Chrome]: https://google.cn/chrome/
+[Vite server.proxy]: https://cn.vitejs.dev/config/server-options.html#server-proxy
+[http-server]: https://github.com/http-party/http-server
+[JSON Sever]: https://github.com/typicode/json-server
+[nvm-windows]: https://github.com/coreybutler/nvm-windows
+[WSL]: https://learn.microsoft.com/zh-cn/windows/wsl/
+[Iosevka]: https://github.com/be5invis/Iosevka
+[Todo Tree]: https://marketplace.visualstudio.com/items?itemName=Gruntfuggly.todo-tree
+[EditorConfig]: https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig
+[ESLint]: https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint
+[Prettier]: https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode
+[DotENV]: https://marketplace.visualstudio.com/items?itemName=mikestead.dotenv
+[Volar]: https://marketplace.visualstudio.com/items?itemName=Vue.volar
+[Git Graph]: https://marketplace.visualstudio.com/items?itemName=mhutchie.git-graph
+[REST Client]: https://marketplace.visualstudio.com/items?itemName=humao.rest-client
+[Vue.js devtools]: https://microsoftedge.microsoft.com/addons/detail/olofadcdnkkjdfgjcmjaadnlehnnihnl
+[JSON Formatter]: https://microsoftedge.microsoft.com/addons/detail/njpoigijhgbionbfdbaopheedbpdoddi
+[Allow CORS]: https://microsoftedge.microsoft.com/addons/detail/bhjepjpgngghppolkjdhckmnfphffdag
+[Boomerang]: https://microsoftedge.microsoft.com/addons/detail/bhmdjpobkcdcompmlhiigoidknlgghfo
+[Wappalyzer]: https://microsoftedge.microsoft.com/addons/detail/mnbndgmknlpdjdnjfmfcdjoegcckoikn
+[Chrome版Vue.js devtools]: https://chrome.google.com/webstore/detail/nhdogjmejiglipccpnnnanhbledajbpd
+[JSON Viewer]: https://chrome.google.com/webstore/detail/gbmdgpbipfallnflgajpaliibnhdgobh
+[Chrome版Allow CORS]: https://chrome.google.com/webstore/detail/lhobafahddgcelffkeicbaginigeejlf
+[Yet Another REST Client]: https://chrome.google.com/webstore/detail/ehafadccdcdedbhcbddihehiodgcddpl
+[Chrome版Wappalyzer]: https://chrome.google.com/webstore/detail/gppongmhjkpfnbhagpmjfkannfbllamg

@@ -25,7 +25,10 @@
     "serve": "vitepress serve ."
   },
   "dependencies": {
-    "dayjs": "^1.11.7"
+    "dayjs": "^1.11.7",
+    "mermaid": "^8.14.0",
+    "vitepress": "^1.0.0-alpha.35",
+    "vitepress-plugin-mermaid": "^2.0.8"
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.19.1",
@@ -33,9 +36,6 @@
     "eslint": "^8.24.0",
     "eslint-config-alloy": "^4.7.0",
     "eslint-plugin-vue": "^9.5.1",
-    "mermaid": "^8.14.0",
-    "sass": "^1.57.1",
-    "vitepress": "^1.0.0-alpha.35",
-    "vitepress-plugin-mermaid": "^2.0.8"
+    "sass": "^1.57.1"
   }
 }

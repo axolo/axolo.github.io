@@ -102,6 +102,7 @@ const doc = item => router.go(url(item.relativePath))
     }
     .desc {
       font-size: 0.95em;
+      cursor: pointer;
     }
   }
 }
