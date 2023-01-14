@@ -2,7 +2,7 @@
 title: Zabbix安装笔记
 description: Zabbix（[`zæbiks]）是一个基于WEB界面的提供分布式系统监视以及网络监视功能的企业级的开源解决方案。
 time: 2011-11-11
-categories: DevOps
+categories: [linux]
 tags: [Linux, DevOps]
 ---
 
@@ -18,7 +18,7 @@ Zabbix（[`zæbiks]）是一个基于WEB界面的提供分布式系统监视以�
 
 ### 安装数据库
 
-```bash
+```shell
 # 安装 MariaDB 服务器和客户端
 yum install mariadb-server mariadb
 systemctl start mariadb
@@ -35,7 +35,7 @@ QUIT
 
 ### 安装服务端
 
-```bash
+```shell
 rpm -ivh http://repo.zabbix.com/zabbix/3.0/rhel/7/x86_64/zabbix-release-3.0-1.el7.noarch.rpm
 yum install zabbix-server-mysql zabbix-web-mysql
 cd /usr/share/doc/zabbix-server-mysql-3.0.3
@@ -61,7 +61,7 @@ php_value data.timezone Asia/Shanghai
 
 ### 启动Zabbix服务器和WEB服务器
 
-```bash
+```shell
 systemctl start zabbix-server
 systemctl start httpd
 ```
@@ -74,7 +74,7 @@ systemctl start httpd
 
 #### 安装
 
-```bash
+```shell
 yum install zabbix-agent
 ```
 
@@ -90,7 +90,7 @@ ServerActive=127.0.0.1                      # Zabbix Server或Zabbix Proxy
 
 #### 配置防火墙，打开Zabbix Agent端口（默认入站端口10050）
 
-```bash
+```shell
 systemctl start zabbix-agent
 ```
 
@@ -117,7 +117,7 @@ ServerActive=127.0.0.1        # Zabbix服务器
 
 ### 安装服务器
 
-```bash
+```shell
 rpm -ivh http://repo.zabbix.com/zabbix/3.0/rhel/7/x86_64/zabbix-release-3.0-1.el7.noarch.rpm
 yum install mariadb-server mariadb zabbix-proxy-mysql
 systemctl start mariadb
@@ -135,7 +135,7 @@ QUIT
 
 ### 导入数据库
 
-```bash
+```shell
 # cd /usr/share/doc/zabbix-proxy-mysql-3.0.3
 zcat schema.sql.gz | mysql -uzabbix -pzabbix zabbix_proxy
 ```
@@ -156,7 +156,7 @@ DBPassword=zabbix
 
 ### 启动Zabbix服务器
 
-```bash
+```shell
 systemctl start zabbix-proxy
 ```
 

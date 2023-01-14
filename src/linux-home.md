@@ -1,7 +1,8 @@
 ---
 title: Linux 个人目录规划
+description: 分门别类收纳整理是好习惯。
 time: 2014-04-03
-categories: Linux
+categories: [linux]
 tags: [CentOS, Linux]
 ---
 

@@ -1,7 +1,7 @@
 ---
-title: frp内网穿透
+title: frp 内网穿透
 time: 2020-06-18
-categories: Linux
+categories: [linux]
 tags: [Linux, CentOS, 内网穿透]
 ---
 
@@ -13,7 +13,7 @@ tags: [Linux, CentOS, 内网穿透]
 
 frp服务端
 
-```bash
+```shell
 frps -c frps.ini
 ```
 
@@ -42,7 +42,7 @@ frps所在系统的防火墙需放行以下端口
 | 8080 | frps vhost http  |
 |    * | frpc remote port |
 
-```bash
+```shell
 ## 防火墙放行端口
 firewall-cmd --zone=public --add-port=7000/tcp --permanent  # success
 firewall-cmd --zone=public --add-port=3306/tcp --permanent  # success
@@ -68,7 +68,7 @@ ExecStart=/etc/frp/frps -c /etc/frp/frps.ini
 WantedBy=multi-user.target
 ```
 
-```bash
+```shell
 # 创建软链接，设置为自动启动，并启动frpc
 ln -s /etc/frp/systemd/frps.service /etc/systemd/system/frps.service
 systemctl enable frps
@@ -79,7 +79,7 @@ systemctl start frps
 
 frp客户端
 
-```bash
+```shell
 frpc -c frpc.ini
 ```
 

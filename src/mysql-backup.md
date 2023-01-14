@@ -1,8 +1,9 @@
 ---
-title: MySQL定时备份
+title: MySQL 定时备份
+description: 定时自动备份 MySQL 是刚需。
 time: 2019-05-11
-categories: MySQL
-tags: [MySQL, Linux, Shell]
+categories: sql
+tags: [MySQL, DevOps, Shell]
 ---
 
 # MySQL定时备份
@@ -32,7 +33,7 @@ mysqldump -hhostname -uusername -ppassword --databases databasename | gzip > D:\
 
 ### 修改MySQL配置
 
-```bash
+```shell
 vi /etc/my.cnf
 ```
 
@@ -45,7 +46,7 @@ password=password
 
 ### 编写备份脚本
 
-```bash
+```shell
 #!/bin/bash
 # 定义目录
 dir=/path/to/backup/mysql/yourdatabase
@@ -58,7 +59,7 @@ mysqldump --databases yourdatabase | gzip > ${dir}/yourdatabase-${rq}.sql.gz
 
 ### 修改文件属性为可执行
 
-```bash
+```shell
 chmod +x /path/to/backmysql.sh
 ```
 
@@ -70,7 +71,7 @@ chmod +x /path/to/backmysql.sh
 0 3 * * * bash /path/to/backmysql.sh
 ```
 
-```bash
+```shell
 crontab mysql-backup.cron
 crontab -l
 # 0 3 * * * bash /path/to/backmysql.sh

@@ -1,8 +1,9 @@
 ---
 title: WebVirtCloud 部署笔记
+description: 图文并茂的 WebVirtCloud 部署笔记
 time: 2013-12-30
-categories: Linux
-tags: [CentOS, Linux, KVM]
+categories: [linux]
+tags: [CentOS, Linux, 虚拟化]
 ---
 
 # WebVirtCloud 部署笔记
@@ -13,13 +14,13 @@ tags: [CentOS, Linux, KVM]
 
 允许`WebVirtCloud`通行
 
-```bash
+```shell
 sudo semanage fcontext -a -t httpd_sys_content_t "/srv/webvirtcloud(/.*)"
 ```
 
 或关闭`SELINUX`
 
-```bash
+```shell
 vi /etc/selinux/config
 ```
 
@@ -31,7 +32,7 @@ SELINUX=disabled
 
 允许`nginx`和`novnc`通行。
 
-```bash
+```shell
 firewall-cmd --zone=public --add-port=80/tcp --permanent      # nginx
 firewall-cmd --zone=public --add-port=6080/tcp --permanent    # novnc
 firewall-cmd --reload
@@ -43,7 +44,7 @@ firewall-cmd --reload
 
 执行以下命令，若有高亮`vmx`或`svm`输出表示硬件支持虚拟化。
 
-```bash
+```shell
 egrep '(vmx|svm)' --color=always /proc/cpuinfo
 ```
 
@@ -57,7 +58,7 @@ Internet --- | HOST eth0 | --- | HOST br0 | --- | VMs eth0 | --- VMs
              +-----------+     +----------+     +----------+
 ```
 
-```bash
+```shell
 cp /etc/sysconfig/network-scripts/ifcfg-enp2s0 /etc/sysconfig/network-scripts/ifcfg-br0
 ```
 
@@ -80,7 +81,7 @@ ONBOOT=yes
 ZONE=public
 ```
 
-```bash
+```shell
 vi /etc/sysconfig/network-scripts/ifcfg-enp2s0
 ```
 
@@ -104,14 +105,14 @@ ONBOOT=yes
 ZONE=public
 ```
 
-```bash
+```shell
 systemctl restart network
 brctl show
 ```
 
 ### 安装KVM依赖
 
-```bash
+```shell
 yum install kvm qemu-kvm qemu-kvm-tools libvirt libvirt-python libvirt-client
 yum install virt-install python-virtinst bridge-utils libguestfs-tools
 ```
@@ -134,7 +135,7 @@ yum install virt-install python-virtinst bridge-utils libguestfs-tools
 
 ### 设置服务
 
-```bash
+```shell
 systemctl enable libvirtd   # 设置服务自启动
 systemctl start libvirtd    # 启动服务
 ```
@@ -145,14 +146,14 @@ systemctl start libvirtd    # 启动服务
 
 ### 更新 hypervisor gstfsd
 
-```bash
+```shell
 wget -O - https://clck.ru/9VMRH | sudo tee -a /usr/local/bin/gstfsd
 sudo service supervisor restart
 ```
 
 ### 获取SECRET_KEY
 
-```bash
+```shell
 vi /srv/webvirtcloud/webvirtcloud/settings.py
 ```
 
@@ -166,14 +167,14 @@ print(''.join([random.SystemRandom().choice(haystack) for _ in range(50)]))
 
 #### 安装WebVirtCloud依赖
 
-```bash
+```shell
 yum install python-virtualenv python-devel libvirt-devel
 yum install glibc gcc nginx supervisor python-lxml git python-libguestfs
 ```
 
 #### 克隆仓库
 
-```bash
+```shell
 sudo mkdir /srv && cd /srv
 sudo git clone https://github.com/retspen/webvirtcloud && cd webvirtcloud
 cp webvirtcloud/settings.py.template webvirtcloud/settings.py
@@ -182,7 +183,7 @@ cp webvirtcloud/settings.py.template webvirtcloud/settings.py
 
 #### 开始安装WebVirtCloud
 
-```bash
+```shell
 sudo virtualenv venv
 sudo source venv/bin/activate
 sudo venv/bin/pip install -r conf/requirements.txt
@@ -192,7 +193,7 @@ sudo venv/bin/python manage.py migrate
 
 #### 配置supervisor
 
-```bash
+```shell
 vi /etc/supervisord.conf
 ```
 
@@ -218,7 +219,7 @@ redirect_stderr=true
 
 注释`nginx`原有`server`段相关配置
 
-```bash
+```shell
 vi /etc/nginx/nginx.conf
 ```
 
@@ -248,7 +249,7 @@ vi /etc/nginx/nginx.conf
 
 确保webvirtcloud.conf配置正确
 
-```bash
+```shell
 cat /etc/nginx/conf.d/webvirtcloud.conf
 ```
 
@@ -284,19 +285,19 @@ server {
 
 ### 用户和组设置
 
-```bash
+```shell
 useradd webvirtmgr
 usermod -G kvm -a webvirtmgr
 ```
 
 ### 启动服务
 
-```bash
+```shell
 systemctl restart nginx
 systemctl restart supervisord
 ```
 
-```bash
+```shell
 supervisorctl status
 ```
 
@@ -310,7 +311,7 @@ webvirtcloud       RUNNING   pid 24660, uptime 6:01:40
 
 用于控制台添加基础架构
 
-```bash
+```shell
 su -s /bin/bash nginx
 ssh-keygen
 ssh-copy-id root@serverip
@@ -322,7 +323,7 @@ exit
 
 ### 进入控制台
 
-```bash
+```shell
 open http://serverip
 # username: admin
 # password: admin
@@ -334,7 +335,7 @@ open http://serverip
 
 ### 存储池
 
-```bash
+```shell
 chmod 755 -R /home/webvirtmgr
 ```
 

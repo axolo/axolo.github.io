@@ -1,7 +1,8 @@
 ---
 title: WEB前端编码变迁记
+description: 话说天下大势，分久必合，合久必分。 —— 《三国演义》
 time: 2016-12-19
-categories: WEB
+categories: [web]
 tags: [WEB]
 ---
 

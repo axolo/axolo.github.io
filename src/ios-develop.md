@@ -1,15 +1,18 @@
 ---
 title: iOS开发环境搭建
+description: 快速搭建 iOS 开发环境
 time: 2020-01-01
-categories: iOS
+categories: [ios]
 tags: [iOS]
 ---
 
 # iOS开发环境搭建
 
+快速搭建 iOS 开发环境
+
 ## 全局
 
-```bash
+```shell
 xcode-select --install # 安装xcode开发依赖
 gcc --version # 出现版本号表示成功
 sudo gem install cocoapods # 安装依赖管理工具
@@ -24,7 +27,7 @@ git --version # 出现版本号表示成功
 
 ## 项目
 
-```bash
+```shell
 cd ~/Projects/your-project
 # 建议将Podfile的源更换为国内源后执行安装
 # source 'https://mirrors.tuna.tsinghua.edu.cn/git/CocoaPods/Specs.git'

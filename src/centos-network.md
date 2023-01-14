@@ -2,19 +2,19 @@
 title: CentOS网络
 description: CentOS 7 开始默认使用 network-manager 来配置网络。虽然传统方式依然可以配置，但不推荐。
 time: 2019-12-25
-categories: Linux
+categories: [linux]
 tags: [CentOS, Linux]
 ---
 
 # CentOS 网络
 
-## nmcli方式
-
 `CentOS 7`开始默认使用`network-manager`来配置网络。虽然传统方式依然可以配置，但不推荐。
+
+## nmcli
 
 以下为配置无线连接，其他网络管理命令参照帮助。
 
-```bash
+```shell
 # 扫描并查看wifi情况
 nmcli d wifi connect password iface
 # 获取网卡描述，一般默认wlan0，连接KFC_free，密码12345678
@@ -27,15 +27,15 @@ nmcli con del KFC_free
 nmcli c
 # 删除连接
 nmcli c del 72ffd5f4-71f8-0001-b434-6122908cfd4e
-````
+```
 
-## dhcp方式
+## dhcp
 
 设置网卡为开机自动连接，开启DHCP，然后在路由器上配置MAC和IP绑定，家庭和小型局域网推荐使用。
 
-## 传统方式
+## ifcfg
 
-```bash
+```shell
 # 默认情况第一张网卡为ifcfg-eth0，不排除被命名成其他名称的可能
 # 一般情况下只需要指定IPADDR、NETMASK、GATEWAY和DNS1、DNS2即可
 vi /etc/sysconfig/network-scripts/ifcfg-eth0
@@ -66,7 +66,7 @@ UUID=5b0a7d76-1602-4e19-aee6-29f57618ca01
 ONBOOT=no
 ```
 
-```bash
+```shell
 vi /etc/resolv.conf       # 配置DNS
 ```
 
@@ -76,7 +76,7 @@ nameserver 114.114.114.114
 nameserver 8.8.8.8
 ```
 
-```bash
+```shell
 service network restart     # 重启网络服务使其生效
 ```
 

@@ -1,14 +1,14 @@
 ---
-title: Egg.js实现OAuth2授权码方式鉴权
+title: Egg.js 实现 OAuth2 授权码方式鉴权
 description: 大量详尽代码图文并茂一步步的细述OAuth2授权码方式鉴权在Egg.js中的实现。
 time: 2020-01-07
-categories: Node
-tags: [OAuth2, Egg.js, Node.js]
+categories: [node]
+tags: [OAuth2, Node.js, Egg.js]
 ---
 
-# Egg.js实现OAuth2授权码方式鉴权
+# Egg.js 实现 OAuth2 授权码方式鉴权
 
-OAuth2为[统一安全管理平台解决方案]（4A）中的**认证**环节解决方案。
+OAuth2 为[统一安全管理平台解决方案]（4A）中的**认证**环节解决方案。
 
 英文名称       | 名称 | 说明
 ---------------|------|------
@@ -82,7 +82,7 @@ resource --> |9.返回数据| client
 
 ### 服务
 
-```bash
+```shell
 yarn global add json-server
 cd mock/oauth/db
 json-server --watch oauth.json # 数据模型文件
@@ -190,7 +190,7 @@ class codes {
 
 ### 创建
 
-```bash
+```shell
 mkdir lib/plugin/egg-oauth && cd lib/plugin/egg-oauth
 npm init egg --type=plugin
 npm install
@@ -662,7 +662,7 @@ redirect_uri  | http://127.0.0.1:8080/#/redirect               | 否   | 跳转�
 
 请求头携带令牌访问资源服务器。
 
-```bash
+```shell
 curl 'http://127.0.0.1:7001' \
 -H 'Authorization: Bearer 0e55b110f79023e7073a1a80db9fc72b5414ab53'
 # 正确则返回数据：hi, egg，错误一般返回401错误
@@ -670,7 +670,7 @@ curl 'http://127.0.0.1:7001' \
 
 若配置`allowBearerTokensInQueryString`为`true`，还可以携带请求参数访问，如下：
 
-```bash
+```shell
 curl 'http://127.0.0.1:7001?access_token=0e55b110f79023e7073a1a80db9fc72b5414ab53'
 ```
 

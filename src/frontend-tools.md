@@ -2,7 +2,7 @@
 title: 前端常用工具
 description: 工欲善其事，必先利其器。
 time: 2018-03-02
-categories: node
+categories: [node]
 tags: [Node.js]
 ---
 

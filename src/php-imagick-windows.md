@@ -2,7 +2,7 @@
 title: php_imagick安装配置
 description: php_imagick是强大的图片处理PHP插件，提供了比GD库函数更为方便和强大的图片处理功能。
 time: 2010-08-02
-categories: PHP
+categories: [php]
 tags: [PHP]
 ---
 

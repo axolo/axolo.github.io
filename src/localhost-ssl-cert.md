@@ -1,7 +1,8 @@
 ---
-title: localhost开启HTTPS
+title: localhost 开启 HTTPS
+description: 如何给 localhost 开启 https ？
 time: 2020-03-28
-categories: WEB
+categories: [web]
 tags: [HTTP, WEB]
 ---
 
@@ -16,7 +17,7 @@ tags: [HTTP, WEB]
 
 下载并安装Go语言安装包，编译`minica`为可执行文件：`minica.exe`
 
-```bash
+```shell
 git clone https://github.com/jsha/minica.git
 cd minica
 go build
@@ -24,7 +25,7 @@ go build
 
 ### 生成证书
 
-```bash
+```shell
 # 若根证书存在，同时生成根证书和叶证书（localhost）
 ./minica --domains localhost
 # 若根证书存在，为其生成叶证书（localhost.com）
@@ -56,7 +57,7 @@ go build
 
 以http-server为例，将叶证书拷贝到对应目录，如`certs/localhost`下，以HTTPS协议运行。
 
-```bash
+```shell
 http-server -S -C ./certs/localhost/cert.pem -K ./certs/localhost/key.pem
 # Starting up http-server, serving ./ through https
 # Available on: https://127.0.0.1:8080

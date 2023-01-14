@@ -1,17 +1,19 @@
 ---
-title: LeoVue 打包发布 NPM 折腾记
-time: 2018-08-19
-categories: Vue
+title: LeoVue 打包发布 npm 折腾记
+description: 详尽步骤细述 Vue 组件库如何发布到 npm。
+time: 2018-08-18
+categories: [vue]
 tags: [Vue.js, Node.js]
 ---
 
 # LeoVue 打包发布 NPM 折腾记
 
+详尽步骤细述 Vue 组件库如何发布到 npm。
 ## 发布步骤
 
 ### 建立项目并发布
 
-```bash
+```shell
 npm install vue-cli -g          # 安装 vue 命令行工具
 vue init webpack-simple leovue  # 生成 package.json，请按需填写
 cd leovue                       # 配置webpack、编写并调试项目，各种折腾
@@ -153,3 +155,6 @@ found in `<Component>`
 ## 参考
 
 [vue todo-list组件发布到npm上的方法](https://www.jb51.net/article/137725.htm)
+
+> 方跃明
+> 2018-08-18

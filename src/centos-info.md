@@ -1,14 +1,16 @@
 ---
 title: CentOS查看各种信息
-description: 收集了点 CentOS 系统常用的软硬件信息查看方法
+description: 收集常用的 CentOS 系统软硬件信息查看方法
 time: 2012-04-03
-categories: Linux
+categories: [linux]
 tags: [CentOS, Linux]
 ---
 
 # CentOS查看各种信息
 
-```bash
+收集常用的 CentOS 系统软硬件信息查看方法
+
+```shell
 rpm -ql nginx                 # 查看nginx软件包的安装位置
 rpm -qa                       # 查看所有安装的软件包
 uname -a                      # 查看内核/操作系统/CPU信息的linux系统信息命令

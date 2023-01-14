@@ -2,7 +2,7 @@
 title: HTTP DELETE 方法传递参数
 description: 尽管不建议 DELETE 方法携带 body，但实际业务用了，现实往往很无奈……
 time: 2019-10-01
-categories: WEB
+categories: [web]
 tags: [HTTP, WEB]
 ---
 
@@ -22,7 +22,7 @@ tags: [HTTP, WEB]
 
 ## 请求
 
-```bash
+```shell
 curl -X DELETE '/car/:id'
 -H 'Content-Type: application/json' \
 -d '{ "data": { "deletedBy": "测试删除车辆17" } }'

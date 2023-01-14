@@ -1,18 +1,18 @@
 ---
-title: CentOS防火墙
-description: CentOS使用防火墙系统firewalld。大多数服务需要开启防火墙端口才能被正确访问。
+title: CentOS 防火墙
+description: CentOS 使用 firewalld 防火墙系统，大多数服务需要防火墙放行才能被访问。
 time: 2019-12-25
-categories: Linux
+categories: [linux]
 tags: [CentOS, Linux]
 ---
 
 # CentOS防火墙
 
-CentOS使用防火墙系统firewalld，大多数服务需要开启防火墙端口才能被正确访问。
+CentOS 使用 firewalld 防火墙系统，大多数服务需要防火墙放行才能被访问。
 
 ## 放行
 
-```bash
+```shell
 # 开启普通端口
 firewall-cmd --zone=public --add-port=80/tcp --permanent
 # 开启NAT转发，比如Docker Proxy
@@ -29,7 +29,7 @@ firewall-cmd --reload
 
 ## 服务
 
-```bash
+```shell
 systemctl start   firewalld   # 启动
 systemctl stop    firewalld   # 停止
 systemctl restart firewalld   # 重启
@@ -40,7 +40,7 @@ systemctl enable  firewalld   # 自启动
 
 ## 命令
 
-```bash
+```shell
 firewall-cmd --version                            # 查看版本
 firewall-cmd --help                               # 查看帮助
 firewall-cmd --state                              # 状态

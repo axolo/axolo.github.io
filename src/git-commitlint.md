@@ -1,7 +1,8 @@
 ---
-title: Git提交规范
+title: Git 提交规范
+description: 不以规矩，不成方圆。
 time: 2020-01-02
-categories: Git
+categories: [git]
 tags: [Git]
 ---
 
@@ -20,7 +21,7 @@ tags: [Git]
 
 ### 安装开发依赖
 
-```bash
+```shell
 yarn install -D husky
 yarn install -D @commitlint/cli
 yarn install -D @commitlint/config-conventional
@@ -41,7 +42,7 @@ yarn install -D @commitlint/config-conventional
 
 ## commit规范
 
-```bash
+```shell
 type(scope?): subject  #scope is optional
 ```
 
@@ -49,7 +50,7 @@ type(scope?): subject  #scope is optional
 
 ### 安装依赖
 
-```bash
+```shell
 yarn install -D conventional-changelog
 yarn install -D conventional-changelog-cli
 ```
@@ -64,7 +65,7 @@ yarn install -D conventional-changelog-cli
 
 ### 生成
 
-```bash
+```shell
 yarn changelog  # 在项目根目录生成CHANGELOG.md
 ```
 

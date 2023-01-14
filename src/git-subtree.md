@@ -1,7 +1,8 @@
 ---
 title: Git subtree
+description: 和 submodule 一样，subtree 也是 Git 多人协作开发利器。
 time: 2020-08-20
-categories: Git
+categories: [git]
 tags: [Git]
 ---
 
@@ -22,7 +23,7 @@ tags: [Git]
 
 ## 新建并关联子分支
 
-```bash
+```shell
 # 新建空分支并提交到远程
 git checkout --orphan subtree-branch
 git rm -rf .
@@ -37,7 +38,7 @@ git subtree add --prefix=subtree-branch origin subtree-branch
 
 ## 若对应子分支已存在
 
-```bash
+```shell
 # 克隆项目
 git clone https://github.com/axolo/your-project
 # 关联并拉取子分支
@@ -47,7 +48,7 @@ git subtree pull --prefix=www origin gh-pages
 
 ## 主分支操作同步到子分支
 
-```bash
+```shell
 # 主分支正常操作：改动www目录下的内容
 git add --all
 git commit -m "modify subtree"
@@ -62,7 +63,7 @@ git subtree push --prefix=www origin hotfix-001
 
 ## 子分支独立操作
 
-```bash
+```shell
 # 切换到子分支
 git checkout subtree-branch
 # working in subtree

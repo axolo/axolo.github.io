@@ -2,7 +2,7 @@
 title: 前端概念图
 description: 访问什么页面？显示什么信息？页面长成什么样？对页面做了什么操作？数据从何而来？
 time: 2020-02-07
-categories: WEB
+categories: [web]
 tags: [WEB]
 ---
 

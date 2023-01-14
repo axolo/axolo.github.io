@@ -2,7 +2,7 @@
 title: Webpack编译移除控制台输出
 description: 出于安全渗透和代码审计需要，生产环境往往需要移除控制台console系列函数的输出，逐一人肉删除显然不是好办法……
 time: 2021-12-14
-categories: Vue
+categories: [vue]
 tags: [Vue.js, Webpack]
 ---
 
@@ -20,7 +20,7 @@ tags: [Vue.js, Webpack]
 
 ## 安装
 
- ```bash
+ ```shell
  yarn add terser-webpack-plugin@4.2.3
  ```
 
@@ -54,7 +54,7 @@ module.exports = {
 
 ## 编译
 
-```bash
+```shell
 yarn build
 ```
 

@@ -2,7 +2,7 @@
 title: nginx 配置 php-fpm
 description: PHP-FPM（PHP FastCGI Process Manager），是用于管理 PHP 进程池的软件，用于接收和处理来自 Web 服务器（如Nginx）的请求。
 time: 2017-01-01
-categories: PHP
+categories: [php]
 tags: [CentOS, nginx, PHP]
 ---
 
@@ -21,7 +21,7 @@ CentOS 7
 
 ### nginx
 
-```bash
+```shell
 # https://www.nginx.com/resources/wiki/start/topics/tutorials/install/
 vim /etc/yum.repos.d/nginx.repo # 具体见下文
 yum install nginx
@@ -37,7 +37,7 @@ enabled=1
 
 ## PHP
 
-```bash
+```shell
 yum install php
 vim /etc/php-fpm.d/www.conf # 具体见下文
 php-fpm -R # 以root用户和守护进程方式启动php-fpm

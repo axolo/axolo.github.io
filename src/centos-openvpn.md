@@ -2,13 +2,15 @@
 title: CentOS安装配置OpenVPN
 description: 这个就不多说了，真的不能多说……
 time: 2020-01-29
-categories: CentOS
-tags: [CentOS, Linux, OpenVPN]
+categories: [linux]
+tags: [CentOS, Linux, VPN]
 ---
 
 # CentOS安装配置OpenVPN
 
-> 环境
+这个就不多说了，真的不能多说……
+
+## 环境
 
  环境    | 版本        | 说明
 ---------|-------------|------
@@ -16,7 +18,7 @@ CentOS   | el8         | 兼容el7
 easy-rsa | 3.0.6-1.el7 |
 openvpn  | 2.4.8-1.el7 |
 
-> 流程
+## 流程
 
 ```mermaid
 graph TB
@@ -32,7 +34,7 @@ G --> H(安装OpenVPN客户端连接VPN)
 
 ## 安装依赖
 
-```bash
+```shell
 dnf install net-tools
 # 强烈建议使用国内repo源，如：阿里云
 wget -O /etc/yum.repos.d/epel.repo http://mirrors.aliyun.com/repo/epel-7.repo
@@ -67,7 +69,7 @@ dnf install openvpn easy-rsa
 
 ## 配置easy-rsa
 
-```bash
+```shell
 cp -r /usr/share/easy-rsa/3.0.6/ /etc/openvpn/easy-rsa/
 cp /usr/share/doc/easy-rsa-3.0.3/vars.example /etc/openvpn/easy-rsa/vars
 vim /etc/openvpn/vars
@@ -87,7 +89,7 @@ set_var EASYRSA_REQ_OU         "My Organizational Unit"
 
 ### 创建PKI、CA、证书、密钥
 
-```bash
+```shell
 cd /etc/openvpn/easy-rsa
 ### 创建PKI
 ./easyrsa init-pki
@@ -119,7 +121,7 @@ openvpn --genkey --secret ta.key
 
 ### 整理密钥和证书
 
-```bash
+```shell
 cd /etc/openvpn/certs/server
 cp /etc/openvpn/easy-rsa/pki/dh.pem .
 cp /etc/openvpn/easy-rsa/ta.key .
@@ -156,7 +158,7 @@ explicit-exit-notify 1
 
 ### 启动服务
 
-```bash
+```shell
 systemctl start openvpn@server    # 启动
 systemctl enable openvepn@server  # 设置自启动
 firewall-cmd --zone=public --add-port=1194/udp --permanent  # success
@@ -169,7 +171,7 @@ firewall-cmd --reload             # 开发防火墙端口并重载防火墙
 
 ### 创建证书和密钥
 
-```bash
+```shell
 cd /etc/openvpn/easy-rsa
 ### 创建服务端证书和密钥
 ./easyrsa gen-req user01 nopass
@@ -188,7 +190,7 @@ cd /etc/openvpn/easy-rsa
 
 ### 整理证书和密钥
 
-```bash
+```shell
 cd /etc/openvpn/certs/client/user01
 cp /etc/openvpn/easy-rsa/ta.key .
 cp /etc/openvpn/easy-rsa/pki/ca.crt .
@@ -232,7 +234,7 @@ client.key 文件内容
 
 ### 用户认证脚本
 
-```bash
+```shell
 #!/bin/sh
 ###########################################################
 # checkpsw.sh (C) 2004 Mathias Sundman <mathias@openvpn.se>
@@ -268,7 +270,7 @@ echo "${TIME_STAMP}: Incorrect password: username=\"${username}\", password=\"${
 exit 1
 ```
 
-```bash
+```shell
 # 赋予可执行权限
 chmod +x /etc/openvpn/checkpsw.sh
 ```
@@ -285,7 +287,7 @@ user2 passwd2
 
 ### 用户固定IP配置
 
-```bash
+```shell
 vi /etc/openvpn/client/user1
 # chown -R nobody.nobody /etc/openvpn/client
 ```
@@ -294,7 +296,9 @@ vi /etc/openvpn/client/user1
 ifconfig-push  10.8.0.9  10.8.0.10
 ```
 
-> `ifconfig-push`中的每一对IP地址表示虚拟客户端和服务器的IP端点。它们必须从连续的/30子网网段中获取(这里是/30表示xxx.xxx.xxx.xxx/30，即子网掩码位数为30)，以便于与Windows客户端和TAP-Windows驱动兼容。明确地说，每个端点的IP地址对的最后8位字节必须取自下面的集合：
+`ifconfig-push`中的每一对IP地址表示虚拟客户端和服务器的IP端点。
+它们必须从连续的/30子网网段中获取(这里是/30表示xxx.xxx.xxx.xxx/30，即子网掩码位数为30)，以便于与Windows客户端和TAP-Windows驱动兼容。
+明确地说，每个端点的IP地址对的最后8位字节必须取自下面的集合：
 
 ```
 [1, 2]    [5, 6]    [9, 10]   [ 13, 14] [ 17, 18]

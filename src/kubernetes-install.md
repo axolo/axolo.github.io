@@ -1,8 +1,9 @@
 ---
 title: Kubernetes 安装指南
+description: kubernetes（简称k8s）是 Google 开源的容器集群管理系统，它构建 Docker 技术之上。
 time: 2018-04-29
-categories: DevOps
-tags: [Docker, DevOps, Kubernetes]
+categories: [devops]
+tags: [DevOps, Docker, Kubernetes]
 ---
 
 # Kubernetes 安装指南
@@ -13,7 +14,7 @@ tags: [Docker, DevOps, Kubernetes]
 
 ### kubernetes
 
-kubernetes（简称k8s）是Google开源的容器集群管理系统。它构建Ddocker技术之上，为容器化的应用提供资源调度、部署运行、服务发现、扩容缩容等整一套功能，本质上可看作是基于容器技术的mini-PaaS平台。
+kubernetes（简称k8s）是Google开源的容器集群管理系统。它构建Docker技术之上，为容器化的应用提供资源调度、部署运行、服务发现、扩容缩容等整一套功能，本质上可看作是基于容器技术的mini-PaaS平台。
 
 ![kubernetes](./files/kubernetes-install-architecture.png)
 
@@ -81,7 +82,7 @@ Docker 是一个开源的应用容器引擎，让开发者可以打包他们的�
 
 ### etcd配置
 
-```bash
+```shell
 # 安装
 yum install etcd
 ```
@@ -94,19 +95,19 @@ ETCD_LISTEN_CLIENT_URLS="http://0.0.0.0:2379"
 ETCD_ADVERTISE_CLIENT_URLS="http://192.168.20.25:2379"
 ```
 
-```bash
+```shell
 # 启动
 systemctl enable etcd
 systemctl start etcd
 ```
 
-```bash
+```shell
 etcdctl set /coreos.com/network/config '{ "Network": "10.1.0.0/16" }'
 ```
 
 #### master
 
-```bash
+```shell
 # 安装
 yum install kubernetes-master
 ```
@@ -133,7 +134,7 @@ KUBE_ALLOW_PRIV="--allow_privileged=false"
 KUBE_MASTER="--master=http://192.168.20.25:8080"
 ```
 
-```bash
+```shell
 # 启动服务
 systemctl enable kube-apiserver kube-scheduler kube-controller-manager
 systemctl start kube-apiserver kube-scheduler kube-controller-manager
@@ -141,7 +142,7 @@ systemctl start kube-apiserver kube-scheduler kube-controller-manager
 
 ### node
 
-```bash
+```shell
 # 安装
 yum install kubernetes-node flannel docker
 ```
@@ -168,7 +169,7 @@ FLANNEL_ETCD="http://192.168.20.25:2379"
 FLANNEL_ETCD_KEY="/coreos.com/network"
 ```
 
-```bash
+```shell
 systemctl enable kubelet kube-proxy flanenld docker
 systemctl start kubelet kube-proxy flanneld docker
 ```

@@ -1,11 +1,14 @@
 ---
-title: JavaScript Promise
+title: JavaScript async
+description: 代码演示 JavaScript 同步异步操作。
 time: 2020-02-18
-categories: JavaScript
+categories: [js]
 tags: [JavaScript]
 ---
 
-# JavaScript Promise
+# JavaScript async
+
+代码演示 JavaScript 同步异步操作。
 
 ## 场景
 

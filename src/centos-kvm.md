@@ -1,14 +1,14 @@
 ---
 title: CentOS 安装 KVM
-description: 很多人都使用Openstack，通过nova来管理KVM，对于KVM本身其实很陌生，本文理论联系实践，加深对KVM的认识。
+description: 很多人都使用 Openstack，通过 nova 来管理KVM，对于 KVM 本身其实很陌生，本文理论联系实践，加深对 KVM 的认识。
 time: 2014-04-04
-categories: Linux
-tags: [CentOS, Linux, KVM]
+categories: [devops]
+tags: [DevOps, CentOS, Linux, 虚拟化]
 ---
 
 # CentOS 安装 KVM
 
-很多人都使用Openstack，通过nova来管理KVM，对于KVM本身其实很陌生，本文理论联系实践，加深对KVM的认识。先弄清楚几个概念和关系：
+很多人都使用 Openstack，通过 nova 来管理 KVM，对于 KVM 本身其实很陌生，本文理论联系实践，加深对 KVM 的认识。先弄清楚几个概念和关系：
 
 ## Openstack、kvm、qemu-kvm、libvirt的关系
 
@@ -36,7 +36,7 @@ tags: [CentOS, Linux, KVM]
 
 检查CPU是否支持虚拟化，用以下命令，其中vmx对应intel，svm对应amd，运行后如果有对应输出则支持虚拟化，无输出则表面不支持虚拟化。
 
-```bash
+```shell
 cat /proc/cpuinfo | grep -E '(vmx|svm)'
 ```
 
@@ -46,20 +46,20 @@ cat /proc/cpuinfo | grep -E '(vmx|svm)'
 
 安装kvm服务端及相关组件，其中python-virtinst用于在创建虚拟机时编辑配置文件， virt-viewer用于客户端管理器管理虚拟机时开启图形控制台，防止黑屏。
 
-```bash
+```shell
 yum install kvm qemu-kvm libvirt  python-virtinst  virt-viewer
 ```
 
 启动libvirt服务
 
-```bash
+```shell
 /etc/init.d/libvirtd start
 ```
 
 查看kvm服务是否正常，目前没任何虚拟机，所以没有内容显示
 进入virsh后，可以使用virsh的相关指令。help为帮助，exit退出virsh。
 
-```bash
+```shell
 virsh
 list
 ```
@@ -96,13 +96,13 @@ BRIDGE=br0          #桥接到br0
 
 重启网络服务
 
-```bash
+```shell
 /etc/init.d/network restart
 ```
 
 查看桥接网络
 
-```bash
+```shell
 brctl show
 ```
 

@@ -1,7 +1,8 @@
 ---
 title: 图解 Git 常用操作
+description: 你真的需要记住那么多 Git 操作吗？也许不到十个就够用了。
 time: 2018-04-28
-categories: Git
+categories: [git]
 tags: [Git]
 ---
 
@@ -11,7 +12,7 @@ tags: [Git]
 
 ## git
 
-你真的需要记住那么多Git操作吗？
+你真的需要记住那么多 Git 操作吗？
 也许阮一峰老师的[《常用Git命令清单》](http://www.ruanyifeng.com/blog/2015/12/git-cheat-sheet.html)就够了。
 ![Git常见操作图解](./files/git.png)
 
@@ -24,7 +25,7 @@ tags: [Git]
 
 ![git subtree](./files/git-subtree.png)
 
-```bash
+```shell
 # 克隆主项目仓库到本地
 git clone https://coding.net/axolo/lcoamaxy
 # 建立子项目，并从远程克隆子项目到本地对应目录

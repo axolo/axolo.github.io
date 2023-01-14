@@ -1,11 +1,16 @@
 ---
 title: Linux Shell 入门
+description: 师傅领进门，修行在自身。
 time: 2017-08-09
-categories: Linux
+categories: [linux]
 tags: [Linux, Shell]
 ---
 
 # Linux Shell 入门
+
+> 图片来自网络，侵删
+
+师傅领进门，修行在自身。
 
 ## 脚本文件
 
@@ -76,21 +81,21 @@ tags: [Linux, Shell]
 
 #### 获取字符串长度
 
-```bash
+```shell
 string="abcd"
 echo ${#string}     # 4
 ```
 
 #### 提取字符串
 
-```bash
+```shell
 string="runoob is a great site"
 echo ${string:1:4}  # unoo
 ```
 
 #### 查找字符串位置
 
-```bash
+```shell
 string="runoob is a great company"
 echo `expr index "$string" is`  # 8
 ```
@@ -99,14 +104,14 @@ echo `expr index "$string" is`  # 8
 
 #### 定义数组
 
-```bash
+```shell
 array_name=(value0 value1 value2 value3)  # 整体定义，可分行
 array_name[0]=value0                      # 可单独定义
 ```
 
 #### 引用
 
-```bash
+```shell
 echo ${array_name[n]}   # 读取第n个数组，数组下标从0开始
 echo ${array_name[*]}   # 读取所有数组
 echo ${array_name[@]}   # 读取所有数组
@@ -114,7 +119,7 @@ echo ${array_name[@]}   # 读取所有数组
 
 #### 获取长度
 
-```bash
+```shell
 ${#array_name[n]}     # 第n个数组长度
 ${#array_name[*]}     # 整个数组长度
 ${#array_name[@]}     # 整个数组长度
@@ -133,8 +138,6 @@ ${#array_name[@]}     # 整个数组长度
 ![Shell脚本1](./files/linux-shell-04.jpg)
 ![Shell脚本2](./files/linux-shell-05.jpg)
 ![Shell脚本3](./files/linux-shell-06.jpg)
-
-> 图片来自网络，侵删
 
 > 未完待续……
 

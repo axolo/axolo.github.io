@@ -2,7 +2,7 @@
 title: 基于WSL搭建Node.js开发环境
 description: WSL 可让开发人员直接在 Windows 上按原样运行 GNU/Linux 环境，且不会产生传统虚拟机或双启动设置开销，提供 Node.js on Linux 上佳体验。
 time: 2022-01-20
-categories: Linux
+categories: [linux]
 tags: [Linux, Node.js]
 ---
 
@@ -53,7 +53,7 @@ VSCode   | 左下角 → 打开远程窗口 → New WSL Window use Distro... | �
 
 这里示例使用[Ubuntu阿里源]
 
-```bash
+```shell
 vi /etc/apt/sources.list
 ```
 
@@ -76,7 +76,7 @@ deb-src http://mirrors.aliyun.com/ubuntu/ focal-backports main restricted univer
 
 > 安装SSH服务
 
-```bash
+```shell
 sudo passwd root                  # 修改root密码
 sudo apt install openssh-server   # 安装SSH服务
 ```
@@ -91,7 +91,7 @@ PermitRootLogin yes               # 开启root用户登录
 
 > 启动SSH服务
 
-```bash
+```shell
 sudo service ssh start
 ```
 
@@ -105,7 +105,7 @@ sudo service ssh start
 
 参见[Node.js二进制包安装]。
 
-```bash
+```shell
 wget https://nodejs.org/dist/v16.13.2/node-v16.13.2.tar.gz
 sudo tar -xzvf node-v16.13.2.tar.gz -C /usr/local/lib/nodejs
 vi ~/.profile # 添加到PATH，增加以下一行
@@ -119,7 +119,7 @@ npm --version   # 安装成功输出NPM版本
 
 参见[NodeSource Ubuntu]安装。
 
-```bash
+```shell
 curl -fsSL https://deb.nodesource.com/setup_17.x | sudo -E bash -
 sudo apt install -y nodejs
 ```
@@ -128,13 +128,13 @@ sudo apt install -y nodejs
 
 采用以下命令安装nvm：
 
-```bash
+```shell
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
 ```
 
 若以上方式失败，请下载发行包安装nvm：
 
-```bash
+```shell
 wget https://github.com/nvm-sh/nvm/archive/refs/tags/v0.39.1.tar.gz
 tar -xzvf v0.39.1.tar.gz
 cd nvm-0.39.1
@@ -143,19 +143,19 @@ cd nvm-0.39.1
 
 安装Node.js
 
-```bash
+```shell
 nvm install 14.18.3   # 安装Node.js v14.18.3 LTS
 ```
 
 ## 安装Yarn
 
-```bash
+```shell
 npm install -g yarn   # version 1.x
 ```
 
 > 解决yarn node-sass失败
 
-```bash
+```shell
 yarn add node-sass-install # 或
 yarn config set sass_binary_site http://cdn.npm.taobao.org/dist/node-sass -g
 ```
@@ -169,14 +169,14 @@ git config --global credential.helper store # 记住密码
 
 ## 安装nginx
 
-```bash
+```shell
 sudo apt install nginx    # 安装nginx
 sudo service nginx start  # 启动nginx代理服务
 ```
 
 ## 安装MySql
 
-```bash
+```shell
 sudo apt install mysql    # 默认安装MySQL 8
 sudo service mysql start  # 启动MySQL数据库
 sudo mysql -uroot         # 首次访问务必root用户权限
@@ -186,7 +186,7 @@ sudo mysql -uroot         # 首次访问务必root用户权限
 
 WSL Ubuntu默认安装了Python3，如需使用Python2请使用以下命令安装：
 
-```bash
+```shell
 sudo apt install python2
 python2 --version # 安装成功输出Python2版本号
 ```
@@ -195,7 +195,7 @@ python2 --version # 安装成功输出Python2版本号
 
 需要使用Java环境的，建议安装OpenJDK和Maven。
 
-```bash
+```shell
 sudo apt update
 sudo apt install openjdk-jdk-11
 java --version    # 安装成功输出Java版本号
@@ -227,7 +227,7 @@ Maven安装目录`conf/settings.xml`或当前用户`.m2/setttings.xml`
 
 ### Spring Boot项目相关命令
 
-```bash
+```shell
 cd your-project
 mvn spring-boot:run # 开发
 mvn clean           # 清理

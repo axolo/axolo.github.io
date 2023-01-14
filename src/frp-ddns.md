@@ -1,7 +1,7 @@
 ---
 title: 家用宽带联机开发环境部署
 time: 2020-05-18
-categories: Linux
+categories: [linux]
 tags: [Linux, CentOS, 内网穿透]
 ---
 

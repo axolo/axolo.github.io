@@ -1,7 +1,8 @@
 ---
 title: CentOS 安装 MySQL 8
+description: CentOS 下快速安装配置 MySQL 8
 time: 2019-05-11
-categories: MySQL
+categories: sql
 tags: [CentOS, MySQL, Linux]
 ---
 
@@ -9,7 +10,7 @@ tags: [CentOS, MySQL, Linux]
 
 ## 一、安装并登录
 
-```bash
+```shell
 # 安装官方仓库
 yum localinstall https://repo.mysql.com/mysql80-community-release-el7-1.noarch.rpm
 # 安装 MySQL Server
@@ -55,7 +56,7 @@ FLUSH PRIVILEGES;
 
 ### 1. 设置skip-grant-tables
 
-```bash
+```shell
 vi /etc/my.cnf
 # 在 [mysqld] 段添加 skip-grant-tables，并重启mysql
 systemctl restart mysqld
@@ -70,7 +71,7 @@ UPDATE user SET authentication_string='' WHERE user='root';
 
 ### 3. 空密码登录
 
-```bash
+```shell
 vi /etc/my.cnf
 # 修改配置，注释刚刚添加的部分 # skip-grant-tables
 # 重启MySQL
@@ -83,7 +84,7 @@ mysql -uroot -p
 
 ### 1. 编写Shell脚本：mysql-backup.sh
 
-```bash
+```shell
 #!/bin/bash
 day=`date +%Y%m%d`
 dir=$HOME/mysql-backup
@@ -93,7 +94,7 @@ mysqldump -B sys -uroot -ppassword | gzip > $dir/sys-$day.sql.gz
 
 ### 2. 赋予执行权限
 
-```bash
+```shell
 chmod +x mysql-backup.sh
 ```
 
@@ -105,6 +106,6 @@ chmod +x mysql-backup.sh
 
 #### 4. 重启crond生效
 
-```bash
+```shell
 /etc/rc.d/init.d/crond restart
 ```

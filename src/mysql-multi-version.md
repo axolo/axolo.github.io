@@ -1,7 +1,8 @@
 ---
-title: MySQL多版本单服务器共存
+title: MySQL 多版本单服务器共存
+description: 同一台下 MySQL 7 和 MySQL 8 共存
 time: 2019-05-12
-categories: MySQL
+categories: [sql]
 tags: [MySQL, Linux, CentOS]
 ---
 
@@ -15,21 +16,21 @@ tags: [MySQL, Linux, CentOS]
 
 ### 依赖
 
-```bash
+```shell
 # 通常依赖早已被安装，可事先使用`yum list installed | gerp -E "make|gcc-c++..."`查询
 yum -y install make gcc-c++ cmake bison-devel ncurses ncurses-devel libaio-devel
 ```
 
 ### 下载
 
-```bash
+```shell
 # 由于服务器环境是CentOS i386，选择5.7版本的Linux Generic的i686版本
 wget https://dev.mysql.com/get/Downloads/MySQL-5.7/mysql-5.7.25-linux-glibc2.12-i686.tar.gz
 ```
 
 ### 解压
 
-```bash
+```shell
 # 解压到`/opt`目录
 tar -xzvf mysql-5.7.25-linux-glibc2.12-i686.tar.gz -C /opt
 ```
@@ -69,7 +70,7 @@ default-character-set=utf8mb4
 
 ### 权限
 
-```bash
+```shell
 groupadd mysql
 useradd mysql -g mysql
 chown -R mysql:mysql /opt/mysql-5.7.25-linux-glibc2.12-i686/
@@ -87,7 +88,7 @@ conf=/opt/mysql-5.7.25-linux-glibc2.12-i686/etc/my.cnf
 
 ### 初始化
 
-```bash
+```shell
 ./bin/mysqld --defaults-file=my.cnf --initialize --user=mysql &
 # 请务必留意输出的`temporary password`部分，获得`root`初始密码
 ./support-files/mysql.server start
@@ -95,7 +96,7 @@ conf=/opt/mysql-5.7.25-linux-glibc2.12-i686/etc/my.cnf
 
 ### 命令行
 
-```bash
+```shell
 ./bin/mysql --socket=mysql.sock --port=3307 -u root -p
 # 输入获得的初始密码，以root身份进入系统，进行必要的初期操作
 # 建议开启高强度密码验证插件：
@@ -104,7 +105,7 @@ conf=/opt/mysql-5.7.25-linux-glibc2.12-i686/etc/my.cnf
 
 ### 脚本
 
-```bash
+```shell
 #!/bin/bash
 mysql=/opt/mysql-5.7.25-linux-glibc2.12-i686
 if [[ $1 == '--help' ]];then                # 帮助

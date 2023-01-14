@@ -1,8 +1,9 @@
 ---
 title: Docker、kubernetes 和 Apache Mesos 之间的正确关系
+description: 虽然这三种技术都可以使用容器来部署、管理和扩展应用程序，但实际上它们每个都侧重解决不同的问题，并且扎根非常不同的环境之上。
 time: 2018-04-29
-categories: DevOps
-tags: [DevOps, Docker, Kubernetes, Mesos]
+categories: [devops]
+tags: [DevOps, Docker, Kubernetes, 虚拟化]
 ---
 
 # Docker、kubernetes 和 Apache Mesos 之间的正确关系

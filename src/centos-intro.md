@@ -1,8 +1,8 @@
 ---
-title: CentOS入坑指南
+title: CentOS 入坑指南
 description: 一入 CentOS 深似海，从此再也爬不出来。
 time: 2019-05-09
-categories: Linux
+categories: [linux]
 tags: [CentOS, Linux]
 ---
 
@@ -12,7 +12,7 @@ tags: [CentOS, Linux]
 
 ## 基本命令
 
-若没有命令行基础，操作Linux将寸步难行。
+若没有命令行基础，操作 Linux 将寸步难行。
 最好的学习命令的方法是使用`--help`参数查看在线帮助。
 
 |                 命令                  |                                 说明                                  |
@@ -50,7 +50,7 @@ tags: [CentOS, Linux]
 
 一般情况下，Linux安装完成后第一项任务是将其联网。
 
-```bash
+```shell
 # 默认情况第一张网卡为ifcfg-eth0，不排除被命名成其他名称的可能
 # 一般情况下只需要指定IPADDR、NETMASK、GATEWAY和DNS1、DNS2即可
 vi /etc/sysconfig/network-scripts/ifcfg-eth0
@@ -81,7 +81,7 @@ UUID=5b0a7d76-1602-4e19-aee6-29f57618ca01
 ONBOOT=no
 ```
 
-```bash
+```shell
 vi /etc/resolv.conf       # 配置DNS
 ```
 
@@ -91,7 +91,7 @@ nameserver 114.114.114.114
 nameserver 8.8.8.8
 ```
 
-```bash
+```shell
 service network restart     # 重启网络服务使其生效
 ```
 
@@ -116,7 +116,7 @@ service network restart     # 重启网络服务使其生效
 EPEL (Extra Packages for Enterprise Linux)是基于Fedora的一个项目，为“红帽系”的操作系统提供额外的软件包，适用于RHEL、CentOS和Fedora.
 CentOS最小安装默认不带基本的网络命令，需要手动安装net-tools。
 
-```bash
+```shell
 yum install epel-release
 yum install net-tools
 ```
@@ -125,7 +125,7 @@ yum install net-tools
 
 Linux主机一般通过SSH来远程管理
 
-```bash
+```shell
 # 除非自定义取消，CentOS默认安装包含了OpenSSH Server
 yum list installed | grep openssh-server
 # 若此处没有openssh-server信息，请务必安装
@@ -136,7 +136,7 @@ yum install openssh-server
 
 CentOS 7 使用新的防火墙系统firewalld，大多数服务需要开启防火墙端口才能被正确访问。
 
-```bash
+```shell
 ## 开启80端口
 firewall-cmd --zone=public --add-port=80/tcp --permanent  # success
 firewall-cmd --reload
@@ -148,7 +148,7 @@ firewall-cmd --reload
 | --add-port=80/tcp | 添加端口，格式为：端口/通讯协议 |
 | --permanent       | 永久生效，没有此参数重启后失效  |
 
-```bash
+```shell
 ## 常用服务
 systemctl start   firewalld   # 启动
 systemctl stop    firewalld   # 停止
@@ -157,7 +157,7 @@ systemctl status  firewalld   # 状态
 systemctl disable firewalld   # 禁用
 ```
 
-```bash
+```shell
 ## 常用配置
 firewall-cmd --version                            # 查看版本
 firewall-cmd --help                               # 查看帮助
@@ -196,7 +196,7 @@ SELINUX=disabled
 SELINUXTYPE=targeted
 ```
 
-```bash
+```shell
 getenforce      # 查询状态
 # disabled
 setenforce 0    # 临时设置
@@ -206,7 +206,7 @@ setenforce 0    # 临时设置
 
 ## 查看系统信息
 
-```bash
+```shell
 rpm -ql nginx                 # 查看nginx软件包的安装位置
 rpm -qa                       # 查看所有安装的软件包
 uname -a                      # 查看内核/操作系统/CPU信息的linux系统信息命令

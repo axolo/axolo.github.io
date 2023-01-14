@@ -1,7 +1,8 @@
 ---
-title:  配置 Oracle PL/SQL Developer
+title:  安装配置 Oracle PL/SQL Developer
+description: Windows 下安装配置 Oracle 数据库管理器
 time: 2018-05-12
-categories: DevOps
+categories: [sql]
 tags: [Oracle, SQL, DevOps]
 ---
 

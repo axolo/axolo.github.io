@@ -2,19 +2,21 @@
 title: Docker Portianer
 description: Portainer是一个可视化的Docker操作界面，功能十分全面，基本能满足中小型单位对容器管理的全部需求。
 time: 2020-06-18
-categories: DevOps
+categories: [devops]
 tags: [Linux, DevOps, Docker]
 ---
 
 # Docker Portianer
 
-Portainer是一个可视化的Docker操作界面，提供状态显示面板、应用模板快速部署、容器镜像网络数据卷的基本操作（包括上传下载镜像，创建容器等操作）、事件日志显示、容器控制台操作、Swarm集群和服务等集中管理和操作、登录用户管理和控制等功能。功能十分全面，基本能满足中小型单位对容器管理的全部需求。
+Portainer 是一个可视化的Docker操作界面，
+提供状态显示面板、应用模板快速部署、容器镜像网络数据卷的基本操作（包括上传下载镜像，创建容器等操作）、事件日志显示、容器控制台操作、Swarm集群和服务等集中管理和操作、登录用户管理和控制等功能。
+功能十分全面，基本能满足中小型单位对容器管理的全部需求。
 
 ## 安装
 
-```bash
+```shell
 #!/bin/bash
-#Author: Yueming Fang
+# Author: Yueming Fang
 
 docker volume create portainer_data
 
@@ -26,7 +28,7 @@ portainer/portainer-ce
 
 ## 更新
 
-```bash
+```shell
 docker container update protainer
 ```
 
@@ -35,7 +37,7 @@ docker container update protainer
 请避开常用端口，比如如Apache的FastCGI使用9000端口，若被占用，请指定参数重新安装。
 或修改配置：
 
-```bash
+```shell
 docker stop portainer-container-id # 停止容器
 systemctl stop docker # 停止Docker服务
 vim /var/lib/docker/containers/portainer-container-id/hostconfig.json # 修改并保存

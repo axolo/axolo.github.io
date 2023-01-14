@@ -2,7 +2,7 @@
 title: Linux 编译安装命令 configure、make、install 的意义
 description: tar.gz、tar.bz2的是源代码包，需要编译之后才能安装，在编译过程中你可以指定各种参数以适应你的系统需求，比如安装位置，优化参数，要哪些功能不要哪些功能等等。
 time: 2008-08-08
-categories: Linux
+categories: [linux]
 tags: [Linux, Shell]
 ---
 
@@ -12,7 +12,7 @@ tar.gz、tar.bz2的是源代码包，需要编译之后才能安装，在编译�
 
 这类源代码包需要解压后，进入解压目录，一般都有一个`INSTALL`的文本文件，里面一般都是安装的详细说明，可以用vi、nano、pico或X下面的文本编辑器（如gedit、gvim、kedit等）打开查看。
 
-```bash
+```shell
 tar zxvf app.tar.gz     # tar.gz解压
 tar jxvf app.tar.bz2    # tar.bz2解压
 ```
@@ -24,7 +24,7 @@ tar jxvf app.tar.bz2    # tar.bz2解压
 这一步一般用来生成 Makefile，为下一步的编译做准备，你可以通过在 configure 后加上参数来对安装进行控制，比如
 代码:
 
- ```bash
+ ```shell
 ./configure --prefix=/usr
 ```
 
@@ -43,7 +43,7 @@ tar jxvf app.tar.bz2    # tar.bz2解压
 然后你可以向开发者提交`bugreport`（一般在`INSTALL`里有提交地址），或者你的系统少了一些依赖库等，
 这些需要自己仔细研究错误代码。
 
-```bash
+```shell
 make
 ```
 
@@ -103,7 +103,7 @@ configure脚本有大量的命令行选项。对不同的软件包来说，这�
 `--prefix`是最常用的选项。制作出的`Makefile`会查看随此选项传递的参数，当一个包在安装时可以彻底的重新安置他的结构独立部分。
 举一个例子，当安装一个包，例如说Emacs，下面的命令将会使Emacs Lisp file被安装到"/opt/gnu/share"。
 
-```bash
+```shell
 ./configure --prefix=/opt/gnu
 ```
 
@@ -197,7 +197,7 @@ configure脚本有大量的命令行选项。对不同的软件包来说，这�
 一些软件包可以选择这个选项来提供为大型选项的编译时配置，例如使用Kerberos认证系统或者一个实验性的编译器最优配置。
 如果默认是提供这些特性，可以使用`--disable-FEATURE`来禁用它，这里`FEATURE`是特性的名字。例如：
 
-```bash
+```shell
 ./configure --disable-gui
 ```
 
@@ -206,7 +206,7 @@ configure脚本有大量的命令行选项。对不同的软件包来说，这�
 相反的，一些软件包可能提供了一些默认被禁止的特性，可以使用`--enable-FEATURE`来起用它。
 这里`FEATURE`是特性的名字。一个特性可能会接受一个可选的参数。例如：
 
-```bash
+```shell
 ./configure --enable-buffers=128
 ```
 
@@ -221,7 +221,7 @@ configure脚本有大量的命令行选项。对不同的软件包来说，这�
 例如，倚赖于Tcl和Tk的BLT器件工具包。
 要配置BLT，可能需要给`configure`提供一些关于我们把Tcl和Tk装的何处的信息：
 
-```bash
+```shell
 ./configure --with-tcl=/usr/local --with-tk=/usr/local
 ```
 
@@ -234,7 +234,7 @@ configure脚本有大量的命令行选项。对不同的软件包来说，这�
 有时候你可能不想让你的软件包与系统已有的软件包交互。
 例如，你可能不想让你的新编译器使用GNU ld。通过使用这个选项可以做到这一点：
 
-```bash
+```shell
 ./configure --without-gnu-ld
 ```
 
@@ -257,7 +257,7 @@ configure脚本有大量的命令行选项。对不同的软件包来说，这�
 建议使用三棵树：一棵源码树(source tree)，一棵构筑树(build tree)，一棵安装树(install tree)。
 这里有一个很接近的例子，是使用这种方法来构筑GNU malloc包：
 
-```bash
+```shell
 tar zxvf mmalloc-1.0.tar.gz
 mkdir build && cd build
 ./mmalloc-1.0/configure
@@ -287,7 +287,7 @@ creating ./config. status
 
 这样这棵构筑树就被配置了，下面可以继续构筑和安装这个包到默认的位置'/usr/local'：
 
-```bash
+```shell
 make all && make install
 ```
 
@@ -295,7 +295,7 @@ make all && make install
 
 对于bin类型的安装文件，一般给该文件加上可执行权限，再运行之即可，如：
 
-```bash
+```shell
 chmod +x example。bin
 ./example.bin
 ```

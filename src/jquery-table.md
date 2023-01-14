@@ -1,8 +1,9 @@
 ---
-title: jQuery常用表格操作
+title: jQuery 常用表格操作
+description: jQuery 操作表格增删改查
 time: 2016-10-30
-categories: JavaScript
-tags: [JavaScript, jQuery, WEB]
+categories: [js]
+tags: [WEB, JavaScript, jQuery]
 ---
 
 # jQuery常用表格操作
