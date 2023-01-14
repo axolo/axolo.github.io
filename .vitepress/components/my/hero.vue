@@ -1,7 +1,6 @@
 <script setup>
 import { useData, withBase } from 'vitepress'
 const { site } = useData()
-console.log(site)
 </script>
 
 <template>
@@ -22,7 +21,7 @@ console.log(site)
 
 <style lang="scss" scoped>
 .MyHero {
-  background-image: url("./hero.svg");
+  background-image: url("/hero.svg");
   .container {
     padding: 64px 32px;
     display: flex;
