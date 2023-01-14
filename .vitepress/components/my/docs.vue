@@ -12,7 +12,7 @@ const doc = item => router.go(url(item.relativePath))
 </script>
 
 <template>
-  <div class="docs">
+  <div class="MyDocs">
     <div v-for="(page, index) in pages" :key="index" class="doc">
       <div class="title">
         <a :href="url(page.relativePath)">{{ page.title }}</a>
@@ -33,7 +33,7 @@ const doc = item => router.go(url(item.relativePath))
 </template>
 
 <style lang="scss" scoped>
-.docs {
+.MyDocs {
   display: flex;
   flex-direction: column;
   gap: 1.5em;

@@ -6,7 +6,7 @@ const pages = []
 
 export default withMermaid({
   title: '方跃明的博客',
-  description: '方跃明的博客',
+  description: '目标分解计划，数据驱动算法。约定大于配置，配置大于编码。',
   srcDir: './src', // 博客源文件目录
   outDir: './docs', // 方便部署各种Pages
   lastUpdated: true,
