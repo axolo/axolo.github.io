@@ -15,7 +15,9 @@ const doc = item => router.go(url(item.relativePath))
     <div v-for="(page, index) in pages" :key="index" class="doc">
       <div class="title">
         <a :href="url(page.relativePath)">{{ page.title }}</a>
-        <Badge v-if="page.frontmatter.top" class="icon" text="置顶" type="warning" />
+        <span v-if="page.frontmatter.top" class="top">
+          <Badge class="icon" text="置顶" type="warning" />
+        </span>
       </div>
       <div class="info">
         <div class="date">
@@ -42,14 +44,19 @@ const doc = item => router.go(url(item.relativePath))
       border-bottom: 1px dashed var(--vp-c-divider-light);
       font-size: 1.2em;
       display: flex;
-      align-items: center;
       a {
         color: var(--vp-c-brand);
         text-decoration-style: dotted;
         transition: color 0.25s;
       }
-      .icon {
-        margin-left: 0.2em;
+      .top {
+        padding: 0.2em;
+        .icon {
+          white-space: nowrap;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
       }
     }
     .info {
