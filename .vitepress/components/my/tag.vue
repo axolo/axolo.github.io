@@ -75,7 +75,8 @@ const tags = uniqueTags.map(name => ({
       padding-bottom: 0.25em;
       margin-bottom: 0.25em;
       border-bottom: 1px dashed var(--vp-c-divider-light);
-      font-size: 1.2em;
+      font-size: 1.25em;
+      font-weight: bold;
       display: flex;
       a {
         color: var(--vp-c-brand);
@@ -85,12 +86,9 @@ const tags = uniqueTags.map(name => ({
     }
   }
   .doc {
+    margin: 0.75em 0;
     a {
-      line-height: 2em;
       color: var(--vp-c-text-2);
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
       transition: color .5s;
     }
   }
