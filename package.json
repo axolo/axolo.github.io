@@ -5,16 +5,18 @@
   "author": "Yueming Fang",
   "license": "MIT",
   "keywords": [
+    "vue",
     "vite",
     "vitepress",
     "blog",
-    "vue.js",
-    "node.js",
+    "vue blog",
+    "vite blog",
+    "vitepress blog",
     "axolo",
     "Yueming Fang",
     "方跃明的博客",
     "方跃明",
-    "博客"
+    "博客系统"
   ],
   "type": "module",
   "main": "index.js",
@@ -26,8 +28,8 @@
   },
   "dependencies": {
     "dayjs": "^1.11.7",
-    "mermaid": "^8.14.0",
-    "vitepress": "^1.0.0-alpha.35",
+    "mermaid": "~9.1.7",
+    "vitepress": "^1.0.0-alpha.36",
     "vitepress-plugin-mermaid": "^2.0.8"
   },
   "devDependencies": {

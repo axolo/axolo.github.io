@@ -1,13 +1,12 @@
 <script setup>
-import { useData, useRouter } from 'vitepress'
+import { useRouter, withBase } from 'vitepress'
 import dayjs from 'dayjs'
 import pages from '../../data/docs.json'
 
-const { site } = useData()
-const url = path => site.value.base + path.replace(/.(md|markdown)$/i, '')
-
 const router = useRouter()
-const tag = item => router.go('/tag#' + item)
+
+const url = path => withBase(path.replace(/.(md|markdown)$/i, ''))
+const tag = item => router.go(`${withBase('tag')}#${item}`)
 const doc = item => router.go(url(item.relativePath))
 </script>
 

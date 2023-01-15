@@ -21,7 +21,7 @@ const { site } = useData()
 
 <style lang="scss" scoped>
 .MyHero {
-  background-image: url("/hero.svg");
+  background-image: url("/images/hero.svg");
   .container {
     padding: 64px 32px;
     display: flex;

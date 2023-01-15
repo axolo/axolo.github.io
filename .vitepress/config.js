@@ -1,5 +1,6 @@
 import fs from 'fs'
 import { withMermaid } from 'vitepress-plugin-mermaid'
+// import docs from './data/docs.json'
 import icons from './data/icons'
 
 const pages = []
@@ -12,7 +13,7 @@ export default withMermaid({
   lastUpdated: true,
   head: [
     ['link', { rel: 'icon', href: 'logo.svg' }],
-    ['link', { rel: 'stylesheet', href: 'style.css' }]
+    ['link', { rel: 'stylesheet', href: 'styles/my.css' }]
   ],
   themeConfig: {
     lastUpdatedText: '最近更新',
@@ -49,8 +50,8 @@ export default withMermaid({
     // FIXME: 屏蔽被重复push文章
     const unique = [...new Set(pages.map(p => p.relativePath))]
     const uniquePages = unique.map(u => pages.find(p => p.relativePath === u))
-    const docs = uniquePages.filter(p => !p.frontmatter.unsave) // 过滤不保存的
-    const data = docs.sort((a, b) => {
+    const onlyDocs = uniquePages.filter(p => !p.frontmatter.unsave) // 过滤不保存的
+    const data = onlyDocs.sort((a, b) => {
       // 第一排序：置顶顺序，第二排序：时间倒序
       const sortA = (a.frontmatter.top || 0) + (a.frontmatter.time?.toISOString() || '0000-00-00T00:00:00.000Z')
       const sortB = (b.frontmatter.top || 0) + (b.frontmatter.time?.toISOString() || '0000-00-00T00:00:00.000Z')
