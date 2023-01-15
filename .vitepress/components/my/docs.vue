@@ -15,11 +15,11 @@ const doc = item => router.go(url(item.relativePath))
     <div v-for="(page, index) in pages" :key="index" class="doc">
       <div class="title">
         <a :href="url(page.relativePath)">{{ page.title }}</a>
-        <i v-if="page.frontmatter.top" class="my my-medal icon" />
+        <Badge v-if="page.frontmatter.top" class="icon" text="置顶" type="warning" />
       </div>
       <div class="info">
         <div class="date">
-          <i class="my my-calendar icon" />
+          <i class="my my-time icon" />
           <span class="text">{{ dayjs(page.frontmatter.time).format('YYYY-MM-DD') }}</span>
         </div>
         <div v-for="item in page.frontmatter.tags" :key="item" class="tag" @click="tag(item)">
@@ -50,8 +50,6 @@ const doc = item => router.go(url(item.relativePath))
       }
       .icon {
         margin-left: 0.2em;
-        font-size: 1.1em;
-        color: #fa8b4b;
       }
     }
     .info {

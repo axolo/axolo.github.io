@@ -4,6 +4,7 @@ description: 大量详尽代码图文并茂一步步的细述OAuth2授权码方�
 time: 2020-01-07
 categories: [node]
 tags: [OAuth2, Node.js, Egg.js]
+top: 2
 ---
 
 # Egg.js 实现 OAuth2 授权码方式鉴权
