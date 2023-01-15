@@ -1,8 +1,8 @@
 # 方跃明的博客
 
-基于 [VitePress] 构建。
+基于 [VitePress] 构建，一键生成博客数据保存在 `docs.json` 供开发使用。
 
-一键生成博客数据保存在 `docs.json` 供开发使用。
+预览地址：<https://fangyueming.cn>
 
 ## docs.json
 
