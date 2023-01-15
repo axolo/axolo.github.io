@@ -1,6 +1,11 @@
 ---
+layout: page
 lastUpdated: false
 unsave: true
 ---
 
-coming soon ...
+<script setup>
+import MyTag from '../.vitepress/components/my/tag.vue'
+</script>
+
+<MyTag />

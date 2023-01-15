@@ -1,7 +1,7 @@
 <script setup>
 import { useRouter, withBase } from 'vitepress'
 import dayjs from 'dayjs'
-import pages from '../../data/docs.json'
+import docs from '../../data/docs.json'
 
 const router = useRouter()
 
@@ -12,7 +12,7 @@ const doc = item => router.go(url(item.relativePath))
 
 <template>
   <div class="MyDocs">
-    <div v-for="(page, index) in pages" :key="index" class="doc">
+    <div v-for="(page, index) in docs" :key="index" class="doc">
       <div class="title">
         <a :href="url(page.relativePath)">{{ page.title }}</a>
         <span v-if="page.frontmatter.top" class="top">
@@ -37,7 +37,7 @@ const doc = item => router.go(url(item.relativePath))
 .MyDocs {
   display: flex;
   flex-direction: column;
-  gap: 1.5em;
+  gap: 1.75em;
   .doc {
     .title {
       padding-bottom: 0.25em;
@@ -90,7 +90,7 @@ const doc = item => router.go(url(item.relativePath))
         white-space: nowrap;
         justify-content: center;
         align-items: center;
-        border-radius: 0.25em;
+        border-radius: 0.5em;
         border-color: var(--vp-button-alt-border);
         color: var(--vp-button-alt-text);
         background-color: var(--vp-button-alt-bg);
