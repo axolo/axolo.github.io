@@ -1,5 +1,9 @@
 <script setup>
+import { withBase } from 'vitepress'
 import docs from '../../data/docs.json'
+
+const url = path => withBase(path.replace(/.(md|markdown)$/i, ''))
+
 const allTags = docs.map(doc => [...doc.frontmatter.tags]).flat()
 const uniqueTags = [...new Set(allTags)]
 const tags = uniqueTags.map(name => ({
@@ -15,8 +19,9 @@ const tags = uniqueTags.map(name => ({
       <div class="container">
         <div class="aside">
           <div class="tags">
+            <div class="title">标签</div>
             <div v-for="tag in tags" :key="tag" class="tag">
-              <div class="name">{{ tag.name }}</div>
+              <a class="name" :href="'#' + tag.name">{{ tag.name }}</a>
               <div class="count">{{  tag.count }}</div>
             </div>
           </div>
@@ -28,7 +33,7 @@ const tags = uniqueTags.map(name => ({
                 <a :href="'#'+ tag.name">{{ tag.name }}</a>
               </div>
               <div v-for="doc in tag.docs" :key="doc.relativePath" class="doc">
-                {{ doc.title }}
+                <a :href="url(doc.relativePath)">{{ doc.title }}</a>
               </div>
             </div>
           </div>
@@ -41,9 +46,26 @@ const tags = uniqueTags.map(name => ({
 <style lang="scss" scoped>
 @import url("../../styles/doc.css");
 .tags {
+  position: relative;
+  border-left: 1px solid var(--vp-c-divider-light);
+  padding-left: 16px;
+  font-size: 0.9em;
+  .title {
+    letter-spacing: 0.1em;
+    line-height: 2em;
+    color: var(--vp-c-text-2);
+    font-size: 1em;
+    font-weight: bold;
+  }
   .tag {
     display: flex;
     justify-content: space-between;
+    line-height: 1.75em;
+    color: var(--vp-c-text-2);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: color .5s;
   }
 }
 .docs {
@@ -60,6 +82,16 @@ const tags = uniqueTags.map(name => ({
         text-decoration-style: dotted;
         transition: color 0.25s;
       }
+    }
+  }
+  .doc {
+    a {
+      line-height: 2em;
+      color: var(--vp-c-text-2);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      transition: color .5s;
     }
   }
 }
