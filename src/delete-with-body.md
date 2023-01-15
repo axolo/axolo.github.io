@@ -2,7 +2,7 @@
 title: HTTP DELETE 方法传递参数
 description: 尽管不建议 DELETE 方法携带 body，但实际业务用了，现实往往很无奈……
 time: 2019-10-01
-categories: [web]
+category: 前端
 tags: [HTTP, WEB]
 ---
 

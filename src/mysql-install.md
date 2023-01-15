@@ -2,7 +2,7 @@
 title: CentOS 安装 MySQL 8
 description: CentOS 下快速安装配置 MySQL 8
 time: 2019-05-11
-categories: sql
+category: 数据库
 tags: [CentOS, MySQL, Linux]
 ---
 

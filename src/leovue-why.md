@@ -2,7 +2,7 @@
 title: LeoVue 的由来
 description: LeoVue 是针对企业开发而创建的组件库，力求简单明了，力求开箱即用，完善80%，丢弃20%。
 time: 2018-08-19
-categories: [vue]
+category: 前端
 tags: [Vue.js]
 ---
 

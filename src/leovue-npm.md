@@ -2,7 +2,7 @@
 title: LeoVue 打包发布 npm 折腾记
 description: 详尽步骤细述 Vue 组件库如何发布到 npm。
 time: 2018-08-18
-categories: [vue]
+category: 前端
 tags: [Vue.js, Node.js]
 ---
 

@@ -2,7 +2,7 @@
 title: Jekyll 从入门到放弃
 description: 各种不习惯，严重受虐，从入门到放弃只需一周。Hugo 和 Hexo 别笑了，你俩半斤八两，五十步笑百步。
 time: 2022-12-15
-categories: [web]
+category: 前端
 tags: [WEB, 博客系统]
 ---
 

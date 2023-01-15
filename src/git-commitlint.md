@@ -2,7 +2,7 @@
 title: Git 提交规范
 description: 不以规矩，不成方圆。
 time: 2020-01-02
-categories: [git]
+category: 开发
 tags: [Git]
 ---
 

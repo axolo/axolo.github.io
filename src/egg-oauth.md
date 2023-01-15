@@ -2,12 +2,16 @@
 title: Egg.js 实现 OAuth2 授权码方式鉴权
 description: 大量详尽代码图文并茂一步步的细述 OAuth2 授权码方式鉴权在 Egg.js 中的实现。
 time: 2020-01-07
-categories: [node]
+category: 后端
 tags: [OAuth2, Node.js, Egg.js]
 top: 1
 ---
 
 # Egg.js 实现 OAuth2 授权码方式鉴权
+
+::: tip @axolo/egg-oauth
+适用于 node-oauth2-server 的 Egg.js 插件 [@axolo/egg-oauth] 已上线。
+:::
 
 OAuth2 为[统一安全管理平台解决方案]（4A）中的**认证**环节解决方案。
 
@@ -695,3 +699,5 @@ curl 'http://127.0.0.1:7001?access_token=0e55b110f79023e7073a1a80db9fc72b5414ab5
 [egg-oauth2-server]: https://github.com/Azard/egg-oauth2-server
 
 > 方跃明 2020-01-07 杭州
+
+[@axolo/egg-oauth]: https://github.com/axolo/egg-oauth

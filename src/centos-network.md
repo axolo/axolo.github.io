@@ -1,8 +1,8 @@
 ---
-title: CentOS网络
+title: CentOS 网络
 description: CentOS 7 开始默认使用 network-manager 来配置网络。虽然传统方式依然可以配置，但不推荐。
 time: 2019-12-25
-categories: [linux]
+category: 运维
 tags: [CentOS, Linux]
 ---
 

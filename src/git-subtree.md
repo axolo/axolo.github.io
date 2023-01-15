@@ -2,7 +2,7 @@
 title: Git subtree
 description: 和 submodule 一样，subtree 也是 Git 多人协作开发利器。
 time: 2020-08-20
-categories: [git]
+category: 开发
 tags: [Git]
 ---
 

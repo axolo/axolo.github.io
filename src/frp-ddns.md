@@ -2,7 +2,7 @@
 title: 家用宽带联机开发环境部署
 description: 利用家庭宽带低成本、低功耗部署联机开发环境。当然，若有阿里云等公网环境，路由服务器合一，略改即可支持。
 time: 2020-05-18
-categories: [linux]
+category: 运维
 tags: [Linux, CentOS, 内网穿透]
 ---
 

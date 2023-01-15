@@ -2,7 +2,7 @@
 title: WebVirtCloud 部署笔记
 description: 图文并茂的 WebVirtCloud 部署笔记
 time: 2013-12-30
-categories: [linux]
+category: 运维
 tags: [CentOS, Linux, 虚拟化]
 ---
 

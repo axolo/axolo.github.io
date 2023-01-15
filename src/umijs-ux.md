@@ -2,7 +2,7 @@
 title: UmiJS 之我见
 description: 到目前为止，UmiJS 还不算严谨成熟的框架，像小孩捏的泥人，随意松散，慎用。
 time: 2020-02-23
-categories: [react]
+category: 前端
 tags: [React]
 ---
 

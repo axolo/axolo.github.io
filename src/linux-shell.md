@@ -2,7 +2,7 @@
 title: Linux Shell 入门
 description: 师傅领进门，修行在自身。
 time: 2017-08-09
-categories: [linux]
+category: 运维
 tags: [Linux, Shell]
 ---
 

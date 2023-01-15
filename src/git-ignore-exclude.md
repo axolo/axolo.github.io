@@ -1,8 +1,8 @@
 ---
-title: Git排除忽略子目录
+title: Git 排除忽略子目录
 description: .gitignore 想忽略某个目录，但又不想忽略这个目录下的某个子目录？
 time: 2019-09-09
-categories: [git]
+category: 开发
 tags: [Git]
 ---
 

@@ -2,7 +2,7 @@
 title: Git WebHooks
 description: 当代码仓库发生某些事件（提交、合并、讨论）时，触发已经定义好的WebHooks，将数据提交到WebHooks服务所在的服务器，服务端对数据解析，执行对应的脚本，实现自动部署等一系列操作。
 time: 2019-09-23
-categories: [git]
+category: 运维
 tags: [Git, Node.js]
 ---
 

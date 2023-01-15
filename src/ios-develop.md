@@ -1,8 +1,8 @@
 ---
-title: iOS开发环境搭建
+title: iOS 开发环境搭建
 description: 快速搭建 iOS 开发环境
 time: 2020-01-01
-categories: [ios]
+category: 前端
 tags: [iOS]
 ---
 

@@ -2,7 +2,7 @@
 title: whistle 简明教程
 description: 基于 Node 实现的跨平台 WEB 调试代理工具，主要用于查看、修改 HTTP、HTTPS、Websocket 的请求、响应，也可以作为 HTTP 代理服务器使用。
 time: 2023-01-12
-categories: [web]
+category: 运维
 tags: [WEB, HTTP]
 ---
 

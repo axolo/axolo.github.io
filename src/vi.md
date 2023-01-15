@@ -2,7 +2,7 @@
 title: vi 基本操作
 description: vi 几乎可以说是 Linux 的默认编辑器，命令繁多但又灵活高效。爱之恨之，两极分化。
 time: 2019-05-10
-categories: linux
+category: 运维
 tags: [Linux]
 ---
 

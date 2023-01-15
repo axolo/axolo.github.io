@@ -2,7 +2,7 @@
 title: MVC及PHP++、PHP--胡思乱想杂记
 description: 长期以来PHP被杂糅进太多的东西了，要负责Db、又要负责HTML、还要负责Controller、还要负责Model，早已累成了PHP++……
 time: 2009-08-01
-categories: [php]
+category: 后端
 tags: [PHP]
 ---
 

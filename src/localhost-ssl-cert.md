@@ -2,7 +2,7 @@
 title: localhost 开启 HTTPS
 description: 如何给 localhost 开启 https ？
 time: 2020-03-28
-categories: [web]
+category: 运维
 tags: [HTTP, WEB]
 ---
 

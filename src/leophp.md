@@ -2,7 +2,7 @@
 title: LeoPHP Framework
 description: 由于工作需要重拾PHP，折腾好几个框架，臃肿厚重，可谓专治各种不服，终于被感动到哭了。
 time: 2016-12-01
-categories: [php]
+category: 后端
 tags: [PHP]
 ---
 

@@ -2,7 +2,7 @@
 title: Kubernetes 安装指南
 description: kubernetes（简称k8s）是 Google 开源的容器集群管理系统，它构建 Docker 技术之上。
 time: 2018-04-29
-categories: [devops]
+category: 运维
 tags: [DevOps, Docker, Kubernetes]
 ---
 

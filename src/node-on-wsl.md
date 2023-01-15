@@ -2,7 +2,7 @@
 title: 基于WSL搭建Node.js开发环境
 description: WSL 可让开发人员直接在 Windows 上按原样运行 GNU/Linux 环境，且不会产生传统虚拟机或双启动设置开销，提供 Node.js on Linux 上佳体验。
 time: 2022-01-20
-categories: [linux]
+category: 运维
 tags: [Linux, Node.js]
 ---
 

@@ -1,8 +1,8 @@
 ---
-title: Zabbix安装笔记
+title: Zabbix 安装笔记
 description: Zabbix（[`zæbiks]）是一个基于WEB界面的提供分布式系统监视以及网络监视功能的企业级的开源解决方案。
 time: 2011-11-11
-categories: [linux]
+category: 运维
 tags: [Linux, DevOps]
 ---
 

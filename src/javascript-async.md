@@ -2,7 +2,7 @@
 title: JavaScript async
 description: 代码演示 JavaScript 同步异步操作。
 time: 2020-02-18
-categories: [js]
+category: 前端
 tags: [JavaScript]
 ---
 

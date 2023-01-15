@@ -2,7 +2,7 @@
 title: Webpack编译移除控制台输出
 description: 出于安全渗透和代码审计需要，生产环境往往需要移除控制台console系列函数的输出，逐一人肉删除显然不是好办法……
 time: 2021-12-14
-categories: [vue]
+category: 前端
 tags: [Vue.js, Webpack]
 ---
 

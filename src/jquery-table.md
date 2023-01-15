@@ -2,7 +2,7 @@
 title: jQuery 常用表格操作
 description: jQuery 操作表格增删改查
 time: 2016-10-30
-categories: [js]
+category: 前端
 tags: [WEB, JavaScript, jQuery]
 ---
 

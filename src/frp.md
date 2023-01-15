@@ -2,7 +2,7 @@
 title: frp 内网穿透
 description: 内网穿透利器，比如将内网的开发机作为 frpc 实现实时更新的演示。
 time: 2020-06-18
-categories: [linux]
+category: 运维
 tags: [Linux, CentOS, 内网穿透]
 ---
 

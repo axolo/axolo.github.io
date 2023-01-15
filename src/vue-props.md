@@ -2,7 +2,7 @@
 title: Vue 父子组件通信
 description: Vue 基本功：父子组件传值和通信
 time: 2018-09-30
-categories: [vue]
+category: 前端
 tags: [Vue.js]
 ---
 

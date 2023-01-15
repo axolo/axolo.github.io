@@ -2,7 +2,7 @@
 title: MySQL on Docker
 time: 2021-06-18
 description: 把 MySQL 部署到 Docker 上，不失为一个很好的选择。
-categories: [sql]
+category: 数据库
 tags: [MySQL, Docker, Linux, Shell]
 ---
 

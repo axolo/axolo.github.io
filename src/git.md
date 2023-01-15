@@ -2,7 +2,7 @@
 title: 图解 Git 常用操作
 description: 你真的需要记住那么多 Git 操作吗？也许不到十个就够用了。
 time: 2018-04-28
-categories: [git]
+category: 开发
 tags: [Git]
 ---
 

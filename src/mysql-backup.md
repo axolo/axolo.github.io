@@ -2,7 +2,7 @@
 title: MySQL 定时备份
 description: 定时自动备份 MySQL 是刚需。
 time: 2019-05-11
-categories: sql
+category: 数据库
 tags: [MySQL, DevOps, Shell]
 ---
 

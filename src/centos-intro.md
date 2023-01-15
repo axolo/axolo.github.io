@@ -2,7 +2,7 @@
 title: CentOS 入坑指南
 description: 一入 CentOS 深似海，从此再也爬不出来。
 time: 2019-05-09
-categories: [linux]
+category: 运维
 tags: [CentOS, Linux]
 ---
 

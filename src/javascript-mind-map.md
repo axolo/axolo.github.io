@@ -2,7 +2,7 @@
 title: JavaScript 思维导图
 description: 前人栽树，后人乘凉。
 time: 2015-05-09
-categories: [js]
+category: 前端
 tags: [JavaScript, WEB]
 ---
 

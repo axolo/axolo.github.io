@@ -1,8 +1,8 @@
 ---
-title: CentOS快速搭建开发环境
+title: CentOS 快速搭建开发环境
 description: CentOS 安装 Docker、MySQL、nginx、Node.js、Git 等应用，快速搭建开发环境。
 time: 2020-05-11
-categories: [linux]
+category: 运维
 tags: [CentOS, Linux]
 ---
 

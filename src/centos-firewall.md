@@ -2,7 +2,7 @@
 title: CentOS 防火墙
 description: CentOS 使用 firewalld 防火墙系统，大多数服务需要防火墙放行才能被访问。
 time: 2019-12-25
-categories: [linux]
+category: 运维
 tags: [CentOS, Linux]
 ---
 

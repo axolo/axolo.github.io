@@ -2,7 +2,7 @@
 title: 读《SQL反模式》
 description: 花几个小时刷完阿里云数据工程师张友东力荐《SQL反模式》，读到一半，狂妄的认为自己差不多可以写一本《反〈SQL反模式〉》了，一时兴起便有了这篇读书笔记。
 time: 2018-05-31
-categories: [sql]
+category: 数据库
 tags: [SQL]
 top: 2
 ---

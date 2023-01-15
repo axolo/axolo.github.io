@@ -1,8 +1,8 @@
 ---
-title: Lodop打印解决方案
+title: Lodop 打印解决方案
 description: WEB 打印是 BS 架构开发的一个痛点。输出 PDF 格式，然后调用浏览器打印功能？要不试试 Lodop ？
 time: 2018-07-09
-categories: [web]
+category: 前端
 tags: [WEB]
 ---
 

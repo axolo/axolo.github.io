@@ -1,8 +1,8 @@
 ---
-title: Linux目录结构
+title: Linux 目录结构
 description: 掌握一个操作系统，从它的目录结构开始，啥东西一般放哪得心知肚明。
 time: 2021-12-19
-categories: [linux]
+category: 运维
 tags: [CentOS, Linux]
 ---
 
