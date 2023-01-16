@@ -1,6 +1,11 @@
 ---
+layout: page
 lastUpdated: false
 unsave: true
 ---
 
-coming soon ...
+<script setup>
+import MyCategory from '../.vitepress/components/my/category.vue'
+</script>
+
+<MyCategory />
