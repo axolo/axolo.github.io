@@ -6,7 +6,7 @@ category: 开发
 tags: [Git]
 ---
 
-# 图解 Git 常用操作
+# Git 常用操作图解
 
 > 图片来自网络，侵删
 

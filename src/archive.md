@@ -1,6 +1,11 @@
 ---
+layout: page
 lastUpdated: false
 unsave: true
 ---
 
-coming soon ...
+<script setup>
+import MyArchive from '../.vitepress/components/my/archive.vue'
+</script>
+
+<MyArchive />
