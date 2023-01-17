@@ -8,12 +8,14 @@ const pages = []
 export default withMermaid({
   title: '方跃明的博客',
   description: '目标领导计划，数据驱动算法。约定大于配置，配置大于编码。',
+  lang: 'zh-CN',
   srcDir: './src', // 博客源文件目录
   outDir: './docs', // 方便部署各种Pages
   lastUpdated: true,
   head: [
-    ['link', { rel: 'icon', href: 'logo.svg' }],
-    ['link', { rel: 'stylesheet', href: 'styles/my.css' }]
+    ['link', { rel: 'icon', href: '/logo.svg' }],
+    ['link', { rel: 'stylesheet', href: '/styles/my.css' }],
+    ['script', { src: '/scripts/baidu-hm.js' }]
   ],
   themeConfig: {
     lastUpdatedText: '最近更新',
