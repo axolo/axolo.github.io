@@ -119,3 +119,45 @@
 .MyDoc.has-aside .content-container {
   max-width: 688px;
 }
+
+.aside-outline {
+  position: relative;
+  padding-left: 16px;
+  border-left: 1px solid var(--vp-c-divider-light);
+  font-size: 0.9em;
+}
+.aside-outline .label {
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+}
+.aside-outline .item {
+  margin: 0;
+  display: flex;
+  justify-content: space-between;
+  color: var(--vp-c-text-2);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  transition: color .5s;
+}
+.content-list {
+  margin-bottom: 2em;
+}
+.content-list .label {
+  padding-bottom: 0.25em;
+  margin-bottom: 0.25em;
+  border-bottom: 1px dashed var(--vp-c-divider-light);
+  color: var(--vp-c-brand);
+  font-size: 1.25em;
+  font-weight: bold;
+  text-decoration-style: dotted;
+  transition: color 0.25s;
+}
+.content-list .item {
+  margin: 0.75em 0;
+}
+.content-list .item  a {
+  color: var(--vp-c-text-2);
+  transition: color .5s;
+}

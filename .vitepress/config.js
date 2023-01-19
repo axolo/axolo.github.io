@@ -13,18 +13,13 @@ export default withMermaid({
   outDir: './docs', // 方便部署各种Pages
   lastUpdated: true,
   head: [
-    ['link', { rel: 'icon', href: '/logo.svg' }],
+    ['link', { rel: 'icon', href: '/favicon.ico' }],
     ['link', { rel: 'stylesheet', href: '/styles/my.css' }],
     ['script', { src: '/scripts/baidu-hm.js' }]
   ],
   themeConfig: {
     lastUpdatedText: '最近更新',
     logo: 'logo.svg',
-    algolia: {
-      appId: 'EAT6H38LZF',
-      apiKey: '5a9b06592d7bca3ef746063ea210ad34',
-      indexName: 'blog'
-    },
     nav: [
       { text: '标签', link: '/tag' },
       { text: '分类', link: '/category' },

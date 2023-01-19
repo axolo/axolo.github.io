@@ -21,5 +21,5 @@ import MyDocs from './docs.vue'
 </template>
 
 <style scoped>
-@import url("../../styles/doc.css");
+@import url("../../styles/my.css");
 </style>
