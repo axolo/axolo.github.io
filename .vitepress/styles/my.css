@@ -1,0 +1,163 @@
+.MyDoc {
+  padding: 32px 24px 96px;
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .MyDoc {
+    padding: 48px 32px 128px;
+  }
+}
+
+@media (min-width: 960px) {
+  .MyDoc {
+    padding: 32px 32px 0;
+  }
+
+  .MyDoc:not(.has-sidebar) .container {
+    display: flex;
+    justify-content: center;
+    max-width: 992px;
+  }
+
+  .MyDoc:not(.has-sidebar) .content {
+    max-width: 752px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .MyDoc .container {
+    display: flex;
+    justify-content: center;
+  }
+
+  .MyDoc .aside {
+    display: block;
+  }
+}
+
+@media (min-width: 1440px) {
+  .MyDoc:not(.has-sidebar) .content {
+    max-width: 784px;
+  }
+
+  .MyDoc:not(.has-sidebar) .container {
+    max-width: 1104px;
+  }
+}
+
+.container {
+  margin: 0 auto;
+  width: 100%;
+}
+
+.aside {
+  position: relative;
+  display: none;
+  order: 2;
+  flex-grow: 1;
+  padding-left: 32px;
+  width: 100%;
+  max-width: 256px;
+}
+
+.aside-container {
+  position: sticky;
+  top: 0;
+  margin-top: calc((var(--vp-nav-height-desktop) + var(--vp-layout-top-height, 0px)) * -1 - 32px);
+  padding-top: calc(var(--vp-nav-height-desktop) + var(--vp-layout-top-height, 0px) + 32px);
+  height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+  scrollbar-width: none;
+}
+
+.aside-container::-webkit-scrollbar {
+  display: none;
+}
+
+.aside-curtain {
+  position: fixed;
+  bottom: 0;
+  z-index: 10;
+  width: 224px;
+  height: 32px;
+  background: linear-gradient(transparent, var(--vp-c-bg) 70%);
+}
+
+.aside-content {
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - (var(--vp-nav-height-desktop) + var(--vp-layout-top-height, 0px) + 32px));
+  padding-bottom: 32px;
+}
+
+.content {
+  position: relative;
+  margin: 0 auto;
+  width: 100%;
+}
+
+@media (min-width: 960px) {
+  .content {
+    padding: 0 32px 128px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .content {
+    order: 1;
+    margin: 0;
+    min-width: 640px;
+  }
+}
+
+.content-container {
+  margin: 0 auto;
+}
+
+.MyDoc.has-aside .content-container {
+  max-width: 688px;
+}
+
+.aside-outline {
+  position: relative;
+  padding-left: 16px;
+  border-left: 1px solid var(--vp-c-divider-light);
+  font-size: 0.9em;
+}
+.aside-outline .label {
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+}
+.aside-outline .item {
+  margin: 0;
+  display: flex;
+  justify-content: space-between;
+  color: var(--vp-c-text-2);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  transition: color .5s;
+}
+.content-list {
+  margin-bottom: 2em;
+}
+.content-list .label {
+  padding-bottom: 0.25em;
+  margin-bottom: 0.25em;
+  border-bottom: 1px dashed var(--vp-c-divider-light);
+  color: var(--vp-c-brand);
+  font-size: 1.25em;
+  font-weight: bold;
+  text-decoration-style: dotted;
+  transition: color 0.25s;
+}
+.content-list .item {
+  margin: 0.75em 0;
+}
+.content-list .item  a {
+  color: var(--vp-c-text-2);
+  transition: color .5s;
+}
