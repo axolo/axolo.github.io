@@ -121,7 +121,8 @@
 }
 
 .aside-outline {
-  position: relative;
+  position: sticky;
+  top: calc(var(--vp-nav-height-desktop) + 32px);
   padding-left: 16px;
   border-left: 1px solid var(--vp-c-divider-light);
   font-size: 0.9em;

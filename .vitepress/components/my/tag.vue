@@ -1,9 +1,6 @@
 <script setup>
-import { withBase } from 'vitepress'
+import { url, anchor } from '../../utils'
 import docs from '../../data/docs.json'
-
-const url = path => withBase(path.replace(/.(md|markdown)$/i, ''))
-const anchor = id => isNaN(parseFloat(id)) ? id?.replace(/\s+/g, '_') : ('_' + id).replace(/\s+/g, '_')
 
 const allTags = docs.map(doc => [...doc.frontmatter.tags]).flat()
 const uniqueTags = [...new Set(allTags)]
