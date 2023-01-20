@@ -1,0 +1,1 @@
+export default id => isNaN(parseFloat(id)) ? id?.replace(/\s+/g, '_') : ('_' + id).replace(/\s+/g, '_')
