@@ -24,9 +24,3 @@
     </div>
   </div>
 </template>
-
-<style scoped>
-.docsearch {
-  background-color: #f1f1f1;
-}
-</style>
