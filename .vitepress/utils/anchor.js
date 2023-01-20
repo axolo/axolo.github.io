@@ -1,1 +1,5 @@
-export default id => isNaN(parseFloat(id)) ? id?.replace(/\s+/g, '_') : ('_' + id).replace(/\s+/g, '_')
+export default id => {
+  if ([undefined, null, ''].includes(id)) return id
+  const s = isNaN(parseFloat(id)) ? id : ('_' + id)
+  return s.replace(/[\s+|.]/g, '_')
+}
