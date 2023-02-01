@@ -15,16 +15,16 @@ const doc = item => router.go(url(item.relativePath))
     <div v-for="(page, index) in docs" :key="index" class="doc">
       <div class="title">
         <a :href="url(page.relativePath)">{{ page.title }}</a>
-        <span v-if="page.frontmatter.top" class="top">
+        <span v-if="page.top" class="top">
           <Badge class="icon" text="置顶" type="warning" />
         </span>
       </div>
       <div class="info">
         <div class="date">
           <i class="my my-time icon" />
-          <span class="text">{{ dayjs(page.frontmatter.time).format('YYYY-MM-DD') }}</span>
+          <span class="text">{{ dayjs(page.time).format('YYYY-MM-DD') }}</span>
         </div>
-        <div v-for="item in page.frontmatter.tags" :key="item" class="tag" @click="tag(item)">
+        <div v-for="item in page.tags" :key="item" class="tag" @click="tag(item)">
           {{ item }}
         </div>
       </div>

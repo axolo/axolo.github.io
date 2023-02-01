@@ -3,12 +3,12 @@ import dayjs from 'dayjs'
 import { url, anchor } from '../../utils'
 import docs from '../../data/docs.json'
 
-const allYears = docs.map(doc => dayjs(doc.frontmatter.time).format('YYYY')).flat().sort((a, b) => b - a)
+const allYears = docs.map(doc => dayjs(doc.time).format('YYYY')).flat().sort((a, b) => b - a)
 const uniqueYears = [...new Set(allYears)]
 const years = uniqueYears.map(name => ({
   name,
   count: allYears.filter(a => a === name).length,
-  docs: docs.filter(d => dayjs(d.frontmatter.time).format('YYYY') === name)
+  docs: docs.filter(d => dayjs(d.time).format('YYYY') === name)
 }))
 </script>
 

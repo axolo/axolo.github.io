@@ -2,12 +2,12 @@
 import { url, anchor } from '../../utils'
 import docs from '../../data/docs.json'
 
-const allTags = docs.map(doc => [...doc.frontmatter.tags]).flat()
+const allTags = docs.map(doc => [...doc.tags]).flat()
 const uniqueTags = [...new Set(allTags)]
 const tags = uniqueTags.map(name => ({
   name,
   count: allTags.filter(a => a === name).length,
-  docs: docs.filter(d => d.frontmatter.tags.includes(name))
+  docs: docs.filter(d => d.tags.includes(name))
 })).sort((i, j) => j.count - i.count)
 </script>
 
