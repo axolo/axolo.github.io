@@ -42,7 +42,7 @@ npm run serve   # 运行（发布后的内容）
 |-- src                       # 博文
 |   |-- index.md              #   首页
 |   |-- archive.md            #   归档
-|   |-- category.me           #   分类
+|   |-- category.md           #   分类
 |   |-- tag.md                #   标签
 |   `-- files                 #   博文附件
 |

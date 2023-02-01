@@ -2,12 +2,12 @@
 import { url, anchor } from '../../utils'
 import docs from '../../data/docs.json'
 
-const allTypes = docs.map(doc => doc.frontmatter.category).flat()
+const allTypes = docs.map(doc => doc.category).flat()
 const uniqueTypes = [...new Set(allTypes)]
 const types = uniqueTypes.map(name => ({
   name,
   count: allTypes.filter(a => a === name).length,
-  docs: docs.filter(d => d.frontmatter.category === name)
+  docs: docs.filter(d => d.category === name)
 })).sort((i, j) => j.count - i.count)
 </script>
 
