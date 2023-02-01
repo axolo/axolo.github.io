@@ -41,7 +41,6 @@ export default withMermaid({
     if(!process.argv.includes('--save')) return // --save = 更新数据
     if(pageData.frontmatter.unsave) return // 过滤不保存的
     const links = tree2array(pageData.headers).map(header => header.link)
-    console.log(links)
     const data = { ...pageData, ...pageData.frontmatter, links }
     delete data.frontmatter
     delete data.headers
