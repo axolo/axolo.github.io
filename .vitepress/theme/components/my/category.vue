@@ -1,6 +1,6 @@
 <script setup>
-import { url, anchor } from '../../utils'
-import docs from '../../data/docs.json'
+import { url, anchor } from '../../../utils'
+import docs from '../../../data/docs.json'
 
 const allTypes = docs.map(doc => doc.category).flat()
 const uniqueTypes = [...new Set(allTypes)]

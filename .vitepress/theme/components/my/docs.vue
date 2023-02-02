@@ -1,8 +1,8 @@
 <script setup>
 import dayjs from 'dayjs'
 import { useRouter } from 'vitepress'
-import { url } from '../../utils'
-import docs from '../../data/docs.json'
+import { url } from '../../../utils'
+import docs from '../../../data/docs.json'
 
 const router = useRouter()
 

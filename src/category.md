@@ -5,7 +5,7 @@ unsave: true
 ---
 
 <script setup>
-import MyCategory from '../.vitepress/components/my/category.vue'
+import MyCategory from '../.vitepress/theme/components/my/category.vue'
 </script>
 
 <MyCategory />

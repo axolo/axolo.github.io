@@ -1,7 +1,7 @@
 <script setup>
 import dayjs from 'dayjs'
-import { url, anchor } from '../../utils'
-import docs from '../../data/docs.json'
+import { url, anchor } from '../../../utils'
+import docs from '../../../data/docs.json'
 
 const allYears = docs.map(doc => dayjs(doc.time).format('YYYY')).flat().sort((a, b) => b - a)
 const uniqueYears = [...new Set(allYears)]

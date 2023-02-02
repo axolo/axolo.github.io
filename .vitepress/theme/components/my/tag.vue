@@ -1,6 +1,6 @@
 <script setup>
-import { url, anchor } from '../../utils'
-import docs from '../../data/docs.json'
+import { url, anchor } from '../../../utils'
+import docs from '../../../data/docs.json'
 
 const allTags = docs.map(doc => [...doc.tags]).flat()
 const uniqueTags = [...new Set(allTags)]

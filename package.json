@@ -1,6 +1,6 @@
 {
   "name": "fangyueming-blog",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Yueming Fang's blog. powered by vitepress",
   "author": "Yueming Fang",
   "license": "MIT",
@@ -28,9 +28,10 @@
   },
   "dependencies": {
     "@axolo/tree-array": "^0.0.6",
+    "@mermaid-js/mermaid-mindmap": "^9.3.0",
     "dayjs": "^1.11.7",
     "mermaid": "~9.1.7",
-    "vitepress": "^1.0.0-alpha.36",
-    "vitepress-plugin-mermaid": "^2.0.8"
+    "vitepress": "^1.0.0-alpha.45",
+    "vitepress-plugin-mermaid": "^2.0.10"
   }
 }
