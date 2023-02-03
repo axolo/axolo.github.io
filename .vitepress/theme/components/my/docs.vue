@@ -37,10 +37,10 @@ const doc = item => router.go(url(item.relativePath))
 .MyDocs {
   display: flex;
   flex-direction: column;
-  gap: 1.75em;
+  gap: 2em;
   .doc {
     .title {
-      padding-bottom: 0.5em;
+      padding-bottom: 0.25em;
       border-bottom: 1px dashed var(--vp-c-divider);
       font-size: 1.2em;
       display: flex;
