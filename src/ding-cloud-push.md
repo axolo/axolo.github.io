@@ -22,7 +22,7 @@ tags: [MySQL, 钉钉]
 
 流程如下：
 
-```text
+```
 +------------+    +-----------------+    +---------------------+    +-------------+
 |  DingTalk  |    | Dingtalk RDS    |    | App Database        |    | Data Sync   |
 |  Cloud     | => | [FEDERATED]     | => | [TABLE]             | => | [TRIGGER]   |

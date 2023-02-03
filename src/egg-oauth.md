@@ -51,7 +51,7 @@ resource --> |9.返回数据| client
 
 > 目录
 
-```text
+```
 |-- config                              # 配置
 |   |-- config.default.js               #   应用配置
 |   `-- plugin.js                       #   插件配置

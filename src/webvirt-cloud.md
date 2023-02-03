@@ -52,7 +52,7 @@ egrep '(vmx|svm)' --color=always /proc/cpuinfo
 
 网桥相当于外网和虚拟机之间的交换机。
 
-```text
+```
              +-----------+     +----------+     +----------+
 Internet --- | HOST eth0 | --- | HOST br0 | --- | VMs eth0 | --- VMs
              +-----------+     +----------+     +----------+
@@ -301,7 +301,7 @@ systemctl restart supervisord
 supervisorctl status
 ```
 
-```text
+```
 gstfsd             RUNNING   pid 24662, uptime 6:01:40
 novncd             RUNNING   pid 24661, uptime 6:01:40
 webvirtcloud       RUNNING   pid 24660, uptime 6:01:40
@@ -339,7 +339,7 @@ open http://serverip
 chmod 755 -R /home/webvirtmgr
 ```
 
-```text
+```
 /home/webvirtmgr
 |-- images          # 磁盘镜像
 `-- iso             # 光盘镜像

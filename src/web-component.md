@@ -28,7 +28,7 @@ HTML、CSS、JS 无关联堆砌
 
 > 目录
 
-```text
+```
 ├── index.htm
 ├── po.html
 ├── css.css
@@ -75,7 +75,7 @@ HTML、CSS、JS 无关联堆砌
 
 > 目录
 
-```text
+```
 ├── index.html
 ├── css
 │   └── css.css
@@ -136,7 +136,7 @@ React、Vue.js的WEB组件化
 
 > 目录结构（典型情况）
 
-```text
+```
 ├── index.html
 ├── src
 │   ├── main.js
