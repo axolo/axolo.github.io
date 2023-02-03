@@ -20,6 +20,11 @@ export default withMermaid({
   themeConfig: {
     lastUpdatedText: '最近更新',
     logo: 'logo.svg',
+    algolia: {
+      appId: '6LV0F3CFXL',
+      apiKey: '91968db34805858d7e66502969a6c787',
+      indexName: 'fangyueming'
+    },
     nav: [
       { text: '标签', link: '/tag' },
       { text: '分类', link: '/category' },
