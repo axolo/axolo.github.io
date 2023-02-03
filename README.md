@@ -23,30 +23,31 @@ npm run serve   # 运行（发布后的内容）
 ## 目录
 
 ```
-|-- .vitepress                # vitepress
-|   |-- config.js             #   配置
-|   |-- components            #   组件
-|   |   `-- my                #     自定义组件
-|   |       |-- home.vue      #       首页
-|   |       |-- author.vue    #       博主
-|   |       |-- hero.vue      #       横幅
-|   |       |-- docs.vue      #       博文
-|   |       |-- archive.vue   #       归档
-|   |       |-- category.vue  #       分类
-|   |       `-- tag.vue       #       标签
-|   |
-|   `-- data                  #   数据
-|       |-- docs.json         #     博文（文档）
-|       `-- icons.json        #     图标（svg）
+|-- README.md                     # 说明
+|-- src                           # 博文
+|   |-- files                     #   博文附件
+|   |-- index.md                  #   首页
+|   |-- archive.md                #   归档
+|   |-- category.md               #   分类
+|   `-- tag.md                    #   标签
 |
-|-- src                       # 博文
-|   |-- index.md              #   首页
-|   |-- archive.md            #   归档
-|   |-- category.md           #   分类
-|   |-- tag.md                #   标签
-|   `-- files                 #   博文附件
-|
-`-- README.md                 # 说明
+`-- .vitepress                    # vitepress
+    |-- config.js                 #   配置
+    |-- data                      #   数据
+    |   |-- docs.json             #     博文（文档）
+    |   `-- icons.json            #     图标（svg）
+    |
+    `-- theme                     #   主题
+        |-- style                 #     样式
+        `-- components            #     组件
+            `-- my                #       博客组件
+                |-- home.vue      #         首页
+                |-- hero.vue      #         横幅
+                |-- author.vue    #         博主
+                |-- docs.vue      #         博文
+                |-- archive.vue   #         归档
+                |-- category.vue  #         分类
+                `-- tag.vue       #         标签
 ```
 
 > 方跃明
