@@ -12,7 +12,7 @@ tags: [Git]
 
 排除此目录，改为忽略*，然后忽略子目录。
 
-```text
+```
 # exclude ignore cn
 !app/
 
@@ -28,7 +28,7 @@ app/locale/*
 
 uni-app项目忽略unpackage下但排除h5和res
 
-```text
+```
 unpackage
 |-- cache
 |-- dist
@@ -48,7 +48,7 @@ unpackage
 ```
 
 
-```text
+```
 # uni-app dist
 !unpackage/
 unpackage/*

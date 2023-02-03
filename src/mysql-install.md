@@ -100,7 +100,7 @@ chmod +x mysql-backup.sh
 
 ### 3. 添加到`/etc/crontab`，每天3点钟执行备份
 
-```text
+```
 0 3 * * * bash /path/to/mysql-backup.sh
 ```
 

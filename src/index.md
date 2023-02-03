@@ -5,7 +5,7 @@ unsave: true
 ---
 
 <script setup>
-import MyHome from '../.vitepress/components/my/home.vue'
+import MyHome from '../.vitepress/theme/components/my/home.vue'
 </script>
 
 <MyHome />

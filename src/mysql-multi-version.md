@@ -37,7 +37,7 @@ tar -xzvf mysql-5.7.25-linux-glibc2.12-i686.tar.gz -C /opt
 
 ### 目录
 
-```text
+```
 /opt/mysql-5.7.25-linux-glibc2.12-i686
 |-- bin                 # 命令
 |-- data                # 数据

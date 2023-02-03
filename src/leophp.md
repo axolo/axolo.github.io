@@ -57,7 +57,7 @@ tags: [PHP]
 
 ### 目录
 
-```text
+```
 app
  ├─ vendor            //Composer
  │    └─ axolo
