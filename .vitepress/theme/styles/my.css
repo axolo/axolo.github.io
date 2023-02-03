@@ -124,7 +124,7 @@
   position: sticky;
   top: calc(var(--vp-nav-height-desktop) + 32px);
   padding-left: 16px;
-  border-left: 1px solid var(--vp-c-divider-light);
+  border-left: 1px solid var(--vp-c-divider);
   font-size: 0.9em;
 }
 .aside-outline .label {
@@ -148,7 +148,7 @@
 .content-list .label {
   padding-bottom: 0.25em;
   margin-bottom: 0.25em;
-  border-bottom: 1px dashed var(--vp-c-divider-light);
+  border-bottom: 1px dashed var(--vp-c-divider);
   color: var(--vp-c-brand);
   font-size: 1.25em;
   font-weight: bold;
