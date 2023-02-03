@@ -40,8 +40,8 @@ const doc = item => router.go(url(item.relativePath))
   gap: 1.75em;
   .doc {
     .title {
-      padding-bottom: 0.25em;
-      border-bottom: 1px dashed var(--vp-c-divider-light);
+      padding-bottom: 0.5em;
+      border-bottom: 1px dashed var(--vp-c-divider);
       font-size: 1.2em;
       display: flex;
       a {
