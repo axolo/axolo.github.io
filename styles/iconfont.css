@@ -1,0 +1,17 @@
+@font-face {
+  font-family: "my"; /* Project id 3862358 */
+  src: url('iconfont.woff?t=1673747584987') format('woff');
+}
+
+.my {
+  font-family: "my" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.my-time:before {
+  content: "\e65f";
+}
+
