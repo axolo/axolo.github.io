@@ -1,12 +1,12 @@
 <script setup>
 import dayjs from 'dayjs'
 import { useRouter } from 'vitepress'
-import { url } from '../../../utils'
+import { url, anchor } from '../../../utils'
 import docs from '../../../data/docs.json'
 
 const router = useRouter()
 
-const tag = item => router.go(`${url('tag')}#${item}`)
+const tag = item => router.go(`${url('tag')}#${anchor(item)}`)
 const doc = item => router.go(url(item.relativePath))
 </script>
 
