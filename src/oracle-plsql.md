@@ -8,6 +8,8 @@ tags: [Oracle, SQL, DevOps]
 
 # 配置 Oracle PL/SQL Developer
 
+> 方跃明 2018-05-12
+
 参见：<http://blog.csdn.net/helifengwell/article/details/5820434>
 
 - Instant Client
@@ -76,7 +78,3 @@ exp newsoft/econage@ptime file=E:\Backup\%date:~0,10%exp.dmp log=E:\Backup\%date
 ```
 
 [Instant Client]: http://www.oracle.com/technetwork/database/features/instant-client/index-097480.html
-
-
-> 方跃明
-> 2018-05-12

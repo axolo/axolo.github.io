@@ -9,6 +9,8 @@ top: 1
 
 # Egg.js 实现 OAuth2 授权码方式鉴权
 
+> 方跃明 2020-01-07 杭州
+
 ::: tip @axolo/egg-oauth
 适用于 node-oauth2-server 的 Egg.js 插件 [@axolo/egg-oauth] 已上线。
 :::
@@ -697,7 +699,5 @@ curl 'http://127.0.0.1:7001?access_token=0e55b110f79023e7073a1a80db9fc72b5414ab5
 [统一安全管理平台解决方案]: https://baike.baidu.com/item/4A/1825
 [OAuth2Server model]: https://oauth2-server.readthedocs.io/en/latest/model/overview.html
 [egg-oauth2-server]: https://github.com/Azard/egg-oauth2-server
-
-> 方跃明 2020-01-07 杭州
 
 [@axolo/egg-oauth]: https://github.com/axolo/egg-oauth

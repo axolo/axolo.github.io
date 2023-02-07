@@ -8,6 +8,8 @@ tags: [CentOS, Linux]
 
 # CentOS查看各种信息
 
+> 方跃明 2012-04-03
+
 收集常用的 CentOS 系统软硬件信息查看方法
 
 ```shell

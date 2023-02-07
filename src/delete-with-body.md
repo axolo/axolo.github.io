@@ -8,6 +8,8 @@ tags: [HTTP, WEB]
 
 # HTTP DELETE 方法传递参数
 
+> 方跃明 2019-10-01
+
 :::warning
 [RFC2616] 不建议 DELETE 方法甚至是 GET 方法 body 携带参数。
 :::

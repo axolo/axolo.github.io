@@ -8,6 +8,8 @@ tags: [Chrome, WEB]
 
 # Chrome inspect 开发钉钉应用
 
+> 方跃明 2019-04-07
+
 `Chrome inspect`是`Chrome`浏览器基于`webkit remote debug`的实现，支持`Android`模拟器和`Android`真实设备。
 
 但由于国情所致，国内`Android`大部分手机对于`Google Mobile Service`的支持甚是微弱，很多设备甚至完全阉割，且无法安装。

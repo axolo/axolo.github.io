@@ -8,6 +8,8 @@ tags: [WEB, JavaScript, jQuery]
 
 # jQuery常用表格操作
 
+> 方跃明 2016-10-30
+
 ```html
 <!DOCTYPE html>
 <html lang="en">
@@ -207,6 +209,3 @@ tags: [WEB, JavaScript, jQuery]
 </body>
 </html>
 ```
-
-> 方跃明
-> 2016-10-30

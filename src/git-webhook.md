@@ -8,6 +8,8 @@ tags: [Git, Node.js]
 
 # Git WebHooks
 
+> 方跃明 2020-09-23
+
 当代码仓库发生某些事件（提交、合并、讨论）时，触发已经定义好的WebHooks，将数据提交到WebHooks服务所在的服务器，服务端对数据解析，执行对应的脚本，实现自动部署等一系列操作。
 
 ## 代码实现
@@ -191,6 +193,3 @@ git clone git@gitee.com:name/repo.git
 - 选择事件：如PUSH
 
 至此完成部署和配置，当对应仓库有PUSH事件时，将触发WebHooks实现自动部署。
-
-> 方跃明
-> 2020-09-23

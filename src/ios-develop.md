@@ -8,6 +8,8 @@ tags: [iOS]
 
 # iOS开发环境搭建
 
+> 方跃明 2020-01-01
+
 快速搭建 iOS 开发环境
 
 ## 全局
@@ -33,6 +35,3 @@ cd ~/Projects/your-project
 # source 'https://mirrors.tuna.tsinghua.edu.cn/git/CocoaPods/Specs.git'
 pod install
 ```
-
-> 方跃明
-> 2020-01-01

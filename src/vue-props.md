@@ -8,6 +8,8 @@ tags: [Vue.js]
 
 # Vue 父子组件通信
 
+> 方跃明 2018-09-30
+
 ## 理解
 
 - `component`：相当于一个函数，`props => { return event => $emit }`

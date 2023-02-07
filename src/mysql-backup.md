@@ -8,6 +8,8 @@ tags: [MySQL, DevOps, Shell]
 
 # MySQL定时备份
 
+> 方跃明 2019-05-12
+
 ## 相关软件
 
 - [mysqldump](https://dev.mysql.com/doc/refman/8.0/en/mysqldump.html)

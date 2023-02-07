@@ -8,6 +8,8 @@ tags: [WEB]
 
 # Lodop打印解决方案
 
+> 方跃明 2018-07-09
+
 ## 改进版
 
 - 最新版本已改用`load-script`动态加载，不再本地集成，详见：[leo-lodop](https://axolo.github.io/leovue/api/leo-lodop.html)

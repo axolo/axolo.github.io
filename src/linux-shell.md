@@ -8,7 +8,7 @@ tags: [Linux, Shell]
 
 # Linux Shell 入门
 
-> 图片来自网络，侵删
+> 方跃明 2017-08-09
 
 师傅领进门，修行在自身。
 
@@ -139,7 +139,4 @@ ${#array_name[@]}     # 整个数组长度
 ![Shell脚本2](./files/linux-shell-05.jpg)
 ![Shell脚本3](./files/linux-shell-06.jpg)
 
-> 未完待续……
-
-> 方跃明
-> 2017-08-09
+> 图片来自网络，侵删。

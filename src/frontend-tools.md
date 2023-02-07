@@ -8,6 +8,8 @@ tags: [Node.js]
 
 # 前端常用工具
 
+> 方跃明 2021-12-22
+
 工欲善其事，必先利其器。
 
 ## Development
@@ -145,9 +147,6 @@ pm2          | 后台运行Node.js | <https://pm2.keymetrics.io>
 forever      | 后台运行Node.js | <https://github.com/foreverjs/forever>
 
 > 持续整理中……
-
-> 方跃明
-> 2021-12-22
 
 [CORS]: https://developer.mozilla.org/zh-CN/docs/Web/HTTP/CORS
 [CRLF也是漏洞]: https://cloud.tencent.com/developer/article/1745279

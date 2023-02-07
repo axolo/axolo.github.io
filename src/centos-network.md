@@ -8,6 +8,8 @@ tags: [CentOS, Linux]
 
 # CentOS 网络
 
+> 方跃明 2019-12-25
+
 `CentOS 7`开始默认使用`network-manager`来配置网络。虽然传统方式依然可以配置，但不推荐。
 
 ## nmcli
@@ -95,6 +97,3 @@ service network restart     # 重启网络服务使其生效
 | ONBOOT    | answer | answer为yes或no，是否系统启动时激活连接       |
 | USERCTL   | answer | answer为yes或no，非root用户是否可以控制该设备 |
 | PEERDNS   | answer | answer为yes或no，是否重写/etc/resolv.conf     |
-
-> 方跃明
-> 2019-12-25

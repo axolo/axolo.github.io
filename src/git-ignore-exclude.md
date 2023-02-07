@@ -8,6 +8,8 @@ tags: [Git]
 
 # Git排除忽略子目录
 
+> 方跃明 2019-09-09
+
 想忽略某个目录，但又不想忽略这个目录下的某个子目录？
 
 排除此目录，改为忽略*，然后忽略子目录。
@@ -64,6 +66,3 @@ unpackage/dist/build/*
 !unpackage/dist/build/README.md
 !unpackage/dist/build/.gitignore
 ```
-
-> 方跃明
-> 2019-09-09

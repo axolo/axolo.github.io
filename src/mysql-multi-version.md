@@ -1,12 +1,14 @@
 ---
 title: MySQL 多版本单服务器共存
 description: 同一台下 MySQL 7 和 MySQL 8 共存
-time: 2019-05-12
+time: 2019-05-13
 category: 数据库
 tags: [MySQL, Linux, CentOS]
 ---
 
 # MySQL多版本单服务器共存
+
+> 方跃明 2019-05-13
 
 ## MySQL 8
 

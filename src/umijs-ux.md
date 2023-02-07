@@ -8,6 +8,8 @@ tags: [React]
 
 # UmiJS之我见
 
+> 方跃明 2020-02-23
+
 到目前为止，UmiJS还不算严谨成熟的框架，像小孩捏的泥人，随意松散，慎用。
 
 <https://github.com/umijs/umi/issues/3989>
@@ -21,6 +23,3 @@ tags: [React]
 - Layout和Page在路由里同级均视为组件，导致路由设置层级过深，需各种判断
 - 文件、常量、变量规范很随意，大小写混淆，且互相不对应（model/setting -> state.settings）
 - 使用了不恰当的代码检查配置，且提交时自动格式化代码，极不人性
-
-> 方跃明
-> 2020-02-23

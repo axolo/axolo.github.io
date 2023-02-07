@@ -8,6 +8,8 @@ tags: [CentOS, Linux]
 
 # Linux 个人目录规划
 
+> 方跃明 2014-04-03
+
 ```
 ~
 |-- .bashrc                                 # 启动配置文件

@@ -18,7 +18,9 @@ const tag = item => router.go(`${url('tag')}#${anchor(item)}`)
 
 <style lang="scss" scoped>
 .doc-before {
-  margin-bottom: 0.25em;
+  margin: 2em 0;
+  padding: 1em 0;
+  border-top: 1px dashed var(--vp-c-divider);
   display: flex;
   flex-wrap: wrap;
   align-items: center;

@@ -8,6 +8,8 @@ tags: [Linux, Shell]
 
 # Linux 编译安装命令 configure、make、install 的意义
 
+> 方跃明 2008-08-08
+
 tar.gz、tar.bz2的是源代码包，需要编译之后才能安装，在编译过程中你可以指定各种参数以适应你的系统需求，比如安装位置，优化参数，要哪些功能不要哪些功能等等。
 
 这类源代码包需要解压后，进入解压目录，一般都有一个`INSTALL`的文本文件，里面一般都是安装的详细说明，可以用vi、nano、pico或X下面的文本编辑器（如gedit、gvim、kedit等）打开查看。
@@ -299,6 +301,3 @@ make all && make install
 chmod +x example。bin
 ./example.bin
 ```
-
-> 方跃明
-> 2008-08-08

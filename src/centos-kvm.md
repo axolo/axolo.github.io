@@ -8,6 +8,8 @@ tags: [DevOps, CentOS, Linux, 虚拟化]
 
 # CentOS 安装 KVM
 
+> 方跃明 2014-04-04
+
 很多人都使用 Openstack，通过 nova 来管理 KVM，对于 KVM 本身其实很陌生，本文理论联系实践，加深对 KVM 的认识。先弄清楚几个概念和关系：
 
 ## Openstack、kvm、qemu-kvm、libvirt的关系
@@ -139,6 +141,3 @@ virt-manager图形化管理工具一般装在客户端桌面系统上，管理kv
 1. libvirt命令行
 2. 深入理解kvm相关概念
 3. linux相关概念、命令及shell编程
-
-> 方跃明
-> 2014-04-04

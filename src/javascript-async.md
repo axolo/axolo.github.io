@@ -8,6 +8,8 @@ tags: [JavaScript]
 
 # JavaScript async
 
+> 方跃明 2020-02-18
+
 代码演示 JavaScript 同步异步操作。
 
 ## 场景
@@ -73,6 +75,3 @@ console.log(Store.next()); // { value: 7, done: false }
 console.log(Store.next()); // { value: 5, done: false }
 console.log(Store.next()); // { value: undefined, done: true }
 ```
-
-> 方跃明
-> 2020-02-18

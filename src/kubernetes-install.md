@@ -8,6 +8,8 @@ tags: [DevOps, Docker, Kubernetes]
 
 # Kubernetes 安装指南
 
+> 方跃明 2018-04-29
+
 ![容器生态圈](./files/kubernetes-install-container.jpg)
 
 ## 简介

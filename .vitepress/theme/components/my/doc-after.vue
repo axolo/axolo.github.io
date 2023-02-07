@@ -3,6 +3,6 @@
 
 <template>
   <div class="doc-after">
-    <!-- TODO: 评论列表 -->
+    <!-- TODO: 评论 -->
   </div>
 </template>

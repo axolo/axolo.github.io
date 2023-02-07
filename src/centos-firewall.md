@@ -8,6 +8,8 @@ tags: [CentOS, Linux]
 
 # CentOS防火墙
 
+> 方跃明 2019-12-26
+
 CentOS 使用 firewalld 防火墙系统，大多数服务需要防火墙放行才能被访问。
 
 ## 放行
@@ -60,6 +62,3 @@ firewall-cmd --zone=dmz --add-port=8080/tcp       # 加入一个端口到区域
 firewall-cmd --zone=work --add-service=smtp       # 添加一个服务
 firewall-cmd --zone=work --remove-service=smtp    # 移除一个服务
 ```
-
-> 方跃明
-> 2019-12-26

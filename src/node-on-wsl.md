@@ -8,6 +8,8 @@ tags: [Linux, Node.js]
 
 # 基于WSL搭建Node.js开发环境
 
+> 方跃明 2022-01-20
+
 适用于 Linux 的 Windows 子系统（WSL）可让开发人员直接在 Windows 上按原样运行 GNU/Linux 环境（包括大多数命令行工具、实用工具和应用程序），且不会产生传统虚拟机或双启动设置开销。
 
 以下操作基于Windows 10 企业版 LTSC 21H2版，安装默认的WSL发行版（Ubuntu 20.04 LTS），配置Node.js开发环境。
@@ -235,10 +237,6 @@ mvn compile         # 编译
 mvn package         # 打包
 mvn install         # 安装
 ```
-
-> 方跃明
-> 2022-01-20
-
 
 [下载WSL发行版]: https://docs.microsoft.com/zh-cn/windows/wsl/install-manual#downloading-distributions
 [Ubuntu阿里源]: https://developer.aliyun.com/mirror/ubuntu

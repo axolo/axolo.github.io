@@ -8,6 +8,8 @@ tags: [CentOS, Linux]
 
 # CentOS快速搭建开发环境
 
+> 方跃明 2020-05-11
+
 CentOS 安装 Docker、MySQL、nginx、Node.js、Git 等应用，快速搭建开发环境。
 
 ## Docker
@@ -72,6 +74,3 @@ yum install git
 # https://yarn.bootcss.com/docs/install/#centos-stable
 curl --silent --location https://dl.yarnpkg.com/rpm/yarn.repo | sudo tee /etc/yum.repos.d/yarn.repo
 ```
-
-> 方跃明
-> 2020-05-11

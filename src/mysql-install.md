@@ -8,6 +8,8 @@ tags: [CentOS, MySQL, Linux]
 
 # CentOS 安装 MySQL 8
 
+> 方跃明 2019-05-11
+
 ## 一、安装并登录
 
 ```shell

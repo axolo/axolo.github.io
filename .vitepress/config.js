@@ -11,7 +11,7 @@ export default withMermaid({
   lang: 'zh-CN',
   srcDir: './src', // 博客源文件目录
   // outDir: './docs', // 方便部署各种Pages
-  lastUpdated: true,
+  // lastUpdated: true,
   head: [
     ['link', { rel: 'icon', href: '/favicon.ico' }],
     ['link', { rel: 'stylesheet', href: '/styles/my.css' }],

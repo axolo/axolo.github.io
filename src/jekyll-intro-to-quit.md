@@ -8,6 +8,8 @@ tags: [WEB, 博客系统]
 
 # Jekyll 从入门到放弃
 
+> 方跃明 2022-12-15
+
 各种不习惯，严重受虐，从入门到放弃只需一周。
 Hugo 和 Hexo 别笑了，你俩半斤八两，五十步笑百步。
 
@@ -42,9 +44,6 @@ bundle exec jekyll serve
 ## 模板引擎
 
 模板引擎基于 [Liquid]
-
-> 方跃明
-> 2022-12-15
 
 [Jekyll]: http://jekyllcn.com/
 [Liquid]: https://github.com/Shopify/liquid

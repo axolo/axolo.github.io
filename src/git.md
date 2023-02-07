@@ -8,7 +8,7 @@ tags: [Git]
 
 # Git 常用操作图解
 
-> 图片来自网络，侵删
+> 方跃明 2018-4-28
 
 ## git
 
@@ -41,6 +41,3 @@ git subtree pull -P www/ origin coding-pages
 # 在子项目生成新分支hotfix-001
 git subtree push -P www/ origin hotfix-001
 ```
-
-> 方跃明
-> 2018-4-28

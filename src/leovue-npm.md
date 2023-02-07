@@ -8,6 +8,8 @@ tags: [Vue.js, Node.js]
 
 # LeoVue 打包发布 NPM 折腾记
 
+> 方跃明 2018-08-18
+
 详尽步骤细述 Vue 组件库如何发布到 npm。
 ## 发布步骤
 
@@ -155,6 +157,3 @@ found in `<Component>`
 ## 参考
 
 [vue todo-list组件发布到npm上的方法](https://www.jb51.net/article/137725.htm)
-
-> 方跃明
-> 2018-08-18

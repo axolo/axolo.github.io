@@ -8,6 +8,8 @@ tags: [PHP]
 
 # LeoPHP Framework
 
+> 方跃明 2016-12-01
+
 ## 更新
 
 细微改动不再同步更新到coding.net，请移步：
@@ -204,6 +206,3 @@ class Index extends Controller {
 
 - [有感于“论PHP的倒掉”](http://www.iteye.com/topic/523378)
 - [PHP框架的繁荣是正确的发展方向吗？](http://www.iteye.com/topic/319039)
-
-> 方跃明
-> 2016-12-01

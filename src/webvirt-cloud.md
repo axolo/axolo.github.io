@@ -8,6 +8,8 @@ tags: [CentOS, Linux, 虚拟化]
 
 # WebVirtCloud 部署笔记
 
+> 方跃明 2013-12-30
+
 ## 系统配置
 
 ### SELinux

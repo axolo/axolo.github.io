@@ -8,6 +8,8 @@ tags: [Git]
 
 # Git subtree
 
+> 方跃明 2020-08-20
+
 和`Git Submodule`一样，`Git Subtree`也是多人协作开发利器。
 
 - [官方文档](https://git-scm.com/book/zh/v2)
@@ -71,5 +73,3 @@ git add --all
 git commit -m "modify"
 git push
 ```
-> 方跃明
-> 2020-08-20

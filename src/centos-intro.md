@@ -8,6 +8,8 @@ tags: [CentOS, Linux]
 
 # CentOS入坑指南
 
+> 方跃明 2019-05-09
+
 一入 CentOS 深似海，从此再也爬不出来。
 
 ## 基本命令

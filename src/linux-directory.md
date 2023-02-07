@@ -8,6 +8,8 @@ tags: [CentOS, Linux]
 
 # Linux目录结构
 
+> 方跃明 2021-12-19
+
 Linux目录树的主要部分有`/`、`/usr`、`/var`、`/home`等等。
 下面是一个典型的Linux目录结构如下：
 
@@ -67,6 +69,3 @@ Linux会按以下顺序读取4个环境配置文件：
 2. `/etc/bashrc`：所有用户运行`bash shell`时均执行此脚本
 3. `~/.profile`：当前户登录时执行此脚本
 4. `~/.bashrc`：当前用户运行`bash shell`时执行此脚本
-
-> 方跃明
-> 2021-12-19

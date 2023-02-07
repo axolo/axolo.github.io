@@ -8,6 +8,8 @@ tags: [Git]
 
 # Git提交规范
 
+> 方跃明 2020-01-02
+
 `Husky`接管Git钩子在commit-msg时利用`commitlint`检查提交规范。
 
 ## 参考
@@ -72,6 +74,3 @@ yarn changelog  # 在项目根目录生成CHANGELOG.md
 ### Git钩子执行ESLint
 
 详见[规范构建教程](https://juejin.im/post/5d1f1e595188254b732b60a3)
-
-> 方跃明
-> 2020-01-02
