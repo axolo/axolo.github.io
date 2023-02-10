@@ -13,7 +13,7 @@ export default withMermaid({
   // outDir: './docs', // 方便部署各种Pages
   // lastUpdated: true,
   head: [
-    ['link', { rel: 'icon', href: '/favicon.ico' }],
+    ['link', { rel: 'icon', type: 'image/svg+xml', href: '/logo.svg' }],
     ['link', { rel: 'stylesheet', href: '/styles/my.css' }],
     ['script', { src: '/scripts/baidu-hm.js' }]
   ],
@@ -28,7 +28,8 @@ export default withMermaid({
     nav: [
       { text: '标签', link: '/tag' },
       { text: '分类', link: '/category' },
-      { text: '归档', link: '/archive' }
+      { text: '归档', link: '/archive' },
+      { text: '国内镜像', link: 'http://blog.fangyueming.cn' }
     ],
     socialLinks: [{
       link: 'https://gitee.com/axolo',

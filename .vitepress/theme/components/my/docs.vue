@@ -1,6 +1,7 @@
 <script setup>
 import dayjs from 'dayjs'
 import { useRouter } from 'vitepress'
+import VPBadge from 'vitepress/dist/client/theme-default/components/VPBadge.vue'
 import { url, anchor } from '../../../utils'
 import docs from '../../../data/docs.json'
 
@@ -16,7 +17,7 @@ const doc = item => router.go(url(item.relativePath))
       <div class="title">
         <a :href="url(page.relativePath)">{{ page.title }}</a>
         <span v-if="page.top" class="top">
-          <Badge class="icon" text="置顶" type="warning" />
+          <VPBadge class="icon" text="置顶" type="warning" />
         </span>
       </div>
       <div class="info">

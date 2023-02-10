@@ -1,5 +1,6 @@
 <script setup>
 import { useData, useRouter } from 'vitepress'
+import VPBadge from 'vitepress/dist/client/theme-default/components/VPBadge.vue'
 import { url, anchor } from '../../../utils'
 
 const { page } = useData()
@@ -11,7 +12,7 @@ const tag = item => router.go(`${url('tag')}#${anchor(item)}`)
 <template>
   <div class="doc-before">
     <div v-for="item in page.frontmatter.tags" :key="item" @click="tag(item)">
-      <Badge :text="item" type="info" />
+      <VPBadge :text="item" type="info" />
     </div>
   </div>
 </template>
