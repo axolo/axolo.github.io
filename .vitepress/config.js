@@ -29,7 +29,7 @@ export default withMermaid({
       { text: '标签', link: '/tag' },
       { text: '分类', link: '/category' },
       { text: '归档', link: '/archive' },
-      { text: '国内镜像', link: 'http://blog.fangyueming.cn' }
+      { text: '国内镜像', link: 'https://blog.fangyueming.cn' }
     ],
     socialLinks: [{
       link: 'https://gitee.com/axolo',
