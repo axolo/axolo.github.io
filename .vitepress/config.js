@@ -2,6 +2,9 @@ import fs from 'fs'
 import { withMermaid } from 'vitepress-plugin-mermaid'
 import { tree2array } from '@axolo/tree-array'
 import icons from './data/icons'
+import tag from './utils/tag'
+import archive from './utils/archive'
+import category from './utils/category'
 
 const pages = []
 
@@ -27,9 +30,9 @@ export default withMermaid({
     },
     nav: [
       { text: '标签', link: '/tag' },
-      { text: '分类', link: '/category' },
       { text: '归档', link: '/archive' },
-      { text: '国内镜像', link: 'https://blog.fangyueming.cn' }
+      { text: '分类', link: '/category' },
+      { text: '加速镜像', link: 'https://blog.fangyueming.cn' }
     ],
     socialLinks: [{
       link: 'https://gitee.com/axolo',
@@ -63,6 +66,12 @@ export default withMermaid({
       const sortB = (b.top || 0) + (b.time?.toISOString() || '0000-00-00T00:00:00.000Z')
       return sortB.localeCompare(sortA)
     })
+    const tagMarkdown = tag(data)
+    const archiveMarkdown = archive(data)
+    const categoryMarkdown = category(data)
     fs.writeFileSync('./.vitepress/data/docs.json', JSON.stringify(data), { encoding: 'UTF-8' })
+    fs.writeFileSync('./src/tag.md', tagMarkdown, { encoding: 'UTF-8' })
+    fs.writeFileSync('./src/archive.md', archiveMarkdown, { encoding: 'UTF-8' })
+    fs.writeFileSync('./src/category.md', categoryMarkdown, { encoding: 'UTF-8' })
   }
 })

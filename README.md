@@ -34,19 +34,21 @@ npm run serve   # 运行（发布后的内容）
 
 ## 目录
 
+**系统生成**的文件，在运行保存命令时会**覆盖**同名文件内容，且无法恢复。
+
 ```
 |-- README.md                     # 说明
 |-- src                           # 博文
 |   |-- files                     #   博文附件
 |   |-- index.md                  #   首页
-|   |-- archive.md                #   归档
-|   |-- category.md               #   分类
-|   `-- tag.md                    #   标签
+|   |-- archive.md                #   归档（系统生成）
+|   |-- category.md               #   分类（系统生成）
+|   `-- tag.md                    #   标签（系统生成）
 |
 `-- .vitepress                    # vitepress
     |-- config.js                 #   配置
     |-- data                      #   数据
-    |   |-- docs.json             #     博文（文档）
+    |   |-- docs.json             #     博文（系统生成）
     |   `-- icons.json            #     图标（svg）
     |
     `-- theme                     #   主题
