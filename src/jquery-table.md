@@ -1,14 +1,14 @@
 ---
 title: jQuery 常用表格操作
 description: jQuery 操作表格增删改查
-time: 2016-10-30
+time: 2015-10-30
 category: 前端
 tags: [WEB, JavaScript, jQuery]
 ---
 
 # jQuery常用表格操作
 
-> 方跃明 2016-10-30
+> 方跃明 2015-10-30
 
 ```html
 <!DOCTYPE html>

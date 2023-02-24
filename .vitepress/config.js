@@ -17,7 +17,7 @@ export default withMermaid({
   // lastUpdated: true,
   head: [
     ['link', { rel: 'icon', type: 'image/svg+xml', href: '/logo.svg' }],
-    ['link', { rel: 'stylesheet', href: '/styles/my.css' }],
+    ['link', { rel: 'stylesheet', href: '/styles/app.css' }],
     ['script', { src: '/scripts/baidu-hm.js' }]
   ],
   themeConfig: {
@@ -32,7 +32,7 @@ export default withMermaid({
       { text: '标签', link: '/tag' },
       { text: '归档', link: '/archive' },
       { text: '分类', link: '/category' },
-      { text: '加速镜像', link: 'https://blog.fangyueming.cn' }
+      { text: '备用站', link: 'https://axolo.github.io' }
     ],
     socialLinks: [{
       link: 'https://gitee.com/axolo',

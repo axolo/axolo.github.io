@@ -22,8 +22,7 @@ const doc = item => router.go(url(item.relativePath))
       </div>
       <div class="info">
         <div class="date">
-          <i class="my my-time icon" />
-          <span class="text">{{ dayjs(page.time).format('YYYY-MM-DD') }}</span>
+          🕒{{ dayjs(page.time).format('YYYY-MM-DD') }}
         </div>
         <div v-for="item in page.tags" :key="item" class="tag" @click="tag(item)">
           {{ item }}
@@ -69,19 +68,11 @@ const doc = item => router.go(url(item.relativePath))
       .date {
         display: flex;
         flex-wrap: nowrap;
+        white-space: nowrap;
         align-items: center;
-        font-size: 0.9em;
         color: var(--vp-c-text-2);
         transition: color 0.5s;
-        .icon {
-          margin-right: 0.1em;
-          display: flex;
-          flex-wrap: nowrap;
-          align-items: center;
-        }
-        .text {
-          white-space: nowrap;
-        }
+        font-size: 0.9em;
       }
       .tag {
         cursor: pointer;
