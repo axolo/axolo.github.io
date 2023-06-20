@@ -34,6 +34,13 @@ tags: [Linux, Node.js]
 - 管理员身份运行PowerShell：`wsl --install -d Ubuntu`
 - 手动[下载WSL发行版]以管理员身份运行PowerShell：`Add-AppxPackage .\Ubuntu_2004.2020.424.0_x64.appx`
 
+### 常见错误
+
+|   错误代码   |                           解决办法                            |
+| ------------ | ------------------------------------------------------------- |
+| `0x8007019e` | `打开或关闭 Windows 功能`勾选`适用于 Linux 的 Windows 子系统` |
+| `0x80040324` | 删除`%HOMEPATH%\.wslgconfig`                                  |
+
 ## 使用WSL
 
   方式   |                         操作                           | 推荐
