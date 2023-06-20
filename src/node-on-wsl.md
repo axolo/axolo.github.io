@@ -16,33 +16,24 @@ tags: [Linux, Node.js]
 
 ## 安装WSL
 
-可以选择以下任一方式进行安装。但由于Windows 10 企业版 LTSC默认未搭载[微软应用商店](#微软应用商店)（AppStore），且受限于网络环境，[命令行安装](#命令行安装)模式容易失败，推荐使用[下载安装](#下载安装)进行安装。
+分安装配置子系统和安装发行版两个大步骤。
 
-### 微软应用商店
+### 子系统
 
-搜索“Ubuntu”下载安装。
+参见 [WSL手动安装]，若WSL版本过低还需要 [下载WSL更新]。
 
-### 命令行安装
+ ```powershell
+ dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
+ dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
+ wsl --set-default-version 2
+ ```
 
-以管理员身份运行PowerShell使用以下命令安装。
+### 发行版
 
-```powershell
-wsl --install -d Ubuntu
-```
+- 微软商店：搜索“Ubuntu”下载并安装
+- 管理员身份运行PowerShell：`wsl --install -d Ubuntu`
+- 手动[下载WSL发行版]以管理员身份运行PowerShell：`Add-AppxPackage .\Ubuntu_2004.2020.424.0_x64.appx`
 
-### 下载安装
-
-[下载WSL发行版]，后以管理员身份运行PowerShell使用以下命令安装。
-
-```powershell
-Add-AppxPackage .\Ubuntu_2004.2020.424.0_x64.appx
-```
-
-> 设置默认版本为WSL 2
-
-```powershell
-wsl --set-default-version 2
-```
 ## 使用WSL
 
   方式   |                         操作                           | 推荐
@@ -99,7 +90,7 @@ sudo service ssh start
 
 ## 安装Node.js
 
-可根据需要选择以下任一方式安装Node.js。若需要多版本切换，建议使用nvm方式安装。
+可根据需要选择以下任一方式安装Node.js。若需要多版本切换，建议使用[nvm]方式安装。
 
 微软官方亦有[WSL Node.js]安装文档，供参考。
 
@@ -238,8 +229,11 @@ mvn package         # 打包
 mvn install         # 安装
 ```
 
+[WSL手动安装]: https://learn.microsoft.com/zh-cn/windows/wsl/install-manual
+[下载WSL更新]: https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi
 [下载WSL发行版]: https://docs.microsoft.com/zh-cn/windows/wsl/install-manual#downloading-distributions
 [Ubuntu阿里源]: https://developer.aliyun.com/mirror/ubuntu
 [NodeSource Ubuntu]: https://github.com/nodesource/distributions#deb
 [WSL Node.js]: https://docs.microsoft.com/zh-cn/windows/dev-environment/javascript/nodejs-on-wsl
 [Node.js二进制包安装]: https://github.com/nodejs/help/wiki/Installation
+[nvm]: https://github.com/coreybutler/nvm-windows
