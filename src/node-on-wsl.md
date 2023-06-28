@@ -126,6 +126,12 @@ sudo apt install -y nodejs
 
 ### nvm
 
+最近 https://nodejs.org 官网无法访问，建议配置源：
+
+```shell
+export NVM_NODEJS_ORG_MIRROR=https://npm.taobao.org/mirrors/node
+```
+
 采用以下命令安装nvm：
 
 ```shell
