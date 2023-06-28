@@ -1,0 +1,1 @@
+import{s as r}from"./framework.da26b7ea.js";const n=s=>r(s.replace(/.(md|markdown)$/i,".html")),t=s=>[void 0,null,""].includes(s)?s:(isNaN(parseFloat(s))?s:"_"+s).replace(/[\s+|.]/g,"-");export{t as a,n as u};
