@@ -153,6 +153,13 @@ cd nvm-0.39.1
 nvm install 14.18.3   # 安装Node.js v14.18.3 LTS
 ```
 
+遇到 [Node.js官网](https://nodejs.org) 无法访问的，请自行配置node镜像源、tarballs等：
+
+```shell
+export NODE_MIRROR=https://npm.taobao.org/mirrors/node
+npm config set disturl http://mirrors.cloud.tencent.com/nodejs-release/
+```
+
 ## 安装Yarn
 
 ```shell
