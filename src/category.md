@@ -32,6 +32,7 @@ unsave: true
 
 ## 前端
 
+- [专有钉调试](./gdt-debug.md)
 - [Jekyll 从入门到放弃](./jekyll-intro-to-quit.md)
 - [Webpack编译移除控制台输出](./webpack-drop-console.md)
 - [UmiJS 之我见](./umijs-ux.md)

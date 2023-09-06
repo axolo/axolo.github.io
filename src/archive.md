@@ -6,6 +6,7 @@ unsave: true
 # 归档
 ## 2023
 
+- [专有钉调试](./gdt-debug.md)
 - [whistle 简明教程](./whistle-intro.md)
 
 ## 2022

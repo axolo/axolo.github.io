@@ -133,6 +133,11 @@ unsave: true
 - [Docker Portianer](./docker-portianer.md)
 - [Kubernetes 安装指南](./kubernetes-install.md)
 
+## 钉钉
+
+- [专有钉调试](./gdt-debug.md)
+- [钉钉云推送自建RDS最佳实践](./ding-cloud-push.md)
+
 ## 内网穿透
 
 - [frp 内网穿透](./frp.md)
@@ -156,6 +161,14 @@ unsave: true
 
 - [Egg.js 实现 OAuth2 授权码方式鉴权](./egg-oauth.md)
 
+## 专有钉
+
+- [专有钉调试](./gdt-debug.md)
+
+## 浙政钉
+
+- [专有钉调试](./gdt-debug.md)
+
 ## 博客系统
 
 - [Jekyll 从入门到放弃](./jekyll-intro-to-quit.md)
@@ -175,10 +188,6 @@ unsave: true
 ## iOS
 
 - [iOS 开发环境搭建](./ios-develop.md)
-
-## 钉钉
-
-- [钉钉云推送自建RDS最佳实践](./ding-cloud-push.md)
 
 ## Chrome
 
