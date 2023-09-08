@@ -10,7 +10,7 @@ const pages = []
 
 export default withMermaid({
   title: '方跃明的博客',
-  description: '目标领导计划，数据驱动算法。约定大于配置，配置大于编码。',
+  description: '约定大于配置，配置大于编码。自上而下分解，自下而上构建。数据驱动算法，目标领导计划。',
   lang: 'zh-CN',
   srcDir: './src', // 博客源文件目录
   // outDir: './docs', // 方便部署各种Pages
