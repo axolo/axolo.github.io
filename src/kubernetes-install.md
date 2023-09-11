@@ -10,7 +10,7 @@ tags: [DevOps, Docker, Kubernetes]
 
 > 方跃明 2018-04-29
 
-![容器生态圈](./files/kubernetes-install-container.jpg)
+![容器生态圈](./assets/kubernetes-install-container.jpg)
 
 ## 简介
 
@@ -18,7 +18,7 @@ tags: [DevOps, Docker, Kubernetes]
 
 kubernetes（简称k8s）是Google开源的容器集群管理系统。它构建Docker技术之上，为容器化的应用提供资源调度、部署运行、服务发现、扩容缩容等整一套功能，本质上可看作是基于容器技术的mini-PaaS平台。
 
-![kubernetes](./files/kubernetes-install-architecture.png)
+![kubernetes](./assets/kubernetes-install-architecture.png)
 
 ### kubernetes-master
 
@@ -35,7 +35,7 @@ kubernetes（简称k8s）是Google开源的容器集群管理系统。它构建D
 
 flannel可以为容器提供网络服务。其模型为全部的容器使用一个network，然后在每个host上从network中划分一个子网subnet。为host上的容器创建网络时，从subnet中划分一个ip给容器。其采用目前比较流行的no server的方式，即不存在所谓的控制节点，而是每个host上的flanneld从一个etcd中获取相关数据，然后声明自己的子网网段，并记录在etcd中。其他的host对数据转发时，从etcd中查询到该子网所在的host的ip，然后将数据发往对应host上的flanneld，交由其进行转发。根据kubernetes的模型，即为每个pod提供一个ip。flannel的模型正好与之契合。因此flannel是最简单易用的kubernetes集群网络方案。
 
-![flannel](./files/kubernetes-install-cluster.png)
+![flannel](./assets/kubernetes-install-cluster.png)
 
 ### etcd
 
@@ -51,7 +51,7 @@ etcd是CoreOS的核心组件，负责节点间的服务发现和配置共享，�
 - 作为kubernetes的数据库，存储了k8s自身的信息、以及各种业务容器信息等。
 - 存储flannel网络配置信息，供各节点协调。
 
-![etcd](./files/kubernetes-install-etcd.png)
+![etcd](./assets/kubernetes-install-etcd.png)
 
 ### docker
 
@@ -62,7 +62,7 @@ Docker 是一个开源的应用容器引擎，让开发者可以打包他们的�
 - Container：容器
 - Image：镜像
 
-![docker](./files/kubernetes-install-docker.png)
+![docker](./assets/kubernetes-install-docker.png)
 
 ## 规划
 
@@ -73,7 +73,7 @@ Docker 是一个开源的应用容器引擎，让开发者可以打包他们的�
 | Master | kubernetes-master etcd         |   1   | 192.168.20.25               |
 | Node   | kubernetes-node docker flannel |   2   | 192.168.20.22 192.168.20.26 |
 
-![kubernetes with Flannel](./files/kubernetes-install-flannel.png)
+![kubernetes with Flannel](./assets/kubernetes-install-flannel.png)
 
 ### 前提
 

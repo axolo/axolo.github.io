@@ -133,6 +133,11 @@ unsave: true
 - [Docker Portianer](./docker-portianer.md)
 - [Kubernetes 安装指南](./kubernetes-install.md)
 
+## nginx
+
+- [nginx 同源调试](./nginx-cors.md)
+- [nginx 配置 php-fpm](./nginx-php-fpm.md)
+
 ## 钉钉
 
 - [专有钉调试](./gdt-debug.md)
@@ -160,6 +165,10 @@ unsave: true
 ## Egg.js
 
 - [Egg.js 实现 OAuth2 授权码方式鉴权](./egg-oauth.md)
+
+## cors
+
+- [nginx 同源调试](./nginx-cors.md)
 
 ## 专有钉
 
@@ -200,10 +209,6 @@ unsave: true
 ## Kubernetes
 
 - [Kubernetes 安装指南](./kubernetes-install.md)
-
-## nginx
-
-- [nginx 配置 php-fpm](./nginx-php-fpm.md)
 
 ## jQuery
 

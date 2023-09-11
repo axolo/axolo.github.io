@@ -33,7 +33,7 @@ tags: [Vue.js]
   - 调用子组件，其中`props`值的变化，直接被传递到子组件
   - 子组件若要将`props`的值传给父组件，需要通过`emit`发射事件和值到父组件
 
-![Vue父子组件通信](./files/vue-props.png)
+![Vue父子组件通信](./assets/vue-props.png)
 
 ## 示例
 

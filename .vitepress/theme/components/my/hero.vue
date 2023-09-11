@@ -23,7 +23,7 @@ const { site } = useData()
 .MyHero {
   background-image: url("/images/hero.svg");
   .container {
-    padding: 64px 32px;
+    padding: 32px;
     display: flex;
     flex-direction: column;
     justify-content: center;

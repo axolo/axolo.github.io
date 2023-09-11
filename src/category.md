@@ -6,6 +6,7 @@ unsave: true
 # 分类
 ## 运维
 
+- [nginx 同源调试](./nginx-cors.md)
 - [whistle 简明教程](./whistle-intro.md)
 - [基于WSL搭建Node.js开发环境](./node-on-wsl.md)
 - [Linux 目录结构](./linux-directory.md)

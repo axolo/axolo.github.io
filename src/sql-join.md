@@ -12,4 +12,4 @@ tags: [SQL]
 
 左连接、右连接、内连接、外连接……傻傻分不清
 
-![SQL JOINS](./files/sql-join.jpg)
+![SQL JOINS](./assets/sql-join.jpg)

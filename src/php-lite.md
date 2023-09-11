@@ -16,7 +16,7 @@ tags: [PHP]
 
 这几天闲来无事，朝思暮想，对MVC的理解有了新的认识，有一点点浅见，于是折腾了一张图。
 
-![我的MVC框架示意图](./files/php-lite.gif)
+![我的MVC框架示意图](./assets/php-lite.gif)
 
 最大的收获是我们是否需要很肥大的View呢？在各种PHP框架中，View端的语言基本上都采用PHP-Client，比如ZendFramework、QeePHP等，还有的采用模板标签或模板引擎。在我看来这其实是方便开发者使用的，其实对于View，可以精简至极至。图中的Input和Output都涉及到View。精简后的View可以根本就不用去管Input和Output的设备、形式、语言，只需要Input进正确格式的数据（比如JSON、XML），而Output出指定格式的数据（比如JSON、XML）。同样，Output的呈现形式、方法、手段等不是我们要关注的。对于WEB来说可以Output出的数据可以交给ExtJS，可以交给PHP(此时的PHP是WEB前端脚本语言)，可以交给原生Javascript处理。甚至可以以WML语言输出到WAP。也就是说View如何呈现不是核心所要关注的。
 

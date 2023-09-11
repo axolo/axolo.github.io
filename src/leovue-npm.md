@@ -71,7 +71,7 @@ npm publish                     # 按提示排错，比如包的命名问题等�
 }
 ```
 
-![npmjs](./files/leovue-npm.png)
+![npmjs](./assets/leovue-npm.png)
 
 上图是`package.json`跟`npmjs.com`内容关系图，`keywords`在项目主页底部，
 `README.md`内容显示在主页，`version`、`license`、`homepage`、`repository`信息在右侧。

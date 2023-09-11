@@ -16,7 +16,7 @@ Zabbix（[`zæbiks]）是一个基于WEB界面的提供分布式系统监视以�
 
 ## Zabbix Server
 
-![Zabbix部署示意图](./files/zabbix-schema.jpg)
+![Zabbix部署示意图](./assets/zabbix-schema.jpg)
 
 ### 安装数据库
 
@@ -70,7 +70,7 @@ systemctl start httpd
 
 ## Zabbix Agent
 
-![Zabbix分布式部署示意图](./files/zabbix-proxy.png)
+![Zabbix分布式部署示意图](./assets/zabbix-proxy.png)
 
 ### CentOS
 

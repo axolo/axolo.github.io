@@ -10,4 +10,4 @@ tags: [WEB]
 
 > 方跃明 2016-12-19
 
-![Internet技术概览](./files/web-internet.jpg)
+![Internet技术概览](./assets/web-internet.jpg)

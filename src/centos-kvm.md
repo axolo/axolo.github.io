@@ -19,7 +19,7 @@ tags: [DevOps, CentOS, Linux, 虚拟化]
 * Openstack不直接控制qemu-kvm，它使用一个叫libvirt的库间接控制qemu-lvm。
 * libvirt提供了跨VM平台的功能，除了QEMU的模拟器，还可以控制vmware、virtualbox、xen等。为了实现openstack的跨VM特性，openstack使用libvirt，而不直接用qemu-kvm。libvirt还提供了一些高级的功能，例如pool/vol管理。
 
-![centos-kvm-openstack](./files/centos-kvm-openstack.png)
+![centos-kvm-openstack](./assets/centos-kvm-openstack.png)
 
 ## 虚拟机服务器和客户端的关系
 
@@ -70,7 +70,7 @@ list
 
 虚拟机接入网络常用有两种方式，一种是NAT一种是Brigde，一般采用Brigde方式。
 
-![network-brige](./files/centos-kvm-network-brige.png)
+![network-brige](./assets/centos-kvm-network-brige.png)
 
 桥接模式需要设置，首先，创建一个文件“/etc/sysconfig/network-scripts/ifcfg-br0”：
 
@@ -117,18 +117,18 @@ brctl show
 
 virt-manager图形化管理工具一般装在客户端桌面系统上，管理kvm host的虚拟网络、存储、网络接口，vm的创建、配置、删除、启动关机等。
 
-![virt-manager客户端](./files/centos-kvm-virt-manager-client.png)
+![virt-manager客户端](./assets/centos-kvm-virt-manager-client.png)
 
 ### 五、客户端安装及使用virt-manager
 
 * 客户端需要CentOS桌面系统。在“主菜单”→“系统”→“管理”→“添加/删除软件”中查找“virt-manager”，找到后，点击“应用”，进行安装。
 * 安装完成后，打开方式位于“主菜单”→“系统工具”→“虚拟系统管理器”。
 
-![安装virt-manager](./files/centos-kvm-virt-manager-install.png)
+![安装virt-manager](./assets/centos-kvm-virt-manager-install.png)
 
-![连接KVM服务器](./files/centos-kvm-virt-manager-connection.png)
+![连接KVM服务器](./assets/centos-kvm-virt-manager-connection.png)
 
-![虚拟机配置](./files/centos-kvm-vm.png)
+![虚拟机配置](./assets/centos-kvm-vm.png)
 
 ### 六、VNC的使用
 

@@ -132,11 +132,11 @@ ${#array_name[@]}     # 整个数组长度
 ## 思维导图
 
 
-![基础知识](./files/linux-shell-01.jpg)
-![文件目录](./files/linux-shell-02.jpg)
-![文本处理](./files/linux-shell-03.jpg)
-![Shell脚本1](./files/linux-shell-04.jpg)
-![Shell脚本2](./files/linux-shell-05.jpg)
-![Shell脚本3](./files/linux-shell-06.jpg)
+![基础知识](./assets/linux-shell-01.jpg)
+![文件目录](./assets/linux-shell-02.jpg)
+![文本处理](./assets/linux-shell-03.jpg)
+![Shell脚本1](./assets/linux-shell-04.jpg)
+![Shell脚本2](./assets/linux-shell-05.jpg)
+![Shell脚本3](./assets/linux-shell-06.jpg)
 
 > 图片来自网络，侵删。

@@ -165,11 +165,11 @@ export default {
 
 ### 打印对话框（含leo-dialog子组件）
 
-![Lodop Dialog](./files/lodop-dialog.png)
+![Lodop Dialog](./assets/lodop-dialog.png)
 
 ### 打印预览（80mm小票模板）
 
-![Lodop 58mm](./files/lodop-80mm.png)
+![Lodop 58mm](./assets/lodop-80mm.png)
 
 ## 初始版
 
@@ -217,12 +217,12 @@ module.exports = {
 
 ### 流程图
 
-![Lodop流程图](./files/lodop-flowchart.png)
+![Lodop流程图](./assets/lodop-flowchart.png)
 
 ### 模板选择器
 
-![Lodop模板选择器](./files/lodop-selector.png)
+![Lodop模板选择器](./assets/lodop-selector.png)
 
 ### 打印预览
 
-![Lodop打印预览](./files/lodop-preview.png)
+![Lodop打印预览](./assets/lodop-preview.png)

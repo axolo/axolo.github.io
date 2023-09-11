@@ -333,7 +333,7 @@ open http://serverip
 
 ### 基础架构
 
-![compute](./files/webvirt-cloud-compute.png)
+![compute](./assets/webvirt-cloud-compute.png)
 
 ### 存储池
 
@@ -347,16 +347,16 @@ chmod 755 -R /home/webvirtmgr
 `-- iso             # 光盘镜像
 ```
 
-![storage](./files/webvirt-cloud-storage.png)
+![storage](./assets/webvirt-cloud-storage.png)
 
 ### 网络
 
-![network](./files/webvirt-cloud-network.png)
+![network](./assets/webvirt-cloud-network.png)
 
 ### 实例
 
-![instance](./files/webvirt-cloud-instance.png)
+![instance](./assets/webvirt-cloud-instance.png)
 
 ### 会话
 
-![console](./files/webvirt-cloud-console.png)
+![console](./assets/webvirt-cloud-console.png)

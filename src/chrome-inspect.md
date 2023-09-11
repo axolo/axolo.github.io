@@ -28,9 +28,9 @@ tags: [Chrome, WEB]
 
 真机使用USB连接到电脑，打开开发者模式，允许调试，才能被`Chrome inspect`发现。
 
-![开发者模式](./files/chrome-inspect-android-develop.jpg)
+![开发者模式](./assets/chrome-inspect-android-develop.jpg)
 
-![允许调试](./files/chrome-inspect-android-allow-debug.jpg)
+![允许调试](./assets/chrome-inspect-android-allow-debug.jpg)
 
 ## 模拟器
 
@@ -45,13 +45,13 @@ tags: [Chrome, WEB]
 
 打开`Genymotion`模拟器，请选择较高版本的虚拟设备模板，点击右侧菜单`INSTALL`，下载完成自动安装。
 
-![安装虚拟机](./files/chrome-inspect-vm-install.jpg)
+![安装虚拟机](./assets/chrome-inspect-vm-install.jpg)
 
 回到`Genymotion`模拟器，启动虚拟机，默认已经打开开发者模式。
 
 将钉钉开发版拖入虚拟机中，完成安装，打开钉钉应用，进入钉钉微应用。
 
-![虚拟机启动](./files/chrome-inspect-vm-run.jpg)
+![虚拟机启动](./assets/chrome-inspect-vm-run.jpg)
 
 :::tip 离线下载
 若网络环境慢需要离线下载模板包，请打开`C:\Users\your-name\AppData\Local\Genymobile\genymotion.log`日志，查找`.ova`（`VirtualBox`模板格式）字符串。
@@ -60,17 +60,17 @@ tags: [Chrome, WEB]
 
 若错误请根据错误提示解决问题，比如网络配置错误：
 
-![虚拟机网络配置](./files/chrome-inspect-vm-setting.jpg)
+![虚拟机网络配置](./assets/chrome-inspect-vm-setting.jpg)
 
 ## Chrome inspect
 
 使用`Chrome`浏览器打开`chrome://inspect/#devices`新标签页，将`Remote Target`下对应设备的对应页面`inspect`到桌面端的`Chrome`。
 
-![Chrome inspect](./files/chrome-inspect-inspect-device.jpg)
+![Chrome inspect](./assets/chrome-inspect-inspect-device.jpg)
 
 正常情况进入调试页面。
 
-![Chrome debug](./files/chrome-inspect-inspect-debug.jpg)
+![Chrome debug](./assets/chrome-inspect-inspect-debug.jpg)
 
 :::danger 谨防受骗
 国情问题，很可能会弹出空白页面或者404错误页面（`HTTP/1.1 404 Not Found`）。

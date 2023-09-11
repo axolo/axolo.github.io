@@ -440,7 +440,7 @@ module.exports = config => {
 `Authorization Code Grants`必须实现`authenticateHandler`，获取授权用户详情。
 有多种实现方式，比如可以以资源端`Session`和`Cookie`方式实现免登获取。
 
-![oauth2](./files/egg-oauth.png)
+![oauth2](./assets/egg-oauth.png)
 
 ```js
 // app/controller/auth/code.js

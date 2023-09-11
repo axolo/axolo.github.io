@@ -14,7 +14,7 @@ tags: [Git]
 
 你真的需要记住那么多 Git 操作吗？
 也许阮一峰老师的[《常用Git命令清单》](http://www.ruanyifeng.com/blog/2015/12/git-cheat-sheet.html)就够了。
-![Git常见操作图解](./files/git.png)
+![Git常见操作图解](./assets/git.png)
 
 ## git subtree
 
@@ -23,7 +23,7 @@ tags: [Git]
 - [git subtree教程](https://segmentfault.com/a/1190000012002151)
 - [用 Git Subtree 在多个 Git 项目间双向同步子项目](https://segmentfault.com/a/1190000003969060)
 
-![git subtree](./files/git-subtree.png)
+![git subtree](./assets/git-subtree.png)
 
 ```shell
 # 克隆主项目仓库到本地
