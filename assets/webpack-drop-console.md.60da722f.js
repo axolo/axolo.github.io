@@ -1,0 +1,45 @@
+import{_ as s,o as a,c as n,Q as l}from"./chunks/framework.d5af2850.js";const h=JSON.parse('{"title":"Webpack编译移除控制台输出","description":"出于安全渗透和代码审计需要，生产环境往往需要移除控制台console系列函数的输出，逐一人肉删除显然不是好办法……","frontmatter":{"title":"Webpack编译移除控制台输出","description":"出于安全渗透和代码审计需要，生产环境往往需要移除控制台console系列函数的输出，逐一人肉删除显然不是好办法……","time":"2021-12-14T00:00:00.000Z","category":"前端","tags":["Vue.js","Webpack"]},"headers":[],"relativePath":"webpack-drop-console.md","filePath":"webpack-drop-console.md"}'),p={name:"webpack-drop-console.md"},e=l(`<h1 id="webpack编译移除控制台输出" tabindex="-1">Webpack编译移除控制台输出 <a class="header-anchor" href="#webpack编译移除控制台输出" aria-label="Permalink to &quot;Webpack编译移除控制台输出&quot;">​</a></h1><blockquote><p>方跃明 2021-12-14</p></blockquote><p>前端程序员在开发的时候经常会使用<code>console.log</code>来调试。 然而，出于安全渗透和代码审计需要，生产环境往往需要移除控制台（<code>console</code>系列函数）输出。 一个个去删除难免漏网之鱼，而且有时候开发环境仍需要用到。 此时使用 <a href="https://webpack.js.org/plugins/terser-webpack-plugin/" target="_blank" rel="noreferrer">terser-webpack-plugin</a> 不失为一个好办法。</p><p>本文以 <a href="https://cli.vuejs.org/zh/" target="_blank" rel="noreferrer">Vue CLI</a> 为例来实现，当前 <a href="https://cli.vuejs.org/zh/" target="_blank" rel="noreferrer">Vue CLI</a> 对应适配的 <a href="https://webpack.js.org/plugins/terser-webpack-plugin/" target="_blank" rel="noreferrer">terser-webpack-plugin</a> 版本为：<code>4.2.3</code>。</p><h2 id="安装" tabindex="-1">安装 <a class="header-anchor" href="#安装" aria-label="Permalink to &quot;安装&quot;">​</a></h2><div class="language-shell vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang">shell</span><pre class="shiki github-dark vp-code-dark"><code><span class="line"><span style="color:#B392F0;">yarn</span><span style="color:#E1E4E8;"> </span><span style="color:#9ECBFF;">add</span><span style="color:#E1E4E8;"> </span><span style="color:#9ECBFF;">terser-webpack-plugin@4.2.3</span></span></code></pre><pre class="shiki github-light vp-code-light"><code><span class="line"><span style="color:#6F42C1;">yarn</span><span style="color:#24292E;"> </span><span style="color:#032F62;">add</span><span style="color:#24292E;"> </span><span style="color:#032F62;">terser-webpack-plugin@4.2.3</span></span></code></pre></div><h2 id="配置" tabindex="-1">配置 <a class="header-anchor" href="#配置" aria-label="Permalink to &quot;配置&quot;">​</a></h2><div class="language-js vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang">js</span><pre class="shiki github-dark vp-code-dark"><code><span class="line"><span style="color:#6A737D;">// vue.config.js</span></span>
+<span class="line"><span style="color:#F97583;">const</span><span style="color:#E1E4E8;"> </span><span style="color:#79B8FF;">TerserPlugin</span><span style="color:#E1E4E8;"> </span><span style="color:#F97583;">=</span><span style="color:#E1E4E8;"> </span><span style="color:#B392F0;">require</span><span style="color:#E1E4E8;">(</span><span style="color:#9ECBFF;">&#39;terser-webpack-plugin&#39;</span><span style="color:#E1E4E8;">)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#79B8FF;">module</span><span style="color:#E1E4E8;">.</span><span style="color:#79B8FF;">exports</span><span style="color:#E1E4E8;"> </span><span style="color:#F97583;">=</span><span style="color:#E1E4E8;"> {</span></span>
+<span class="line"><span style="color:#E1E4E8;"> configureWebpack: {</span></span>
+<span class="line"><span style="color:#E1E4E8;">   optimization: {</span></span>
+<span class="line"><span style="color:#E1E4E8;">     minimizer: [</span></span>
+<span class="line"><span style="color:#E1E4E8;">       </span><span style="color:#F97583;">new</span><span style="color:#E1E4E8;"> </span><span style="color:#B392F0;">TerserPlugin</span><span style="color:#E1E4E8;">({</span></span>
+<span class="line"><span style="color:#E1E4E8;">         terserOptions: {</span></span>
+<span class="line"><span style="color:#E1E4E8;">           ecma: </span><span style="color:#79B8FF;">undefined</span><span style="color:#E1E4E8;">,</span></span>
+<span class="line"><span style="color:#E1E4E8;">           warnings: </span><span style="color:#79B8FF;">false</span><span style="color:#E1E4E8;">,</span></span>
+<span class="line"><span style="color:#E1E4E8;">           parse: {},</span></span>
+<span class="line"><span style="color:#E1E4E8;">           compress: {</span></span>
+<span class="line"><span style="color:#E1E4E8;">             drop_console: </span><span style="color:#79B8FF;">true</span><span style="color:#E1E4E8;">,</span></span>
+<span class="line"><span style="color:#E1E4E8;">             drop_debugger: </span><span style="color:#79B8FF;">false</span><span style="color:#E1E4E8;">,</span></span>
+<span class="line"><span style="color:#E1E4E8;">             </span><span style="color:#6A737D;">// pure_funcs: [&#39;console.log&#39;], // 移除console</span></span>
+<span class="line"><span style="color:#E1E4E8;">           }</span></span>
+<span class="line"><span style="color:#E1E4E8;">         }</span></span>
+<span class="line"><span style="color:#E1E4E8;">       })</span></span>
+<span class="line"><span style="color:#E1E4E8;">     ]</span></span>
+<span class="line"><span style="color:#E1E4E8;">   }</span></span>
+<span class="line"><span style="color:#E1E4E8;"> }</span></span>
+<span class="line"><span style="color:#E1E4E8;">}</span></span></code></pre><pre class="shiki github-light vp-code-light"><code><span class="line"><span style="color:#6A737D;">// vue.config.js</span></span>
+<span class="line"><span style="color:#D73A49;">const</span><span style="color:#24292E;"> </span><span style="color:#005CC5;">TerserPlugin</span><span style="color:#24292E;"> </span><span style="color:#D73A49;">=</span><span style="color:#24292E;"> </span><span style="color:#6F42C1;">require</span><span style="color:#24292E;">(</span><span style="color:#032F62;">&#39;terser-webpack-plugin&#39;</span><span style="color:#24292E;">)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#005CC5;">module</span><span style="color:#24292E;">.</span><span style="color:#005CC5;">exports</span><span style="color:#24292E;"> </span><span style="color:#D73A49;">=</span><span style="color:#24292E;"> {</span></span>
+<span class="line"><span style="color:#24292E;"> configureWebpack: {</span></span>
+<span class="line"><span style="color:#24292E;">   optimization: {</span></span>
+<span class="line"><span style="color:#24292E;">     minimizer: [</span></span>
+<span class="line"><span style="color:#24292E;">       </span><span style="color:#D73A49;">new</span><span style="color:#24292E;"> </span><span style="color:#6F42C1;">TerserPlugin</span><span style="color:#24292E;">({</span></span>
+<span class="line"><span style="color:#24292E;">         terserOptions: {</span></span>
+<span class="line"><span style="color:#24292E;">           ecma: </span><span style="color:#005CC5;">undefined</span><span style="color:#24292E;">,</span></span>
+<span class="line"><span style="color:#24292E;">           warnings: </span><span style="color:#005CC5;">false</span><span style="color:#24292E;">,</span></span>
+<span class="line"><span style="color:#24292E;">           parse: {},</span></span>
+<span class="line"><span style="color:#24292E;">           compress: {</span></span>
+<span class="line"><span style="color:#24292E;">             drop_console: </span><span style="color:#005CC5;">true</span><span style="color:#24292E;">,</span></span>
+<span class="line"><span style="color:#24292E;">             drop_debugger: </span><span style="color:#005CC5;">false</span><span style="color:#24292E;">,</span></span>
+<span class="line"><span style="color:#24292E;">             </span><span style="color:#6A737D;">// pure_funcs: [&#39;console.log&#39;], // 移除console</span></span>
+<span class="line"><span style="color:#24292E;">           }</span></span>
+<span class="line"><span style="color:#24292E;">         }</span></span>
+<span class="line"><span style="color:#24292E;">       })</span></span>
+<span class="line"><span style="color:#24292E;">     ]</span></span>
+<span class="line"><span style="color:#24292E;">   }</span></span>
+<span class="line"><span style="color:#24292E;"> }</span></span>
+<span class="line"><span style="color:#24292E;">}</span></span></code></pre></div><h2 id="编译" tabindex="-1">编译 <a class="header-anchor" href="#编译" aria-label="Permalink to &quot;编译&quot;">​</a></h2><div class="language-shell vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang">shell</span><pre class="shiki github-dark vp-code-dark"><code><span class="line"><span style="color:#B392F0;">yarn</span><span style="color:#E1E4E8;"> </span><span style="color:#9ECBFF;">build</span></span></code></pre><pre class="shiki github-light vp-code-light"><code><span class="line"><span style="color:#6F42C1;">yarn</span><span style="color:#24292E;"> </span><span style="color:#032F62;">build</span></span></code></pre></div><p>至此，<code>console</code>系列函数已不会在编译后的代码里从控制台输出了。</p>`,11),o=[e];function c(r,t,i,E,y,d){return a(),n("div",null,o)}const g=s(p,[["render",c]]);export{h as __pageData,g as default};
