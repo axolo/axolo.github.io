@@ -124,7 +124,7 @@ SELECT * FROM cte;
 ### 感悟：邻接表实现与转换
 
 - 实现：[MariaDB表达式：CTE](https://www.cnblogs.com/f-ck-need-u/p/8875863.html)
-- 转换：[js-tree-list](https://github.com/yi-ge/js-tree-list)
+- 转换：[@axolo/tree-array](https://github.com/axolo/tree-array)
 
 ## 四、需要ID
 
