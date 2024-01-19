@@ -27,12 +27,12 @@
     "serve": "vitepress serve ."
   },
   "devDependencies": {
-    "@axolo/tree-array": "^0.2.0",
+    "@axolo/tree-array": "^0.3.3",
     "@mermaid-js/mermaid-mindmap": "^9.3.0",
-    "dayjs": "^1.11.9",
-    "mermaid": "^10.4.0",
-    "sass": "^1.66.1",
-    "vitepress": "^1.0.0-rc.10",
-    "vitepress-plugin-mermaid": "^2.0.14"
+    "dayjs": "^1.11.10",
+    "mermaid": "^10.7.0",
+    "sass": "^1.70.0",
+    "vitepress": "^1.0.0-rc.39",
+    "vitepress-plugin-mermaid": "^2.0.16"
   }
 }

@@ -36,7 +36,7 @@ import GdtLink from '../.vitepress/components/gdt-link.vue'
 ## vConsole
 
 [vConsole] 是微信小程序的官方调试工具，一个轻量、可拓展、针对手机网页的前端开发者调试面板。
-配合 [条件编译](./vite.md#条件编译) 使用，效果更佳。
+配合 [vite-plugin-conditional-compile] 条件编译使用，效果更佳。
 
 ## 跳转协议
 
@@ -142,3 +142,4 @@ https://render.alipay-eco.com/p/s/devtools-web/index.html?ch2=7b032350-10cb-436e
 [统一跳转协议说明]: https://openplatform-portal.dg-work.cn/portal/#/helpdoc?apiType=DEV_GUIDE&docKey=3355278
 [服务端API之工作通知]: https://openplatform-portal.dg-work.cn/portal/#/helpdoc?apiType=serverapi&docKey=2674860
 [H5应用调试工具]: https://openplatform-portal.dg-work.cn/portal/#/helpdoc?apiType=TOOL_SOURCES&docKey=3863416
+[vite-plugin-conditional-compile]: https://github.com/KeJunMao/vite-plugin-conditional-compile
