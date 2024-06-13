@@ -9,7 +9,7 @@ import category from './utils/category'
 const pages = []
 
 export default withMermaid({
-  title: '方跃明的博客',
+  title: '编程和电脑使用技巧分享',
   description: '约定大于配置，配置大于编码。自上而下分解，自下而上构建。数据驱动算法，目标领导计划。',
   lang: 'zh-CN',
   srcDir: './src', // 博客源文件目录
