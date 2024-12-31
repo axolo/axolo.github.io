@@ -3,7 +3,13 @@ title: 归档
 lastUpdated: false
 unsave: true
 ---
+
 # 归档
+
+## 2024
+
+- [Javascript 打包发布](./javascript-publish.md)
+
 ## 2023
 
 - [nginx 同源调试](./nginx-cors.md)
@@ -110,4 +116,3 @@ unsave: true
 ## 2008
 
 - [Linux 编译安装命令 configure、make、install 的意义](./linux-make-install.md)
-

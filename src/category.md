@@ -3,7 +3,9 @@ title: 分类
 lastUpdated: false
 unsave: true
 ---
+
 # 分类
+
 ## 运维
 
 - [nginx 同源调试](./nginx-cors.md)
@@ -33,6 +35,7 @@ unsave: true
 
 ## 前端
 
+- [Javascript 打包发布](./javascript-publish.md)
 - [专有钉调试](./gdt-debug.md)
 - [Jekyll 从入门到放弃](./jekyll-intro-to-quit.md)
 - [Webpack编译移除控制台输出](./webpack-drop-console.md)
@@ -77,4 +80,3 @@ unsave: true
 - [Git 提交规范](./git-commitlint.md)
 - [Git 排除忽略子目录](./git-ignore-exclude.md)
 - [图解 Git 常用操作](./git.md)
-

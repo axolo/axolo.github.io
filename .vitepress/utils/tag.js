@@ -1,5 +1,5 @@
 export default docs => {
-  let markdown = '---\ntitle: 归档\nlastUpdated: false\nunsave: true\n---\n# 标签\n'
+  let markdown = '---\ntitle: 归档\nlastUpdated: false\nunsave: true\n---\n\n# 标签\n\n'
 
   const allTags = docs.map(doc => doc.tags || []).flat()
   const uniqueTags = [...new Set(allTags)]

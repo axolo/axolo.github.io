@@ -1,5 +1,5 @@
 export default docs => {
-  let markdown = '---\ntitle: 分类\nlastUpdated: false\nunsave: true\n---\n# 分类\n'
+  let markdown = '---\ntitle: 分类\nlastUpdated: false\nunsave: true\n---\n\n# 分类\n\n'
 
   const allTypes = docs.map(doc => doc.category).flat()
   const uniqueTypes = [...new Set(allTypes)]

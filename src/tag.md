@@ -3,7 +3,9 @@ title: 归档
 lastUpdated: false
 unsave: true
 ---
+
 # 标签
+
 ## Linux
 
 - [基于WSL搭建Node.js开发环境](./node-on-wsl.md)
@@ -121,6 +123,12 @@ unsave: true
 - [安装配置 Oracle PL/SQL Developer](./oracle-plsql.md)
 - [图解 SQL JOINS](./sql-join.md)
 
+## JavaScript
+
+- [Javascript 打包发布](./javascript-publish.md)
+- [JavaScript async](./javascript-async.md)
+- [jQuery 常用表格操作](./jquery-table.md)
+
 ## HTTP
 
 - [whistle 简明教程](./whistle-intro.md)
@@ -147,11 +155,6 @@ unsave: true
 
 - [frp 内网穿透](./frp.md)
 - [家用宽带联机开发环境部署](./frp-ddns.md)
-
-## JavaScript
-
-- [JavaScript async](./javascript-async.md)
-- [jQuery 常用表格操作](./jquery-table.md)
 
 ## 虚拟化
 
@@ -217,4 +220,3 @@ unsave: true
 ## RBAC
 
 - [RBAC之我见](./rbac.md)
-

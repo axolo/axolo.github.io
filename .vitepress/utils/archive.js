@@ -1,7 +1,7 @@
 import dayjs from 'dayjs'
 
 export default docs => {
-  let markdown = '---\ntitle: 归档\nlastUpdated: false\nunsave: true\n---\n# 归档\n'
+  let markdown = '---\ntitle: 归档\nlastUpdated: false\nunsave: true\n---\n\n# 归档\n\n'
 
   const allYears = docs.map(doc => dayjs(doc.time).format('YYYY')).flat().sort((a, b) => b - a)
   const uniqueYears = [...new Set(allYears)]
