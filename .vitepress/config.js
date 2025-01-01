@@ -9,8 +9,8 @@ import category from './utils/category'
 const pages = []
 
 export default withMermaid({
-  title: '方跃明的博客',
-  description: '分享编程和电脑使用技巧',
+  title: '分享编程和电脑使用技巧',
+  description: '方跃明的博客',
   lang: 'zh-CN',
   srcDir: './src',
   ignoreDeadLinks: true, // 忽略死链，触发buildEnd
