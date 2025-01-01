@@ -9,7 +9,6 @@ unsave: true
 ## 运维
 
 - [nginx 同源调试](./nginx-cors.md)
-- [whistle 简明教程](./whistle-intro.md)
 - [基于WSL搭建Node.js开发环境](./node-on-wsl.md)
 - [Linux 目录结构](./linux-directory.md)
 - [Docker Portianer](./docker-portianer.md)
@@ -35,9 +34,8 @@ unsave: true
 
 ## 前端
 
-- [Javascript 打包发布](./javascript-publish.md)
+- [JavaScript 打包发布](./javascript-publish.md)
 - [专有钉调试](./gdt-debug.md)
-- [Jekyll 从入门到放弃](./jekyll-intro-to-quit.md)
 - [Webpack编译移除控制台输出](./webpack-drop-console.md)
 - [UmiJS 之我见](./umijs-ux.md)
 - [JavaScript async](./javascript-async.md)

@@ -1,12 +1,14 @@
 ---
-title: Javascript 打包发布
+title: JavaScript 打包发布
 description: 代码演示 Javascript 打包发布操作，包括cjs、mjs和vue。
 time: 2024-12-31
 category: 前端
 tags: [JavaScript]
 ---
 
-# Javascript 打包发布
+# JavaScript 打包发布
+
+> 方跃明 2024-12-31
 
 发布不依赖框架和应用的组件或工具为独立包，可以通过`npm install`安装或`<script src>`引入。
 

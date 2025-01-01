@@ -8,17 +8,15 @@ unsave: true
 
 ## 2024
 
-- [Javascript 打包发布](./javascript-publish.md)
+- [JavaScript 打包发布](./javascript-publish.md)
 
 ## 2023
 
 - [nginx 同源调试](./nginx-cors.md)
 - [专有钉调试](./gdt-debug.md)
-- [whistle 简明教程](./whistle-intro.md)
 
 ## 2022
 
-- [Jekyll 从入门到放弃](./jekyll-intro-to-quit.md)
 - [基于WSL搭建Node.js开发环境](./node-on-wsl.md)
 
 ## 2021

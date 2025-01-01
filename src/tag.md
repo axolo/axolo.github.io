@@ -50,8 +50,6 @@ unsave: true
 
 ## WEB
 
-- [whistle 简明教程](./whistle-intro.md)
-- [Jekyll 从入门到放弃](./jekyll-intro-to-quit.md)
 - [localhost 开启 HTTPS](./localhost-ssl-cert.md)
 - [前端概念图](./frontend-map.md)
 - [HTTP DELETE 方法传递参数](./delete-with-body.md)
@@ -125,15 +123,9 @@ unsave: true
 
 ## JavaScript
 
-- [Javascript 打包发布](./javascript-publish.md)
+- [JavaScript 打包发布](./javascript-publish.md)
 - [JavaScript async](./javascript-async.md)
 - [jQuery 常用表格操作](./jquery-table.md)
-
-## HTTP
-
-- [whistle 简明教程](./whistle-intro.md)
-- [localhost 开启 HTTPS](./localhost-ssl-cert.md)
-- [HTTP DELETE 方法传递参数](./delete-with-body.md)
 
 ## Docker
 
@@ -155,6 +147,11 @@ unsave: true
 
 - [frp 内网穿透](./frp.md)
 - [家用宽带联机开发环境部署](./frp-ddns.md)
+
+## HTTP
+
+- [localhost 开启 HTTPS](./localhost-ssl-cert.md)
+- [HTTP DELETE 方法传递参数](./delete-with-body.md)
 
 ## 虚拟化
 
@@ -180,10 +177,6 @@ unsave: true
 ## 浙政钉
 
 - [专有钉调试](./gdt-debug.md)
-
-## 博客系统
-
-- [Jekyll 从入门到放弃](./jekyll-intro-to-quit.md)
 
 ## Webpack
 

@@ -9,12 +9,11 @@ import category from './utils/category'
 const pages = []
 
 export default withMermaid({
-  title: '编程和电脑使用技巧分享',
-  description: '约定大于配置，配置大于编码。自上而下分解，自下而上构建。数据驱动算法，目标领导计划。',
+  title: '方跃明的博客',
+  description: '分享编程和电脑使用技巧',
   lang: 'zh-CN',
-  srcDir: './src', // 博客源文件目录
-  // outDir: './docs', // 方便部署各种Pages
-  // lastUpdated: true,
+  srcDir: './src',
+  ignoreDeadLinks: true, // 忽略死链，触发buildEnd
   head: [
     ['link', { rel: 'icon', type: 'image/svg+xml', href: '/logo.svg' }],
     ['link', { rel: 'stylesheet', href: '/styles/app.css' }],
@@ -40,7 +39,7 @@ export default withMermaid({
       icon: 'github'
     }],
     footer: {
-      message: '© 2021 fangyueming.cn',
+      message: '©2021 fangyueming.cn',
       copyright: '<a href="https://beian.miit.gov.cn">浙ICP备20010733号-2</a>'
     }
   },
@@ -52,6 +51,7 @@ export default withMermaid({
     delete data.frontmatter
     delete data.headers
     pages.push(data)
+    return pages
   },
   async buildEnd(siteConfig) {
     if(!process.argv.includes('--save')) return // --save = 更新数据

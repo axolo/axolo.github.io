@@ -1,5 +1,5 @@
 export default docs => {
-  let markdown = '---\ntitle: 分类\nlastUpdated: false\nunsave: true\n---\n\n# 分类\n\n'
+  let markdown = '---\ntitle: 分类\nlastUpdated: false\nunsave: true\n---\n\n# 分类\n'
 
   const allTypes = docs.map(doc => doc.category).flat()
   const uniqueTypes = [...new Set(allTypes)]
@@ -10,11 +10,10 @@ export default docs => {
   })).sort((i, j) => j.count - i.count)
 
   types.forEach(type => {
-    markdown += `## ${type.name}\n\n`
+    markdown += `\n## ${type.name}\n\n`
     type.docs.forEach(doc => {
       markdown += `- [${doc.title}](./${doc.relativePath})\n`
     })
-    markdown += '\n'
   })
   return markdown
 }

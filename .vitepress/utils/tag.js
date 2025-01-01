@@ -1,5 +1,5 @@
 export default docs => {
-  let markdown = '---\ntitle: 归档\nlastUpdated: false\nunsave: true\n---\n\n# 标签\n\n'
+  let markdown = '---\ntitle: 归档\nlastUpdated: false\nunsave: true\n---\n\n# 标签\n'
 
   const allTags = docs.map(doc => doc.tags || []).flat()
   const uniqueTags = [...new Set(allTags)]
@@ -11,11 +11,10 @@ export default docs => {
   })).sort((i, j) => j.count - i.count)
 
   tags.forEach(tag => {
-    markdown += `## ${tag.name}\n\n`
+    markdown += `\n## ${tag.name}\n\n`
     tag.docs.forEach(doc => {
       markdown += `- [${doc.title}](./${doc.relativePath})\n`
     })
-    markdown += '\n'
   })
   return markdown
 }
