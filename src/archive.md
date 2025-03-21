@@ -6,6 +6,10 @@ unsave: true
 
 # 归档
 
+## 2025
+
+- [Python 起步](./python-start.md)
+
 ## 2024
 
 - [JavaScript 打包发布](./javascript-publish.md)

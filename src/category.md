@@ -68,6 +68,7 @@ unsave: true
 
 - [Egg.js 实现 OAuth2 授权码方式鉴权](./egg-oauth.md)
 - [有感于《论PHP的倒掉》](./php-fall.md)
+- [Python 起步](./python-start.md)
 - [LeoPHP Framework](./leophp.md)
 - [php_imagick安装配置](./php-imagick-windows.md)
 - [MVC及PHP++、PHP--胡思乱想杂记](./php-lite.md)

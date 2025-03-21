@@ -166,6 +166,10 @@ unsave: true
 
 - [Egg.js 实现 OAuth2 授权码方式鉴权](./egg-oauth.md)
 
+## Python
+
+- [Python 起步](./python-start.md)
+
 ## cors
 
 - [nginx 同源调试](./nginx-cors.md)
