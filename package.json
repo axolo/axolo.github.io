@@ -1,0 +1,30 @@
+{
+  "name": "axolo.github.io",
+  "version": "0.3.9",
+  "description": "notes and blogs, powered by vitepress.",
+  "type": "module",
+  "private": true,
+  "author": "axolo",
+  "license": "MIT",
+  "keywords": [
+    "vitepress",
+    "blog",
+    "markdown",
+    "博客"
+  ],
+  "scripts": {
+    "dev": "vitepress dev .",
+    "save": "vitepress build . --save",
+    "build": "vitepress build .",
+    "serve": "vitepress serve ."
+  },
+  "devDependencies": {
+    "@axolo/tree-array": "^0.6.0",
+    "@mermaid-js/mermaid-mindmap": "^9.3.0",
+    "dayjs": "^1.11.20",
+    "mermaid": "^11.14.0",
+    "sass-embedded": "^1.99.0",
+    "vitepress": "^1.6.4",
+    "vitepress-plugin-mermaid": "^2.0.17"
+  }
+}
