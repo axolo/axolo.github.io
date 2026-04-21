@@ -1,6 +1,6 @@
 {
   "name": "axolo.github.io",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "notes and blogs, powered by vitepress.",
   "type": "module",
   "private": true,
