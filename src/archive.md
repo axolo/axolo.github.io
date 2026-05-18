@@ -41,7 +41,6 @@ unsave: true
 - [UmiJS 之我见](./umijs-ux.md)
 - [JavaScript async](./javascript-async.md)
 - [前端概念图](./frontend-map.md)
-- [CentOS 安装配置 OpenVPN](./centos-openvpn.md)
 - [Git 提交规范](./git-commitlint.md)
 - [iOS 开发环境搭建](./ios-develop.md)
 

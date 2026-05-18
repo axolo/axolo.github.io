@@ -16,7 +16,6 @@ unsave: true
 - [家用宽带联机开发环境部署](./frp-ddns.md)
 - [CentOS 快速搭建开发环境](./centos-develop-env.md)
 - [localhost 开启 HTTPS](./localhost-ssl-cert.md)
-- [CentOS 安装配置 OpenVPN](./centos-openvpn.md)
 - [CentOS 防火墙](./centos-firewall.md)
 - [CentOS 网络](./centos-network.md)
 - [Git WebHooks](./git-webhook.md)

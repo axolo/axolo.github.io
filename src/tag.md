@@ -15,7 +15,6 @@ unsave: true
 - [frp 内网穿透](./frp.md)
 - [家用宽带联机开发环境部署](./frp-ddns.md)
 - [CentOS 快速搭建开发环境](./centos-develop-env.md)
-- [CentOS 安装配置 OpenVPN](./centos-openvpn.md)
 - [CentOS 防火墙](./centos-firewall.md)
 - [CentOS 网络](./centos-network.md)
 - [MySQL 多版本单服务器共存](./mysql-multi-version.md)
@@ -36,7 +35,6 @@ unsave: true
 - [frp 内网穿透](./frp.md)
 - [家用宽带联机开发环境部署](./frp-ddns.md)
 - [CentOS 快速搭建开发环境](./centos-develop-env.md)
-- [CentOS 安装配置 OpenVPN](./centos-openvpn.md)
 - [CentOS 防火墙](./centos-firewall.md)
 - [CentOS 网络](./centos-network.md)
 - [MySQL 多版本单服务器共存](./mysql-multi-version.md)
@@ -187,10 +185,6 @@ unsave: true
 ## React
 
 - [UmiJS 之我见](./umijs-ux.md)
-
-## VPN
-
-- [CentOS 安装配置 OpenVPN](./centos-openvpn.md)
 
 ## iOS
 
